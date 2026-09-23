@@ -1,0 +1,504 @@
+{
+  "bomFormat": "CycloneDX-lite",
+  "specVersion": "1.5",
+  "components": [
+    {
+      "type": "file",
+      "name": "__init__.py",
+      "version": "1.0",
+      "source": "goodware/__init__.py",
+      "sha256": "96365525c10c483a244d770ff6428c0237349ba74e0b4a3744440b991791f0b6"
+    },
+    {
+      "type": "file",
+      "name": "__main__.py",
+      "version": "1.0",
+      "source": "goodware/__main__.py",
+      "sha256": "84387c6ef3075ac6cd0b6de3dcff2a76c7a233a0d766a1c72a1b5ade51850f0e"
+    },
+    {
+      "type": "file",
+      "name": "honeypot.py",
+      "version": "1.0",
+      "source": "goodware/honeypot.py",
+      "sha256": "e2eee583d1329c41e5dfaf1d78a59730e9198b817fc8f4b1515e88609ae4c06f"
+    },
+    {
+      "type": "file",
+      "name": "__init__.py",
+      "version": "1.0",
+      "source": "goodware/api/__init__.py",
+      "sha256": "59c432677fd8f62204b4eeff8ded8dabafe4e6cd5d14230dfe8882d56cf6f2fc"
+    },
+    {
+      "type": "file",
+      "name": "server.py",
+      "version": "1.0",
+      "source": "goodware/api/server.py",
+      "sha256": "ef8140d070532c9f7e35043efb33e850f70fd9f77a1deb1cb7c41be042ff52a7"
+    },
+    {
+      "type": "file",
+      "name": "__init__.py",
+      "version": "1.0",
+      "source": "goodware/chainsaw/__init__.py",
+      "sha256": "700c3bc138ec923d07ac5bfe897dee54fab40cdea8ef537dfb7deabf60c7a94c"
+    },
+    {
+      "type": "file",
+      "name": "analyzer.py",
+      "version": "1.0",
+      "source": "goodware/chainsaw/analyzer.py",
+      "sha256": "2bf7ecc466366a89f6645480f3e244d69042cae6629a75d9617b7641eecbdf15"
+    },
+    {
+      "type": "file",
+      "name": "iat_repair.py",
+      "version": "1.0",
+      "source": "goodware/chainsaw/iat_repair.py",
+      "sha256": "bf06804ae714be026e4d120de660803580fac0fa3f4f4f5fdb9e53e3bde1f57c"
+    },
+    {
+      "type": "file",
+      "name": "real_scanner.py",
+      "version": "1.0",
+      "source": "goodware/chainsaw/real_scanner.py",
+      "sha256": "c4cdbb8672e5d8ab33d06313a75435e7714fe1904d0183a20ce3c32686bfd4e7"
+    },
+    {
+      "type": "file",
+      "name": "remover.py",
+      "version": "1.0",
+      "source": "goodware/chainsaw/remover.py",
+      "sha256": "f21720fede6c0ca175ecd26bfcad7894444b3b5879036967c8ea2410d72f8e8f"
+    },
+    {
+      "type": "file",
+      "name": "sandbox.py",
+      "version": "1.0",
+      "source": "goodware/chainsaw/sandbox.py",
+      "sha256": "6c89b78f0208c24994603c82a502dacc85ac948c48f52fa57f708e0e37e61873"
+    },
+    {
+      "type": "file",
+      "name": "__init__.py",
+      "version": "1.0",
+      "source": "goodware/core/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "type": "file",
+      "name": "config.py",
+      "version": "1.0",
+      "source": "goodware/core/config.py",
+      "sha256": "60eb5885bbbf83bbdc42a18e0e8394fe5e20e636cc60c27fa95411a2426ebee9"
+    },
+    {
+      "type": "file",
+      "name": "engine.py",
+      "version": "1.0",
+      "source": "goodware/core/engine.py",
+      "sha256": "021d8855df2181c4fd0c3ec664f9679787c37ea577e9f999be4aa7f3b37dd0bb"
+    },
+    {
+      "type": "file",
+      "name": "events.py",
+      "version": "1.0",
+      "source": "goodware/core/events.py",
+      "sha256": "01a180f1a8dcec50e2771d9fac32acd36e66ee3c22be384d0e66ffb71dd11910"
+    },
+    {
+      "type": "file",
+      "name": "logger.py",
+      "version": "1.0",
+      "source": "goodware/core/logger.py",
+      "sha256": "904f90b48e951c377e226f83948a9e2f72c22752b508097d0389124d8e3e2e16"
+    },
+    {
+      "type": "file",
+      "name": "state.py",
+      "version": "1.0",
+      "source": "goodware/core/state.py",
+      "sha256": "698ad65eeee990bf11c8f67b955303aea1038c212859f4f7cf008ea3dd4fe26a"
+    },
+    {
+      "type": "file",
+      "name": "__init__.py",
+      "version": "1.0",
+      "source": "goodware/crypto/__init__.py",
+      "sha256": "c06cb0ed5ac6631459abc13af0cbaa3d83297c73d88e4814c4b8a29749de61bf"
+    },
+    {
+      "type": "file",
+      "name": "agility.py",
+      "version": "1.0",
+      "source": "goodware/crypto/agility.py",
+      "sha256": "f30c843a82c580c7706fcfcb0cf5ac7ad337b8c08407395778a11d4fdd6f9962"
+    },
+    {
+      "type": "file",
+      "name": "lattice.py",
+      "version": "1.0",
+      "source": "goodware/crypto/lattice.py",
+      "sha256": "9944532dd8079ddaccf549f2e59360c7b602028bb3d71dd39c094e9513285094"
+    },
+    {
+      "type": "file",
+      "name": "pqc.py",
+      "version": "1.0",
+      "source": "goodware/crypto/pqc.py",
+      "sha256": "5d5b925aba90dbda61b7ceab78fe0323fa923b3653de12e858247172b581de98"
+    },
+    {
+      "type": "file",
+      "name": "qkd_sim.py",
+      "version": "1.0",
+      "source": "goodware/crypto/qkd_sim.py",
+      "sha256": "c340e0ee1fe170aa13f1e1c2f30023ebe4ea0bc01540bef742921e0d61fb5192"
+    },
+    {
+      "type": "file",
+      "name": "real_pqc.py",
+      "version": "1.0",
+      "source": "goodware/crypto/real_pqc.py",
+      "sha256": "7ebea53c6d51f178a3ec6355d4c277b790211382169a9c37be95912affe9a21b"
+    },
+    {
+      "type": "file",
+      "name": "signatures.py",
+      "version": "1.0",
+      "source": "goodware/crypto/signatures.py",
+      "sha256": "26b7515e03c5862f00c1aca2c50ea01a043a861208ca3e1fc90f2f7bc49721db"
+    },
+    {
+      "type": "file",
+      "name": "vault.py",
+      "version": "1.0",
+      "source": "goodware/crypto/vault.py",
+      "sha256": "845e6cecbea64ade0b5f9503fd7b41a771e9ef9273224472879718e164e7cf54"
+    },
+    {
+      "type": "file",
+      "name": "__init__.py",
+      "version": "1.0",
+      "source": "goodware/decision/__init__.py",
+      "sha256": "b7f3004e850d1dc3b74156f9d2a9e4a2226bd61003439b8ab5aab001fc66b2eb"
+    },
+    {
+      "type": "file",
+      "name": "policy_engine.py",
+      "version": "1.0",
+      "source": "goodware/decision/policy_engine.py",
+      "sha256": "65770d825ff8af30156b22a050973c7346bbdebb0463fb1a65ab44e6e62a1838"
+    },
+    {
+      "type": "file",
+      "name": "predictive_engine.py",
+      "version": "1.0",
+      "source": "goodware/decision/predictive_engine.py",
+      "sha256": "587a6f65d7f76dfd39f7317b7b59faddb09369ec143b96e22fdfbda6d28231c8"
+    },
+    {
+      "type": "file",
+      "name": "quorum.py",
+      "version": "1.0",
+      "source": "goodware/decision/quorum.py",
+      "sha256": "40c3702fb4ddff4c34566deaf33dd8e5179c4907f778b475d9cb9fdd3509744e"
+    },
+    {
+      "type": "file",
+      "name": "risk_assessment.py",
+      "version": "1.0",
+      "source": "goodware/decision/risk_assessment.py",
+      "sha256": "dc53842eb3c9a9ef67d6b8effbf7805d49a1e6be72674020c73e7415a57938a4"
+    },
+    {
+      "type": "file",
+      "name": "__init__.py",
+      "version": "1.0",
+      "source": "goodware/effector/__init__.py",
+      "sha256": "57b68040e155f9088a9a07a2fc35b0b216b917ca1bd05fb0e82ebe2996486bf5"
+    },
+    {
+      "type": "file",
+      "name": "firewall.py",
+      "version": "1.0",
+      "source": "goodware/effector/firewall.py",
+      "sha256": "35c315d1b171df86ce62453ece9b08a98dc2146b6ae5a7487c45a66fc9e81bac"
+    },
+    {
+      "type": "file",
+      "name": "hot_patch.py",
+      "version": "1.0",
+      "source": "goodware/effector/hot_patch.py",
+      "sha256": "e7e7a19732443a5ade955954db32f61d86d5a7aa4a5ba7328733634f29a60f98"
+    },
+    {
+      "type": "file",
+      "name": "proactive_defense.py",
+      "version": "1.0",
+      "source": "goodware/effector/proactive_defense.py",
+      "sha256": "131e314c144ffd3ed6ef1001ee996968f23d880945faa837a8df09f843d55eed"
+    },
+    {
+      "type": "file",
+      "name": "quarantine.py",
+      "version": "1.0",
+      "source": "goodware/effector/quarantine.py",
+      "sha256": "8c51d9923b6d00ae3b6109c1860987c95c2773cd9e95f61f1dad7ee49d49f265"
+    },
+    {
+      "type": "file",
+      "name": "rollback.py",
+      "version": "1.0",
+      "source": "goodware/effector/rollback.py",
+      "sha256": "e523393eb0ec46cf9bef40f889927c1677353c990edbdf1f398102b7c9852525"
+    },
+    {
+      "type": "file",
+      "name": "__init__.py",
+      "version": "1.0",
+      "source": "goodware/federated/__init__.py",
+      "sha256": "fde80a669291a6638e4c0b9e28508d25b35a4ab0faa2d1eab48b99274f3423f2"
+    },
+    {
+      "type": "file",
+      "name": "aggregation.py",
+      "version": "1.0",
+      "source": "goodware/federated/aggregation.py",
+      "sha256": "f2025254a211c07158129307b6cc2e9255aafa8d988cdebe7aaa98c799db0ae9"
+    },
+    {
+      "type": "file",
+      "name": "client.py",
+      "version": "1.0",
+      "source": "goodware/federated/client.py",
+      "sha256": "197e74cb56e0547448b97e94e8579d48ba7a1c9c72cf0a887a55438a0e81a506"
+    },
+    {
+      "type": "file",
+      "name": "server.py",
+      "version": "1.0",
+      "source": "goodware/federated/server.py",
+      "sha256": "455647ee7430b9424f29d89e700fbcd2def90f0ea0394d3bd656286d85a43f69"
+    },
+    {
+      "type": "file",
+      "name": "__init__.py",
+      "version": "1.0",
+      "source": "goodware/human_factor/__init__.py",
+      "sha256": "9ad4bafbf285f87a78bc4554f60b8437f917944dbf6c48258b2371dc07c94027"
+    },
+    {
+      "type": "file",
+      "name": "behavioral_biometrics.py",
+      "version": "1.0",
+      "source": "goodware/human_factor/behavioral_biometrics.py",
+      "sha256": "8d6e6526a8f9bf33d9aba0d9f0312fc4ac023f66f5130b37a8be2dc953a58525"
+    },
+    {
+      "type": "file",
+      "name": "context_risk.py",
+      "version": "1.0",
+      "source": "goodware/human_factor/context_risk.py",
+      "sha256": "54cdd2668f8ec62e96873ebc5b9f64b4441cd4b1821faeef86074263555c6ef1"
+    },
+    {
+      "type": "file",
+      "name": "multi_party.py",
+      "version": "1.0",
+      "source": "goodware/human_factor/multi_party.py",
+      "sha256": "f388fbc69df0af0eee69f2a1bad9b7420a4fd414085566b02a955af4068765b3"
+    },
+    {
+      "type": "file",
+      "name": "out_of_band.py",
+      "version": "1.0",
+      "source": "goodware/human_factor/out_of_band.py",
+      "sha256": "86031c00aa2527071bca7de506075754a5e371025d57c833b1cf85ef25ddcb12"
+    },
+    {
+      "type": "file",
+      "name": "__init__.py",
+      "version": "1.0",
+      "source": "goodware/immune/__init__.py",
+      "sha256": "8ec6f1fcf08cb27995444564034ad1043c76702b837750a9fc614cd3f3a2f451"
+    },
+    {
+      "type": "file",
+      "name": "adaptive_response.py",
+      "version": "1.0",
+      "source": "goodware/immune/adaptive_response.py",
+      "sha256": "96f71d32a621fd44805c16f7da8cf1c333dc68cdd86fd5a99dc9831dae880dd7"
+    },
+    {
+      "type": "file",
+      "name": "mutation_detector.py",
+      "version": "1.0",
+      "source": "goodware/immune/mutation_detector.py",
+      "sha256": "b445e3f45db2a93cfea2e8ebee1035455964eb69bff454f6371d28ad4a57ad29"
+    },
+    {
+      "type": "file",
+      "name": "zero_day.py",
+      "version": "1.0",
+      "source": "goodware/immune/zero_day.py",
+      "sha256": "b04d938e7749b74337d78fffe50ce9eff494679212d1c2b21a66ae6055fed37a"
+    },
+    {
+      "type": "file",
+      "name": "__init__.py",
+      "version": "1.0",
+      "source": "goodware/physical/__init__.py",
+      "sha256": "721bc012376dd7f4aa8ff5cd73d5f3f3f68e00ca90a4b6456445ec0ebb052b58"
+    },
+    {
+      "type": "file",
+      "name": "attestation.py",
+      "version": "1.0",
+      "source": "goodware/physical/attestation.py",
+      "sha256": "c4648ed1567a37599fab155646cc1a72d9a61085591b1c6bc6563beb849495cb"
+    },
+    {
+      "type": "file",
+      "name": "memory_protection.py",
+      "version": "1.0",
+      "source": "goodware/physical/memory_protection.py",
+      "sha256": "255691ee8f7d59b6c8c1d736c6a9fdb292648c4ba36db6434bc88d65b5d47403"
+    },
+    {
+      "type": "file",
+      "name": "real_attestation.py",
+      "version": "1.0",
+      "source": "goodware/physical/real_attestation.py",
+      "sha256": "dd661e7ce6df82c97e554c7b625106cd885c9e75e282cbe15a81086fe94ed035"
+    },
+    {
+      "type": "file",
+      "name": "__init__.py",
+      "version": "1.0",
+      "source": "goodware/prediction/__init__.py",
+      "sha256": "177b47e0b44b216b793aee13bda36ac84734b54eb1449bcb53f01d89084b6c3a"
+    },
+    {
+      "type": "file",
+      "name": "anomaly_forecast.py",
+      "version": "1.0",
+      "source": "goodware/prediction/anomaly_forecast.py",
+      "sha256": "637ae1fcef04d558b958741ac2dfe538a2908b55017a4e3028066b0206cd933c"
+    },
+    {
+      "type": "file",
+      "name": "attack_simulator.py",
+      "version": "1.0",
+      "source": "goodware/prediction/attack_simulator.py",
+      "sha256": "edb8fe6b4a95a86f1f82d22f81f51eb532c183373a2ddc0ca788f9a7b831c08c"
+    },
+    {
+      "type": "file",
+      "name": "threat_predictor.py",
+      "version": "1.0",
+      "source": "goodware/prediction/threat_predictor.py",
+      "sha256": "f2c12053179ce0e633a505debde18c49608d917ba05bf12442e6bcfc9e274b64"
+    },
+    {
+      "type": "file",
+      "name": "__init__.py",
+      "version": "1.0",
+      "source": "goodware/sensors/__init__.py",
+      "sha256": "4c25298c935b6023cc77837773462b5aceec8357e7d5754e2118d80e65ac5bcc"
+    },
+    {
+      "type": "file",
+      "name": "base.py",
+      "version": "1.0",
+      "source": "goodware/sensors/base.py",
+      "sha256": "0d605b3987c785e7a8c41dcc7f50389a4e8e4829d0af44889d68ddb60a7b3535"
+    },
+    {
+      "type": "file",
+      "name": "behavior.py",
+      "version": "1.0",
+      "source": "goodware/sensors/behavior.py",
+      "sha256": "db7a5bdb1865ecfd23f0ed7d39467bd8090df92d3d28ce5189389b033f01b0eb"
+    },
+    {
+      "type": "file",
+      "name": "config.py",
+      "version": "1.0",
+      "source": "goodware/sensors/config.py",
+      "sha256": "00cf45a99db426e865e64326eb68bd9ae7d0e05c4fbc350498e457151d5a824c"
+    },
+    {
+      "type": "file",
+      "name": "filesystem.py",
+      "version": "1.0",
+      "source": "goodware/sensors/filesystem.py",
+      "sha256": "08da5aaba57cc42f0274cedd7ae7c21bb06fa4122ef7e22e6f66bae1d9c97770"
+    },
+    {
+      "type": "file",
+      "name": "memory.py",
+      "version": "1.0",
+      "source": "goodware/sensors/memory.py",
+      "sha256": "b079a14d54cc9e61b76cf5296240896a679d9b0f7e3d6890bb6327ffc294cd6b"
+    },
+    {
+      "type": "file",
+      "name": "network.py",
+      "version": "1.0",
+      "source": "goodware/sensors/network.py",
+      "sha256": "d15585d235662a9f0a9c762f09c73bf595e3f39c2173ff67077e267adaac4411"
+    },
+    {
+      "type": "file",
+      "name": "process.py",
+      "version": "1.0",
+      "source": "goodware/sensors/process.py",
+      "sha256": "40c3794e9d38ebfbd662cfbf00d10f33e910496ba0b36fe4970d95c42559cf3e"
+    },
+    {
+      "type": "file",
+      "name": "quantum.py",
+      "version": "1.0",
+      "source": "goodware/sensors/quantum.py",
+      "sha256": "70939e7967e0fae435602999cb57428d09820520dc756083ace8013179b1e094"
+    },
+    {
+      "type": "file",
+      "name": "__init__.py",
+      "version": "1.0",
+      "source": "goodware/supply_chain/__init__.py",
+      "sha256": "b1986e5304c3473414a698ef580b916c1b6711e6c7ac0d0de5ba5c998a70ac56"
+    },
+    {
+      "type": "file",
+      "name": "sbom.py",
+      "version": "1.0",
+      "source": "goodware/supply_chain/sbom.py",
+      "sha256": "8d0e8018aaf4393e5374ab42d0d7bab19b8434ff8d23c0dd53d61d35b542eb66"
+    },
+    {
+      "type": "file",
+      "name": "signing.py",
+      "version": "1.0",
+      "source": "goodware/supply_chain/signing.py",
+      "sha256": "81515d497c3c4777e4c1b809cb0ef607c10f89969ba8740d940f13dd4f0d7eb5"
+    },
+    {
+      "type": "file",
+      "name": "verifier.py",
+      "version": "1.0",
+      "source": "goodware/supply_chain/verifier.py",
+      "sha256": "6adb5d2b7cfe966f6f67c97f1d8fb73ad0d36d12d17998052634608d04a24315"
+    },
+    {
+      "type": "file",
+      "name": "__init__.py",
+      "version": "1.0",
+      "source": "goodware/utils/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "timestamp": 1788330354.4931955
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "ts": 1788330362.297859,
+    "service": "http",
+    "ip": "127.0.0.1",
+    "port": 40966,
+    "payload_preview": "GET /admin HTTP/1.1\r\nHost: 127.0.0.1:8081\r\nUser-Agent: curl/7.88.1\r\nAccept: */*\r\n\r\n"
+  },
+  {
+    "ts": 1788330362.3091898,
+    "service": "http",
+    "ip": "127.0.0.1",
+    "port": 40982,
+    "payload_preview": "GET /.git/config HTTP/1.1\r\nHost: 127.0.0.1:8081\r\nUser-Agent: curl/7.88.1\r\nAccept: */*\r\n\r\n"
+  }
+]

@@ -1,0 +1,94 @@
+# Goodware v3.0 - Configuração
+# Documento Técnico Confidencial
+# v3.0 — Maio 2026
+
+general:
+  data_dir: data
+  log_dir: logs
+  log_level: INFO
+  node_id: goodware-node-001
+  organization: default
+
+sensors:
+  filesystem:
+    enabled: true
+    watch_paths: ["/etc", "/usr/local/bin", "/usr/bin", "/tmp"]
+    ignore_patterns: [".*\\.log$", ".*~$"]
+  process:
+    enabled: true
+    scan_interval_sec: 5
+    suspicious_names: ["nc", "ncat", "netcat", "miner", "xmrig", "kdevtmpfsi", "cryptominer", "mirai", "tsunami", "mimikatz"]
+    suspicious_paths: ["/tmp", "/dev/shm", "/var/tmp"]
+  network:
+    enabled: true
+    scan_interval_sec: 10
+    monitor_ports: [22, 80, 443, 3389, 4444, 5555, 6666, 8080, 8443, 9001]
+    alert_on_new_listener: true
+  memory:
+    enabled: true
+  config:
+    enabled: true
+    watch_files: ["/etc/passwd", "/etc/sudoers", "/etc/ssh/sshd_config", "/etc/crontab"]
+  behavior:
+    enabled: true
+  quantum:
+    enabled: true
+
+prediction:
+  enabled: true
+  horizon_hours: 24
+  model_dir: models
+  retrain_interval_hours: 6
+
+federated:
+  enabled: true
+  server_url: "http://127.0.0.1:8443"
+  node_secret: "change-me-in-production"
+  push_interval_sec: 300
+
+crypto:
+  default_algorithm: kyber512
+  key_dir: keys
+  hybrid: true
+  rotation_days: 30
+
+human_factor:
+  behavioral_biometrics: true
+  context_risk_threshold: 0.7
+  multi_party_threshold: 0.9
+  out_of_band:
+    enabled: true
+    channel: log   # log | telegram | email
+
+physical:
+  memory_encryption: true
+  dma_prevention: true
+  attestation_interval_min: 60
+
+supply_chain:
+  sbom_path: sbom/sbom.json
+  signatures_dir: signatures
+  verify_on_start: true
+
+immune:
+  auto_evolve: true
+  mutation_detection: true
+  zero_day_prediction: true
+
+decision:
+  risk_thresholds: {low: 0.3, medium: 0.55, high: 0.75, critical: 0.9}
+  human_in_loop_above: 0.85
+
+effector:
+  auto_quarantine: true
+  auto_rollback: true
+  firewall_backend: internal
+
+api:
+  enabled: true
+  host: 127.0.0.1
+  port: 8444
+
+dashboard:
+  enabled: true
+  port: 8080

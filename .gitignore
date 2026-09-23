@@ -1,0 +1,48 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+*.egg
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+.tox/
+.cache
+.pyre/
+
+# Estado runtime
+data/snapshots/
+data/vault/
+data/snapshots.json
+data/oob_queue.json
+data/behavioral.json
+data/firewall_state.json
+data/immune_families.json
+data/goodware.db
+data/goodware.db-journal
+data/goodware.db-wal
+data/goodware.db-shm
+
+# Logs
+logs/
+*.log
+
+# Keys & secrets
+keys/
+*.pem
+*.key
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
