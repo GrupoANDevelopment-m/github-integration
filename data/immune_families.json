@@ -1,0 +1,57 @@
+{
+  "counters": {
+    "F1": 0,
+    "F2": 0,
+    "F3": 0,
+    "F4": 0,
+    "F5": 0
+  },
+  "families": {
+    "F1": {
+      "name": "miner",
+      "indicators": [
+        "xmrig",
+        "kdevtmpfsi",
+        "stratum",
+        "cryptonight",
+        "monero"
+      ]
+    },
+    "F2": {
+      "name": "rat",
+      "indicators": [
+        "reverse_shell",
+        "nc -e",
+        "bash -i",
+        "metasploit"
+      ]
+    },
+    "F3": {
+      "name": "ransomware",
+      "indicators": [
+        "encrypt",
+        "lock.enc",
+        ".locked",
+        "wanna",
+        "ryuk"
+      ]
+    },
+    "F4": {
+      "name": "rootkit",
+      "indicators": [
+        "ld.so.preload",
+        "libprocesshider",
+        "diamorphine"
+      ]
+    },
+    "F5": {
+      "name": "stealer",
+      "indicators": [
+        "mimikatz",
+        "browser_credential",
+        "wallet.dat",
+        "metamask"
+      ]
+    }
+  }
+}

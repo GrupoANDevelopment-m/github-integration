@@ -13,29 +13,9 @@ htmlcov/
 .cache
 .pyre/
 
-# Estado runtime
+# Estado runtime VOLÁTIL (snapshots, vault transient)
 data/snapshots/
-data/vault/
-data/snapshots.json
-data/oob_queue.json
-data/behavioral.json
-data/firewall_state.json
-data/immune_families.json
-data/goodware.db
-data/goodware.db-journal
-data/goodware.db-wal
-data/goodware.db-shm
-
-# Logs
-logs/
-*.log
-
-# Keys & secrets
-keys/
-*.pem
-*.key
-.env
-.env.*
+data/.cache/
 
 # OS
 .DS_Store
@@ -46,3 +26,11 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+
+# NÃO ignorar:
+#   data/goodware.db — base de dados principal (precisa!)
+#   data/*.json — estado do sistema
+#   keys/ — chaves PQC geradas (necessárias para verificação)
+#   logs/ — logs do sistema (úteis para debug)
+#   vendor/oqs/ — liboqs compilada
+#   models/ — modelos treinados
