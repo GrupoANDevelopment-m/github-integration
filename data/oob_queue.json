@@ -152,5 +152,19 @@
     "ts": 1790376231.957556,
     "status": "pending",
     "channel": "log"
+  },
+  "998ac53f": {
+    "msg_id": "998ac53f",
+    "request_id": "a78bd7e4",
+    "action": {
+      "action": "delete_user",
+      "user": "admin",
+      "location": "unknown",
+      "time_of_day": 3,
+      "device_id": "unknown"
+    },
+    "ts": 1790376335.3218827,
+    "status": "pending",
+    "channel": "log"
   }
 }
