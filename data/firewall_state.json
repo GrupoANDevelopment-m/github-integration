@@ -7072,6 +7072,90 @@
       "reason": "zero_day:CVE-2024-6387",
       "ts": 1790376349.1279068,
       "real_applied": false
+    },
+    {
+      "port": 22,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2024-3094",
+      "ts": 1790377374.7635477,
+      "real_applied": false
+    },
+    {
+      "port": 80,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2023-44487",
+      "ts": 1790377375.0499039,
+      "real_applied": false
+    },
+    {
+      "port": 445,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2024-21412",
+      "ts": 1790377375.3157775,
+      "real_applied": false
+    },
+    {
+      "port": 443,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2024-3400",
+      "ts": 1790377375.5813375,
+      "real_applied": false
+    },
+    {
+      "port": 8090,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2023-22515",
+      "ts": 1790377375.9362113,
+      "real_applied": false
+    },
+    {
+      "port": 22,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2024-6387",
+      "ts": 1790377376.2360682,
+      "real_applied": false
+    },
+    {
+      "port": 22,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2024-3094",
+      "ts": 1790377378.1038094,
+      "real_applied": false
+    },
+    {
+      "port": 80,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2023-44487",
+      "ts": 1790377378.3772895,
+      "real_applied": false
+    },
+    {
+      "port": 445,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2024-21412",
+      "ts": 1790377378.762774,
+      "real_applied": false
+    },
+    {
+      "port": 443,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2024-3400",
+      "ts": 1790377379.0889041,
+      "real_applied": false
+    },
+    {
+      "port": 8090,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2023-22515",
+      "ts": 1790377379.4282138,
+      "real_applied": false
+    },
+    {
+      "port": 22,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2024-6387",
+      "ts": 1790377379.6936872,
+      "real_applied": false
     }
   ],
   "backend": null,

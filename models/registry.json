@@ -1,0 +1,23 @@
+{
+  "models": [
+    {
+      "name": "threat_predictor",
+      "version": "1.0",
+      "trained_samples": 5000,
+      "accuracy": 0.92
+    },
+    {
+      "name": "anomaly_classifier",
+      "version": "1.0",
+      "trained_samples": 2000,
+      "accuracy": 0.87
+    },
+    {
+      "name": "anomaly_detector",
+      "version": "1.0",
+      "trained_samples": 2000,
+      "detection_rate": 0.9
+    }
+  ],
+  "last_trained": "2026-09-26T23:55:00Z"
+}

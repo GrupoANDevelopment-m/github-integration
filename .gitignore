@@ -14,7 +14,7 @@ htmlcov/
 .pyre/
 
 # Estado runtime VOLÁTIL (snapshots, vault transient)
-data/snapshots/
+# data/snapshots/  # opcional — snapshots de integridade
 data/.cache/
 
 # OS
