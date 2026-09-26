@@ -1,0 +1,221 @@
+{
+  "total_techniques": 36,
+  "techniques": [
+    {
+      "id": "T1190",
+      "name": "Exploit Public-Facing Application",
+      "detection": "HTTP sensor + WAF",
+      "tactic": "MITRE_TA0001_Initial_Access"
+    },
+    {
+      "id": "T1133",
+      "name": "External Remote Services",
+      "detection": "Network sensor + VPN",
+      "tactic": "MITRE_TA0001_Initial_Access"
+    },
+    {
+      "id": "T1078",
+      "name": "Valid Accounts",
+      "detection": "Behavioural biometrics + RBAC",
+      "tactic": "MITRE_TA0001_Initial_Access"
+    },
+    {
+      "id": "T1059.001",
+      "name": "PowerShell",
+      "detection": "Process sensor + script block logging",
+      "tactic": "MITRE_TA0002_Execution"
+    },
+    {
+      "id": "T1059.003",
+      "name": "Windows Command Shell",
+      "detection": "Process sensor + cmdline analysis",
+      "tactic": "MITRE_TA0002_Execution"
+    },
+    {
+      "id": "T1059.004",
+      "name": "Unix Shell",
+      "detection": "Process sensor + bash history",
+      "tactic": "MITRE_TA0002_Execution"
+    },
+    {
+      "id": "T1547.001",
+      "name": "Registry Run Keys",
+      "detection": "Filesystem sensor + Windows registry",
+      "tactic": "MITRE_TA0003_Persistence"
+    },
+    {
+      "id": "T1543",
+      "name": "Systemd Service",
+      "detection": "Config sensor",
+      "tactic": "MITRE_TA0003_Persistence"
+    },
+    {
+      "id": "T1546.004",
+      "name": ".bashrc modification",
+      "detection": "Filesystem sensor",
+      "tactic": "MITRE_TA0003_Persistence"
+    },
+    {
+      "id": "T1548.002",
+      "name": "Bypass UAC",
+      "detection": "Process sensor + behavioural",
+      "tactic": "MITRE_TA0004_Privilege_Escalation"
+    },
+    {
+      "id": "T1068",
+      "name": "Exploitation for Priv Esc",
+      "detection": "ML predictor",
+      "tactic": "MITRE_TA0004_Privilege_Escalation"
+    },
+    {
+      "id": "T1053",
+      "name": "Scheduled Task",
+      "detection": "Config sensor",
+      "tactic": "MITRE_TA0004_Privilege_Escalation"
+    },
+    {
+      "id": "T1027",
+      "name": "Obfuscated Files",
+      "detection": "YARA + entropy analysis",
+      "tactic": "MITRE_TA0005_Defense_Evasion"
+    },
+    {
+      "id": "T1562.001",
+      "name": "Disable Security Tools",
+      "detection": "Process sensor + monitoring",
+      "tactic": "MITRE_TA0005_Defense_Evasion"
+    },
+    {
+      "id": "T1070",
+      "name": "Indicator Removal",
+      "detection": "Filesystem sensor",
+      "tactic": "MITRE_TA0005_Defense_Evasion"
+    },
+    {
+      "id": "T1003.001",
+      "name": "LSASS Memory Dump",
+      "detection": "Process sensor + mimikatz rules",
+      "tactic": "MITRE_TA0006_Credential_Access"
+    },
+    {
+      "id": "T1110",
+      "name": "Brute Force",
+      "detection": "Auth sensor + ML",
+      "tactic": "MITRE_TA0006_Credential_Access"
+    },
+    {
+      "id": "T1555",
+      "name": "Password Stores",
+      "detection": "Filesystem sensor",
+      "tactic": "MITRE_TA0006_Credential_Access"
+    },
+    {
+      "id": "T1083",
+      "name": "File and Directory Discovery",
+      "detection": "Filesystem sensor",
+      "tactic": "MITRE_TA0007_Discovery"
+    },
+    {
+      "id": "T1046",
+      "name": "Network Service Scanning",
+      "detection": "Network sensor + port analysis",
+      "tactic": "MITRE_TA0007_Discovery"
+    },
+    {
+      "id": "T1087",
+      "name": "Account Discovery",
+      "detection": "Auth sensor",
+      "tactic": "MITRE_TA0007_Discovery"
+    },
+    {
+      "id": "T1021.002",
+      "name": "SMB/Windows Admin Shares",
+      "detection": "Network sensor",
+      "tactic": "MITRE_TA0008_Lateral_Movement"
+    },
+    {
+      "id": "T1021.004",
+      "name": "SSH",
+      "detection": "Network sensor + auth",
+      "tactic": "MITRE_TA0008_Lateral_Movement"
+    },
+    {
+      "id": "T1570",
+      "name": "Lateral Tool Transfer",
+      "detection": "Filesystem + network",
+      "tactic": "MITRE_TA0008_Lateral_Movement"
+    },
+    {
+      "id": "T1005",
+      "name": "Data from Local System",
+      "detection": "Filesystem sensor",
+      "tactic": "MITRE_TA0009_Collection"
+    },
+    {
+      "id": "T1114",
+      "name": "Email Collection",
+      "detection": "Email gateway integration",
+      "tactic": "MITRE_TA0009_Collection"
+    },
+    {
+      "id": "T1113",
+      "name": "Screen Capture",
+      "detection": "Process sensor",
+      "tactic": "MITRE_TA0009_Collection"
+    },
+    {
+      "id": "T1071.001",
+      "name": "Web Protocols",
+      "detection": "Network sensor + TLS fingerprinting",
+      "tactic": "MITRE_TA0011_Command_and_Control"
+    },
+    {
+      "id": "T1090",
+      "name": "Proxy",
+      "detection": "Network sensor",
+      "tactic": "MITRE_TA0011_Command_and_Control"
+    },
+    {
+      "id": "T1572",
+      "name": "Protocol Tunneling",
+      "detection": "Network sensor + DNS",
+      "tactic": "MITRE_TA0011_Command_and_Control"
+    },
+    {
+      "id": "T1041",
+      "name": "Exfiltration Over C2",
+      "detection": "Network sensor",
+      "tactic": "MITRE_TA0010_Exfiltration"
+    },
+    {
+      "id": "T1567",
+      "name": "Exfiltration to Cloud",
+      "detection": "Network sensor + DLP",
+      "tactic": "MITRE_TA0010_Exfiltration"
+    },
+    {
+      "id": "T1048",
+      "name": "Exfiltration Over Alt Protocol",
+      "detection": "Network sensor",
+      "tactic": "MITRE_TA0010_Exfiltration"
+    },
+    {
+      "id": "T1486",
+      "name": "Data Encrypted for Impact",
+      "detection": "YARA + filesystem",
+      "tactic": "MITRE_TA0040_Impact"
+    },
+    {
+      "id": "T1485",
+      "name": "Data Destruction",
+      "detection": "Filesystem sensor",
+      "tactic": "MITRE_TA0040_Impact"
+    },
+    {
+      "id": "T1490",
+      "name": "Inhibit System Recovery",
+      "detection": "Process sensor",
+      "tactic": "MITRE_TA0040_Impact"
+    }
+  ]
+}

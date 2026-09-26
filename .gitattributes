@@ -1,0 +1,12 @@
+* text=auto
+
+# Don't compress binary files (keeps them larger but more usable)
+*.so binary
+*.db binary
+*.joblib binary
+*.bin binary
+
+# Compress text aggressively
+*.py diff=python
+*.md diff=markdown
+*.js diff=javascript

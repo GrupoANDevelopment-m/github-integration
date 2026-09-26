@@ -7156,6 +7156,181 @@
       "reason": "zero_day:CVE-2024-6387",
       "ts": 1790377379.6936872,
       "real_applied": false
+    },
+    {
+      "port": 445,
+      "protocol": "tcp",
+      "reason": "test",
+      "ts": 1790467155.681552,
+      "real_applied": false
+    },
+    {
+      "port": 22,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2024-3094",
+      "ts": 1790467155.790408,
+      "real_applied": false
+    },
+    {
+      "port": 80,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2023-44487",
+      "ts": 1790467156.0696552,
+      "real_applied": false
+    },
+    {
+      "port": 445,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2024-21412",
+      "ts": 1790467156.3248162,
+      "real_applied": false
+    },
+    {
+      "port": 443,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2024-3400",
+      "ts": 1790467156.8605647,
+      "real_applied": false
+    },
+    {
+      "port": 8090,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2023-22515",
+      "ts": 1790467157.1800504,
+      "real_applied": false
+    },
+    {
+      "port": 22,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2024-6387",
+      "ts": 1790467157.554406,
+      "real_applied": false
+    },
+    {
+      "port": 22,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2024-3094",
+      "ts": 1790467158.928335,
+      "real_applied": false
+    },
+    {
+      "port": 80,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2023-44487",
+      "ts": 1790467159.2170331,
+      "real_applied": false
+    },
+    {
+      "port": 445,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2024-21412",
+      "ts": 1790467159.462056,
+      "real_applied": false
+    },
+    {
+      "port": 443,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2024-3400",
+      "ts": 1790467159.7206545,
+      "real_applied": false
+    },
+    {
+      "port": 8090,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2023-22515",
+      "ts": 1790467160.042019,
+      "real_applied": false
+    },
+    {
+      "port": 22,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2024-6387",
+      "ts": 1790467160.293807,
+      "real_applied": false
+    },
+    {
+      "port": 22,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2024-3094",
+      "ts": 1790467163.87016,
+      "real_applied": false
+    },
+    {
+      "port": 80,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2023-44487",
+      "ts": 1790467164.1307309,
+      "real_applied": false
+    },
+    {
+      "port": 445,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2024-21412",
+      "ts": 1790467164.4580145,
+      "real_applied": false
+    },
+    {
+      "port": 443,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2024-3400",
+      "ts": 1790467164.7174418,
+      "real_applied": false
+    },
+    {
+      "port": 8090,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2023-22515",
+      "ts": 1790467165.0026708,
+      "real_applied": false
+    },
+    {
+      "port": 22,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2024-6387",
+      "ts": 1790467165.364883,
+      "real_applied": false
+    },
+    {
+      "port": 22,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2024-3094",
+      "ts": 1790467167.821081,
+      "real_applied": false
+    },
+    {
+      "port": 80,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2023-44487",
+      "ts": 1790467168.1586487,
+      "real_applied": false
+    },
+    {
+      "port": 445,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2024-21412",
+      "ts": 1790467168.5389862,
+      "real_applied": false
+    },
+    {
+      "port": 443,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2024-3400",
+      "ts": 1790467168.8007808,
+      "real_applied": false
+    },
+    {
+      "port": 8090,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2023-22515",
+      "ts": 1790467169.1271954,
+      "real_applied": false
+    },
+    {
+      "port": 22,
+      "protocol": "tcp",
+      "reason": "zero_day:CVE-2024-6387",
+      "ts": 1790467169.3814414,
+      "real_applied": false
     }
   ],
   "backend": null,
