@@ -1,0 +1,24 @@
+name: federated-coordinator
+description: Coordena treino federado entre múltiplos nós Goodware.
+trigger: manual
+version: "1.0"
+author: Goodware Team
+prompt_addon: |
+  Modo "federated coordinator":
+
+  - Gere rounds de treino federado:
+    1. Coordinator envia modelo global aos clientes
+    2. Clientes treinam localmente em dados privados
+    3. Clientes enviam APENAS gradientes (privacidade)
+    4. Coordinator aplica FedAvg + DifferentialPrivacy
+    5. Novo modelo global é distribuído
+
+  - Monitora:
+    * Número de clientes activos
+    * Latência de comunicação
+    * Convergência (loss curve)
+    * Differential privacy budget (epsilon)
+
+  - Detecta clientes adversariais (gradientes envenenados)
+
+  - Recomenda hiper-parâmetros (lr, batch_size, clipping)

@@ -4168,3 +4168,1460 @@
 2026-09-26T23:59:43 | INFO    | goodware.engine |   organization: None
 2026-09-26T23:59:43 | INFO    | goodware.engine | ============================================================
 2026-09-26T23:59:43 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:30:43 | INFO    | goodware.engine | component registered: decision-engine
+2026-09-27T10:30:43 | INFO    | goodware.engine | component registered: adaptive
+2026-09-27T10:30:43 | INFO    | goodware.engine | component registered: mutation
+2026-09-27T10:30:43 | INFO    | goodware.engine | component registered: zero_day
+2026-09-27T10:30:52 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:52 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:30:52 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:30:52 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:30:52 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:52 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:30:52 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:52 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:30:52 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:30:52 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:30:52 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:52 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:30:52 | INFO    | goodware.engine | hunter2
+2026-09-27T10:30:53 | INFO    | goodware.engine | component registered: dummy
+2026-09-27T10:30:54 | INFO    | goodware.engine | test
+2026-09-27T10:30:54 | WARNING | goodware.engine | warn
+2026-09-27T10:30:54 | ERROR   | goodware.engine | err
+2026-09-27T10:30:54 | INFO    | goodware.engine | component registered: with_attach
+2026-09-27T10:30:54 | INFO    | goodware.engine | component registered: dummy
+2026-09-27T10:30:54 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:54 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:30:54 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:30:54 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:30:54 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:54 | INFO    | goodware.engine |   ✓ dummy running
+2026-09-27T10:30:54 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:30:55 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:55 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:30:55 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:30:55 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:30:55 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:55 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:30:55 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:55 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:30:55 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:30:55 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:30:55 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:55 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:30:55 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:55 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:30:55 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:30:55 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:30:55 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:55 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:30:55 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:55 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:30:55 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:30:55 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:30:55 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:56 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:30:56 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:56 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:30:56 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:30:56 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:30:56 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:56 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:30:56 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:56 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:30:56 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:30:56 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:30:56 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:56 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:30:56 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:56 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:30:56 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:30:56 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:30:56 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:56 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:30:56 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:56 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:30:56 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:30:56 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:30:56 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:56 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:30:56 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:56 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:30:56 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:30:56 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:30:56 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:56 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:30:56 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:56 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:30:56 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:30:56 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:30:56 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:57 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:30:57 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:57 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:30:57 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:30:57 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:30:57 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:57 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:30:57 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:57 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:30:57 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:30:57 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:30:57 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:57 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:30:57 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:57 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:30:57 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:30:57 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:30:57 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:57 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:30:57 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:57 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:30:57 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:30:57 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:30:57 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:58 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:30:58 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:58 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:30:58 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:30:58 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:30:58 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:58 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:30:58 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:58 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:30:58 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:30:58 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:30:58 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:58 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:30:58 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:58 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:30:58 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:30:58 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:30:58 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:58 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:30:58 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:58 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:30:58 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:30:58 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:30:58 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:58 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:30:58 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:58 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:30:58 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:30:58 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:30:58 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:58 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:30:58 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:58 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:30:58 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:30:58 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:30:58 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:58 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:30:59 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:59 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:30:59 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:30:59 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:30:59 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:59 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:30:59 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:59 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:30:59 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:30:59 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:30:59 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:30:59 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:13 | INFO    | goodware.engine | component registered: decision-engine
+2026-09-27T10:32:13 | INFO    | goodware.engine | component registered: adaptive
+2026-09-27T10:32:13 | INFO    | goodware.engine | component registered: mutation
+2026-09-27T10:32:13 | INFO    | goodware.engine | component registered: zero_day
+2026-09-27T10:32:21 | INFO    | goodware.engine | component registered: decision-engine
+2026-09-27T10:32:21 | INFO    | goodware.engine | component registered: adaptive
+2026-09-27T10:32:21 | INFO    | goodware.engine | component registered: mutation
+2026-09-27T10:32:21 | INFO    | goodware.engine | component registered: zero_day
+2026-09-27T10:32:21 | INFO    | goodware.engine | component registered: crypto
+2026-09-27T10:32:21 | INFO    | goodware.engine | component registered: human-factor
+2026-09-27T10:32:21 | INFO    | goodware.engine | component registered: decision
+2026-09-27T10:32:21 | INFO    | goodware.engine | component registered: effector
+2026-09-27T10:32:21 | INFO    | goodware.engine | component registered: chainsaw
+2026-09-27T10:32:24 | INFO    | goodware.engine | component registered: immune
+2026-09-27T10:32:24 | INFO    | goodware.engine | component registered: physical
+2026-09-27T10:32:24 | INFO    | goodware.engine | component registered: supply-chain
+2026-09-27T10:32:28 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:28 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:28 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:28 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:28 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:29 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:29 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:29 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:29 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:29 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:29 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:29 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:29 | INFO    | goodware.engine | hunter2
+2026-09-27T10:32:30 | INFO    | goodware.engine | component registered: dummy
+2026-09-27T10:32:30 | INFO    | goodware.engine | test
+2026-09-27T10:32:30 | WARNING | goodware.engine | warn
+2026-09-27T10:32:30 | ERROR   | goodware.engine | err
+2026-09-27T10:32:30 | INFO    | goodware.engine | component registered: with_attach
+2026-09-27T10:32:31 | INFO    | goodware.engine | component registered: dummy
+2026-09-27T10:32:31 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:31 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:31 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:31 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:31 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:31 | INFO    | goodware.engine |   ✓ dummy running
+2026-09-27T10:32:31 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:31 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:31 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:31 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:31 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:31 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:31 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:31 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:31 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:31 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:31 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:31 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:31 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:31 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:31 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:31 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:31 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:31 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:31 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:32 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:32 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:32 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:32 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:32 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:32 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:32 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:32 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:32 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:32 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:32 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:32 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:32 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:32 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:32 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:32 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:32 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:32 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:32 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:32 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:32 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:32 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:32 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:32 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:32 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:32 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:32 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:32 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:32 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:32 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:32 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:32 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:32 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:32 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:32 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:32 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:32 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:32 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:32 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:32 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:32 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:32 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:32 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:32 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:32 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:32 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:32 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:33 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:33 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:33 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:33 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:33 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:33 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:33 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:33 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:33 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:33 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:33 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:33 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:33 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:33 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:33 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:33 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:33 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:33 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:33 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:33 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:33 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:33 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:33 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:33 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:33 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:33 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:33 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:33 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:33 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:33 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:33 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:33 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:33 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:33 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:33 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:33 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:33 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:33 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:33 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:33 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:33 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:33 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:33 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:33 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:33 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:33 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:33 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:33 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:34 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:34 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:34 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:34 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:34 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:34 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:34 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:34 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:34 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:34 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:34 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:34 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:34 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:34 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:34 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:34 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:34 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:34 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:35 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:39 | INFO    | goodware.engine | component registered: decision-engine
+2026-09-27T10:32:39 | INFO    | goodware.engine | component registered: adaptive
+2026-09-27T10:32:39 | INFO    | goodware.engine | component registered: mutation
+2026-09-27T10:32:39 | INFO    | goodware.engine | component registered: zero_day
+2026-09-27T10:32:39 | INFO    | goodware.engine | component registered: crypto
+2026-09-27T10:32:39 | INFO    | goodware.engine | component registered: human-factor
+2026-09-27T10:32:39 | INFO    | goodware.engine | component registered: decision
+2026-09-27T10:32:39 | INFO    | goodware.engine | component registered: effector
+2026-09-27T10:32:39 | INFO    | goodware.engine | component registered: chainsaw
+2026-09-27T10:32:41 | INFO    | goodware.engine | component registered: immune
+2026-09-27T10:32:41 | INFO    | goodware.engine | component registered: physical
+2026-09-27T10:32:42 | INFO    | goodware.engine | component registered: supply-chain
+2026-09-27T10:32:45 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:45 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:45 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:45 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:45 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:45 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:45 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:45 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:45 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:45 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:45 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:45 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:46 | INFO    | goodware.engine | hunter2
+2026-09-27T10:32:46 | INFO    | goodware.engine | component registered: dummy
+2026-09-27T10:32:47 | INFO    | goodware.engine | test
+2026-09-27T10:32:47 | WARNING | goodware.engine | warn
+2026-09-27T10:32:47 | ERROR   | goodware.engine | err
+2026-09-27T10:32:47 | INFO    | goodware.engine | component registered: with_attach
+2026-09-27T10:32:47 | INFO    | goodware.engine | component registered: dummy
+2026-09-27T10:32:47 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:47 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:47 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:47 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:47 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:47 | INFO    | goodware.engine |   ✓ dummy running
+2026-09-27T10:32:47 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:48 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:48 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:48 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:48 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:48 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:48 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:48 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:48 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:48 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:48 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:48 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:48 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:48 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:48 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:48 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:48 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:48 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:49 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:49 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:49 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:49 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:49 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:49 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:49 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:49 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:49 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:49 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:49 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:49 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:49 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:49 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:49 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:49 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:49 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:49 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:49 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:49 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:49 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:49 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:49 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:49 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:49 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:49 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:49 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:49 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:49 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:49 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:49 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:49 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:49 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:49 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:49 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:49 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:49 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:49 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:49 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:49 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:49 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:49 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:49 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:49 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:49 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:49 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:49 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:49 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:50 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:50 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:50 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:50 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:50 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:50 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:50 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:50 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:50 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:50 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:50 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:50 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:50 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:50 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:50 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:50 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:50 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:50 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:50 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:50 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:50 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:50 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:50 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:50 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:50 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:50 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:50 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:50 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:50 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:50 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:50 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:50 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:50 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:50 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:50 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:50 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:50 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:50 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:50 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:50 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:50 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:50 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:50 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:50 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:50 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:50 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:50 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:50 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:51 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:51 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:51 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:51 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:51 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:51 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:51 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:51 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:51 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:51 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:51 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:51 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:51 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:51 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:52 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:32:52 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:32:52 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:32:52 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:32:52 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:32:56 | INFO    | goodware.engine | component registered: decision-engine
+2026-09-27T10:32:56 | INFO    | goodware.engine | component registered: adaptive
+2026-09-27T10:32:56 | INFO    | goodware.engine | component registered: mutation
+2026-09-27T10:32:56 | INFO    | goodware.engine | component registered: zero_day
+2026-09-27T10:32:56 | INFO    | goodware.engine | component registered: crypto
+2026-09-27T10:32:56 | INFO    | goodware.engine | component registered: human-factor
+2026-09-27T10:32:56 | INFO    | goodware.engine | component registered: decision
+2026-09-27T10:32:56 | INFO    | goodware.engine | component registered: effector
+2026-09-27T10:32:56 | INFO    | goodware.engine | component registered: chainsaw
+2026-09-27T10:32:59 | INFO    | goodware.engine | component registered: immune
+2026-09-27T10:32:59 | INFO    | goodware.engine | component registered: physical
+2026-09-27T10:32:59 | INFO    | goodware.engine | component registered: supply-chain
+2026-09-27T10:33:02 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:02 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:02 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:02 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:02 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:03 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:03 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:03 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:03 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:03 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:03 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:03 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:03 | INFO    | goodware.engine | hunter2
+2026-09-27T10:33:04 | INFO    | goodware.engine | component registered: dummy
+2026-09-27T10:33:04 | INFO    | goodware.engine | test
+2026-09-27T10:33:04 | WARNING | goodware.engine | warn
+2026-09-27T10:33:04 | ERROR   | goodware.engine | err
+2026-09-27T10:33:04 | INFO    | goodware.engine | component registered: with_attach
+2026-09-27T10:33:05 | INFO    | goodware.engine | component registered: dummy
+2026-09-27T10:33:05 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:05 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:05 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:05 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:05 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:05 | INFO    | goodware.engine |   ✓ dummy running
+2026-09-27T10:33:05 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:05 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:05 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:05 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:05 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:05 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:05 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:05 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:05 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:05 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:05 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:05 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:05 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:05 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:05 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:05 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:05 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:05 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:06 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:06 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:06 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:06 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:06 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:06 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:06 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:06 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:06 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:06 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:06 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:06 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:06 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:06 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:06 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:06 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:06 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:06 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:06 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:06 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:06 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:06 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:06 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:06 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:06 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:06 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:06 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:06 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:06 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:06 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:06 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:06 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:06 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:06 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:06 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:06 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:07 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:07 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:07 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:07 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:07 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:07 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:07 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:07 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:07 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:07 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:07 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:07 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:07 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:07 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:07 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:07 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:07 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:07 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:07 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:07 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:07 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:07 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:07 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:07 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:07 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:07 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:07 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:07 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:07 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:07 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:07 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:07 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:07 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:07 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:07 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:07 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:07 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:07 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:07 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:07 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:07 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:07 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:08 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:08 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:08 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:08 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:08 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:08 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:08 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:08 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:08 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:08 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:08 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:08 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:08 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:08 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:08 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:08 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:08 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:08 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:08 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:08 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:08 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:08 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:08 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:08 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:08 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:09 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:09 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:09 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:09 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:09 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:09 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:09 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:09 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:09 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:09 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:09 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:09 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:32 | INFO    | goodware.engine | component registered: threat
+2026-09-27T10:33:32 | INFO    | goodware.engine | component registered: anomaly
+2026-09-27T10:33:32 | INFO    | goodware.engine | component registered: simulator
+2026-09-27T10:33:33 | INFO    | goodware.engine | component registered: federated-server
+2026-09-27T10:33:33 | INFO    | goodware.engine | component registered: federated-client
+2026-09-27T10:33:33 | INFO    | goodware.engine | federated server listening on 127.0.0.1:8443
+2026-09-27T10:33:35 | INFO    | goodware.engine | component registered: decision-engine
+2026-09-27T10:33:35 | INFO    | goodware.engine | component registered: adaptive
+2026-09-27T10:33:35 | INFO    | goodware.engine | component registered: mutation
+2026-09-27T10:33:35 | INFO    | goodware.engine | component registered: zero_day
+2026-09-27T10:33:43 | INFO    | goodware.engine | component registered: decision-engine
+2026-09-27T10:33:43 | INFO    | goodware.engine | component registered: adaptive
+2026-09-27T10:33:43 | INFO    | goodware.engine | component registered: mutation
+2026-09-27T10:33:43 | INFO    | goodware.engine | component registered: zero_day
+2026-09-27T10:33:43 | INFO    | goodware.engine | component registered: crypto
+2026-09-27T10:33:43 | INFO    | goodware.engine | component registered: human-factor
+2026-09-27T10:33:43 | INFO    | goodware.engine | component registered: decision
+2026-09-27T10:33:43 | INFO    | goodware.engine | component registered: effector
+2026-09-27T10:33:43 | INFO    | goodware.engine | component registered: chainsaw
+2026-09-27T10:33:46 | INFO    | goodware.engine | component registered: immune
+2026-09-27T10:33:46 | INFO    | goodware.engine | component registered: physical
+2026-09-27T10:33:46 | INFO    | goodware.engine | component registered: supply-chain
+2026-09-27T10:33:50 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:50 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:50 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:50 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:50 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:50 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:50 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:50 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:50 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:50 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:50 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:50 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:51 | INFO    | goodware.engine | hunter2
+2026-09-27T10:33:52 | INFO    | goodware.engine | component registered: dummy
+2026-09-27T10:33:52 | INFO    | goodware.engine | test
+2026-09-27T10:33:52 | WARNING | goodware.engine | warn
+2026-09-27T10:33:52 | ERROR   | goodware.engine | err
+2026-09-27T10:33:52 | INFO    | goodware.engine | component registered: with_attach
+2026-09-27T10:33:53 | INFO    | goodware.engine | component registered: dummy
+2026-09-27T10:33:53 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:53 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:53 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:53 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:53 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:53 | INFO    | goodware.engine |   ✓ dummy running
+2026-09-27T10:33:53 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:55 | INFO    | goodware.engine | component registered: threat
+2026-09-27T10:33:55 | INFO    | goodware.engine | component registered: anomaly
+2026-09-27T10:33:55 | INFO    | goodware.engine | component registered: simulator
+2026-09-27T10:33:55 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:55 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:55 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:55 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:55 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:55 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:55 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:55 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:55 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:55 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:55 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:55 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:55 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:55 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:55 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:55 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:55 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:55 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:55 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:55 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:55 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:55 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:55 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:56 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:56 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:56 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:56 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:56 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:56 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:56 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:56 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:56 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:56 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:56 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:56 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:56 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:56 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:56 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:56 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:56 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:56 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:56 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:56 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:56 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:56 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:56 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:56 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:56 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:56 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:56 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:56 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:56 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:56 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:56 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:56 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:56 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:56 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:56 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:56 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:57 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:57 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:57 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:57 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:57 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:57 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:57 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:57 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:57 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:57 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:57 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:57 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:57 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:57 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:57 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:57 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:57 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:57 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:57 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:57 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:57 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:57 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:57 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:57 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:57 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:57 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:57 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:57 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:57 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:57 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:57 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:57 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:57 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:57 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:57 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:57 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:58 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:58 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:58 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:58 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:58 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:58 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:58 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:58 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:58 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:58 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:58 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:58 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:58 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:58 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:58 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:58 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:58 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:58 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:58 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:58 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:58 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:58 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:58 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:58 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:58 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:59 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:59 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:59 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:59 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:59 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:59 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:33:59 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:59 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:33:59 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:33:59 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:33:59 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:33:59 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:34:04 | INFO    | goodware.engine | component registered: decision-engine
+2026-09-27T10:34:04 | INFO    | goodware.engine | component registered: adaptive
+2026-09-27T10:34:04 | INFO    | goodware.engine | component registered: mutation
+2026-09-27T10:34:04 | INFO    | goodware.engine | component registered: zero_day
+2026-09-27T10:34:04 | INFO    | goodware.engine | component registered: crypto
+2026-09-27T10:34:04 | INFO    | goodware.engine | component registered: human-factor
+2026-09-27T10:34:04 | INFO    | goodware.engine | component registered: decision
+2026-09-27T10:34:04 | INFO    | goodware.engine | component registered: effector
+2026-09-27T10:34:04 | INFO    | goodware.engine | component registered: chainsaw
+2026-09-27T10:34:07 | INFO    | goodware.engine | component registered: immune
+2026-09-27T10:34:07 | INFO    | goodware.engine | component registered: physical
+2026-09-27T10:34:07 | INFO    | goodware.engine | component registered: supply-chain
+2026-09-27T10:34:11 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:11 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:34:11 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:34:11 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:34:11 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:11 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:34:11 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:11 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:34:11 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:34:11 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:34:11 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:11 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:34:12 | INFO    | goodware.engine | hunter2
+2026-09-27T10:34:12 | INFO    | goodware.engine | component registered: dummy
+2026-09-27T10:34:13 | INFO    | goodware.engine | test
+2026-09-27T10:34:13 | WARNING | goodware.engine | warn
+2026-09-27T10:34:13 | ERROR   | goodware.engine | err
+2026-09-27T10:34:13 | INFO    | goodware.engine | component registered: with_attach
+2026-09-27T10:34:13 | INFO    | goodware.engine | component registered: dummy
+2026-09-27T10:34:13 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:13 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:34:13 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:34:13 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:34:13 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:13 | INFO    | goodware.engine |   ✓ dummy running
+2026-09-27T10:34:13 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:34:15 | INFO    | goodware.engine | component registered: threat
+2026-09-27T10:34:15 | INFO    | goodware.engine | component registered: anomaly
+2026-09-27T10:34:15 | INFO    | goodware.engine | component registered: simulator
+2026-09-27T10:34:16 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:16 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:34:16 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:34:16 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:34:16 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:16 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:34:16 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:16 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:34:16 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:34:16 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:34:16 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:16 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:34:16 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:16 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:34:16 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:34:16 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:34:16 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:16 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:34:16 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:16 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:34:16 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:34:16 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:34:16 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:16 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:34:16 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:16 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:34:16 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:34:16 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:34:16 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:17 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:34:17 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:17 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:34:17 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:34:17 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:34:17 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:17 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:34:17 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:17 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:34:17 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:34:17 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:34:17 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:17 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:34:17 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:17 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:34:17 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:34:17 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:34:17 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:17 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:34:17 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:17 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:34:17 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:34:17 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:34:17 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:17 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:34:17 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:17 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:34:17 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:34:17 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:34:17 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:17 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:34:17 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:17 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:34:17 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:34:17 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:34:17 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:18 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:34:18 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:18 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:34:18 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:34:18 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:34:18 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:18 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:34:18 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:18 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:34:18 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:34:18 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:34:18 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:18 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:34:18 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:18 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:34:18 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:34:18 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:34:18 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:18 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:34:18 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:18 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:34:18 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:34:18 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:34:18 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:18 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:34:18 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:18 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:34:18 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:34:18 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:34:18 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:18 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:34:18 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:18 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:34:18 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:34:18 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:34:18 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:18 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:34:18 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:18 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:34:18 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:34:18 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:34:18 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:19 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:34:19 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:19 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:34:19 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:34:19 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:34:19 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:19 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:34:19 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:19 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:34:19 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:34:19 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:34:19 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:19 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:34:20 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:20 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:34:20 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:34:20 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:34:20 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:20 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:34:20 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:20 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:34:20 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:34:20 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:34:20 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:20 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:34:31 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:34:31 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:34:31 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:34:31 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:34:31 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:34:31 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:34:31 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:34:31 | INFO    | goodware.engine |   watching 4 paths: ['/etc', '/usr/local/bin', '/usr/bin', '/tmp']
+2026-09-27T10:34:34 | INFO    | goodware.engine | component registered: threat
+2026-09-27T10:34:34 | INFO    | goodware.engine | component registered: anomaly
+2026-09-27T10:34:34 | INFO    | goodware.engine | component registered: simulator
+2026-09-27T10:34:35 | INFO    | goodware.engine | component registered: federated-server
+2026-09-27T10:34:35 | INFO    | goodware.engine | component registered: federated-client
+2026-09-27T10:34:35 | INFO    | goodware.engine | federated server listening on 127.0.0.1:8443
+2026-09-27T10:34:37 | INFO    | goodware.engine | component registered: decision-engine
+2026-09-27T10:34:37 | INFO    | goodware.engine | component registered: adaptive
+2026-09-27T10:34:37 | INFO    | goodware.engine | component registered: mutation
+2026-09-27T10:34:37 | INFO    | goodware.engine | component registered: zero_day
+2026-09-27T10:34:45 | INFO    | goodware.engine | component registered: decision-engine
+2026-09-27T10:34:45 | INFO    | goodware.engine | component registered: adaptive
+2026-09-27T10:34:45 | INFO    | goodware.engine | component registered: mutation
+2026-09-27T10:34:45 | INFO    | goodware.engine | component registered: zero_day
+2026-09-27T10:34:45 | INFO    | goodware.engine | component registered: crypto
+2026-09-27T10:34:45 | INFO    | goodware.engine | component registered: human-factor
+2026-09-27T10:34:45 | INFO    | goodware.engine | component registered: decision
+2026-09-27T10:34:45 | INFO    | goodware.engine | component registered: effector
+2026-09-27T10:34:45 | INFO    | goodware.engine | component registered: chainsaw
+2026-09-27T10:34:48 | INFO    | goodware.engine | component registered: immune
+2026-09-27T10:34:48 | INFO    | goodware.engine | component registered: physical
+2026-09-27T10:34:48 | INFO    | goodware.engine | component registered: supply-chain
+2026-09-27T10:34:52 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:52 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:34:52 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:34:52 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:34:52 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:52 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:34:52 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:52 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:34:52 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:34:52 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:34:52 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:52 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:34:53 | INFO    | goodware.engine | hunter2
+2026-09-27T10:34:53 | INFO    | goodware.engine | component registered: dummy
+2026-09-27T10:34:54 | INFO    | goodware.engine | test
+2026-09-27T10:34:54 | WARNING | goodware.engine | warn
+2026-09-27T10:34:54 | ERROR   | goodware.engine | err
+2026-09-27T10:34:54 | INFO    | goodware.engine | component registered: with_attach
+2026-09-27T10:34:54 | INFO    | goodware.engine | component registered: dummy
+2026-09-27T10:34:54 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:54 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:34:54 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:34:54 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:34:54 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:34:54 | INFO    | goodware.engine |   ✓ dummy running
+2026-09-27T10:34:54 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: threat
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: anomaly
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: simulator
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:34:57 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:34:58 | INFO    | goodware.engine |   watching 2 paths: ['/etc', '/tmp']
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:34:58 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:34:59 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:34:59 | INFO    | goodware.engine |   watching 2 paths: ['/etc', '/tmp']
+2026-09-27T10:35:00 | INFO    | goodware.engine | component registered: filesystem
+2026-09-27T10:35:00 | INFO    | goodware.engine | component registered: process
+2026-09-27T10:35:00 | INFO    | goodware.engine | component registered: network
+2026-09-27T10:35:00 | INFO    | goodware.engine | component registered: memory
+2026-09-27T10:35:00 | INFO    | goodware.engine | component registered: config
+2026-09-27T10:35:00 | INFO    | goodware.engine | component registered: behavior
+2026-09-27T10:35:00 | INFO    | goodware.engine | component registered: quantum
+2026-09-27T10:35:00 | INFO    | goodware.engine |   watching 2 paths: ['/etc', '/tmp']
+2026-09-27T10:35:00 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:00 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:35:00 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:35:00 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:35:00 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:00 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:35:00 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:00 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:35:00 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:35:00 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:35:00 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:01 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:35:01 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:01 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:35:01 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:35:01 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:35:01 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:01 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:35:01 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:01 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:35:01 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:35:01 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:35:01 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:02 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:35:02 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:02 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:35:02 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:35:02 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:35:02 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:02 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:35:02 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:02 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:35:02 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:35:02 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:35:02 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:03 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:35:03 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:03 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:35:03 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:35:03 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:35:03 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:03 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:35:03 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:03 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:35:03 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:35:03 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:35:03 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:03 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:35:03 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:03 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:35:03 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:35:03 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:35:03 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:03 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:35:03 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:03 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:35:03 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:35:03 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:35:03 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:03 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:35:03 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:03 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:35:03 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:35:03 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:35:03 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:03 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:35:03 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:03 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:35:03 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:35:03 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:35:03 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:03 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:35:03 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:03 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:35:03 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:35:03 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:35:03 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:03 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:35:03 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:03 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:35:03 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:35:03 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:35:03 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:04 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:35:04 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:04 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:35:04 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:35:04 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:35:04 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:04 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:35:04 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:04 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:35:04 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:35:04 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:35:04 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:04 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:35:04 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:04 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:35:04 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:35:04 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:35:04 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:04 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:35:04 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:04 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:35:04 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:35:04 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:35:04 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:04 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:35:04 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:04 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:35:04 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:35:04 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:35:04 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:04 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:35:04 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:04 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:35:04 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:35:04 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:35:04 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:04 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:35:05 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:05 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:35:05 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:35:05 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:35:05 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:05 | INFO    | goodware.engine | Goodware stopped.
+2026-09-27T10:35:05 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:05 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-09-27T10:35:05 | INFO    | goodware.engine |   node_id: None
+2026-09-27T10:35:05 | INFO    | goodware.engine |   organization: None
+2026-09-27T10:35:05 | INFO    | goodware.engine | ============================================================
+2026-09-27T10:35:06 | INFO    | goodware.engine | Goodware stopped.

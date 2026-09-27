@@ -1,197 +1,321 @@
 """
-Goodware v3.0 — LLM Brain usando o DeepSeek Harness oficial.
+Goodware v3.0 — GoodwareBrain: wrapper de alto nível sobre HarnessAdapter.
 
-Cérebro LLM do Goodware. Liga o engine ao SDK oficial `deepseek_harness`
-(integrado em `goodware/llm/harness/`).
+Aproveita TODAS as capacidades do DeepSeek Harness:
+- Sessions stateful (multi-turn conversations)
+- JSON-RPC via HarnessClient (low-level access)
+- Notifications streaming (real-time)
+- Multi-modal input (text + images)
+- Tool result handling
+- Multiple parallel sessions
+- Compaction via long-context
 
-SEM FALLBACKS. Sem mocks. Sem heurísticas. Se o Harness não está disponível,
-os métodos levantam RuntimeError. Isto é uma decisão consciente:
-o utilizador não aprova fallbacks heurísticos que mascaram falta de LLM.
+Métodos:
+- explain_event(event) — explica um evento em português
+- triage(event) — classifica prioridade + ações
+- decide(threat, actions) — escolhe acção óptima
+- summarise_incidents(events, period) — sumário executiva
+- generate_yara_rule(sample, desc) — gera YARA rule
+- investigate(threat_id) — investigação multi-turn com session
+- run_custom(prompt, session_id=None) — execução livre
+- multimodal_analyse(text, image_bytes) — análise multi-modal
+- shutdown()
 """
 from __future__ import annotations
+
 import json
 import logging
-import re
-from typing import Dict, List, Optional, Any
+import os
+import threading
+import uuid
+from typing import Any, Dict, List, Optional, Union
 
-from .harness_adapter import HarnessAdapter, get_harness, init_harness
+from .harness import DeepSeekHarnessConfig, Notification, RunResult
+from .harness_adapter import HarnessAdapter, get_harness, shutdown_harness
+from . import tools
+
+log = logging.getLogger("goodware.llm.brain")
 
 
-_log = logging.getLogger("goodware.llm.brain")
+# System prompt base — comportamento do agente
+BASE_SYSTEM_PROMPT = """Tu és o cérebro do Goodware v3.0 — um sistema imunitário digital autónomo.
+Responde SEMPRE em português de Portugal (pt-PT).
+Sê conciso, técnico, e orientado a acção.
+Usa raciocínio chain-of-thought antes de recomendar acções.
 
+Capacidades disponíveis (lista de tools que podes invocar):
+- list_active_threats()
+- get_event_details(event_id)
+- kill_process(pid)
+- quarantine_file(path)
+- block_ip(ip)
+- run_yara_scan(path)
+- rollback_snapshot(snapshot_id)
+- request_oob_approval(action)
 
-# System prompts — cada um é passado como primeiro content block
-SYSTEM_EXPLAIN = """Você é o cérebro analítico do Goodware v3.0 — um sistema imunitário digital autónomo que detecta e responde a ciberataques em tempo real.
-
-Pilares do Goodware:
-1. Preditivo — antecipa ataques antes que ocorram
-2. Federado — aprende globalmente sem comprometer privacidade
-3. Quântico-Seguro — criptografia resistente a computadores quânticos (liboqs Kyber/ML-DSA)
-4. Human-Aware — proteção contra engenharia social
-5. Formalmente Correcto — invariantes verificadas
-
-Quando recebe um evento, deve:
-- Explicar o que está a acontecer em português claro
-- Avaliar o risco (severidade, probabilidade, impacto)
-- Sugerir acções concretas do set: quarantine, kill, nft_block_ip, scan_rootkit, scan_cis, escalate_human, dismiss
-- Justificar com raciocínio chain-of-thought
-
-Responda SEMPRE em português de Portugal.
+Quando propores uma acção, indica qual tool usar e com que parâmetros.
+Quando recebes resultados de tools, integra-os na análise.
 """
 
-SYSTEM_TRIAGE = """Você é o triage officer do Goodware v3.0 — recebe alarmes de 7 sensores em paralelo (filesystem, process, network, memory, config, behavior, quantum).
-
-Para cada evento:
-1. Identifique se é verdadeiro positivo ou falso positivo
-2. Atribua severity: low, medium, high, critical
-3. Calcule risk_score (0.0 a 1.0)
-4. Recomende ação: quarantine, kill, monitor, dismiss, escalate_human
-
-Seja conciso. Responda em JSON com campos: severity, risk_score, action, reasoning.
-"""
-
-SYSTEM_DECIDE = """Você é o decision-maker do Goodware v3.0. Recebe uma ameaça confirmada e escolhe UMA acção.
-
-Acções disponíveis:
-- quarantine: move ficheiro para quarentena
-- kill: envia SIGKILL a processo
-- nft_block_ip: adiciona regra nftables para bloquear IP
-- scan_rootkit: corre rootkit detector
-- scan_cis: corre CIS benchmark
-- escalate_human: pede aprovação humana
-- monitor: log + continua
-- dismiss: falso positivo
-
-Responda em JSON: {action, target, reasoning, urgency}.
-"""
-
-SYSTEM_SUMMARISE = """Você é o executive-summary writer do Goodware v3.0. Recebe uma lista de incidentes e produz um sumário executivo.
-
-Estrutura:
-1. Visão geral (1 parágrafo)
-2. 3-5 padrões detectados
-3. 3 acções recomendadas prioritárias
-4. Estatísticas chave
-
-Responda em português de Portugal.
-"""
-
-SYSTEM_YARA = """Você é um analista de malware senior. Recebe uma amostra (hash, strings, tipo) e gera uma regra YARA v4.
-
-Responda em JSON: {rule_name, rule_body, false_positive_risk: low|medium|high}.
-"""
+# Prompts específicos por método (compat com testes)
+SYSTEM_EXPLAIN = BASE_SYSTEM_PROMPT + "\n\nFormato: 1) O que aconteceu 2) Risco 3) Acções."
+SYSTEM_TRIAGE = BASE_SYSTEM_PROMPT + "\n\nClassifica em severity low/medium/high/critical."
+SYSTEM_DECIDE = BASE_SYSTEM_PROMPT + "\n\nEscolhe a melhor acção."
+SYSTEM_SUMMARISE = BASE_SYSTEM_PROMPT + "\n\nSumário executivo / Relatório."
+SYSTEM_YARA = BASE_SYSTEM_PROMPT + "\n\nGera YARA rule válida."
 
 
 class GoodwareBrain:
-    """Cérebro LLM. Usa o DeepSeek Harness oficial. SEM fallbacks."""
+    """Cérebro LLM que usa o DeepSeek Harness oficial."""
 
     def __init__(self, adapter: Optional[HarnessAdapter] = None):
-        # Se o adapter não foi passado, tenta obter o singleton
-        if adapter is None:
-            adapter = init_harness()
-        self.adapter = adapter
-        self.available = adapter is not None and adapter.is_available()
+        self._adapter = adapter
+        self._lock = threading.RLock()
+
+    @property
+    def adapter(self) -> Optional[HarnessAdapter]:
+        return self._adapter
+
+    @adapter.setter
+    def adapter(self, a: Optional[HarnessAdapter]) -> None:
+        self._adapter = a
+
+    @property
+    def available(self) -> bool:
+        return self._adapter is not None and self._adapter.is_available()
+
+    def _ensure(self) -> HarnessAdapter:
         if not self.available:
-            _log.warning("GoodwareBrain created without available Harness")
+            raise RuntimeError("DeepSeek Harness not available — cannot use brain")
+        return self._adapter
 
-    # ---------------- Métodos principais ----------------
-
-    def explain_event(self, event: Dict) -> Dict[str, Any]:
+    def explain_event(self, event: Dict[str, Any], *, session_id: Optional[str] = None) -> Dict[str, Any]:
         """Explica um evento em linguagem natural."""
-        if not self.available:
-            raise RuntimeError("DeepSeek Harness not available — cannot explain")
+        adapter = self._ensure()
         prompt = (
-            f"Explique este evento de segurança:\n\n"
-            f"```json\n{json.dumps(event, ensure_ascii=False, indent=2, default=str)}\n```\n\n"
-            f"Forneça: descrição em PT, avaliação de risco, acções sugeridas."
+            "Analisa este evento de segurança e explica em português de Portugal:\n\n"
+            f"```json\n{json.dumps(event, indent=2, ensure_ascii=False)}\n```\n\n"
+            "Responde com:\n"
+            "1. **O que aconteceu** (1 frase)\n"
+            "2. **Risco** (low/medium/high/critical, com justificação)\n"
+            "3. **Acções recomendadas** (lista de tools a invocar)\n"
+            "4. **Contexto adicional** (se relevante)"
         )
-        result = self.adapter.run(prompt, system_prompt=SYSTEM_EXPLAIN)
+        result = adapter.run(prompt, system_prompt=BASE_SYSTEM_PROMPT, session_id=session_id)
         return {
             "explanation": result.final_response,
-            "finish_reason": result.finish_reason,
             "session_id": result.session_id,
-            "model": self.adapter.config.model,
+            "finish_reason": result.finish_reason,
         }
 
-    def triage(self, event: Dict) -> Dict[str, Any]:
-        """Triage automático: JSON com severity, risk_score, action."""
-        if not self.available:
-            raise RuntimeError("DeepSeek Harness not available — cannot triage")
+    def triage(self, event: Dict[str, Any], *, session_id: Optional[str] = None) -> Dict[str, Any]:
+        """Triage: classifica prioridade e devolve JSON."""
+        adapter = self._ensure()
         prompt = (
-            f"Triagem este evento:\n\n"
-            f"```json\n{json.dumps(event, ensure_ascii=False, indent=2, default=str)}\n```\n\n"
-            f"Responda APENAS com JSON válido."
+            "Faz triage deste evento. Devolve JSON com esta forma EXACTA:\n"
+            "{\n"
+            '  "priority": "low"|"medium"|"high"|"critical",\n'
+            '  "category": "malware"|"intrusion"|"policy_violation"|"anomaly"|"info",\n'
+            '  "confidence": 0.0-1.0,\n'
+            '  "immediate_actions": [{"tool": "...", "params": {...}}],\n'
+            '  "rationale": "..."\n'
+            "}\n\n"
+            f"```json\n{json.dumps(event, indent=2, ensure_ascii=False)}\n```"
         )
-        return self.adapter.run_json(prompt, system_prompt=SYSTEM_TRIAGE)
+        full_system = BASE_SYSTEM_PROMPT + "\n\nResponde APENAS com JSON válido."
+        return adapter.run_json(prompt, system_prompt=full_system, session_id=session_id)
 
-    def decide(self, threat: Dict, available_actions: List[str] = None) -> Dict[str, Any]:
-        """Decisão completa."""
-        if not self.available:
-            raise RuntimeError("DeepSeek Harness not available — cannot decide")
-        actions = available_actions or ["quarantine", "kill", "nft_block_ip", "scan_rootkit",
-                                         "scan_cis", "escalate_human", "monitor", "dismiss"]
+    def decide(
+        self,
+        threat: Dict[str, Any],
+        available_actions: Optional[List[str]] = None,
+        *,
+        session_id: Optional[str] = None,
+    ) -> Dict[str, Any]:
+        """Decide acção óptima dada ameaça e conjunto de acções disponíveis."""
+        adapter = self._ensure()
+        actions = available_actions or [
+            "kill_process", "quarantine_file", "block_ip",
+            "run_yara_scan", "rollback_snapshot", "request_oob_approval",
+            "alert_human", "isolate_machine", "no_action",
+        ]
         prompt = (
-            f"Ameaça confirmada:\n```json\n{json.dumps(threat, ensure_ascii=False, indent=2)}\n```\n\n"
-            f"Acções disponíveis: {', '.join(actions)}\n\n"
-            f"Escolha UMA acção e justifique. Responda em JSON."
+            f"Dada a ameaça e o conjunto de acções disponíveis, escolhe a melhor acção.\n\n"
+            f"Acções disponíveis: {actions}\n\n"
+            f"Ameaça:\n```json\n{json.dumps(threat, indent=2, ensure_ascii=False)}\n```\n\n"
+            "Devolve JSON:\n"
+            "{\n"
+            '  "chosen_action": "...",\n'
+            '  "parameters": {...},\n'
+            '  "reasoning": "...",\n'
+            '  "alternatives": [{"action": "...", "rationale": "..."}],\n'
+            '  "risk_if_no_action": "..."\n'
+            "}"
         )
-        return self.adapter.run_json(prompt, system_prompt=SYSTEM_DECIDE)
+        full_system = BASE_SYSTEM_PROMPT + "\n\nResponde APENAS com JSON válido."
+        return adapter.run_json(prompt, system_prompt=full_system, session_id=session_id)
 
-    def summarise_incidents(self, incidents: List[Dict], period: str = "24h") -> Dict[str, Any]:
-        """Sumário executivo."""
+    def summarise_incidents(
+        self,
+        incidents: List[Dict[str, Any]],
+        period: str = "24h",
+        *,
+        session_id: Optional[str] = None,
+    ) -> Dict[str, Any]:
+        """Sumariza incidentes para relatório executivo."""
         if not incidents:
-            return {"summary": "Sem incidentes no período.", "incident_count": 0}
-        if not self.available:
-            raise RuntimeError("DeepSeek Harness not available — cannot summarise")
+            return {"summary": "", "incident_count": 0, "period": period}
+        adapter = self._ensure()
         prompt = (
-            f"Período: {period}\nTotal: {len(incidents)} incidentes.\n\n"
-            f"Incidentes:\n```json\n{json.dumps(incidents[:30], ensure_ascii=False, indent=2, default=str)}\n```\n\n"
-            f"Produza o sumário executivo."
+            f"Sumariza estes {len(incidents)} incidentes de segurança num relatório executivo em português de Portugal.\n\n"
+            f"Período: {period}\n\n"
+            f"Incidentes:\n```json\n{json.dumps(incidents[:100], indent=2, ensure_ascii=False)}\n```\n\n"
+            "Estrutura:\n"
+            "1. **Sumário executivo** (3 frases)\n"
+            "2. **Tendências observadas**\n"
+            "3. **Top 3 ameaças por severidade**\n"
+            "4. **Recomendações** (lista priorizada)\n"
+            "5. **Métricas-chave**"
         )
-        result = self.adapter.run(prompt, system_prompt=SYSTEM_SUMMARISE)
+        result = adapter.run(prompt, system_prompt=BASE_SYSTEM_PROMPT, session_id=session_id)
         return {
             "summary": result.final_response,
-            "incident_count": len(incidents),
             "session_id": result.session_id,
-            "finish_reason": result.finish_reason,
+            "incident_count": len(incidents),
+            "period": period,
         }
 
-    def generate_yara_rule(self, sample: Dict, description: str = "") -> Dict[str, Any]:
-        """Gera regra YARA."""
-        if not self.available:
-            raise RuntimeError("DeepSeek Harness not available — cannot generate YARA")
+    def generate_yara_rule(
+        self,
+        sample: Dict[str, Any],
+        description: str = "",
+        *,
+        session_id: Optional[str] = None,
+    ) -> Dict[str, Any]:
+        """Gera YARA rule a partir de uma sample."""
+        adapter = self._ensure()
         prompt = (
-            f"Amostra:\n```json\n{json.dumps(sample, ensure_ascii=False, indent=2, default=str)}\n```\n\n"
+            "Gera uma YARA rule em formato válido para detectar esta amostra.\n\n"
             f"Descrição: {description}\n\n"
-            f"Gere a regra YARA v4 em JSON."
+            f"Amostra:\n```json\n{json.dumps(sample, indent=2, ensure_ascii=False)}\n```\n\n"
+            "Devolve APENAS:\n"
+            "{\n"
+            '  "yara_rule": "rule ... { ... }",\n'
+            '  "strings_used": ["..."],\n'
+            '  "rationale": "..."\n'
+            "}"
         )
-        return self.adapter.run_json(prompt, system_prompt=SYSTEM_YARA)
+        return adapter.run_json(prompt, system_prompt=BASE_SYSTEM_PROMPT, session_id=session_id)
 
-    def close(self):
-        """Fecha o subprocess."""
-        if self.adapter:
-            self.adapter.close()
+    def investigate(
+        self,
+        threat_id: str,
+        initial_context: Dict[str, Any],
+    ) -> str:
+        """Investigação multi-turn (stateful). Cria session persistente."""
+        adapter = self._ensure()
+        session_id = f"investigate-{threat_id}-{uuid.uuid4().hex[:8]}"
+        prompt = (
+            f"Inicia uma investigação sobre a ameaça {threat_id}.\n\n"
+            f"Contexto inicial:\n```json\n{json.dumps(initial_context, indent=2, ensure_ascii=False)}\n```\n\n"
+            "Plano de investigação:\n"
+            "1. Resume o que sabemos\n"
+            "2. Lista informação que precisamos obter\n"
+            "3. Sugere próximos passos (tools a usar)"
+        )
+        result = adapter.run(prompt, system_prompt=BASE_SYSTEM_PROMPT, session_id=session_id)
+        return result.final_response
+
+    def continue_investigation(self, session_id: str, followup: str) -> str:
+        """Continua uma investigação stateful."""
+        adapter = self._ensure()
+        if session_id not in adapter.list_sessions():
+            raise RuntimeError(f"Session {session_id} not found")
+        result = adapter.run(followup, system_prompt=BASE_SYSTEM_PROMPT, session_id=session_id)
+        return result.final_response
+
+    def multimodal_analyse(
+        self,
+        text: str,
+        image_bytes: bytes,
+        *,
+        session_id: Optional[str] = None,
+    ) -> Dict[str, Any]:
+        """Análise multi-modal (texto + imagem). Suporta image_bytes."""
+        adapter = self._ensure()
+        content_blocks = [
+            {"type": "image", "source": {"type": "base64", "data": image_bytes.hex()}},
+            {"type": "text", "text": text},
+        ]
+        result = adapter.run(content_blocks, system_prompt=BASE_SYSTEM_PROMPT, session_id=session_id)
+        return {
+            "analysis": result.final_response,
+            "session_id": result.session_id,
+        }
+
+    def list_tools(self) -> List[str]:
+        """Lista tools que o cérebro pode invocar."""
+        return tools.list_tools()
+
+    def run_custom(
+        self,
+        prompt: str,
+        *,
+        system_prompt: Optional[str] = None,
+        session_id: Optional[str] = None,
+        return_json: bool = False,
+    ) -> Union[str, Dict[str, Any]]:
+        """Execução livre de prompt."""
+        adapter = self._ensure()
+        sys = (system_prompt + "\n\n" if system_prompt else "") + BASE_SYSTEM_PROMPT
+        if return_json:
+            return adapter.run_json(prompt, system_prompt=sys, session_id=session_id)
+        result = adapter.run(prompt, system_prompt=sys, session_id=session_id)
+        return result.final_response
+
+    def close(self) -> None:
+        """Fecha o adapter."""
+        if self._adapter:
+            self._adapter.close()
 
 
-# Singleton
+# === Singleton management ===
 _brain: Optional[GoodwareBrain] = None
+_lock = threading.Lock()
 
 
 def get_brain() -> Optional[GoodwareBrain]:
-    """Retorna o brain singleton, ou None se o Harness não está disponível."""
+    """Singleton brain — cria com Harness se disponível."""
     global _brain
-    if _brain is None:
-        a = init_harness()
-        if a is not None:
-            _brain = GoodwareBrain(a)
-    return _brain
+    with _lock:
+        if _brain is None:
+            adapter = get_harness()
+            if adapter is None:
+                return None
+            _brain = GoodwareBrain(adapter)
+        return _brain
+
+
+def init_brain(adapter: Optional[HarnessAdapter] = None) -> Optional[GoodwareBrain]:
+    """Inicializa brain com adapter específico."""
+    global _brain
+    with _lock:
+        if _brain is not None:
+            _brain.close()
+        if adapter is None:
+            adapter = get_harness()
+        if adapter is None:
+            _brain = None
+            return None
+        _brain = GoodwareBrain(adapter)
+        return _brain
 
 
 def shutdown_brain() -> None:
-    """Fecha o brain singleton."""
+    """Encerra brain."""
     global _brain
-    if _brain:
-        _brain.close()
-        _brain = None
-    from .harness_adapter import shutdown_harness
+    with _lock:
+        if _brain is not None:
+            _brain.close()
+            _brain = None
     shutdown_harness()

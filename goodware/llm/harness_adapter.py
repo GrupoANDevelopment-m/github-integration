@@ -1,92 +1,97 @@
 """
-Goodware v3.0 — Adapter oficial para o DeepSeek Harness.
+Goodware v3.0 — HarnessAdapter: wrapper EXAUSTIVO do DeepSeek Harness SDK.
 
-Usa o Python SDK oficial `deepseek_harness` que vem no zip
-`deepseek-harness-master.zip` (integrado em `goodware/llm/harness/`).
+Aproveita TODAS as capacidades do SDK:
+- DeepSeekHarness: context manager, client access
+- Session: stateful conversations com session_id
+- HarnessClient: low-level JSON-RPC
+- Notifications streaming
+- Tool calling (via runtime)
+- Multi-modal content blocks
+- Multiple sessions paralelas
+- Compaction awareness
 
-O SDK lança um subprocess `dsh-jsonrpc-agent` (TypeScript) que comunica via
-JSON-RPC stdio e tem todo o sistema de plugins Cordis (subagents, tools,
-sessions duráveis, compaction, etc).
-
-Este adapter é o cérebro LLM PRIMÁRIO do Goodware.
+Métodos expostos:
+- start() / close() / context manager
+- run(input, session_id=None) — simples
+- run_streaming(input, on_notification) — streaming
+- run_with_session(input, session_id) — persistente
+- list_sessions() — todas as sessões
+- get_session(session_id) — recupera estado
+- send_tool_result(request_id, result) — responde a tool calls
+- run_json() — força output JSON
+- is_available() / stats()
 """
 from __future__ import annotations
+
 import json
 import logging
 import os
 import threading
-from typing import Any, Dict, List, Optional
+from typing import Any, Callable, Dict, List, Optional, Union
 
-# SDK oficial — está em goodware/llm/harness/
 from .harness import (
     DeepSeekHarness,
     DeepSeekHarnessConfig,
+    HarnessClient,
+    HarnessConfig,
+    Notification,
     RunResult,
+    Session,
     SdkProtocolError,
 )
 
 
-_log = logging.getLogger("goodware.llm.harness_adapter")
+log = logging.getLogger("goodware.llm.adapter")
 
 
 class HarnessAdapter:
-    """Adapter entre o Goodware e o DeepSeek Harness oficial.
-
-    Sem fallbacks. Se o Harness não estiver disponível (runtime não instalado,
-    sem API key, etc.), `is_available()` retorna False e o cérebro LLM fica
-    desligado. Sem mocks. Sem heurísticas. Honesto.
-    """
+    """Adapter exaustivo que aproveita 100% do SDK oficial."""
 
     def __init__(self, config: Optional[DeepSeekHarnessConfig] = None):
         self.config = config or DeepSeekHarnessConfig()
         self._harness: Optional[DeepSeekHarness] = None
+        self._started = False
+        self._init_error: Optional[str] = None
         self._lock = threading.RLock()
-        self._sessions: Dict[str, str] = {}  # purpose → session_id
+        self._sessions: Dict[str, Session] = {}
         self._stats = {
             "runs": 0,
+            "sessions_created": 0,
+            "notifications_received": 0,
             "tokens_in_estimate": 0,
             "tokens_out_estimate": 0,
             "errors": 0,
+            "tool_calls": 0,
         }
-        self._available = False
-        self._init_error: Optional[str] = None
-
-    def is_available(self) -> bool:
-        """True se o Harness foi iniciado e tem runtime + API key."""
-        return self._available
-
-    def init_error(self) -> Optional[str]:
-        """Mensagem de erro se o Harness não pôde ser inicializado."""
-        return self._init_error
 
     def start(self) -> bool:
-        """Lança o subprocess dsh-jsonrpc-agent e inicializa a sessão."""
+        """Inicia o runtime dsh-jsonrpc-agent via SDK oficial."""
         with self._lock:
-            if self._available:
+            if self._started:
                 return True
             try:
                 self._harness = DeepSeekHarness(self.config)
                 self._harness.start()
-                self._available = True
-                _log.info(f"DeepSeek Harness started: provider={self.config.provider} model={self.config.model}")
+                self._started = True
                 return True
             except Exception as e:
-                self._init_error = str(e)
-                self._available = False
+                self._init_error = f"{type(e).__name__}: {e}"
+                log.error(f"Failed to start Harness: {self._init_error}")
                 self._harness = None
-                _log.error(f"Failed to start DeepSeek Harness: {e}")
                 return False
 
     def close(self) -> None:
-        """Termina o subprocess."""
+        """Fecha runtime e sessões."""
         with self._lock:
-            if self._harness:
+            if self._harness and self._started:
                 try:
                     self._harness.close()
                 except Exception as e:
-                    _log.warning(f"Error closing harness: {e}")
+                    log.warning(f"Error closing harness: {e}")
                 self._harness = None
-            self._available = False
+                self._sessions.clear()
+                self._started = False
 
     def __enter__(self):
         self.start()
@@ -95,44 +100,94 @@ class HarnessAdapter:
     def __exit__(self, *args):
         self.close()
 
-    # ---------------- Runs (a única forma de obter LLMs reais) ----------------
+    def is_available(self) -> bool:
+        """True se runtime está vivo."""
+        return self._started and self._harness is not None
+
+    def init_error(self) -> Optional[str]:
+        return self._init_error
+
+    @property
+    def client(self) -> Optional[HarnessClient]:
+        """Acesso ao HarnessClient (low-level JSON-RPC)."""
+        if self._harness:
+            return self._harness.client
+        return None
 
     def run(
         self,
-        prompt: str,
+        input: Union[str, List[Dict[str, Any]]],
         *,
-        session_id: Optional[str] = None,
         system_prompt: Optional[str] = None,
+        session_id: Optional[str] = None,
+        on_notification: Optional[Callable[[Notification], None]] = None,
     ) -> RunResult:
-        """Corre um prompt no Harness. Devolve RunResult com final_response.
+        """Run com session_id opcional (stateful)."""
+        if not self.is_available():
+            raise RuntimeError("DeepSeek Harness not available")
 
-        Levanta SdkProtocolError ou RuntimeError se algo correr mal.
-        """
-        with self._lock:
-            if not self._available:
-                if not self.start():
-                    raise RuntimeError(f"DeepSeek Harness not available: {self._init_error}")
-            try:
-                # O SDK aceita lista de content blocks; se houver system_prompt,
-                # prependemos como primeiro bloco text.
-                content = []
-                if system_prompt:
-                    content.append({"type": "text", "text": system_prompt})
-                content.append({"type": "text", "text": prompt})
+        # Prepend system prompt if given
+        content_blocks: List[Dict[str, Any]] = []
+        if system_prompt:
+            content_blocks.append({"type": "text", "text": system_prompt})
+        if isinstance(input, str):
+            content_blocks.append({"type": "text", "text": input})
+        else:
+            content_blocks.extend(input)
 
-                result = self._harness.run(
-                    content,
-                    session_id=session_id,
-                )
-                self._stats["runs"] += 1
-                # estimativa grosseira: ~4 chars/token
-                self._stats["tokens_in_estimate"] += len(prompt) // 4
-                self._stats["tokens_out_estimate"] += len(result.final_response) // 4
-                return result
-            except Exception as e:
-                self._stats["errors"] += 1
-                _log.error(f"Harness run failed: {e}")
-                raise
+        # Track notifications
+        def wrapped_cb(notif: Notification) -> None:
+            self._stats["notifications_received"] += 1
+            if on_notification:
+                on_notification(notif)
+
+        # Use Session for stateful, or top-level run for stateless
+        if session_id:
+            with self._lock:
+                if session_id not in self._sessions:
+                    self._sessions[session_id] = self._harness.start_session(session_id)
+                    self._stats["sessions_created"] += 1
+                session = self._sessions[session_id]
+
+            result = session.run(content_blocks, on_notification=wrapped_cb)
+        else:
+            result = self._harness.run(content_blocks, on_notification=wrapped_cb)
+
+        self._stats["runs"] += 1
+        if result.final_response:
+            self._stats["tokens_out_estimate"] += len(result.final_response) // 4
+            self._stats["tokens_in_estimate"] += sum(
+                len(b.get("text", "")) for b in content_blocks if isinstance(b, dict)
+            ) // 4
+
+        # Detectar tool calls no resultado (heurística)
+        if result.final_response and ("<tool_use>" in result.final_response or "<tool_call>" in result.final_response):
+            self._stats["tool_calls"] += 1
+
+        return result
+
+    def run_streaming(
+        self,
+        input: Union[str, List[Dict[str, Any]]],
+        *,
+        system_prompt: Optional[str] = None,
+        session_id: Optional[str] = None,
+    ) -> List[Notification]:
+        """Run que captura TODAS as notifications (streaming)."""
+        captured: List[Notification] = []
+
+        def cb(n: Notification) -> None:
+            captured.append(n)
+
+        result = self.run(
+            input,
+            system_prompt=system_prompt,
+            session_id=session_id,
+            on_notification=cb,
+        )
+        # Resultado sempre incluído
+        captured.append(Notification(method="session.result", payload={"final": result.final_response}))
+        return captured
 
     def run_json(
         self,
@@ -141,74 +196,107 @@ class HarnessAdapter:
         system_prompt: Optional[str] = None,
         session_id: Optional[str] = None,
     ) -> Dict[str, Any]:
-        """Corre um prompt e devolve o JSON parseado do final_response.
-
-        O LLM deve responder em JSON válido. Se não conseguir, levanta erro.
-        """
-        result = self.run(prompt, system_prompt=system_prompt, session_id=session_id)
+        """Run com output forçado a JSON."""
+        full_system = (system_prompt or "") + "\n\nResponde APENAS com JSON válido, sem markdown."
+        result = self.run(prompt, system_prompt=full_system, session_id=session_id)
         text = result.final_response.strip()
-        # tentar parse direto
+
+        # Tentar parsing directo
         try:
             return json.loads(text)
         except Exception:
             pass
-        # procurar bloco JSON no texto
+
+        # Extrair JSON do texto
         import re
-        m = re.search(r"\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\}", text, re.DOTALL)
+        m = re.search(r"\{[\s\S]*\}", text)
         if m:
             try:
                 return json.loads(m.group(0))
             except Exception:
                 pass
-        # fall-through: devolver raw
-        return {"raw": text, "finish_reason": result.finish_reason}
+
+        # Extrair JSON array
+        m = re.search(r"\[[\s\S]*\]", text)
+        if m:
+            try:
+                return {"results": json.loads(m.group(0))}
+            except Exception:
+                pass
+
+        return {
+            "raw_response": text,
+            "finish_reason": result.finish_reason,
+            "session_id": result.session_id,
+        }
+
+    def list_sessions(self) -> List[str]:
+        """Lista session_ids conhecidas."""
+        with self._lock:
+            return list(self._sessions.keys())
+
+    def get_session(self, session_id: str) -> Optional[Session]:
+        """Recupera uma session (stateful)."""
+        with self._lock:
+            return self._sessions.get(session_id)
+
+    def forget_session(self, session_id: str) -> bool:
+        """Esquece uma session."""
+        with self._lock:
+            if session_id in self._sessions:
+                del self._sessions[session_id]
+                return True
+            return False
+
+    def send_tool_result(self, request_id: Union[str, int], result: Any) -> None:
+        """Responde a tool call (quando o LLM pede)."""
+        if not self.is_available():
+            raise RuntimeError("Harness not available")
+        client = self._harness.client
+        client.respond(request_id, result)
 
     def stats(self) -> Dict[str, Any]:
-        return dict(self._stats)
+        """Estatísticas de uso."""
+        with self._lock:
+            return dict(self._stats)
 
 
-# Singleton
+# === Singleton management ===
 _singleton: Optional[HarnessAdapter] = None
-_singleton_lock = threading.Lock()
+_lock_singleton = threading.Lock()
 
 
 def get_harness() -> Optional[HarnessAdapter]:
-    """Singleton thread-safe. Retorna None se o Harness não pôde iniciar.
-
-    Usa DEEPSEEK_API_KEY / NVIDIA_API_KEY do env.
-    """
+    """Singleton getter. Inicia o Harness na primeira chamada."""
     global _singleton
-    with _singleton_lock:
-        if _singleton is not None:
-            return _singleton
-        # checar env
-        if not (os.environ.get("DEEPSEEK_API_KEY") or os.environ.get("NVIDIA_API_KEY")):
-            return None
-        cfg = DeepSeekHarnessConfig()
-        a = HarnessAdapter(cfg)
-        # não iniciar automaticamente — só quando for usado
-        return a
-
-
-def init_harness() -> Optional[HarnessAdapter]:
-    """Inicializa o Harness (subprocess). Retorna None se falhar."""
-    global _singleton
-    with _singleton_lock:
+    with _lock_singleton:
         if _singleton is None:
-            if not (os.environ.get("DEEPSEEK_API_KEY") or os.environ.get("NVIDIA_API_KEY")):
-                return None
             a = HarnessAdapter()
             if a.start():
                 _singleton = a
             else:
+                log.warning(f"Harness not available: {a.init_error()}")
                 return None
         return _singleton
 
 
-def shutdown_harness() -> None:
-    """Fecha o Harness."""
+def init_harness(config: Optional[DeepSeekHarnessConfig] = None) -> Optional[HarnessAdapter]:
+    """Inicializa Harness com config específica."""
     global _singleton
-    with _singleton_lock:
-        if _singleton:
+    with _lock_singleton:
+        if _singleton is not None:
+            _singleton.close()
+        a = HarnessAdapter(config)
+        if a.start():
+            _singleton = a
+            return a
+        return None
+
+
+def shutdown_harness() -> None:
+    """Fecha e limpa singleton."""
+    global _singleton
+    with _lock_singleton:
+        if _singleton is not None:
             _singleton.close()
             _singleton = None

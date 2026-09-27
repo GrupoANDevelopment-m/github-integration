@@ -1,0 +1,28 @@
+name: incident-response
+description: "Coordena resposta a incidentes: containment → eradication → recovery → lessons learned."
+trigger: automatic
+version: "1.0"
+author: Goodware Team
+prompt_addon: |
+  Quando um incidente de severity >= high é detectado, activar "incident response":
+
+  1. CONTAINMENT (imediato):
+     - kill_process ou quarantine_file conforme aplicável
+     - block_ip se houver IP externo suspeito
+     - request_oob_approval para acções irreversíveis
+
+  2. ERADICATION:
+     - run_yara_scan em caminhos afectados
+     - search_iocs em ficheiros recentes
+     - Identificar persistence mechanisms
+
+  3. RECOVERY:
+     - rollback_snapshot se disponível
+     - Restore from backup
+     - Validate system integrity
+
+  4. LESSONS LEARNED:
+     - Generate incident report (PQC-signed)
+     - Update immune system com novo pattern
+     - Update YARA rules
+     - Update IOC database

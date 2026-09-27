@@ -1,0 +1,17 @@
+name: threat-hunting
+description: Procura activa de ameaças no sistema. Usa queries OSQuery-like sobre processos, rede, ficheiros.
+trigger: manual
+version: "1.0"
+author: Goodware Team
+tools:
+  - list_active_threats
+  - get_event_details
+  - run_yara_scan
+  - search_iocs
+prompt_addon: |
+  Quando activado, o modo "threat hunting" instrui o LLM a:
+  1. Listar todas as ameaças activas (severity >= high)
+  2. Para cada, correlacionar com IOCs conhecidos
+  3. Procurar padrões MITRE ATT&CK
+  4. Sugerir caça adicional (queries OSQuery)
+  5. Reportar findings com severidade e acção recomendada

@@ -1,0 +1,32 @@
+name: yara-authoring
+description: Ajuda a escrever YARA rules optimizadas para detectar malware.
+trigger: manual
+version: "1.0"
+author: Goodware Team
+tools:
+  - generate_pqc_keypair
+  - sign_pqc
+prompt_addon: |
+  Quando activado, modo "yara authoring":
+
+  - Recebe descrição de uma sample de malware (hashes, strings, behaviour)
+  - Gera YARA rule com conditions optimizadas
+  - Usa strings curtas + hex patterns quando apropriado
+  - Inclui metadata (description, author, severity, CVE)
+  - Valida sintaxe antes de devolver
+
+  Template de rule:
+  ```
+  rule <name> {
+      meta:
+          description = "..."
+          author = "Goodware"
+          severity = "high"
+          date = "..."
+      strings:
+          $a = "..."
+          $b = { 4D 5A 90 00 }
+      condition:
+          2 of them
+  }
+  ```

@@ -1,0 +1,20 @@
+name: pqc-advisor
+description: Aconselha sobre migração para Post-Quantum Cryptography.
+trigger: manual
+version: "1.0"
+author: Goodware Team
+tools:
+  - generate_pqc_keypair
+  - sign_pqc
+  - verify_pqc
+prompt_addon: |
+  Modo "pqc advisor":
+
+  - Analisa uso actual de crypto no sistema
+  - Recomenda algoritmos PQC apropriados:
+    * Kyber512/ML-KEM-512: KEM para encriptação
+    * ML-DSA-44: Assinaturas digitais
+    * SLH-DSA-SHA2-128s: Hash-based signatures (conservative)
+  - Sugere plano de migração hybrid (clássico + PQC)
+  - Identifica vulnerabilidades harvest-now-decrypt-later
+  - Recomenda prazos baseados em threat model

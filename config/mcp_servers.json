@@ -1,0 +1,31 @@
+{
+  "servers": {
+    "osquery": {
+      "command": "osqueryi",
+      "args": ["--json"],
+      "description": "OSQuery daemon para queries de sistema",
+      "tools": ["osquery_query", "osquery_schema"]
+    },
+    "virustotal": {
+      "command": "/usr/local/bin/vt-cli",
+      "args": ["scan"],
+      "description": "VirusTotal API client",
+      "env": {"VT_API_KEY": ""},
+      "tools": ["vt_scan_hash", "vt_scan_url", "vt_lookup"]
+    },
+    "shodan": {
+      "command": "/usr/local/bin/shodan",
+      "args": [],
+      "description": "Shodan API para threat intelligence",
+      "env": {"SHODAN_API_KEY": ""},
+      "tools": ["shodan_host", "shodan_search", "shodan_exploits"]
+    },
+    "abuseipdb": {
+      "command": "/usr/local/bin/abuseipdb",
+      "args": [],
+      "description": "AbuseIPDB para IP reputation",
+      "env": {"ABUSEIPDB_KEY": ""},
+      "tools": ["abuse_check", "abuse_report"]
+    }
+  }
+}
