@@ -314,3 +314,128 @@ def register_llm_routes(app):
             return jsonify({"error": "name required"}), 400
         result = execute_tool(name, params)
         return jsonify(result)
+
+# ===== Telemetry =====
+
+def register_telemetry_routes(app):
+    """Adiciona rotas de telemetry."""
+    from flask import request, jsonify
+    from goodware.llm.telemetry import get_telemetry
+
+    @app.get("/api/llm/telemetry")
+    def llm_telemetry():
+        return jsonify(get_telemetry().get_metrics())
+
+    @app.get("/api/llm/telemetry/prometheus")
+    def llm_telemetry_prometheus():
+        from flask import Response
+        return Response(get_telemetry().export_prometheus(), mimetype="text/plain")
+
+# ===== Memory =====
+
+def register_memory_routes(app):
+    from flask import request, jsonify
+    from goodware.llm.memory import get_memory
+
+    @app.get("/api/llm/memory")
+    def llm_memory_list():
+        m = get_memory()
+        return jsonify({"keys": m.list_keys(), "stats": m.stats()})
+
+    @app.post("/api/llm/memory")
+    def llm_memory_store():
+        data = request.json or {}
+        key = data.get("key")
+        value = data.get("value")
+        if not key:
+            return jsonify({"error": "key required"}), 400
+        get_memory().store(key, value, data.get("tags"), data.get("expires_in"))
+        return jsonify({"ok": True})
+
+    @app.get("/api/llm/memory/<key>")
+    def llm_memory_get(key):
+        v = get_memory().get(key)
+        if v is None:
+            return jsonify({"error": "not found"}), 404
+        return jsonify({"key": key, "value": v})
+
+    @app.delete("/api/llm/memory/<key>")
+    def llm_memory_delete(key):
+        ok = get_memory().delete(key)
+        return jsonify({"ok": ok})
+
+    @app.post("/api/llm/memory/search")
+    def llm_memory_search():
+        data = request.json or {}
+        q = data.get("query", "")
+        if not q:
+            return jsonify({"error": "query required"}), 400
+        return jsonify({"results": get_memory().search(q)})
+
+# ===== Hooks =====
+
+def register_hooks_routes(app):
+    from flask import request, jsonify
+    from goodware.llm.hooks import get_hooks_registry, HookContext
+
+    @app.get("/api/llm/hooks")
+    def llm_hooks_list():
+        return jsonify(get_hooks_registry().list_hooks())
+
+# ===== Slash commands =====
+
+def register_slash_routes(app):
+    from flask import request, jsonify
+    from goodware.llm.slash_commands import get_slash_commands
+
+    @app.get("/api/llm/slash")
+    def llm_slash_list():
+        cmds = get_slash_commands().list_commands()
+        return jsonify({
+            "commands": [
+                {"name": c.name, "description": c.description, "examples": c.examples}
+                for c in cmds
+            ]
+        })
+
+    @app.post("/api/llm/slash/exec")
+    def llm_slash_exec():
+        data = request.json or {}
+        line = data.get("command", "")
+        if not line.startswith("/"):
+            return jsonify({"error": "must start with /"}), 400
+        return jsonify(get_slash_commands().execute(line))
+
+# ===== RAG =====
+
+def register_rag_routes(app):
+    from flask import request, jsonify
+    from goodware.llm.rag import get_rag
+
+    @app.post("/api/llm/rag/query")
+    def llm_rag_query():
+        data = request.json or {}
+        q = data.get("query", "")
+        if not q:
+            return jsonify({"error": "query required"}), 400
+        top_k = data.get("top_k", 5)
+        return jsonify({"results": get_rag().query(q, top_k)})
+
+# ===== Multimodal =====
+
+def register_multimodal_routes(app):
+    from flask import request, jsonify
+    from goodware.llm.multimodal import detect_kind, multimodal_analysis_prompt
+
+    @app.post("/api/llm/multimodal/preview")
+    def llm_multimodal_preview():
+        data = request.json or {}
+        files = data.get("files", [])
+        blocks = []
+        for f in files:
+            try:
+                from goodware.llm.multimodal import make_content_block
+                blocks.append({"file": f, "metadata": make_content_block(f).get("metadata", {})})
+            except Exception as e:
+                blocks.append({"file": f, "error": str(e)})
+        return jsonify({"blocks": blocks})

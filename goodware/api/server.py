@@ -291,8 +291,14 @@ def create_app(engine, config) -> Flask:
 
     # === LLM Brain (DeepSeek) ===
     try:
-        from goodware.llm.api import register_llm_routes
+        from goodware.llm.api import register_llm_routes, register_telemetry_routes, register_memory_routes, register_hooks_routes, register_slash_routes, register_rag_routes, register_multimodal_routes
         register_llm_routes(app)
+        register_telemetry_routes(app)
+        register_memory_routes(app)
+        register_hooks_routes(app)
+        register_slash_routes(app)
+        register_rag_routes(app)
+        register_multimodal_routes(app)
     except Exception as _e:
         # DeepSeek não disponível, registar apenas status que devolve 503
         @app.get("/api/llm/status")

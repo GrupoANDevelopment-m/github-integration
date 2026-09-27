@@ -1,0 +1,25 @@
+{
+  "entries": [
+    {
+      "key": "user_pref",
+      "value": "language=pt-PT",
+      "tags": [
+        "preference"
+      ],
+      "created_at": 1790505919.4400048,
+      "expires_at": null
+    },
+    {
+      "key": "last_threat",
+      "value": {
+        "type": "scan",
+        "id": 123
+      },
+      "tags": [
+        "threat"
+      ],
+      "created_at": 1790505919.4433236,
+      "expires_at": null
+    }
+  ]
+}
