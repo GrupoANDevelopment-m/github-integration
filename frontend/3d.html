@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goodware v3.0 — Digital Immune System</title>
+    <link rel="stylesheet" href="src/3d/dashboard.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <div id="scene-container"></div>
+    <div id="hud-container"></div>
+
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">INITIALIZING IMMUNE SYSTEM</div>
+        <div class="loading-bar"><div class="loading-bar-fill" id="loading-bar-fill"></div></div>
+    </div>
+
+    <script src="src/api-3d.js"></script>
+    <script src="src/3d/scene.js"></script>
+    <script src="src/3d/hud.js"></script>
+    <script>
+        // Initialize API client (real backend)
+        window.GOODWARE_API = createApiClient({
+            baseURL: window.location.origin,
+            token: localStorage.getItem('goodware_token') || null,
+        });
+
+        // Show loading progress
+        const loadingFill = document.getElementById('loading-bar-fill');
+        let progress = 0;
+        const progressInterval = setInterval(() => {
+            progress += 5;
+            if (progress > 90) progress = 90;
+            loadingFill.style.width = progress + '%';
+        }, 80);
+
+        // Wait for Three.js to load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                clearInterval(progressInterval);
+                loadingFill.style.width = '100%';
+
+                // Initialize 3D scene
+                const sceneContainer = document.getElementById('scene-container');
+                const scene = new Scene3D(sceneContainer);
+
+                // Initialize HUD
+                const hudContainer = document.getElementById('hud-container');
+                const hud = new HUD(hudContainer);
+
+                // Update HUD every second
+                setInterval(() => hud.tick(), 1000);
+
+                // Hide loading
+                setTimeout(() => {
+                    document.getElementById('loading-overlay').classList.add('hidden');
+                }, 600);
+            }, 800);
+        });
+    </script>
+</body>
+</html>
