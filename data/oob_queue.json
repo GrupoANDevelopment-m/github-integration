@@ -264,5 +264,61 @@
     "ts": 1790505998.609586,
     "status": "pending",
     "channel": "log"
+  },
+  "0bbfb3f9": {
+    "msg_id": "0bbfb3f9",
+    "request_id": "76f4d9be",
+    "action": {
+      "action": "delete_user",
+      "user": "admin",
+      "location": "unknown",
+      "time_of_day": 3,
+      "device_id": "unknown"
+    },
+    "ts": 1790557798.857192,
+    "status": "pending",
+    "channel": "log"
+  },
+  "27f1e3ee": {
+    "msg_id": "27f1e3ee",
+    "request_id": "65b207df",
+    "action": {
+      "action": "delete_user",
+      "user": "admin",
+      "location": "unknown",
+      "time_of_day": 3,
+      "device_id": "unknown"
+    },
+    "ts": 1790557862.9994545,
+    "status": "pending",
+    "channel": "log"
+  },
+  "c9bac993": {
+    "msg_id": "c9bac993",
+    "request_id": "8f9cb2b7",
+    "action": {
+      "action": "delete_user",
+      "user": "admin",
+      "location": "unknown",
+      "time_of_day": 3,
+      "device_id": "unknown"
+    },
+    "ts": 1790558034.2343867,
+    "status": "pending",
+    "channel": "log"
+  },
+  "12f78fb3": {
+    "msg_id": "12f78fb3",
+    "request_id": "ad0e331a",
+    "action": {
+      "action": "delete_user",
+      "user": "admin",
+      "location": "unknown",
+      "time_of_day": 3,
+      "device_id": "unknown"
+    },
+    "ts": 1790558102.9859068,
+    "status": "pending",
+    "channel": "log"
   }
 }

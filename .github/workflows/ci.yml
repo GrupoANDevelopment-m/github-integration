@@ -1,0 +1,73 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    
+    services:
+      redis:
+        image: redis:7
+        options: --health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 5
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install system deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            yara libyara-dev clamav tpm2-tools nftables iptables \
+            build-essential cmake ninja-build git
+      
+      - name: Build liboqs
+        run: |
+          git clone --depth 1 --branch 0.16.0 https://github.com/open-quantum-safe/liboqs.git
+          cd liboqs && mkdir build && cd build
+          cmake -GNinja -DOQS_BUILD_ONLY_LIB=ON -DBUILD_SHARED_LIBS=ON ..
+          sudo ninja install && sudo ldconfig
+      
+      - name: Install Python deps
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Run tests
+        env:
+          LD_LIBRARY_PATH: /usr/local/lib
+          PYTHONPATH: ${{ github.workspace }}
+        run: |
+          chmod +x scripts/test_all.sh
+          ./scripts/test_all.sh
+      
+      - name: Train models with NSL-KDD
+        env:
+          LD_LIBRARY_PATH: /usr/local/lib
+          PYTHONPATH: ${{ github.workspace }}
+        run: |
+          git clone --depth 1 https://github.com/Jehuty4949/NSL_KDD.git
+          python3 -m goodware.prediction.training.train_nsl_kdd \
+            --train NSL_KDD/KDDTrain+.txt \
+            --test NSL_KDD/KDDTest+.txt \
+            --output models/
+      
+      - name: Build Docker image
+        run: docker build -t goodware-v3:${{ github.sha }} .
+      
+      - name: Push to registry
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u "${{ secrets.DOCKER_USER }}" --password-stdin
+          docker tag goodware-v3:${{ github.sha }} ${{ secrets.DOCKER_USER }}/goodware-v3:latest
+          docker push ${{ secrets.DOCKER_USER }}/goodware-v3:latest

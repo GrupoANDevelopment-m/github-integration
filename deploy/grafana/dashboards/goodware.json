@@ -1,0 +1,23 @@
+{
+  "title": "Goodware v3.0 — LLM Telemetry",
+  "panels": [
+    {
+      "title": "Runs per minute",
+      "type": "graph",
+      "targets": [{"expr": "rate(goodware_llm_runs_total[1m])"}]
+    },
+    {
+      "title": "Latency P50/P99 (ms)",
+      "type": "graph",
+      "targets": [
+        {"expr": "goodware_llm_latency_p50_ms"},
+        {"expr": "goodware_llm_latency_p99_ms"}
+      ]
+    },
+    {
+      "title": "Error rate",
+      "type": "graph",
+      "targets": [{"expr": "rate(goodware_llm_errors_total[5m])"}]
+    }
+  ]
+}

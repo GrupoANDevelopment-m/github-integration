@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: goodware
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: goodware
+  template:
+    metadata:
+      labels:
+        app: goodware
+    spec:
+      containers:
+        - name: goodware
+          image: goodware/goodware-v3:latest
+          ports:
+            - containerPort: 8443
+          env:
+            - name: NVIDIA_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: goodware-secrets
+                  key: nvidia-api-key
+                  optional: true
+          resources:
+            limits:
+              cpu: 2000m
+              memory: 4Gi
+            requests:
+              cpu: 500m
+              memory: 1Gi
+          livenessProbe:
+            httpGet:
+              path: /api/healthz
+              port: 8443
+            initialDelaySeconds: 30
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /api/status
+              port: 8443
+            initialDelaySeconds: 10
+            periodSeconds: 10

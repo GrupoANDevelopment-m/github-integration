@@ -1,0 +1,163 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Goodware v3.0 API",
+    "description": "Sistema Imunitário Digital Autónomo — REST API",
+    "version": "3.0.0",
+    "contact": {"name": "Goodware Team"},
+    "license": {"name": "MIT"}
+  },
+  "servers": [
+    {"url": "http://localhost:8443", "description": "Local dev"}
+  ],
+  "security": [{"BearerAuth": []}],
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    "schemas": {
+      "Event": {
+        "type": "object",
+        "properties": {
+          "type": {"type": "string"},
+          "severity": {"type": "string", "enum": ["low", "medium", "high", "critical"]},
+          "source": {"type": "string"},
+          "payload": {"type": "object"}
+        }
+      },
+      "HealthResponse": {
+        "type": "object",
+        "properties": {
+          "status": {"type": "string"},
+          "uptime_seconds": {"type": "integer"},
+          "version": {"type": "string"}
+        }
+      }
+    }
+  },
+  "paths": {
+    "/api/healthz": {
+      "get": {
+        "summary": "Health check",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {"application/json": {"schema": {"$ref": "#/components/schemas/HealthResponse"}}}
+          }
+        }
+      }
+    },
+    "/api/status": {
+      "get": {
+        "summary": "Engine status",
+        "responses": {
+          "200": {"description": "Status"}
+        }
+      }
+    },
+    "/api/events": {
+      "get": {
+        "summary": "List events",
+        "parameters": [
+          {"name": "severity", "in": "query", "schema": {"type": "string"}},
+          {"name": "limit", "in": "query", "schema": {"type": "integer"}}
+        ],
+        "responses": {"200": {"description": "List of events"}}
+      }
+    },
+    "/api/llm/status": {
+      "get": {
+        "summary": "Harness status",
+        "responses": {
+          "200": {"description": "OK"},
+          "503": {"description": "Harness unavailable"}
+        }
+      }
+    },
+    "/api/llm/explain": {
+      "post": {
+        "summary": "Explain event",
+        "requestBody": {
+          "required": true,
+          "content": {"application/json": {"schema": {"$ref": "#/components/schemas/Event"}}}
+        },
+        "responses": {
+          "200": {"description": "Explanation"},
+          "503": {"description": "Harness unavailable"}
+        }
+      }
+    },
+    "/api/llm/triage": {
+      "post": {
+        "summary": "Triage event",
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "#/components/schemas/Event"}}}},
+        "responses": {"200": {"description": "Triage result"}}
+      }
+    },
+    "/api/llm/decide": {
+      "post": {
+        "summary": "Decide action",
+        "responses": {"200": {"description": "Decision"}}
+      }
+    },
+    "/api/llm/summarise": {
+      "post": {
+        "summary": "Summarise incidents",
+        "responses": {"200": {"description": "Summary"}}
+      }
+    },
+    "/api/llm/investigate": {
+      "post": {
+        "summary": "Start investigation",
+        "responses": {"200": {"description": "Investigation session"}}
+      }
+    },
+    "/api/llm/memory/{key}": {
+      "get": {"summary": "Get memory", "responses": {"200": {"description": "Value"}}},
+      "delete": {"summary": "Delete memory", "responses": {"200": {"description": "OK"}}}
+    },
+    "/api/llm/skills": {
+      "get": {"summary": "List skills", "responses": {"200": {"description": "Skills"}}}
+    },
+    "/api/llm/mcp": {
+      "get": {"summary": "List MCP servers", "responses": {"200": {"description": "Servers"}}}
+    },
+    "/api/llm/tools": {
+      "get": {"summary": "List tools", "responses": {"200": {"description": "Tools"}}}
+    },
+    "/api/llm/tools/execute": {
+      "post": {
+        "summary": "Execute tool",
+        "responses": {"200": {"description": "Result"}}
+      }
+    },
+    "/api/llm/telemetry/prometheus": {
+      "get": {
+        "summary": "Prometheus metrics",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Metrics in Prometheus format",
+            "content": {"text/plain": {"schema": {"type": "string"}}}
+          }
+        }
+      }
+    },
+    "/api/crypto/real_pqc/roundtrip": {
+      "post": {
+        "summary": "PQC roundtrip test",
+        "responses": {"200": {"description": "Roundtrip OK"}}
+      }
+    },
+    "/api/effector/kill": {
+      "post": {
+        "summary": "Kill process",
+        "responses": {"200": {"description": "Killed"}}
+      }
+    }
+  }
+}

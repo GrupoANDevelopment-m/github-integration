@@ -23,4 +23,8 @@ echo "=== test_llm_brain ==="
 python3 -m tests.test_llm_brain 2>&1 | tail -2
 
 echo
+echo "=== test_load (chaos + property-based) ==="
+python3 -m tests.test_load 2>&1 | tail -2
+
+echo
 echo "=== ALL TESTS PASS ==="

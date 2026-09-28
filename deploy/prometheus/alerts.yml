@@ -1,0 +1,30 @@
+# Prometheus alerts for Goodware v3.0
+
+groups:
+  - name: goodware_alerts
+    interval: 30s
+    rules:
+      - alert: GoodwareDown
+        expr: up{job="goodware-api"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Goodware API down"
+          description: "API has been down for more than 1 minute."
+
+      - alert: HighErrorRate
+        expr: rate(goodware_llm_errors_total[5m]) > 0.1
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High LLM error rate"
+
+      - alert: HighLatency
+        expr: goodware_llm_latency_p99_ms > 30000
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "P99 latency > 30s"
