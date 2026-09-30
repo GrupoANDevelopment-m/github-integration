@@ -12,5 +12,40 @@
     "ip": "127.0.0.1",
     "port": 40982,
     "payload_preview": "GET /.git/config HTTP/1.1\r\nHost: 127.0.0.1:8081\r\nUser-Agent: curl/7.88.1\r\nAccept: */*\r\n\r\n"
+  },
+  {
+    "ts": 1790723474.3235517,
+    "service": "http",
+    "ip": "127.0.0.1",
+    "port": 57236,
+    "payload_preview": "GET / HTTP/1.1\r\nAccept-Encoding: identity\r\nHost: 127.0.0.1:8889\r\nUser-Agent: attacker-cve-2024-xxx\r\nConnection: close\r\n\r\n"
+  },
+  {
+    "ts": 1790723474.3246455,
+    "service": "http",
+    "ip": "127.0.0.1",
+    "port": 57250,
+    "payload_preview": "GET /admin HTTP/1.1\r\nAccept-Encoding: identity\r\nHost: 127.0.0.1:8889\r\nUser-Agent: attacker-cve-2024-xxx\r\nConnection: close\r\n\r\n"
+  },
+  {
+    "ts": 1790723474.3247685,
+    "service": "http",
+    "ip": "127.0.0.1",
+    "port": 57266,
+    "payload_preview": "GET /.env HTTP/1.1\r\nAccept-Encoding: identity\r\nHost: 127.0.0.1:8889\r\nUser-Agent: attacker-cve-2024-xxx\r\nConnection: close\r\n\r\n"
+  },
+  {
+    "ts": 1790723474.3256555,
+    "service": "http",
+    "ip": "127.0.0.1",
+    "port": 57282,
+    "payload_preview": "GET /wp-admin HTTP/1.1\r\nAccept-Encoding: identity\r\nHost: 127.0.0.1:8889\r\nUser-Agent: attacker-cve-2024-xxx\r\nConnection: close\r\n\r\n"
+  },
+  {
+    "ts": 1790723474.3265483,
+    "service": "ssh",
+    "ip": "127.0.0.1",
+    "port": 58152,
+    "payload_preview": "SSH-2.0-OpenSSH_8.9p1\r\n"
   }
 ]
