@@ -25,6 +25,12 @@ class Quarantine:
     def quarantine(self, path: str, reason: str, kill_pid: Optional[int] = None) -> dict:
         if not os.path.exists(path):
             return {"ok": False, "error": "not_found"}
+        # AUTO-SNAPSHOT: sempre antes de remover ficheiro, captura para recovery
+        try:
+            from goodware.effector.rollback import get_snapshot_manager
+            snap = get_snapshot_manager().snapshot_files([path], label=f"pre-quarantine:{reason}")
+        except Exception:
+            snap = None
         try:
             with open(path, "rb") as f:
                 data = f.read()
@@ -74,7 +80,9 @@ class Quarantine:
         except Exception:
             pass
         return {"ok": True, "id": qid, "quarantine_path": target, "sha256": sha,
-                "killed": killed, "removed": removed, "real_actions": removed or (killed and killed.get("ok"))}
+                "killed": killed, "removed": removed, "real_actions": removed or (killed and killed.get("ok")),
+                "snapshot_id": snap["id"] if snap else None,
+                "recovery_available": snap is not None}
 
     def kill_process(self, pid: int, sig: int = signal.SIGKILL) -> dict:
         """Mata processo real com SIGKILL (default)."""

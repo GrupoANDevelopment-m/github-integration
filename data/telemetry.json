@@ -1,14 +1,14 @@
 {
-  "runs_total": 18,
+  "runs_total": 22,
   "tokens_in_total": 0,
   "tokens_out_total": 0,
-  "errors_total": 18,
+  "errors_total": 22,
   "tool_calls_total": 0,
   "sessions_created_total": 0,
   "latency_p50_ms": 0.007152557373046875,
   "latency_p99_ms": 0.007152557373046875,
   "errors_by_type": {
-    "RuntimeError": 18
+    "RuntimeError": 22
   },
   "tools_used": {},
   "sessions_by_session": {},
@@ -16,7 +16,7 @@
     "2026-09-27": 4,
     "2026-09-28": 8,
     "2026-09-29": 4,
-    "2026-09-30": 2
+    "2026-09-30": 6
   },
-  "last_run_ts": 1790807818.233938
+  "last_run_ts": 1790809676.6743686
 }

@@ -190,6 +190,56 @@ def create_app(engine, config) -> Flask:
                 return jsonify(comp.quarantine.restore(qid))
         return jsonify({"error": "not found"}), 404
 
+    # ===== SNAPSHOT + ROLLBACK ENDPOINTS =====
+    @app.post("/api/snapshot/create")
+    def snapshot_create():
+        """Cria snapshot de ficheiros. Body: {"paths": [...], "label": "..."}"""
+        from goodware.effector.rollback import get_snapshot_manager
+        data = request.get_json(force=True) or {}
+        paths = data.get("paths", [])
+        label = data.get("label", "manual")
+        mgr = get_snapshot_manager()
+        result = mgr.snapshot_files(paths, label=label)
+        return jsonify({"ok": True, **result})
+
+    @app.get("/api/snapshot/list")
+    def snapshot_list():
+        """Lista snapshots disponíveis."""
+        from goodware.effector.rollback import get_snapshot_manager
+        mgr = get_snapshot_manager()
+        snaps = mgr.list_snapshots()
+        return jsonify({"snapshots": snaps, "count": len(snaps)})
+
+    @app.post("/api/snapshot/rollback")
+    def snapshot_rollback():
+        """Rollback para um snapshot. Body: {"snapshot_id": "..."}"""
+        from goodware.effector.rollback import get_snapshot_manager
+        data = request.get_json(force=True) or {}
+        sid = data.get("snapshot_id")
+        verify = data.get("verify", True)
+        mgr = get_snapshot_manager()
+        result = mgr.rollback_files(sid, verify=verify)
+        return jsonify(result)
+
+    @app.post("/api/snapshot/diff")
+    def snapshot_diff():
+        """Diff entre snapshots. Body: {"from": "...", "to": "..."}"""
+        from goodware.effector.rollback import get_snapshot_manager
+        data = request.get_json(force=True) or {}
+        mgr = get_snapshot_manager()
+        result = mgr.diff_snapshots(data.get("from"), data.get("to"))
+        return jsonify(result)
+
+    @app.post("/api/snapshot/filesystem-state")
+    def snapshot_fs_state():
+        """Snapshot do estado do filesystem (hashes). Body: {"paths": [...]}"""
+        from goodware.effector.rollback import get_snapshot_manager
+        data = request.get_json(force=True) or {}
+        paths = data.get("paths", [])
+        mgr = get_snapshot_manager()
+        state = mgr.snapshot_filesystem_state(paths)
+        return jsonify(state)
+
     @app.get("/api/firewall/snapshot")
     def firewall_snap():
         for name, comp in engine._components.items():
