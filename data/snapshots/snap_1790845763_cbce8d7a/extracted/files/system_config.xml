@@ -1,0 +1,1 @@
+<config><db>postgres://root:password@db.internal</db></config>

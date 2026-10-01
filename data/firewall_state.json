@@ -1,7 +1,26 @@
 {
   "blocked_ips": [
     "192.168.100.1",
-    "10.0.0.5"
+    "10.0.0.5",
+    "203.0.113.99",
+    "203.0.113.50",
+    "198.51.100.42",
+    "10.0.0.50",
+    "10.0.0.51"
   ],
-  "ruleset": "table inet goodware {\n  chain input {\n    type filter hook input priority 0; policy accept;\n    ip saddr 192.168.100.1 drop\n    ip saddr 10.0.0.5 drop\n  }\n}"
+  "ruleset": "table inet goodware {\n  chain input {\n    type filter hook input priority 0; policy accept;\n    ip saddr 192.168.100.1 drop\n    ip saddr 10.0.0.5 drop\n  }\n}",
+  "blocked_at": [
+    1790845764.771318,
+    1790845764.778001,
+    1790845764.784271,
+    1790845764.791674,
+    1790845764.7987068
+  ],
+  "reason": [
+    "apt-simulation",
+    "apt-simulation",
+    "apt-simulation",
+    "apt-simulation",
+    "apt-simulation"
+  ]
 }
