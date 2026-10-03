@@ -1,0 +1,15 @@
+[2026-10-03 07:37:00] [STEP] ==== PRE-FLIGHT CHECKS ====
+[2026-10-03 07:37:00] [OK] OS: Debian GNU/Linux 12 (bookworm)
+[2026-10-03 07:37:00] [OK] Python 3.11 (>= 3.10 required)
+[2026-10-03 07:37:00] [OK] Disk space: 1046629454MB available (>= 2048MB required)
+[2026-10-03 07:37:00] [WARN] RAM 3072MB < 4096MB recommended — may impact performance
+[2026-10-03 07:37:00] [STEP] ==== STEP 1/8 — System dependencies (apt) ====
+[2026-10-03 07:37:00] [STEP] ==== STEP 2/8 — Python dependencies (pip) ====
+[2026-10-03 07:37:00] [STEP] ==== STEP 3/8 — liboqs 0.16.0 (Post-Quantum Crypto) ====
+[2026-10-03 07:37:00] [OK] liboqs already compiled at /workspace/goodware-v3/vendor/oqs/lib/liboqs.so
+[2026-10-03 07:37:00] [STEP] ==== STEP 4/8 — Initialize SQLite database ====
+[2026-10-03 07:37:00] [STEP] ==== STEP 5/8 — TPM simulator (swtpm) ====
+[2026-10-03 07:37:00] [STEP] ==== STEP 6/8 — ClamAV virus signatures ====
+[2026-10-03 07:37:00] [STEP] ==== STEP 7/8 — Run test suite ====
+[2026-10-03 07:37:00] [STEP] ==== STEP 8/8 — Persist install state ====
+[2026-10-03 07:37:00] [STEP] ==== INSTALLATION COMPLETE ====

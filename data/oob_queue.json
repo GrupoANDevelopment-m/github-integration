@@ -404,5 +404,103 @@
     "ts": 1790809644.4269536,
     "status": "pending",
     "channel": "log"
+  },
+  "780f7593": {
+    "msg_id": "780f7593",
+    "request_id": "86028649",
+    "action": {
+      "action": "delete_user",
+      "user": "admin",
+      "location": "unknown",
+      "time_of_day": 3,
+      "device_id": "unknown"
+    },
+    "ts": 1791013062.4731703,
+    "status": "pending",
+    "channel": "log"
+  },
+  "b40e316f": {
+    "msg_id": "b40e316f",
+    "request_id": "72d333ae",
+    "action": {
+      "action": "delete_user",
+      "user": "admin",
+      "location": "unknown",
+      "time_of_day": 3,
+      "device_id": "unknown"
+    },
+    "ts": 1791013104.1120365,
+    "status": "pending",
+    "channel": "log"
+  },
+  "97e15541": {
+    "msg_id": "97e15541",
+    "request_id": "a7f261fa",
+    "action": {
+      "action": "delete_user",
+      "user": "admin",
+      "location": "unknown",
+      "time_of_day": 3,
+      "device_id": "unknown"
+    },
+    "ts": 1791013148.3141432,
+    "status": "pending",
+    "channel": "log"
+  },
+  "44be2dc0": {
+    "msg_id": "44be2dc0",
+    "request_id": "f4a67205",
+    "action": {
+      "action": "delete_user",
+      "user": "admin",
+      "location": "unknown",
+      "time_of_day": 3,
+      "device_id": "unknown"
+    },
+    "ts": 1791013207.9737515,
+    "status": "pending",
+    "channel": "log"
+  },
+  "09851dca": {
+    "msg_id": "09851dca",
+    "request_id": "de9c9b36",
+    "action": {
+      "action": "delete_user",
+      "user": "admin",
+      "location": "unknown",
+      "time_of_day": 3,
+      "device_id": "unknown"
+    },
+    "ts": 1791013224.04782,
+    "status": "pending",
+    "channel": "log"
+  },
+  "09ba42a1": {
+    "msg_id": "09ba42a1",
+    "request_id": "1ef988a7",
+    "action": {
+      "action": "delete_user",
+      "user": "admin",
+      "location": "unknown",
+      "time_of_day": 3,
+      "device_id": "unknown"
+    },
+    "ts": 1791013239.648675,
+    "status": "pending",
+    "channel": "log"
+  },
+  "693c3e0d": {
+    "msg_id": "693c3e0d",
+    "request_id": "3c930c07",
+    "action": {
+      "action": "delete_user",
+      "user": "admin",
+      "location": "unknown",
+      "time_of_day": 3,
+      "device_id": "unknown"
+    },
+    "ts": 1791013270.7169287,
+    "status": "pending",
+    "channel": "log"
   }
 }

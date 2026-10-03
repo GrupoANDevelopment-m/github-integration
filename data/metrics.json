@@ -1,0 +1,105 @@
+{
+  "code_files": 97,
+  "code_lines": 12656,
+  "test_files": 6,
+  "test_lines": 2535,
+  "datasets": {
+    "nsl_kdd": {
+      "size_mb": 21.51,
+      "records": 148555
+    },
+    "unsw_nb15": {
+      "size_mb": 45.27,
+      "records": 256563
+    }
+  },
+  "models": {
+    "anomaly_classifier.joblib": {
+      "size_mb": 0.54
+    },
+    "anomaly_detector.joblib": {
+      "size_mb": 0.57
+    },
+    "anomaly_detector_nsl_kdd.joblib": {
+      "size_mb": 0.9
+    },
+    "anomaly_detector_unsw_nb15.joblib": {
+      "size_mb": 0.86
+    },
+    "encoder_flag.joblib": {
+      "size_mb": 0.0
+    },
+    "encoder_protocol_type.joblib": {
+      "size_mb": 0.0
+    },
+    "encoder_service.joblib": {
+      "size_mb": 0.0
+    },
+    "encoder_unsw_proto.joblib": {
+      "size_mb": 0.0
+    },
+    "encoder_unsw_service.joblib": {
+      "size_mb": 0.0
+    },
+    "encoder_unsw_state.joblib": {
+      "size_mb": 0.0
+    },
+    "scaler_nsl_kdd.joblib": {
+      "size_mb": 0.0
+    },
+    "threat_predictor.joblib": {
+      "size_mb": 0.29
+    },
+    "threat_predictor_nsl_kdd.joblib": {
+      "size_mb": 7.37
+    },
+    "threat_predictor_unsw_nb15.joblib": {
+      "size_mb": 40.39
+    }
+  },
+  "models_metadata": {
+    "NSL-KDD": {
+      "rows_after_cleaning": null,
+      "train_accuracy": 0.9998888650742619,
+      "test_accuracy": 0.776570262597587,
+      "features": 41,
+      "source": "https://github.com/Jehuty4949/NSL_KDD"
+    },
+    "UNSW-NB15": {
+      "rows_after_cleaning": 175341,
+      "train_accuracy": 0.9880803011292346,
+      "test_accuracy": 0.9600216715617782,
+      "features": 45,
+      "source": "https://github.com/notsodubeyous/IoT-Network-Intrusion-Detection-System-UNSW-NB15"
+    }
+  },
+  "liboqs_version": "0.16.0",
+  "pqc_algorithms": [
+    "Kyber512 / ML-KEM-512 (KEM)",
+    "ML-DSA-44 (signature)"
+  ],
+  "pqc_compiled": true,
+  "pqc_source": "https://github.com/open-quantum-safe/liboqs",
+  "db_events": 27842,
+  "db_quarantined": 29,
+  "db_tables": 12,
+  "cve_count": 0,
+  "ioc_count": 0,
+  "api_endpoints_total": 45,
+  "frontend_html": 2,
+  "frontend_js_files": 8,
+  "frontend_css_files": 2,
+  "frontend_js_lines": 2433,
+  "frontend_css_lines": 775,
+  "snapshots": 25,
+  "total_size_mb": 203.66,
+  "tests_breakdown": {
+    "test_e2e": 11,
+    "test_real_integrations": 11,
+    "test_full_200": 241,
+    "test_llm_brain": 34,
+    "test_load": 6
+  },
+  "total_tests": 303,
+  "tests_pass_rate": 1.0
+}

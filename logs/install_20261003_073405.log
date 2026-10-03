@@ -1,0 +1,6 @@
+[2026-10-03 07:34:05] [STEP] ==== PRE-FLIGHT CHECKS ====
+[2026-10-03 07:34:05] [OK] OS: Debian GNU/Linux 12 (bookworm)
+[2026-10-03 07:34:05] [OK] Python 3.11 (>= 3.10 required)
+[2026-10-03 07:34:05] [OK] Disk space: 1046629563MB available (>= 2048MB required)
+[2026-10-03 07:34:05] [WARN] RAM 3072MB < 4096MB recommended — may impact performance
+[2026-10-03 07:34:05] [STEP] ==== STEP 1/8 — System dependencies (apt) ====
