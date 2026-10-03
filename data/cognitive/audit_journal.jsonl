@@ -1,0 +1,2 @@
+{"ts": 1791019275.7610478, "event_type": "gap_detected", "actor": "audit", "action": "test", "target": "x", "result": "ok", "details": {}}
+{"ts": 1791019475.8239138, "event_type": "gap_detected", "actor": "audit-script", "action": "test", "target": "/test", "result": "ok", "details": {}}

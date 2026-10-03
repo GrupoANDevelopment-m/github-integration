@@ -1,0 +1,2 @@
+{"id": "lesson_1791019275757", "ts": 1791019275.7571247, "lesson_type": "test", "trigger": "x", "resolution": "y", "confidence": 0.5, "tags": [], "applied_count": 0, "success_count": 0}
+{"id": "lesson_1791019475821", "ts": 1791019475.8210297, "lesson_type": "detection_pattern", "trigger": "EICAR test string", "resolution": "use ClamAV with daily.cvd signatures", "confidence": 0.5, "tags": [], "applied_count": 0, "success_count": 0}

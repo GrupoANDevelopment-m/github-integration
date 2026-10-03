@@ -43,7 +43,7 @@ Ver `PRODUCTION_READINESS.md` para o checklist completo com evidências.
 - Seção 5 (Deploy): 5/5 ✅
 - Seção 6 (Comunicação): 2/2 ✅
 
-## Componentes Verificados (19/19 REAL + 5 NOVOS)
+## Componentes Verificados (24/24 REAL)
 
 **Pré-existentes (19)**:
 1. ✅ PQC liboqs 0.16.0

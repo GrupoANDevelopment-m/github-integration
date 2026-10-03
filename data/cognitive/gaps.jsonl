@@ -1,0 +1,2 @@
+{"ts": 1791019275.7521496, "event_type": "test", "target": "x", "reason": "audit", "attempted_actions": [], "context": {}, "status": "open"}
+{"ts": 1791019475.8178413, "event_type": "test", "target": "/test", "reason": "missing capability: eicar-fake-detector", "attempted_actions": [], "context": {}, "status": "open"}
