@@ -35,10 +35,11 @@ run_suite() {
 run_suite "test_e2e" "test_e2e" PASS_E2E
 run_suite "test_real_integrations" "test_real_integrations" PASS_REAL
 run_suite "test_full_200" "test_full_200" PASS_FULL
+run_suite "test_security" "test_security" PASS_SEC
 run_suite "test_llm_brain" "test_llm_brain" PASS_LLM
 run_suite "test_load (chaos + property-based)" "test_load" PASS_LOAD
 
-PASS_TOTAL=$((PASS_E2E + PASS_REAL + PASS_FULL + PASS_LLM + PASS_LOAD))
+PASS_TOTAL=$((PASS_E2E + PASS_REAL + PASS_FULL + PASS_SEC + PASS_LLM + PASS_LOAD))
 
 echo
 echo "============================================================"
@@ -47,6 +48,7 @@ echo "  Breakdown:"
 echo "    e2e:               $PASS_E2E"
 echo "    real_integrations: $PASS_REAL"
 echo "    full_200:          $PASS_FULL"
+echo "    security:          $PASS_SEC"
 echo "    llm_brain:         $PASS_LLM"
 echo "    load (chaos):      $PASS_LOAD"
 echo "============================================================"
@@ -61,6 +63,7 @@ cat > "$ROOT/data/test_results.json" <<EOJSON
     "e2e": $PASS_E2E,
     "real_integrations": $PASS_REAL,
     "full_200": $PASS_FULL,
+    "security": $PASS_SEC,
     "llm_brain": $PASS_LLM,
     "load": $PASS_LOAD
   }

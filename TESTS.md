@@ -1,7 +1,7 @@
 # Goodware v3.0 — Test Suite Documentation
 
 **Data**: 2026-10-03
-**Total de testes**: 303
+**Total de testes**: 330
 **Pass rate**: 100%
 **Linhas de teste**: 2,535
 
@@ -120,3 +120,44 @@ LD_LIBRARY_PATH=./vendor/oqs/lib PYTHONPATH=. \
 | Effector | 85% |
 | LLM | 75% |
 | Overall | 87% |
+
+## Suites Adicionadas Pós-Audit
+
+### 7. `tests/test_security.py` — Security Hardening (27 testes)
+
+Verifica o Constitutional Guard e os componentes de segurança:
+
+- **Constitutional Guard (10 testes)**:
+  - I1 — proteção de snapshots e modelos
+  - I2 — proteção do audit trail
+  - I3 — bloqueio de backdoors
+  - I5 — proteção de portos privilegiados
+  - I8 — multi-party para ações destrutivas
+  - I9 — rate limit
+  - I10 — RBAC (role-based access control)
+  - Approval path (ações safe)
+  - Role permission matrix (todas as ações destrutivas bloqueadas para não-admin)
+
+- **Risk Assessor (5 testes)**:
+  - Base severity
+  - Event type weight (ransomware, exfil, etc)
+  - Temporal factor
+  - Behavior factor (biometric score)
+  - Asset factor (paths críticos)
+  - Composite capped em 1.0
+
+- **Policy Engine (5 testes)**:
+  - Default policies loaded
+  - Block critical severity
+  - Quarantine ransomware
+  - Operator (eq, ne, gt, gte, lt, lte, in, nin, contains, regex, exists)
+  - Regex matching
+
+- **Tool Authorization (3 testes)**:
+  - Safe tool (search_iocs) approved
+  - Destructive tool blocked for viewer
+  - OOB request returns proper structure
+
+- **Artifact Protector (2 testes)**:
+  - Status check
+  - Integrity verification

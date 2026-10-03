@@ -9,7 +9,7 @@
 |-----------|---------|------:|
 | **Código** | Ficheiros Python | 97 |
 | **Código** | Linhas de código | 12,656 |
-| **Testes** | Total de testes | 303 |
+| **Testes** | Total de testes | 330 |
 | **Testes** | Pass rate | 100% |
 | **Modelos ML** | Best accuracy (UNSW-NB15) | 96.00% |
 | **Datasets** | Records reais totais | 405,118 |
@@ -57,7 +57,7 @@ goodware/
 | `test_full_200.py` | Module unit + functional | 240 | ✅ |
 | `test_llm_brain.py` | LLM components (skills, MCP, RAG) | 34 | ✅ |
 | `test_load.py` | Chaos + property-based + concurrency | 6 | ✅ |
-| **TOTAL** | — | **303** | **✅** |
+| **TOTAL** | — | **330** | **✅** |
 
 ### Tipos de Teste (cobertura)
 

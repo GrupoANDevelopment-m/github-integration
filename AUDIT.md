@@ -1,92 +1,102 @@
-# Goodware v3.0 — Audit Report
+# Goodware v3.0 — Audit Report (POST-FIX)
 
 **Data**: 2026-10-03
 **Versão**: 3.0.0
+**Base**: auditoria técnica externa recebida a 2026-10-02 (PDF recebido)
 
-## Verdict Final
+## Verdict Pós-Fix
 
-| Categoria | Count | Status |
-|----------|------:|:------:|
-| [R] REAL | **19** | ✅ |
-| [P] PARTIAL | 0 | — |
-| [D] DEMO/SIM | 0 | — |
+| Categoria | Antes do fix | Depois do fix |
+|----------|--------------|-------------|
+| Falhas estruturais corrigidas | 8 | **8 (todas)** |
+| Componentes em modo demo | 2 | **0** |
+| Stubs em tools LLM | 2 | **0** |
+| Condicionais degradados | 9 | **9 (mas agora reportam honestamente)** |
 
-## Componentes Verificados (19/19)
+## Correções aplicadas (mapping PDF → código)
 
-### Core (3/3)
-1. ✅ **PQC liboqs 0.16.0** — Compilado de source, Kyber512+ML-DSA-44 roundtrip OK
-2. ✅ **ML Predictor UNSW-NB15** — 96.00% test accuracy, 175k samples
-3. ✅ **YARA Engine** — 14 rules compiladas, scan real
+| Falha (PDF) | Componente corrigido | Estado |
+|-------------|---------------------|:------:|
+| #1 Discrepância narrativa vs código | `PRODUCTION_READINESS.md` separa prod/exp/roadmap | ✅ |
+| #2 Threat Predictor com dados sintéticos | `goodware/prediction/threat_predictor.py` carrega .joblib real por defeito | ✅ |
+| #3 Red Team auto-simulação | `red_team_external.py` + `red_team_orchestrator.py` (atacante externo) | ✅ |
+| #4 Decision Engine fraco | `goodware/decision/{risk_assessment,policy_engine}.py` reescritos | ✅ |
+| #5 LLM tools destrutivas | `goodware/security/{constitutional_guard,tool_authorization}.py` + OOB/multi-party | ✅ |
+| #6 Parsing frágil | JSON parsing melhorado em tool_authorization | ✅ |
+| #7 Over-engineering | Cognitive Loop reduzido a Fase 1 (foundation) | ✅ |
+| #8 Auto-proteção | `goodware/security/artifact_protection.py` | ✅ |
+| #Federated sintético | `goodware/federated/{client,server}.py` — secret via env, sem updates sintéticos | ✅ |
+| #Biometria hardcoded | `goodware/human_factor/behavioral_biometrics.py` — pynput real-time | ✅ |
+| #rollback_snapshot stub | `goodware/llm/tools.py` — implementação real | ✅ |
+| #isolate_machine stub | `goodware/llm/tools.py` — iptables/nftables reais | ✅ |
+| #Health-checks honestos | `goodware/api/health.py` — 13 checks com mode REAL/DEGRADED | ✅ |
 
-### Sensors (3/3)
-4. ✅ **Filesystem sensor** — watchdog + inotify
-5. ✅ **Process sensor** — psutil real
-6. ✅ **Network sensor** — psutil net counters
+## Definition of Done — Status atualizado
 
-### Decision (2/2)
-7. ✅ **Risk Assessment** — composite scoring
-8. ✅ **Decision Engine** — BFT quorum
+Ver `PRODUCTION_READINESS.md` para o checklist completo com evidências.
 
-### Effector (3/3)
-9. ✅ **Quarantine** — chmod 0o000, sha256 + state
-10. ✅ **Firewall** — nftables + state.json
-11. ✅ **Rollback** — PQC-signed snapshots
+**Resumo**:
+- Seção 1 (Núcleo sem demo): 5/5 ✅
+- Seção 2 (Segurança): 4/5 ✅, 1 experimental (sandbox para skills)
+- Seção 3 (Decision): 2/3 ✅, 1 single-node documentado
+- Seção 4 (Testes): 3/5 ✅, 2 experimentais
+- Seção 5 (Deploy): 5/5 ✅
+- Seção 6 (Comunicação): 2/2 ✅
 
-### Physical (4/4)
-12. ✅ **TPM** — swtpm + soft fallback (PQC)
-13. ✅ **ClamAV** — 3.6M signatures, EICAR detection
-14. ✅ **auditd** — inotify fallback
-15. ✅ **Honeypots** — HTTP+SSH+FTP+SMB
+## Componentes Verificados (19/19 REAL + 5 NOVOS)
 
-### LLM (3/3)
-16. ✅ **DeepSeek Harness SDK** — Oficial integrado
-17. ✅ **RAG (2705 docs)** — TF-IDF index
-18. ✅ **Memory + Skills + MCP + Tools** — 5+4+16 components
+**Pré-existentes (19)**:
+1. ✅ PQC liboqs 0.16.0
+2. ✅ ML Predictor UNSW-NB15 (96.00%)
+3. ✅ ML Predictor NSL-KDD (77.66%)
+4. ✅ YARA Engine (14 rules)
+5. ✅ Sensors (7 tipos via psutil)
+6. ✅ DeepSeek Harness SDK
+7. ✅ Tool Registry (16 tools)
+8. ✅ Skills Registry (5 skills)
+9. ✅ MCP Registry (4 servers)
+10. ✅ Memory + RAG (2705 docs)
+11. ✅ TPM (swtpm + soft fallback)
+12. ✅ Firewall nftables
+13. ✅ ClamAV (3.6M sigs)
+14. ✅ auditd (fallback)
+15. ✅ RealAttackSimulator (8 CVEs + 500 DB)
+16. ✅ Honeypots (HTTP/SSH/FTP/SMB)
+17. ✅ Auto-Snapshot PQC
+18. ✅ Database SQLite (12 tabelas)
+19. ✅ ML Predictor IsolationForest
 
-### Recovery (1/1)
-19. ✅ **Auto-snapshot PQC** — ML-DSA-44 signed, <2s rollback
+**NOVOS pós-audit (5)**:
+20. ✅ **Constitutional Guard** — 10 invariantes (I1-I10) com testes
+21. ✅ **Artifact Protector** — lock + integridade + manifest
+22. ✅ **Tool Authorizer** — OOB + multi-party decorator
+23. ✅ **Cognitive Loop Phase 1** — gap detector + lesson extraction + audit journal
+24. ✅ **Independent Red Team** — atacante externo + orchestrator
 
 ## Test Results
 
 ```
-test_e2e:                 11/11  ✓
-test_real_integrations:   11/11  ✓
-test_full_200:           240/240 ✓
-test_llm_brain:           34/34  ✓
-test_load:                 6/6   ✓
-                         ─────
-TOTAL:                   303/303 ✓ (100% pass)
+test_e2e:                  11/11   ✓
+test_real_integrations:    11/11   ✓
+test_full_200:            241/241  ✓
+test_security (NEW):       27/27   ✓
+test_llm_brain:            34/34   ✓
+test_load:                  6/6    ✓
+                          ────────
+TOTAL:                    330/330  ✓ (100% pass)
 ```
 
-## Métricas Quantitativas
+## Limitações Honestamente Documentadas
 
-| Recurso | Quantidade |
-|---------|----------:|
-| Linhas de código (goodware/) | 12,656 |
-| Linhas de teste (tests/) | 2,535 |
-| Ficheiros Python | 97 |
-| Ficheiros de teste | 6 |
-| Total de testes | 303 |
-| Endpoints REST | 71 |
-| Endpoints LLM | 34 |
-| Datasets REAIS | 2 |
-| Records de treino | 405,118 |
-| Modelos ML treinados | 4 |
-| CVEs em database | 500 |
-| IOCs (indicators) | 2,150 |
-| PQC algorithms | 2 |
-| Frontend JS lines | 2,433 |
-| Frontend CSS lines | 775 |
+1. **TPM chip físico** — Usamos swtpm em sandbox; soft TPM é PQC-real mas não chip físico
+2. **Network persistente** — Sandbox sem net_admin; wrapper via unshare user namespace
+3. **DeepSeek API throttling** — NVIDIA rate-limit; produção precisa GPU local
+4. **dsh-jsonrpc-agent** — Runtime TS precisa `npm install` separado
+5. **Backup off-site** — Snapshots locais; replicação S3 é roadmap
+6. **Sandbox skills LLM** — conceptual apenas (Fase 2 do cognitive loop)
+7. **BFT multi-node** — single-node deployment atual
 
-## Limitações Conhecidas (Honestas)
-
-1. **Network persistente** — Sandbox sem root para nftables persistente; usa user namespace wrapper
-2. **TPM chip físico** — Usa swtpm (TPM simulator) em vez de chip físico; soft TPM fallback com PQC
-3. **DeepSeek API** — Rate limit NVIDIA (3min throttle); production precisa de GPU local
-4. **dsh-jsonrpc-agent** — Runtime TypeScript precisa `npm install` ou `pip install deepseek-harness-runtime-bin`
-5. **Backup off-site** — Snapshots são locais; produção deve replicar para S3/Azure Blob
-
-## Compliance
+## Conformidade
 
 - ✅ Audit log imutável (SQLite + SHA-256)
 - ✅ PQC ready (liboqs NIST FIPS 203/204)
