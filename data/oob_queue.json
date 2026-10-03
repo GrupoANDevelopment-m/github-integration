@@ -544,5 +544,33 @@
     "ts": 1791016559.0076041,
     "status": "pending",
     "channel": "log"
+  },
+  "7c177179": {
+    "msg_id": "7c177179",
+    "request_id": "ccb70b00",
+    "action": {
+      "action": "delete_user",
+      "user": "admin",
+      "location": "unknown",
+      "time_of_day": 3,
+      "device_id": "unknown"
+    },
+    "ts": 1791020470.766709,
+    "status": "pending",
+    "channel": "log"
+  },
+  "b98cd6ac": {
+    "msg_id": "b98cd6ac",
+    "request_id": "bd97dfbc",
+    "action": {
+      "action": "delete_user",
+      "user": "admin",
+      "location": "unknown",
+      "time_of_day": 3,
+      "device_id": "unknown"
+    },
+    "ts": 1791020584.591093,
+    "status": "pending",
+    "channel": "log"
   }
 }

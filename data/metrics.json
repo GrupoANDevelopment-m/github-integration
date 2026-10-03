@@ -99,9 +99,10 @@
     "full_200": 241,
     "security": 27,
     "llm_brain": 34,
+    "llm_fallback": 12,
     "load": 6
   },
-  "total_tests": 330,
+  "total_tests": 342,
   "tests_pass_rate": 1.0,
   "production_readiness": {
     "critical_failures_fixed": 8,
@@ -109,5 +110,27 @@
     "stubs_implemented": 2,
     "security_hardened": true,
     "cognitive_loop_phase1": true
+  },
+  "llm_auto_fallback": {
+    "providers": [
+      "cloud_api",
+      "ollama",
+      "vllm",
+      "llamacpp",
+      "ask_user"
+    ],
+    "auto_detection": true,
+    "rate_limit_backoff": [
+      60,
+      300,
+      900,
+      3600
+    ]
+  },
+  "real_biometrics": {
+    "source": "njanakiev/keystroke-biometrics (38 stars, 51 subjects)",
+    "models_bundled": 36,
+    "training_samples": 20400,
+    "classes": 51
   }
 }

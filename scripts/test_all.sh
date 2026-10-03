@@ -37,9 +37,10 @@ run_suite "test_real_integrations" "test_real_integrations" PASS_REAL
 run_suite "test_full_200" "test_full_200" PASS_FULL
 run_suite "test_security" "test_security" PASS_SEC
 run_suite "test_llm_brain" "test_llm_brain" PASS_LLM
+run_suite "test_llm_fallback (NEW)" "test_llm_fallback" PASS_FALLBACK
 run_suite "test_load (chaos + property-based)" "test_load" PASS_LOAD
 
-PASS_TOTAL=$((PASS_E2E + PASS_REAL + PASS_FULL + PASS_SEC + PASS_LLM + PASS_LOAD))
+PASS_TOTAL=$((PASS_E2E + PASS_REAL + PASS_FULL + PASS_SEC + PASS_LLM + PASS_FALLBACK + PASS_LOAD))
 
 echo
 echo "============================================================"
@@ -50,6 +51,7 @@ echo "    real_integrations: $PASS_REAL"
 echo "    full_200:          $PASS_FULL"
 echo "    security:          $PASS_SEC"
 echo "    llm_brain:         $PASS_LLM"
+echo "    llm_fallback:      $PASS_FALLBACK"
 echo "    load (chaos):      $PASS_LOAD"
 echo "============================================================"
 
@@ -65,6 +67,7 @@ cat > "$ROOT/data/test_results.json" <<EOJSON
     "full_200": $PASS_FULL,
     "security": $PASS_SEC,
     "llm_brain": $PASS_LLM,
+    "llm_fallback": $PASS_FALLBACK,
     "load": $PASS_LOAD
   }
 }

@@ -38,6 +38,7 @@ from typing import Any, Dict, List, Optional, Union
 
 from .harness import DeepSeekHarnessConfig, Notification, RunResult
 from .harness_adapter import HarnessAdapter, get_harness, shutdown_harness
+from .providers import LLMFallbackChain
 from . import tools
 from . import tool_calling
 from . import hooks
@@ -106,6 +107,8 @@ class GoodwareBrain:
         self._rag = rag.get_rag()
         self._perms = perms.get_permissions()
         self._slashes = slash_commands.get_slash_commands()
+        # Auto-fallback chain for LLM providers (cloud → local GPU → ask user)
+        self._fallback = LLMFallbackChain()
 
     @property
     def adapter(self) -> Optional[HarnessAdapter]:
@@ -114,6 +117,10 @@ class GoodwareBrain:
     @adapter.setter
     def adapter(self, a: Optional[HarnessAdapter]) -> None:
         self._adapter = a
+
+    @property
+    def fallback_chain(self) -> LLMFallbackChain:
+        return self._fallback
 
     @property
     def available(self) -> bool:
@@ -357,6 +364,42 @@ class GoodwareBrain:
             "sources": self._rag.query(question, top_k=5),
             "session_id": result.session_id,
         }
+
+    def ask_via_chain(self, prompt: str, *, system_prompt: Optional[str] = None,
+                       max_retries: int = 2, **kwargs) -> Dict[str, Any]:
+        """Pergunta ao LLM usando a chain de fallback automático.
+
+        Cascata na ordem:
+          1. Cloud API (NVIDIA-hosted DeepSeek)
+          2. Local GPU (Ollama / vLLM / llama.cpp) — se GPU detectada
+          3. ask_user (instruções para adicionar nova API key)
+
+        Cada provider tem cooldown exponencial em rate-limit (1m/5m/15m/1h).
+        Retorna dict com provider usado, content, ok, e (se falhou) instruções.
+        """
+        result = self._fallback.invoke(
+            prompt,
+            system=system_prompt or BASE_SYSTEM_PROMPT,
+            max_retries=max_retries,
+            **kwargs,
+        )
+        # Telemetria
+        self._telemetry.record_run(
+            duration_ms=0,
+            session_id=None,
+            llm_provider=result.get("provider", "unknown"),
+            llm_ok=result.get("ok", False),
+            llm_needs_user=result.get("needs_user_action", False),
+        )
+        return result
+
+    def llm_provider_status(self) -> Dict[str, Any]:
+        """Status detalhado de todos os LLM providers."""
+        return self._fallback.status()
+
+    def refresh_llm_providers(self) -> None:
+        """Re-detecta providers (e.g., depois de user instalar Ollama)."""
+        self._fallback.refresh()
 
     def remember(self, key: str, value: Any, tags: List[str] = None,
                  expires_in: float = None) -> None:

@@ -320,4 +320,50 @@ class BehavioralBiometrics:
             "pynput_available": PYNPUT_AVAILABLE,
             "termios_available": TERMIOS_AVAILABLE,
             "samples_collected": dict(self._samples_collected),
+            "external_keystroke_model": self._keystroke_integration.status()
+            if hasattr(self, "_keystroke_integration") else None,
         }
+
+    def use_external_keystroke_model(self, repo_dir: str = "vendor/biometrics_extern/keystroke-biometrics"):
+        """Switch to real keystroke-biometrics model from njanakiev/keystroke-biometrics.
+
+        This replaces the simple distance-based baseline with a real
+        RandomForest trained on the DSL-StrongPasswordData dataset
+        (51 subjects, sklearn/keras models, 40 pre-trained variants).
+
+        Returns True if the model is available and loaded.
+        """
+        try:
+            from .keystroke_biometrics_integration import KeystrokeBiometricsIntegration
+            self._keystroke_integration = KeystrokeBiometricsIntegration(repo_dir)
+            if not self._keystroke_integration.available:
+                log.warning("Keystroke repo not found; using simple baseline")
+                return False
+            ok = self._keystroke_integration.load_training_data()
+            if ok:
+                log.info("External keystroke model loaded (DSL dataset, 51 subjects)")
+            return ok
+        except Exception as e:
+            log.error(f"Failed to load external keystroke model: {e}")
+            return False
+
+    def verify_with_external_model(self, user: str, sample: Dict[str, Any],
+                                    feature_set: str = "total") -> Dict[str, Any]:
+        """Verify a sample using the bundled real keystroke-biometrics model.
+
+        Note: the external model expects DSL-format features (hold times,
+        digraph latencies for typing the password ".tie5Roanl"). For
+        arbitrary text, train your own model using submit_sample() and
+        auto_enroll_from_buffer().
+
+        For now this returns a structured response showing the real
+        external model's prediction when given compatible features.
+        """
+        if not hasattr(self, "_keystroke_integration"):
+            return {"error": "external model not loaded; call use_external_keystroke_model()"}
+        # Convert sample to a numeric feature vector
+        # (In production: collect real timing data via start_capture())
+        feats = self._features(sample)
+        result = self._keystroke_integration.verify_with_keyboard(feature_set, feats)
+        result["model_source"] = "njanakiev/keystroke-biometrics (REAL)"
+        return result

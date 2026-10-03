@@ -355,6 +355,50 @@ def create_app(engine, config) -> Flask:
         def llm_status_unavailable():
             return jsonify({"available": False, "error": str(_e)}), 503
 
+    # LLM Provider chain (auto-fallback cloud → local GPU → ask user)
+    @app.get("/api/llm/providers")
+    def llm_providers():
+        """Status detalhado de todos os LLM providers na chain."""
+        try:
+            from goodware.llm.providers import LLMFallbackChain
+            chain = LLMFallbackChain()
+            return jsonify(chain.status())
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
+
+    @app.post("/api/llm/refresh")
+    def llm_refresh():
+        """Re-detecta providers (e.g., depois de user instalar Ollama)."""
+        try:
+            from goodware.llm.providers import LLMFallbackChain
+            chain = LLMFallbackChain()
+            chain.refresh()
+            return jsonify(chain.status())
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
+
+    @app.post("/api/llm/ask")
+    def llm_ask():
+        """Pergunta ao LLM via chain de fallback automático."""
+        data = request.get_json(force=True) or {}
+        prompt = data.get("prompt", "")
+        if not prompt:
+            return jsonify({"error": "prompt required"}), 400
+        try:
+            from goodware.llm.providers import LLMFallbackChain
+            chain = LLMFallbackChain()
+            result = chain.invoke(
+                prompt,
+                system=data.get("system"),
+                max_tokens=data.get("max_tokens", 2048),
+                temperature=data.get("temperature", 0.3),
+            )
+            if result.get("needs_user_action"):
+                return jsonify(result), 503
+            return jsonify(result)
+        except Exception as e:
+            return jsonify({"error": str(e), "needs_user_action": True}), 500
+
     @app.post("/api/crypto/seal")
     def crypto_seal():
         try:
