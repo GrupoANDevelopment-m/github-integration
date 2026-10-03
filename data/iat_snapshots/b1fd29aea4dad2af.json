@@ -1,0 +1,309 @@
+{
+  "binary": "/bin/bash",
+  "binary_sha256": "55b89ab22bee4792a210f493a53fb066accd5d30b69837c28d98be5ff863efcf",
+  "captured_at": 1791022203.5033357,
+  "imports": [
+    {
+      "name": "",
+      "address": 0,
+      "size": 0,
+      "info": "STT_NOTYPE"
+    },
+    {
+      "name": "endgrent",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "__ctype_toupper_loc",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "iswlower",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "sigprocmask",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "__snprintf_chk",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "dlerror",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "free",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "getservent",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "wcscmp",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "putchar",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "tputs",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "strcasecmp",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "localtime",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "mblen",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "__vfprintf_chk",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "__libc_start_main",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "abort",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "__errno_location",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "strncpy",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "strncmp",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "_ITM_deregisterTMCloneTable",
+      "address": 0,
+      "size": 0,
+      "info": "STT_NOTYPE"
+    },
+    {
+      "name": "wcscoll",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "strcpy",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "getgrent",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "iconv",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "puts",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "ferror",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "qsort",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "isatty",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "sigaction",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "__mbrlen",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "strtod",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "strchrnul",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "wcswidth",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "imaxdiv",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "localeconv",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "faccessat",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "mbstowcs",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "readlink",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "fcntl",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "write",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "__fpurge",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "getpid",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "textdomain",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "setresuid",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "pathconf",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "getpeername",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "iswctype",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    },
+    {
+      "name": "wcsrtombs",
+      "address": 0,
+      "size": 0,
+      "info": "STT_FUNC"
+    }
+  ],
+  "imports_total": 229,
+  "exports_total": 1670
+}
