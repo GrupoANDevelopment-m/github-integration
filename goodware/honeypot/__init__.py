@@ -6,7 +6,18 @@ Real honeypot integrations:
 
 All production deployments should use Cowrie.
 """
-from .legacy import HttpHoneypot, SshHoneypot
+from .legacy import (
+    HoneypotLog,
+    HttpHoneypot,
+    SshHoneypot,
+    HoneypotManager,
+)
 from .cowrie_integration import CowrieIntegration
 
-__all__ = ["HttpHoneypot", "SshHoneypot", "CowrieIntegration"]
+__all__ = [
+    "HoneypotLog",
+    "HttpHoneypot",
+    "SshHoneypot",
+    "HoneypotManager",
+    "CowrieIntegration",
+]

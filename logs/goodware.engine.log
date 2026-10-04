@@ -16059,3 +16059,1017 @@
 2026-10-04T00:58:23 | INFO    | goodware.engine |   organization: None
 2026-10-04T00:58:23 | INFO    | goodware.engine | ============================================================
 2026-10-04T00:58:23 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:26:45 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:26:45 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:26:45 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:26:45 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:26:45 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:26:45 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:26:45 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:26:45 | INFO    | goodware.engine |   watching 4 paths: ['/etc', '/usr/local/bin', '/usr/bin', '/tmp']
+2026-10-04T01:26:46 | INFO    | goodware.engine | Crypto: REAL PQC via liboqs (ML-KEM-512)
+2026-10-04T01:26:48 | INFO    | goodware.engine | component registered: threat
+2026-10-04T01:26:48 | INFO    | goodware.engine | component registered: anomaly
+2026-10-04T01:26:48 | INFO    | goodware.engine | component registered: simulator
+2026-10-04T01:26:50 | INFO    | goodware.engine | component registered: federated-server
+2026-10-04T01:26:50 | INFO    | goodware.engine | component registered: federated-client
+2026-10-04T01:26:51 | INFO    | goodware.engine | component registered: decision-engine
+2026-10-04T01:26:51 | INFO    | goodware.engine | component registered: adaptive
+2026-10-04T01:26:51 | INFO    | goodware.engine | component registered: mutation
+2026-10-04T01:26:51 | INFO    | goodware.engine | component registered: zero_day
+2026-10-04T01:27:30 | INFO    | goodware.engine | component registered: decision-engine
+2026-10-04T01:27:30 | INFO    | goodware.engine | component registered: adaptive
+2026-10-04T01:27:30 | INFO    | goodware.engine | component registered: mutation
+2026-10-04T01:27:30 | INFO    | goodware.engine | component registered: zero_day
+2026-10-04T01:27:30 | INFO    | goodware.engine | Crypto: REAL PQC via liboqs (ML-KEM-512)
+2026-10-04T01:27:30 | INFO    | goodware.engine | component registered: crypto
+2026-10-04T01:27:30 | INFO    | goodware.engine | component registered: human-factor
+2026-10-04T01:27:30 | INFO    | goodware.engine | component registered: decision
+2026-10-04T01:27:30 | INFO    | goodware.engine | component registered: effector
+2026-10-04T01:27:30 | INFO    | goodware.engine | component registered: chainsaw
+2026-10-04T01:27:33 | INFO    | goodware.engine | component registered: immune
+2026-10-04T01:27:33 | INFO    | goodware.engine | component registered: physical
+2026-10-04T01:27:33 | INFO    | goodware.engine | component registered: supply-chain
+2026-10-04T01:27:52 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:27:52 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:27:52 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:27:52 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:27:52 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:27:52 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:27:53 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:27:53 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:27:53 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:27:53 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:27:53 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:27:53 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:27:53 | INFO    | goodware.engine | hunter2
+2026-10-04T01:27:54 | INFO    | goodware.engine | component registered: dummy
+2026-10-04T01:27:54 | INFO    | goodware.engine | test
+2026-10-04T01:27:54 | WARNING | goodware.engine | warn
+2026-10-04T01:27:54 | ERROR   | goodware.engine | err
+2026-10-04T01:27:54 | INFO    | goodware.engine | component registered: with_attach
+2026-10-04T01:27:55 | INFO    | goodware.engine | component registered: dummy
+2026-10-04T01:27:55 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:27:55 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:27:55 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:27:55 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:27:55 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:27:55 | INFO    | goodware.engine |   ✓ dummy running
+2026-10-04T01:27:55 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: threat
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: anomaly
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: simulator
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:27:57 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:27:58 | INFO    | goodware.engine |   watching 2 paths: ['/etc', '/tmp']
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:27:58 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:27:59 | INFO    | goodware.engine |   watching 2 paths: ['/etc', '/tmp']
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:27:59 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:27:59 | INFO    | goodware.engine |   watching 2 paths: ['/etc', '/tmp']
+2026-10-04T01:28:00 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:00 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:28:00 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:28:00 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:28:00 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:00 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:28:00 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:00 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:28:00 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:28:00 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:28:00 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:00 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:28:00 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:00 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:28:00 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:28:00 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:28:00 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:01 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:28:01 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:01 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:28:01 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:28:01 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:28:01 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:01 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:28:01 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:01 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:28:01 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:28:02 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:28:02 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:02 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:28:02 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:02 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:28:02 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:28:02 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:28:02 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:02 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:28:02 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:02 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:28:02 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:28:02 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:28:02 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:03 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:28:03 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:03 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:28:03 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:28:03 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:28:03 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:03 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:28:03 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:03 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:28:03 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:28:03 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:28:03 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:03 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:28:03 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:03 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:28:03 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:28:03 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:28:03 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:03 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:28:03 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:03 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:28:03 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:28:03 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:28:03 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:03 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:28:03 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:03 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:28:03 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:28:03 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:28:03 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:03 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:28:03 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:03 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:28:03 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:28:03 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:28:03 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:03 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:28:03 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:03 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:28:03 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:28:03 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:28:03 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:03 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:28:03 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:03 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:28:03 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:28:03 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:28:03 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:04 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:28:04 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:04 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:28:04 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:28:04 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:28:04 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:04 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:28:04 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:04 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:28:04 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:28:04 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:28:04 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:04 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:28:04 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:04 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:28:04 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:28:04 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:28:04 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:04 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:28:04 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:04 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:28:04 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:28:04 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:28:04 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:04 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:28:04 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:04 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:28:04 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:28:04 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:28:04 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:04 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:28:05 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:05 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:28:05 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:28:05 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:28:05 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:05 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:28:05 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:05 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:28:05 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:28:05 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:28:05 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:28:05 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:28:55 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:28:55 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:28:55 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:28:55 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:28:55 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:28:55 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:28:55 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:28:55 | INFO    | goodware.engine |   watching 4 paths: ['/etc', '/usr/local/bin', '/usr/bin', '/tmp']
+2026-10-04T01:28:56 | INFO    | goodware.engine | Crypto: REAL PQC via liboqs (ML-KEM-512)
+2026-10-04T01:28:58 | INFO    | goodware.engine | component registered: threat
+2026-10-04T01:28:58 | INFO    | goodware.engine | component registered: anomaly
+2026-10-04T01:28:58 | INFO    | goodware.engine | component registered: simulator
+2026-10-04T01:29:00 | INFO    | goodware.engine | component registered: federated-server
+2026-10-04T01:29:00 | INFO    | goodware.engine | component registered: federated-client
+2026-10-04T01:29:01 | INFO    | goodware.engine | component registered: decision-engine
+2026-10-04T01:29:01 | INFO    | goodware.engine | component registered: adaptive
+2026-10-04T01:29:01 | INFO    | goodware.engine | component registered: mutation
+2026-10-04T01:29:01 | INFO    | goodware.engine | component registered: zero_day
+2026-10-04T01:29:42 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:29:42 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:29:42 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:29:42 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:29:42 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:29:42 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:29:42 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:29:42 | INFO    | goodware.engine |   watching 4 paths: ['/etc', '/usr/local/bin', '/usr/bin', '/tmp']
+2026-10-04T01:29:43 | INFO    | goodware.engine | Crypto: REAL PQC via liboqs (ML-KEM-512)
+2026-10-04T01:29:45 | INFO    | goodware.engine | component registered: threat
+2026-10-04T01:29:45 | INFO    | goodware.engine | component registered: anomaly
+2026-10-04T01:29:45 | INFO    | goodware.engine | component registered: simulator
+2026-10-04T01:29:47 | INFO    | goodware.engine | component registered: federated-server
+2026-10-04T01:29:47 | INFO    | goodware.engine | component registered: federated-client
+2026-10-04T01:29:48 | INFO    | goodware.engine | component registered: decision-engine
+2026-10-04T01:29:48 | INFO    | goodware.engine | component registered: adaptive
+2026-10-04T01:29:48 | INFO    | goodware.engine | component registered: mutation
+2026-10-04T01:29:48 | INFO    | goodware.engine | component registered: zero_day
+2026-10-04T01:30:54 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:30:54 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:30:54 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:30:54 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:30:54 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:30:54 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:30:54 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:30:54 | INFO    | goodware.engine |   watching 4 paths: ['/etc', '/usr/local/bin', '/usr/bin', '/tmp']
+2026-10-04T01:30:55 | INFO    | goodware.engine | Crypto: REAL PQC via liboqs (ML-KEM-512)
+2026-10-04T01:30:57 | INFO    | goodware.engine | component registered: threat
+2026-10-04T01:30:57 | INFO    | goodware.engine | component registered: anomaly
+2026-10-04T01:30:57 | INFO    | goodware.engine | component registered: simulator
+2026-10-04T01:30:58 | INFO    | goodware.engine | component registered: federated-server
+2026-10-04T01:30:58 | INFO    | goodware.engine | component registered: federated-client
+2026-10-04T01:31:00 | INFO    | goodware.engine | component registered: decision-engine
+2026-10-04T01:31:00 | INFO    | goodware.engine | component registered: adaptive
+2026-10-04T01:31:00 | INFO    | goodware.engine | component registered: mutation
+2026-10-04T01:31:00 | INFO    | goodware.engine | component registered: zero_day
+2026-10-04T01:31:33 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:31:33 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:31:33 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:31:33 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:31:33 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:31:33 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:31:33 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:31:33 | INFO    | goodware.engine |   watching 4 paths: ['/etc', '/usr/local/bin', '/usr/bin', '/tmp']
+2026-10-04T01:31:34 | INFO    | goodware.engine | Crypto: REAL PQC via liboqs (ML-KEM-512)
+2026-10-04T01:31:36 | INFO    | goodware.engine | component registered: threat
+2026-10-04T01:31:36 | INFO    | goodware.engine | component registered: anomaly
+2026-10-04T01:31:36 | INFO    | goodware.engine | component registered: simulator
+2026-10-04T01:31:38 | INFO    | goodware.engine | component registered: federated-server
+2026-10-04T01:31:38 | INFO    | goodware.engine | component registered: federated-client
+2026-10-04T01:31:39 | INFO    | goodware.engine | component registered: decision-engine
+2026-10-04T01:31:39 | INFO    | goodware.engine | component registered: adaptive
+2026-10-04T01:31:39 | INFO    | goodware.engine | component registered: mutation
+2026-10-04T01:31:39 | INFO    | goodware.engine | component registered: zero_day
+2026-10-04T01:32:12 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:32:12 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:32:12 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:32:12 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:32:12 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:32:12 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:32:12 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:32:12 | INFO    | goodware.engine |   watching 4 paths: ['/etc', '/usr/local/bin', '/usr/bin', '/tmp']
+2026-10-04T01:32:13 | INFO    | goodware.engine | Crypto: REAL PQC via liboqs (ML-KEM-512)
+2026-10-04T01:32:15 | INFO    | goodware.engine | component registered: threat
+2026-10-04T01:32:15 | INFO    | goodware.engine | component registered: anomaly
+2026-10-04T01:32:15 | INFO    | goodware.engine | component registered: simulator
+2026-10-04T01:32:16 | INFO    | goodware.engine | component registered: federated-server
+2026-10-04T01:32:16 | INFO    | goodware.engine | component registered: federated-client
+2026-10-04T01:32:17 | INFO    | goodware.engine | component registered: decision-engine
+2026-10-04T01:32:17 | INFO    | goodware.engine | component registered: adaptive
+2026-10-04T01:32:17 | INFO    | goodware.engine | component registered: mutation
+2026-10-04T01:32:17 | INFO    | goodware.engine | component registered: zero_day
+2026-10-04T01:32:56 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:32:56 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:32:56 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:32:56 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:32:56 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:32:56 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:32:56 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:32:56 | INFO    | goodware.engine |   watching 4 paths: ['/etc', '/usr/local/bin', '/usr/bin', '/tmp']
+2026-10-04T01:32:57 | INFO    | goodware.engine | Crypto: REAL PQC via liboqs (ML-KEM-512)
+2026-10-04T01:32:59 | INFO    | goodware.engine | component registered: threat
+2026-10-04T01:32:59 | INFO    | goodware.engine | component registered: anomaly
+2026-10-04T01:32:59 | INFO    | goodware.engine | component registered: simulator
+2026-10-04T01:33:01 | INFO    | goodware.engine | component registered: federated-server
+2026-10-04T01:33:01 | INFO    | goodware.engine | component registered: federated-client
+2026-10-04T01:33:02 | INFO    | goodware.engine | component registered: decision-engine
+2026-10-04T01:33:02 | INFO    | goodware.engine | component registered: adaptive
+2026-10-04T01:33:02 | INFO    | goodware.engine | component registered: mutation
+2026-10-04T01:33:02 | INFO    | goodware.engine | component registered: zero_day
+2026-10-04T01:33:39 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:33:39 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:33:39 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:33:39 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:33:39 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:33:39 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:33:39 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:33:39 | INFO    | goodware.engine |   watching 4 paths: ['/etc', '/usr/local/bin', '/usr/bin', '/tmp']
+2026-10-04T01:33:40 | INFO    | goodware.engine | Crypto: REAL PQC via liboqs (ML-KEM-512)
+2026-10-04T01:33:42 | INFO    | goodware.engine | component registered: threat
+2026-10-04T01:33:42 | INFO    | goodware.engine | component registered: anomaly
+2026-10-04T01:33:42 | INFO    | goodware.engine | component registered: simulator
+2026-10-04T01:33:44 | INFO    | goodware.engine | component registered: federated-server
+2026-10-04T01:33:44 | INFO    | goodware.engine | component registered: federated-client
+2026-10-04T01:33:45 | INFO    | goodware.engine | component registered: decision-engine
+2026-10-04T01:33:45 | INFO    | goodware.engine | component registered: adaptive
+2026-10-04T01:33:45 | INFO    | goodware.engine | component registered: mutation
+2026-10-04T01:33:45 | INFO    | goodware.engine | component registered: zero_day
+2026-10-04T01:34:13 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:34:13 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:34:13 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:34:13 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:34:13 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:34:13 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:34:13 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:34:13 | INFO    | goodware.engine |   watching 4 paths: ['/etc', '/usr/local/bin', '/usr/bin', '/tmp']
+2026-10-04T01:34:14 | INFO    | goodware.engine | Crypto: REAL PQC via liboqs (ML-KEM-512)
+2026-10-04T01:34:16 | INFO    | goodware.engine | component registered: threat
+2026-10-04T01:34:16 | INFO    | goodware.engine | component registered: anomaly
+2026-10-04T01:34:16 | INFO    | goodware.engine | component registered: simulator
+2026-10-04T01:34:18 | INFO    | goodware.engine | component registered: federated-server
+2026-10-04T01:34:18 | INFO    | goodware.engine | component registered: federated-client
+2026-10-04T01:34:19 | INFO    | goodware.engine | component registered: decision-engine
+2026-10-04T01:34:19 | INFO    | goodware.engine | component registered: adaptive
+2026-10-04T01:34:19 | INFO    | goodware.engine | component registered: mutation
+2026-10-04T01:34:19 | INFO    | goodware.engine | component registered: zero_day
+2026-10-04T01:34:53 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:34:53 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:34:53 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:34:53 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:34:53 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:34:53 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:34:53 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:34:53 | INFO    | goodware.engine |   watching 4 paths: ['/etc', '/usr/local/bin', '/usr/bin', '/tmp']
+2026-10-04T01:34:54 | INFO    | goodware.engine | Crypto: REAL PQC via liboqs (ML-KEM-512)
+2026-10-04T01:34:56 | INFO    | goodware.engine | component registered: threat
+2026-10-04T01:34:56 | INFO    | goodware.engine | component registered: anomaly
+2026-10-04T01:34:56 | INFO    | goodware.engine | component registered: simulator
+2026-10-04T01:34:58 | INFO    | goodware.engine | component registered: federated-server
+2026-10-04T01:34:58 | INFO    | goodware.engine | component registered: federated-client
+2026-10-04T01:34:59 | INFO    | goodware.engine | component registered: decision-engine
+2026-10-04T01:34:59 | INFO    | goodware.engine | component registered: adaptive
+2026-10-04T01:34:59 | INFO    | goodware.engine | component registered: mutation
+2026-10-04T01:34:59 | INFO    | goodware.engine | component registered: zero_day
+2026-10-04T01:35:23 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:35:23 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:35:23 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:35:23 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:35:23 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:35:23 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:35:23 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:35:23 | INFO    | goodware.engine |   watching 4 paths: ['/etc', '/usr/local/bin', '/usr/bin', '/tmp']
+2026-10-04T01:35:24 | INFO    | goodware.engine | Crypto: REAL PQC via liboqs (ML-KEM-512)
+2026-10-04T01:35:26 | INFO    | goodware.engine | component registered: threat
+2026-10-04T01:35:26 | INFO    | goodware.engine | component registered: anomaly
+2026-10-04T01:35:26 | INFO    | goodware.engine | component registered: simulator
+2026-10-04T01:35:28 | INFO    | goodware.engine | component registered: federated-server
+2026-10-04T01:35:28 | INFO    | goodware.engine | component registered: federated-client
+2026-10-04T01:35:29 | INFO    | goodware.engine | component registered: decision-engine
+2026-10-04T01:35:29 | INFO    | goodware.engine | component registered: adaptive
+2026-10-04T01:35:29 | INFO    | goodware.engine | component registered: mutation
+2026-10-04T01:35:29 | INFO    | goodware.engine | component registered: zero_day
+2026-10-04T01:37:17 | INFO    | goodware.engine | component registered: decision-engine
+2026-10-04T01:37:17 | INFO    | goodware.engine | component registered: adaptive
+2026-10-04T01:37:17 | INFO    | goodware.engine | component registered: mutation
+2026-10-04T01:37:17 | INFO    | goodware.engine | component registered: zero_day
+2026-10-04T01:37:17 | INFO    | goodware.engine | Crypto: REAL PQC via liboqs (ML-KEM-512)
+2026-10-04T01:37:17 | INFO    | goodware.engine | component registered: crypto
+2026-10-04T01:37:17 | INFO    | goodware.engine | component registered: human-factor
+2026-10-04T01:37:17 | INFO    | goodware.engine | component registered: decision
+2026-10-04T01:37:17 | INFO    | goodware.engine | component registered: effector
+2026-10-04T01:37:17 | INFO    | goodware.engine | component registered: chainsaw
+2026-10-04T01:37:20 | INFO    | goodware.engine | component registered: immune
+2026-10-04T01:37:20 | INFO    | goodware.engine | component registered: physical
+2026-10-04T01:37:20 | INFO    | goodware.engine | component registered: supply-chain
+2026-10-04T01:37:39 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:39 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:37:39 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:37:39 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:37:39 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:39 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:37:39 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:39 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:37:39 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:37:39 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:37:39 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:39 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:37:39 | INFO    | goodware.engine | hunter2
+2026-10-04T01:37:40 | INFO    | goodware.engine | component registered: dummy
+2026-10-04T01:37:40 | INFO    | goodware.engine | test
+2026-10-04T01:37:40 | WARNING | goodware.engine | warn
+2026-10-04T01:37:40 | ERROR   | goodware.engine | err
+2026-10-04T01:37:41 | INFO    | goodware.engine | component registered: with_attach
+2026-10-04T01:37:41 | INFO    | goodware.engine | component registered: dummy
+2026-10-04T01:37:41 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:41 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:37:41 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:37:41 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:37:41 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:41 | INFO    | goodware.engine |   ✓ dummy running
+2026-10-04T01:37:41 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:37:43 | INFO    | goodware.engine | component registered: threat
+2026-10-04T01:37:43 | INFO    | goodware.engine | component registered: anomaly
+2026-10-04T01:37:43 | INFO    | goodware.engine | component registered: simulator
+2026-10-04T01:37:43 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:37:43 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:37:43 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:37:43 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:37:43 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:37:43 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:37:43 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:37:43 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:37:43 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:37:43 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:37:43 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:37:43 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:37:43 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:37:43 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:37:43 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:37:43 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:37:43 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:37:43 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:37:43 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:37:43 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:37:43 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:37:44 | INFO    | goodware.engine |   watching 2 paths: ['/etc', '/tmp']
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:37:44 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:37:45 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:37:45 | INFO    | goodware.engine |   watching 2 paths: ['/etc', '/tmp']
+2026-10-04T01:37:46 | INFO    | goodware.engine | component registered: filesystem
+2026-10-04T01:37:46 | INFO    | goodware.engine | component registered: process
+2026-10-04T01:37:46 | INFO    | goodware.engine | component registered: network
+2026-10-04T01:37:46 | INFO    | goodware.engine | component registered: memory
+2026-10-04T01:37:46 | INFO    | goodware.engine | component registered: config
+2026-10-04T01:37:46 | INFO    | goodware.engine | component registered: behavior
+2026-10-04T01:37:46 | INFO    | goodware.engine | component registered: quantum
+2026-10-04T01:37:46 | INFO    | goodware.engine |   watching 2 paths: ['/etc', '/tmp']
+2026-10-04T01:37:46 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:46 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:37:46 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:37:46 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:37:46 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:46 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:37:46 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:46 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:37:46 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:37:46 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:37:46 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:47 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:37:47 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:47 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:37:47 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:37:47 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:37:47 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:47 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:37:47 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:47 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:37:47 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:37:47 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:37:47 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:48 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:37:48 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:48 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:37:48 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:37:48 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:37:48 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:48 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:37:48 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:48 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:37:48 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:37:48 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:37:48 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:48 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:37:48 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:48 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:37:48 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:37:48 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:37:48 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:49 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:37:49 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:49 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:37:49 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:37:49 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:37:49 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:49 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:37:49 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:49 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:37:49 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:37:49 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:37:49 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:49 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:37:49 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:49 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:37:49 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:37:49 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:37:49 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:49 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:37:49 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:49 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:37:49 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:37:49 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:37:49 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:49 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:37:49 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:49 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:37:49 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:37:49 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:37:49 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:49 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:37:49 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:49 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:37:49 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:37:49 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:37:49 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:50 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:37:50 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:50 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:37:50 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:37:50 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:37:50 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:50 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:37:50 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:50 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:37:50 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:37:50 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:37:50 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:50 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:37:50 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:50 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:37:50 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:37:50 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:37:50 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:50 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:37:50 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:50 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:37:50 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:37:50 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:37:50 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:50 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:37:50 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:50 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:37:50 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:37:50 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:37:50 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:50 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:37:50 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:50 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:37:50 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:37:50 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:37:50 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:50 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:37:50 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:50 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:37:50 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:37:50 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:37:50 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:50 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:37:51 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:51 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:37:51 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:37:51 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:37:51 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:51 | INFO    | goodware.engine | Goodware stopped.
+2026-10-04T01:37:51 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:51 | INFO    | goodware.engine | Goodware v3.0 starting...
+2026-10-04T01:37:51 | INFO    | goodware.engine |   node_id: None
+2026-10-04T01:37:51 | INFO    | goodware.engine |   organization: None
+2026-10-04T01:37:51 | INFO    | goodware.engine | ============================================================
+2026-10-04T01:37:52 | INFO    | goodware.engine | Goodware stopped.

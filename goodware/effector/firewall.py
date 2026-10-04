@@ -27,19 +27,24 @@ class Firewall:
     def __init__(self, data_dir: str = "data"):
         self.path = os.path.join(data_dir, "firewall_state.json")
         os.makedirs(data_dir, exist_ok=True)
-        self.state = self._load()
+        self.state = self._load(); self.state.setdefault("blocked_ports", [])
         self.backend = self._detect_backend()
         self.chain = "GOODWARE"
         self.table = "filter"
 
     def _load(self) -> dict:
+        default = {"blocked_ips": [], "blocked_ports": [], "backend": None, "rules_applied": []}
         if os.path.exists(self.path):
             try:
                 with open(self.path) as f:
-                    return json.load(f)
+                    data = json.load(f)
+                # Ensure all expected keys exist (forward-compat)
+                for k, v in default.items():
+                    data.setdefault(k, v)
+                return data
             except Exception:
                 pass
-        return {"blocked_ips": [], "blocked_ports": [], "backend": None, "rules_applied": []}
+        return default
 
     def _save(self) -> None:
         try:

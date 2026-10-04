@@ -29,6 +29,24 @@
       ],
       "created_at": 1790723442.8538096,
       "expires_at": null
+    },
+    {
+      "key": "test_audit_key",
+      "value": {
+        "value": 42
+      },
+      "tags": [],
+      "created_at": 1791076349.509212,
+      "expires_at": null
+    },
+    {
+      "key": "audit_test",
+      "value": {
+        "v": 99
+      },
+      "tags": [],
+      "created_at": 1791077129.5293803,
+      "expires_at": null
     }
   ]
 }

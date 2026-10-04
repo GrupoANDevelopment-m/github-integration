@@ -84,11 +84,18 @@ class CryptoAgility:
 
         # 1. Generate new keypair with target algorithm
         try:
-            if hasattr(self.pqc, "real_pqc") and self.pqc.real_pqc.is_real():
-                pk, sk, alg = self.pqc.real_pqc.kem_keypair(to_alg)
+            if hasattr(self.pqc, "is_real") and self.pqc.is_real():
+                pk, sk, alg = self.pqc.kem_keypair(to_alg)
+            elif hasattr(self.pqc, "kem_keypair"):
+                # Already a real_pqc
+                pk, sk, alg = self.pqc.kem_keypair(to_alg)
+            elif hasattr(self.pqc, "kem"):
+                # Wrapper
+                pk, sk = self.pqc.kem.generate_keypair()
+                alg = to_alg
             else:
-                # Fallback to demo
-                pk, sk, alg = self.pqc.kem.generate_keypair()
+                # No way to generate
+                raise RuntimeError("PQC backend has no key generation capability")
 
             # Save new key
             key_dir = self.engine.config.get("crypto.key_dir", "keys")
@@ -187,3 +194,15 @@ class CryptoAgility:
             except Exception:
                 continue
         return keys
+
+    def list_algorithms(self) -> List[str]:
+        """List supported PQC algorithms (KEM + signature)."""
+        if hasattr(self.pqc, "available_kems"):
+            return self.pqc.available_kems + self.pqc.available_sigs
+        elif hasattr(self.pqc, "kem_keypair"):
+            # RealPQC - has available_kems and available_sigs
+            return getattr(self.pqc, "available_kems", []) + getattr(self.pqc, "available_sigs", [])
+        elif hasattr(self.pqc, "kem"):
+            return ["kyber512"]  # Demo lattice
+        else:
+            return ["unknown"]

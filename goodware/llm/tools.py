@@ -236,6 +236,11 @@ def execute_tool(name: str, params: Dict[str, Any]) -> Dict[str, Any]:
     }
     if name not in handlers:
         return {"error": f"Unknown tool: {name}"}
+    # Aliases for tool kwargs (LLMs often use different names)
+    if name == "search_iocs" and "indicator" in params and "value" not in params:
+        params = {**params, "value": params["indicator"]}
+    if name == "block_ip" and "target" in params and "ip" not in params:
+        params = {**params, "ip": params["target"]}
     try:
         return handlers[name](**params)
     except Exception as e:

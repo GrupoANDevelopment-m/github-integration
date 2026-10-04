@@ -63,6 +63,10 @@ class QuantumVault:
         nonce, ct = blob[:12], blob[12:]
         return aes.decrypt(nonce, ct, None)
 
+    def list_keys(self) -> list:
+        """Alias for list_entries (for backwards compat)."""
+        return self.list_entries()
+
     def list_entries(self) -> list:
         if not os.path.isdir(self.vault_dir):
             return []

@@ -75,7 +75,7 @@ class EffectorManager:
         if t == "hot_patch":
             return self.hotpatch.apply(action.get("id", "manual"), target, action)
         if t == "snapshot":
-            return self.rollback.snapshot(reason, action.get("paths", []))
+            return self.rollback.snapshot_files(action.get("paths", []), reason, "test-snapshot")
         if t == "noop":
             return {"ok": True, "noop": True}
         return {"ok": True, "noop": True, "action": action}

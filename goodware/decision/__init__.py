@@ -29,7 +29,12 @@ class DecisionManager:
             pass
 
     def decide(self, event):
-        risk = self.risk.assess(event)
+        risk_result = self.risk.assess(event)
+        # Support both dict (new) and float (legacy) return types
+        if isinstance(risk_result, dict):
+            risk = risk_result.get("risk", 0.0)
+        else:
+            risk = float(risk_result)
         action = "allow"
         requires_human = risk > self.config.get("decision.human_in_loop_above", 0.85)
         requires_multiparty = risk > 0.95
