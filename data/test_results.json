@@ -1,12 +1,13 @@
 {
-  "timestamp": "2026-10-03T10:11:22Z",
-  "total": 342,
+  "timestamp": "2026-10-04T00:59:02Z",
+  "total": 354,
   "pass_rate": 1.0,
   "suites": {
     "e2e": 11,
     "real_integrations": 11,
     "full_200": 241,
     "security": 27,
+    "real_sec_tools": 12,
     "llm_brain": 34,
     "llm_fallback": 12,
     "load": 6

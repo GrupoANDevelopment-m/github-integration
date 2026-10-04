@@ -1,0 +1,1 @@
+../lynis/HAPPY_USERS.md

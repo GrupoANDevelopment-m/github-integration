@@ -600,5 +600,33 @@
     "ts": 1791022213.8233805,
     "status": "pending",
     "channel": "log"
+  },
+  "90f52f5c": {
+    "msg_id": "90f52f5c",
+    "request_id": "4be4b9eb",
+    "action": {
+      "action": "delete_user",
+      "user": "admin",
+      "location": "unknown",
+      "time_of_day": 3,
+      "device_id": "unknown"
+    },
+    "ts": 1791075376.7552078,
+    "status": "pending",
+    "channel": "log"
+  },
+  "2e54273c": {
+    "msg_id": "2e54273c",
+    "request_id": "5c6c7bf3",
+    "action": {
+      "action": "delete_user",
+      "user": "admin",
+      "location": "unknown",
+      "time_of_day": 3,
+      "device_id": "unknown"
+    },
+    "ts": 1791075476.3830163,
+    "status": "pending",
+    "channel": "log"
   }
 }

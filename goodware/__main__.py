@@ -2,33 +2,54 @@
 Goodware v3.0 - Entry point CLI.
 
 Uso:
-  python3 -m goodware                     # arranca todos os módulos
-  python3 -m goodware --demo              # corre cenário de demonstração
-  python3 -m goodware --with-honeypot     # arranca também honeypots reais
+  python3 -m goodware                        # arranca todos os módulos
+  python3 -m goodware --scan-lynis            # corre Lynis CIS audit
+  python3 -m goodware --scan-loki PATH        # corre Loki scan num path
+  python3 -m goodware --scan-linuxcheck       # corre LinuxCheck IR
+  python3 -m goodware --with-honeypot         # arranca honeypots reais
 """
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import sys
 import time
 
 
 def main():
-    parser = argparse.ArgumentParser(prog="goodware", description="Goodware v3.0 - Sistema Imunitário Digital Autónomo")
+    parser = argparse.ArgumentParser(
+        prog="goodware",
+        description="Goodware v3.0 - Sistema Imunitário Digital Autónomo"
+    )
     parser.add_argument("--config", default="config/goodware.yaml")
     parser.add_argument("--api-port", type=int, default=8444)
     parser.add_argument("--api-host", default="127.0.0.1")
     parser.add_argument("--no-api", action="store_true")
     parser.add_argument("--no-federated", action="store_true")
-    parser.add_argument("--with-honeypot", action="store_true", help="arranca honeypot real (requer root)")
-    parser.add_argument("--demo", action="store_true")
+    parser.add_argument("--with-honeypot", action="store_true")
     parser.add_argument("--status-only", action="store_true")
+    # Real integration flags (replace --demo)
+    parser.add_argument("--scan-lynis", action="store_true",
+                        help="Run Lynis CIS benchmark audit")
+    parser.add_argument("--scan-loki", metavar="PATH",
+                        help="Run Loki scanner on PATH")
+    parser.add_argument("--scan-linuxcheck", action="store_true",
+                        help="Run LinuxCheck incident response")
+    parser.add_argument("--scan-all", action="store_true",
+                        help="Run all real scanners (lynis + loki + linuxcheck)")
     args = parser.parse_args()
 
     here = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     if here not in sys.path:
         sys.path.insert(0, here)
+
+    # === Real scanner mode (no engine needed) ===
+    if args.scan_lynis or args.scan_loki or args.scan_linuxcheck or args.scan_all:
+        from goodware.core.logger import get_logger
+        logger = get_logger("goodware.scanner", log_dir="logs")
+        run_real_scanners(args, logger)
+        return
 
     from goodware.core.engine import Engine
     from goodware.core.config import GoodwareConfig
@@ -41,7 +62,7 @@ def main():
     engine = Engine(config)
     logger.info("=" * 70)
     logger.info("  Goodware v3.0 — Sistema Imunitário Digital Autónomo")
-    logger.info("  (integrações reais: iptables, YARA, ClamAV, auditd, tpm2-tools)")
+    logger.info("  Integrações REAIS: Lynis, Loki, LinuxCheck, Cowrie, ClamAV, nftables, TPM")
     logger.info("=" * 70)
 
     from goodware.sensors import SensorManager
@@ -70,7 +91,6 @@ def main():
         from goodware.federated import FederatedManager
         fm = FederatedManager(engine, config)
 
-    # Honeypot real (opcional)
     honeypot = None
     if args.with_honeypot:
         try:
@@ -93,25 +113,8 @@ def main():
         from goodware.api import start_api
         start_api(engine, config, host=args.api_host, port=args.api_port)
         logger.info(f"  ✓ API REST em http://{args.api_host}:{args.api_port}/api/healthz")
-        logger.info(f"  ✓ Dashboard: serve a pasta dashboard/ via HTTP static server")
-
-    if args.demo and not args.status_only:
-        time.sleep(2)
-        logger.info("[DEMO] simulação...")
-        sim = pm.simulator
-        sim.simulate(2)
-        time.sleep(2)
-        logger.info(f"[DEMO] cobertura: {sim.evaluate_defense()}")
-        result = hf.evaluate({"action": "delete_user", "user": "admin", "location": "unknown", "time_of_day": 3, "device_id": "unknown"})
-        logger.info(f"[DEMO] human factor: {result}")
-        dec = dm.decide({"severity": "high", "type": "sensor.process_anomaly", "payload": {}})
-        logger.info(f"[DEMO] decision: {dec}")
-        logger.info(f"[DEMO] firewall (real iptables se root): {em.firewall.block_port(445, 'tcp', 'ransomware_precursor')}")
-        logger.info(f"[DEMO] chainsaw rootkit scan: {chainsaw.scan_rootkit()}")
-        logger.info(f"[DEMO] CIS benchmark: {chainsaw.run_cis()['score']}% pass")
 
     if args.status_only:
-        import json
         print(json.dumps(engine.status(), indent=2, default=str))
         return
 
@@ -130,6 +133,61 @@ def main():
         dm.stop()
         em.stop()
         logger.info("Goodware parado.")
+
+
+def run_real_scanners(args, logger):
+    """Run REAL scanners (Lynis, Loki, LinuxCheck) — replaces --demo flag."""
+    import json
+
+    if args.scan_lynis or args.scan_all:
+        logger.info("=" * 70)
+        logger.info("  Running Lynis CIS Benchmark Audit (REAL)")
+        logger.info("  Source: https://github.com/CISOfy/lynis")
+        logger.info("=" * 70)
+        try:
+            from goodware.chainsaw.lynis_integration import LynisIntegration
+            l = LynisIntegration()
+            if not l.available:
+                logger.error("Lynis not available")
+            else:
+                logger.info(f"Lynis version: {l.version}")
+                result = l.run_audit(quick=True, timeout=180, skip_tests=["malware", "docker"])
+                print(json.dumps(result, indent=2, default=str))
+        except Exception as e:
+            logger.error(f"Lynis audit failed: {e}")
+
+    if args.scan_loki or args.scan_all:
+        path = args.scan_loki if args.scan_loki else "/tmp"
+        logger.info("=" * 70)
+        logger.info(f"  Running Loki Scanner on {path} (REAL)")
+        logger.info("  Source: https://github.com/Neo23x0/Loki")
+        logger.info("=" * 70)
+        try:
+            from goodware.chainsaw.loki_integration import LokiIntegration
+            lo = LokiIntegration()
+            if not lo.available:
+                logger.error("Loki not available")
+            else:
+                result = lo.scan(path=path, timeout=120)
+                print(json.dumps(result, indent=2, default=str))
+        except Exception as e:
+            logger.error(f"Loki scan failed: {e}")
+
+    if args.scan_linuxcheck or args.scan_all:
+        logger.info("=" * 70)
+        logger.info("  Running LinuxCheck Incident Response (REAL)")
+        logger.info("  Source: https://github.com/al0ne/LinuxCheck")
+        logger.info("=" * 70)
+        try:
+            from goodware.chainsaw.linuxcheck_integration import LinuxCheckIntegration
+            lc = LinuxCheckIntegration()
+            if not lc.available:
+                logger.error("LinuxCheck not available")
+            else:
+                result = lc.run(timeout=120)
+                print(json.dumps(result, indent=2, default=str))
+        except Exception as e:
+            logger.error(f"LinuxCheck failed: {e}")
 
 
 if __name__ == "__main__":

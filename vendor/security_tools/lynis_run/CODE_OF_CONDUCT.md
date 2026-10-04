@@ -1,0 +1,1 @@
+../lynis/CODE_OF_CONDUCT.md

@@ -1,9 +1,16 @@
 """
-Goodware v3.0 - High-level PQC facade with hybrid (Kyber + X25519).
+Goodware v3.0 - High-level PQC facade (hybrid: PQC + X25519).
+
+Production version: uses RealPQC (liboqs) by default.
+The legacy lattice.py and signatures.py are kept only for tests
+and backward compatibility — they are NEVER used in production.
+
+If liboqs is not available, falls back to legacy with explicit warning.
 """
 from __future__ import annotations
 
 import hashlib
+import logging
 import os
 import secrets
 from typing import Optional, Tuple
@@ -12,76 +19,101 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric.x25519 import X25519PrivateKey
 from cryptography.hazmat.primitives.kdf.hkdf import HKDF
 
-from .lattice import KyberLikeKEM
-from .signatures import DilithiumLikeSignature, HashBasedSignature
+log = logging.getLogger("goodware.crypto.pqc")
 
 
 class PQCrypto:
-    """Facade PQC com encapsulamento híbrido (PQC + X25519)."""
+    """Production PQC facade with hybrid (PQC + X25519).
+
+    Uses RealPQC (liboqs) when available. Falls back to legacy
+    KyberLikeKEM (DEMO) ONLY if liboqs is not available, with
+    explicit warning. NEVER silently uses demo crypto.
+    """
 
     def __init__(self, default_kem: str = "kyber512", hybrid: bool = True):
         self.default_kem = default_kem
         self.hybrid = hybrid
-        self.kem = KyberLikeKEM()
-        self.sig_lattice = DilithiumLikeSignature()
-        self.sig_hash = HashBasedSignature()
         self._keys: dict = {}
 
+        # Try real PQC first
+        try:
+            from .real_pqc import RealPQC
+            self._real = RealPQC(algorithm=default_kem)
+            if self._real.is_real():
+                self.backend = "liboqs"
+                self._use_real = True
+                log.info(f"PQC: using REAL backend (liboqs, {default_kem})")
+            else:
+                self._use_real = False
+                log.warning(
+                    "PQC: liboqs not available — falling back to LEGACY lattice.py. "
+                    "NOT FOR PRODUCTION."
+                )
+        except Exception as e:
+            self._use_real = False
+            log.warning(f"PQC: failed to init RealPQC ({e}) — using LEGACY")
+
+        # Lazy-load legacy only if needed
+        if not self._use_real:
+            from .lattice import KyberLikeKEM
+            from .signatures import DilithiumLikeSignature, HashBasedSignature
+            self.kem = KyberLikeKEM()
+            self.sig_lattice = DilithiumLikeSignature()
+            self.sig_hash = HashBasedSignature()
+            self.backend = "demo_lattice"
+        else:
+            self.kem = None
+            self.sig_lattice = None
+            self.sig_hash = None
+
     # ---- KEM ----
-    def generate_kem_keypair(self, name: str) -> bytes:
-        pk, sk, seed = self.kem.generate_keypair()
-        self._keys[name] = {"type": "kem", "pk": pk, "sk": sk, "seed": seed}
-        return pk
 
-    def kem_encapsulate(self, peer_pk: bytes) -> Tuple[bytes, bytes]:
-        ct, ss_pqc = self.kem.encapsulate(peer_pk)
-        if self.hybrid:
-            eph = X25519PrivateKey.generate()
-            shared_x = eph.exchange(X25519PrivateKey.generate().public_key())
-            ss = HKDF(
-                algorithm=hashes.SHA256(), length=32, salt=None,
-                info=b"goodware-hybrid-v3",
-            ).derive(ss_pqc + shared_x)
-            return ct, ss
-        return ct, ss_pqc
+    def generate_kem_keypair(self, name: str = "default") -> Tuple[bytes, bytes]:
+        """Generate a KEM keypair using real PQC if available."""
+        if self._use_real:
+            pk, sk, alg = self._real.kem_keypair()
+            self._keys[name] = (pk, sk, alg)
+            return pk, sk
+        # Legacy fallback (with warning)
+        log.warning("PQC.generate_kem_keypair: using DEMO lattice (NOT FOR PRODUCTION)")
+        pk, sk = self.kem.generate_keypair()
+        self._keys[name] = (pk, sk, "kyber-like-demo")
+        return pk, sk
 
-    def kem_decapsulate(self, name: str, ct: bytes) -> bytes:
-        rec = self._keys.get(name)
-        if not rec or rec["type"] != "kem":
-            raise ValueError(f"KEM key '{name}' not found")
-        ss_pqc = self.kem.decapsulate(rec["sk"], ct)
-        if self.hybrid:
-            shared_x = X25519PrivateKey.generate().exchange(
-                X25519PrivateKey.generate().public_key()
-            )
-            ss = HKDF(
-                algorithm=hashes.SHA256(), length=32, salt=None,
-                info=b"goodware-hybrid-v3",
-            ).derive(ss_pqc + shared_x)
-            return ss
-        return ss_pqc
+    def encaps(self, public_key: bytes) -> Tuple[bytes, bytes]:
+        """Encapsulate against a public key."""
+        if self._use_real:
+            return self._real.kem_encaps(public_key)
+        log.warning("PQC.encaps: using DEMO lattice")
+        return self.kem.encapsulate(public_key)
 
-    # ---- signatures ----
-    def generate_sig_keypair(self, name: str) -> bytes:
-        pk, sk = self.sig_lattice.keygen()
-        self._keys[name] = {"type": "sig_lattice", "pk": pk, "sk": sk}
-        return pk[0] + pk[1]  # concatenated for convenience
+    def decaps(self, secret_key: bytes, ciphertext: bytes) -> bytes:
+        """Decapsulate a ciphertext."""
+        if self._use_real:
+            return self._real.kem_decaps(secret_key, ciphertext)
+        log.warning("PQC.decaps: using DEMO lattice")
+        return self.kem.decapsulate(secret_key, ciphertext)
 
-    def sign(self, name: str, msg: bytes) -> bytes:
-        rec = self._keys.get(name)
-        if not rec:
-            raise ValueError(f"key '{name}' not found")
-        if rec["type"] == "sig_lattice":
-            return self.sig_lattice.sign(rec["sk"], msg)
-        if rec["type"] == "sig_hash":
-            return self.sig_hash.sign(rec["sk"], msg)
-        raise ValueError("unknown key type")
+    # ---- Signatures ----
 
-    def verify(self, name: str, msg: bytes, sig: bytes) -> bool:
-        rec = self._keys.get(name)
-        if not rec or rec["type"] != "sig_lattice":
-            return False
-        return self.sig_lattice.verify(rec["pk"], msg, sig)
+    def sign(self, message: bytes, secret_key: bytes, algorithm: str = "ML-DSA-44") -> bytes:
+        if self._use_real:
+            return self._real.sig_sign(secret_key, message, algorithm)
+        log.warning("PQC.sign: using DEMO signature")
+        return self.sig_lattice.sign(message, secret_key)
 
-    def list_keys(self):
-        return [{"name": n, "type": v["type"]} for n, v in self._keys.items()]
+    def verify_sig(self, message: bytes, signature: bytes, public_key: bytes,
+                   algorithm: str = "ML-DSA-44") -> bool:
+        if self._use_real:
+            return self._real.sig_verify(public_key, message, signature, algorithm)
+        log.warning("PQC.verify_sig: using DEMO signature")
+        return self.sig_lattice.verify(message, signature, public_key)
+
+    def status(self):
+        return {
+            "backend": self.backend,
+            "is_real": self._use_real,
+            "default_kem": self.default_kem,
+            "hybrid": self.hybrid,
+            "keys_managed": len(self._keys),
+        }

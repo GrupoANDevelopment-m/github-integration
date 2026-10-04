@@ -1,0 +1,1 @@
+../lynis/CHANGELOG.md
