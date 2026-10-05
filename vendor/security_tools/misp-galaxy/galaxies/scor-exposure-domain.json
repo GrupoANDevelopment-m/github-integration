@@ -1,0 +1,9 @@
+{
+  "description": "SCOR Exposure Domains. Reference galaxy for the five exposure domains of the METEORSTORM threat model (Quick Guide Table 2.2): Kinetic, Non-kinetic, Electronic Warfare (EW), Cyber Warfare, and Other (environmental). Applied orthogonally to the SCOR layer schema. Reference-galaxy UUIDs are immutable; the five values are intentionally stable.",
+  "icon": "shield-alt",
+  "name": "SCOR Exposure Domain",
+  "namespace": "scor",
+  "type": "scor-exposure-domain",
+  "uuid": "5e3c1d8a-2b4f-4c6e-9a1b-0c2d3e4f5a01",
+  "version": 2
+}

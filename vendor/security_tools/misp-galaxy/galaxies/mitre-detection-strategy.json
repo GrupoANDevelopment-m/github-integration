@@ -1,0 +1,9 @@
+{
+  "description": "Detection strategies from MITRE ATT&CK.",
+  "icon": "shield-alt",
+  "name": "MITRE ATT&CK Detection Strategies",
+  "namespace": "mitre",
+  "type": "x-mitre-detection-strategy",
+  "uuid": "241caf7b-a270-4322-913c-fd0a67f4c3e7",
+  "version": 2
+}

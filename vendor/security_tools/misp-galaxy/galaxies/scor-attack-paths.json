@@ -1,0 +1,9 @@
+{
+  "description": "SCOR Attack Paths. Informative galaxy providing taxonomic illustrations of known attack paths. Each path references TEN UUIDs through TOE relations and may additionally reference Detection Signatures (TDM) and Resilience Measures (TRE).",
+  "icon": "project-diagram",
+  "name": "SCOR Attack Paths",
+  "namespace": "scor",
+  "type": "scor-attack-paths",
+  "uuid": "7e1c4a8b-3d5f-4e2a-9c8b-0d1e2f3a4b01",
+  "version": 2
+}

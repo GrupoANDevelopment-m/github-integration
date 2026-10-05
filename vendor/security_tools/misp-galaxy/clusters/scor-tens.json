@@ -1,0 +1,314 @@
+{
+  "authors": [
+    "H4CK32N4U75®"
+  ],
+  "category": "scor",
+  "description": "Reference nomenclature for the 30 SCOR Taxonomic Elements (TENs) across the five METEORSTORM layers. Vocabulary follows METEORSTORM Quick Guide §8 Tables 8.1,8.5 exactly.",
+  "name": "SCOR Taxonomic Element Nomenclature",
+  "source": "https://misp-galaxy.org/scor-tens/",
+  "type": "scor-tens",
+  "uuid": "7e1c4a8b-3d5f-4e2a-9c8b-0d1e2f3a4b04",
+  "values": [
+    {
+      "description": "Surface-based operational zones on planetary bodies.",
+      "meta": {
+        "label": "Terrestrial",
+        "layer": "PCE",
+        "tag": "TE"
+      },
+      "uuid": "7e1c4a8b-3d5f-4e2a-9c8b-100000000001",
+      "value": "PCE-TE-Terrestrial"
+    },
+    {
+      "description": "Water-based operational zones, including maritime domains.",
+      "meta": {
+        "label": "Aquatic",
+        "layer": "PCE",
+        "tag": "AQ"
+      },
+      "uuid": "7e1c4a8b-3d5f-4e2a-9c8b-100000000002",
+      "value": "PCE-AQ-Aquatic"
+    },
+    {
+      "description": "Atmospheric operational zones spanning low, high, and near-space regions.",
+      "meta": {
+        "label": "Aerial",
+        "layer": "PCE",
+        "tag": "AE"
+      },
+      "uuid": "7e1c4a8b-3d5f-4e2a-9c8b-100000000003",
+      "value": "PCE-AE-Aerial"
+    },
+    {
+      "description": "Operational zones within planetary or satellite orbits.",
+      "meta": {
+        "label": "Orbital",
+        "layer": "PCE",
+        "tag": "OR"
+      },
+      "uuid": "7e1c4a8b-3d5f-4e2a-9c8b-100000000004",
+      "value": "PCE-OR-Orbital"
+    },
+    {
+      "description": "Operational zones beyond planetary orbital regimes.",
+      "meta": {
+        "label": "Deep Space",
+        "layer": "PCE",
+        "tag": "DS"
+      },
+      "uuid": "7e1c4a8b-3d5f-4e2a-9c8b-100000000005",
+      "value": "PCE-DS-Deep Space"
+    },
+    {
+      "description": "Surface-based services and assets for primary launch operations.",
+      "meta": {
+        "label": "Launch",
+        "layer": "SEG",
+        "tag": "LA"
+      },
+      "uuid": "7e1c4a8b-3d5f-4e2a-9c8b-200000000001",
+      "value": "SEG-LA-Launch"
+    },
+    {
+      "description": "Services and assets enabling platform communications across signal paths.",
+      "meta": {
+        "label": "Link",
+        "layer": "SEG",
+        "tag": "LI"
+      },
+      "uuid": "7e1c4a8b-3d5f-4e2a-9c8b-200000000002",
+      "value": "SEG-LI-Link"
+    },
+    {
+      "description": "Surface-based services and assets for primary platform operations; primary locus of control-plane activity.",
+      "meta": {
+        "label": "Ground",
+        "layer": "SEG",
+        "tag": "GR"
+      },
+      "uuid": "7e1c4a8b-3d5f-4e2a-9c8b-200000000003",
+      "value": "SEG-GR-Ground"
+    },
+    {
+      "description": "Services and assets for primary end-user operations.",
+      "meta": {
+        "label": "User",
+        "layer": "SEG",
+        "tag": "US"
+      },
+      "uuid": "7e1c4a8b-3d5f-4e2a-9c8b-200000000004",
+      "value": "SEG-US-User"
+    },
+    {
+      "description": "Water-based services and assets for primary platform operations.",
+      "meta": {
+        "label": "Aquatic",
+        "layer": "SEG",
+        "tag": "AQ"
+      },
+      "uuid": "7e1c4a8b-3d5f-4e2a-9c8b-200000000005",
+      "value": "SEG-AQ-Aquatic"
+    },
+    {
+      "description": "Aerial services and assets in the lower atmosphere.",
+      "meta": {
+        "label": "Low Altitude",
+        "layer": "SEG",
+        "tag": "LO"
+      },
+      "uuid": "7e1c4a8b-3d5f-4e2a-9c8b-200000000006",
+      "value": "SEG-LO-Low Altitude"
+    },
+    {
+      "description": "Aerial services and assets above the lower atmosphere but below near space.",
+      "meta": {
+        "label": "High Altitude",
+        "layer": "SEG",
+        "tag": "HI"
+      },
+      "uuid": "7e1c4a8b-3d5f-4e2a-9c8b-200000000007",
+      "value": "SEG-HI-High Altitude"
+    },
+    {
+      "description": "Aerial services and assets above high altitude and below orbital regions.",
+      "meta": {
+        "label": "Near Space",
+        "layer": "SEG",
+        "tag": "NE"
+      },
+      "uuid": "7e1c4a8b-3d5f-4e2a-9c8b-200000000008",
+      "value": "SEG-NE-Near Space"
+    },
+    {
+      "description": "Services and assets operating in planetary or satellite orbits.",
+      "meta": {
+        "label": "Space",
+        "layer": "SEG",
+        "tag": "SP"
+      },
+      "uuid": "7e1c4a8b-3d5f-4e2a-9c8b-200000000009",
+      "value": "SEG-SP-Space"
+    },
+    {
+      "description": "Services and assets operating beyond planetary orbital regimes.",
+      "meta": {
+        "label": "Deep Space",
+        "layer": "SEG",
+        "tag": "DE"
+      },
+      "uuid": "7e1c4a8b-3d5f-4e2a-9c8b-200000000010",
+      "value": "SEG-DE-Deep Space"
+    },
+    {
+      "description": "Services for managing and orchestrating platform control functions.",
+      "meta": {
+        "label": "Control Plane",
+        "layer": "SVC",
+        "tag": "CP"
+      },
+      "uuid": "7e1c4a8b-3d5f-4e2a-9c8b-300000000001",
+      "value": "SVC-CP-Control Plane"
+    },
+    {
+      "description": "Services for managing and orchestrating mission product functions.",
+      "meta": {
+        "label": "Data Plane",
+        "layer": "SVC",
+        "tag": "DP"
+      },
+      "uuid": "7e1c4a8b-3d5f-4e2a-9c8b-300000000002",
+      "value": "SVC-DP-Data Plane"
+    },
+    {
+      "description": "Services integrating both control and data plane functionalities.",
+      "meta": {
+        "label": "Hybrid",
+        "layer": "SVC",
+        "tag": "HY"
+      },
+      "uuid": "7e1c4a8b-3d5f-4e2a-9c8b-300000000003",
+      "value": "SVC-HY-Hybrid"
+    },
+    {
+      "description": "Physical components supporting platform operations.",
+      "meta": {
+        "label": "Hardware",
+        "layer": "AST",
+        "tag": "HW"
+      },
+      "uuid": "7e1c4a8b-3d5f-4e2a-9c8b-400000000001",
+      "value": "AST-HW-Hardware"
+    },
+    {
+      "description": "Embedded control code governing hardware functions.",
+      "meta": {
+        "label": "Firmware",
+        "layer": "AST",
+        "tag": "FW"
+      },
+      "uuid": "7e1c4a8b-3d5f-4e2a-9c8b-400000000002",
+      "value": "AST-FW-Firmware"
+    },
+    {
+      "description": "Applications and logic executing operational tasks.",
+      "meta": {
+        "label": "Software",
+        "layer": "AST",
+        "tag": "SW"
+      },
+      "uuid": "7e1c4a8b-3d5f-4e2a-9c8b-400000000003",
+      "value": "AST-SW-Software"
+    },
+    {
+      "description": "Information generated, processed, or consumed by the platform.",
+      "meta": {
+        "label": "Data",
+        "layer": "AST",
+        "tag": "DA"
+      },
+      "uuid": "7e1c4a8b-3d5f-4e2a-9c8b-400000000004",
+      "value": "AST-DA-Data"
+    },
+    {
+      "description": "Communication channels and transmission frequencies.",
+      "meta": {
+        "label": "Signal",
+        "layer": "AST",
+        "tag": "SI"
+      },
+      "uuid": "7e1c4a8b-3d5f-4e2a-9c8b-400000000005",
+      "value": "AST-SI-Signal"
+    },
+    {
+      "description": "Composite elements combining multiple asset types.",
+      "meta": {
+        "label": "Hybrid",
+        "layer": "AST",
+        "tag": "HY"
+      },
+      "uuid": "7e1c4a8b-3d5f-4e2a-9c8b-400000000006",
+      "value": "AST-HY-Hybrid"
+    },
+    {
+      "description": "Verifiable indication that the platform has been compromised.",
+      "meta": {
+        "label": "Indicator of Compromise",
+        "layer": "AN",
+        "tag": "IOC"
+      },
+      "uuid": "7e1c4a8b-3d5f-4e2a-9c8b-500000000001",
+      "value": "AN-IOC-Indicator of Compromise"
+    },
+    {
+      "description": "Verifiable indication that the platform has been targeted.",
+      "meta": {
+        "label": "Indicator of Attack",
+        "layer": "AN",
+        "tag": "IOA"
+      },
+      "uuid": "7e1c4a8b-3d5f-4e2a-9c8b-500000000002",
+      "value": "AN-IOA-Indicator of Attack"
+    },
+    {
+      "description": "Known or modeled attack path for a converged space system.",
+      "meta": {
+        "label": "Attack Path",
+        "layer": "AN",
+        "tag": "ATT"
+      },
+      "uuid": "7e1c4a8b-3d5f-4e2a-9c8b-500000000003",
+      "value": "AN-ATT-Attack Path"
+    },
+    {
+      "description": "Known adversarial threat to the platform.",
+      "meta": {
+        "label": "Threat",
+        "layer": "AN",
+        "tag": "THR"
+      },
+      "uuid": "7e1c4a8b-3d5f-4e2a-9c8b-500000000004",
+      "value": "AN-THR-Threat"
+    },
+    {
+      "description": "Pattern, signal, or logic that triggers on contextualized threat behavior.",
+      "meta": {
+        "label": "Detection Signature",
+        "layer": "AN",
+        "tag": "DET"
+      },
+      "uuid": "7e1c4a8b-3d5f-4e2a-9c8b-500000000005",
+      "value": "AN-DET-Detection Signature"
+    },
+    {
+      "description": "Protective capability ensuring resistance or recovery from threats, for either immediate implementation or as feedback for future platform engineering efforts.",
+      "meta": {
+        "label": "Resilience Measure",
+        "layer": "AN",
+        "tag": "RES"
+      },
+      "uuid": "7e1c4a8b-3d5f-4e2a-9c8b-500000000006",
+      "value": "AN-RES-Resilience Measure"
+    }
+  ],
+  "version": 1
+}

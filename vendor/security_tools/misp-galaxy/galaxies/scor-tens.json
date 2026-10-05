@@ -1,0 +1,9 @@
+{
+  "description": "SCOR Taxonomic Element Nomenclature. Reference galaxy for the 30 TEN values defined by the METEORSTORM data model across the five layers: PCE (Primary Capability Environment), SEG (Segment), SVC (Service), AST (Asset), and AN (Analytic).",
+  "icon": "atom",
+  "name": "SCOR Taxonomic Element Nomenclature",
+  "namespace": "scor",
+  "type": "scor-tens",
+  "uuid": "7e1c4a8b-3d5f-4e2a-9c8b-0d1e2f3a4b03",
+  "version": 2
+}

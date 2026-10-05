@@ -1,0 +1,261 @@
+{
+  "description": "Techniques, sub-techniques and tactics from MITRE ATT&CK (Enterprise, Mobile, PRE and ICS).",
+  "icon": "map",
+  "kill_chain_order": {
+    "attack-Containers": [
+      "initial-access",
+      "execution",
+      "persistence",
+      "privilege-escalation",
+      "stealth",
+      "defense-impairment",
+      "credential-access",
+      "discovery",
+      "lateral-movement",
+      "impact"
+    ],
+    "attack-ESXi": [
+      "initial-access",
+      "execution",
+      "persistence",
+      "privilege-escalation",
+      "stealth",
+      "defense-impairment",
+      "credential-access",
+      "discovery",
+      "lateral-movement",
+      "collection",
+      "command-and-control",
+      "exfiltration",
+      "impact"
+    ],
+    "attack-IaaS": [
+      "initial-access",
+      "execution",
+      "persistence",
+      "privilege-escalation",
+      "stealth",
+      "defense-impairment",
+      "credential-access",
+      "discovery",
+      "lateral-movement",
+      "collection",
+      "exfiltration",
+      "impact"
+    ],
+    "attack-Identity-Provider": [
+      "initial-access",
+      "execution",
+      "persistence",
+      "privilege-escalation",
+      "stealth",
+      "defense-impairment",
+      "credential-access",
+      "discovery",
+      "lateral-movement"
+    ],
+    "attack-Linux": [
+      "initial-access",
+      "execution",
+      "persistence",
+      "privilege-escalation",
+      "stealth",
+      "defense-impairment",
+      "credential-access",
+      "discovery",
+      "lateral-movement",
+      "collection",
+      "command-and-control",
+      "exfiltration",
+      "impact"
+    ],
+    "attack-Network-Devices": [
+      "initial-access",
+      "execution",
+      "persistence",
+      "privilege-escalation",
+      "stealth",
+      "defense-impairment",
+      "credential-access",
+      "discovery",
+      "lateral-movement",
+      "collection",
+      "command-and-control",
+      "exfiltration",
+      "impact"
+    ],
+    "attack-Office-365": [
+      "initial-access",
+      "stealth",
+      "lateral-movement"
+    ],
+    "attack-Office-Suite": [
+      "initial-access",
+      "execution",
+      "persistence",
+      "privilege-escalation",
+      "stealth",
+      "defense-impairment",
+      "credential-access",
+      "discovery",
+      "lateral-movement",
+      "collection",
+      "exfiltration",
+      "impact"
+    ],
+    "attack-PRE": [
+      "reconnaissance",
+      "resource-development"
+    ],
+    "attack-SaaS": [
+      "initial-access",
+      "execution",
+      "persistence",
+      "privilege-escalation",
+      "stealth",
+      "defense-impairment",
+      "credential-access",
+      "discovery",
+      "lateral-movement",
+      "collection",
+      "exfiltration",
+      "impact"
+    ],
+    "attack-Windows": [
+      "initial-access",
+      "execution",
+      "persistence",
+      "privilege-escalation",
+      "stealth",
+      "defense-impairment",
+      "credential-access",
+      "discovery",
+      "lateral-movement",
+      "collection",
+      "command-and-control",
+      "exfiltration",
+      "impact"
+    ],
+    "attack-macOS": [
+      "initial-access",
+      "execution",
+      "persistence",
+      "privilege-escalation",
+      "stealth",
+      "defense-impairment",
+      "credential-access",
+      "discovery",
+      "lateral-movement",
+      "collection",
+      "command-and-control",
+      "exfiltration",
+      "impact"
+    ],
+    "ics-attack": [
+      "initial-access",
+      "execution",
+      "persistence",
+      "privilege-escalation",
+      "evasion",
+      "discovery",
+      "lateral-movement",
+      "collection",
+      "command-and-control",
+      "inhibit-response-function",
+      "impair-process-control",
+      "impact"
+    ],
+    "ics-attack-Control-Server": [
+      "collection"
+    ],
+    "ics-attack-Data-Historian": [
+      "collection"
+    ],
+    "ics-attack-Engineering-Workstation": [
+      "initial-access"
+    ],
+    "ics-attack-Field-Controller/RTU/PLC/IED": [
+      "execution",
+      "discovery",
+      "lateral-movement",
+      "collection",
+      "inhibit-response-function",
+      "impair-process-control"
+    ],
+    "ics-attack-Human-Machine-Interface": [
+      "collection"
+    ],
+    "ics-attack-Input/Output-Server": [
+      "discovery"
+    ],
+    "ics-attack-Safety-Instrumented-System/Protection-Relay": [
+      "execution",
+      "lateral-movement",
+      "inhibit-response-function",
+      "impair-process-control"
+    ],
+    "ics-attack-Windows": [
+      "initial-access",
+      "execution",
+      "discovery",
+      "lateral-movement",
+      "collection"
+    ],
+    "mobile-attack-Android": [
+      "initial-access",
+      "execution",
+      "persistence",
+      "privilege-escalation",
+      "defense-evasion",
+      "credential-access",
+      "discovery",
+      "lateral-movement",
+      "collection",
+      "command-and-control",
+      "exfiltration",
+      "impact",
+      "network-effects",
+      "remote-service-effects"
+    ],
+    "mobile-attack-iOS": [
+      "initial-access",
+      "execution",
+      "persistence",
+      "privilege-escalation",
+      "defense-evasion",
+      "credential-access",
+      "discovery",
+      "lateral-movement",
+      "collection",
+      "command-and-control",
+      "exfiltration",
+      "impact",
+      "network-effects",
+      "remote-service-effects"
+    ],
+    "pre-attack": [
+      "priority-definition-planning",
+      "priority-definition-direction",
+      "target-selection",
+      "technical-information-gathering",
+      "people-information-gathering",
+      "organizational-information-gathering",
+      "technical-weakness-identification",
+      "people-weakness-identification",
+      "organizational-weakness-identification",
+      "adversary-opsec",
+      "establish-&-maintain-infrastructure",
+      "persona-development",
+      "build-capabilities",
+      "test-capabilities",
+      "stage-capabilities",
+      "launch",
+      "compromise"
+    ]
+  },
+  "name": "MITRE ATT&CK Techniques",
+  "namespace": "mitre",
+  "type": "mitre-attack-pattern",
+  "uuid": "c4e851fa-775f-11e7-8163-b774922098cd",
+  "version": 20
+}

@@ -1,0 +1,9 @@
+{
+  "description": "SCOR Incidents. Informative galaxy providing taxonomic illustrations of unclassified, organizationally disclosed incidents relevant to converged platforms. Each incident references the SCOR reference galaxies by UUID.",
+  "icon": "exclamation-triangle",
+  "name": "SCOR Incidents",
+  "namespace": "scor",
+  "type": "scor-incidents",
+  "uuid": "6f4e2d9b-3c5a-4d7f-8b2c-1d3e4f5a6b01",
+  "version": 2
+}

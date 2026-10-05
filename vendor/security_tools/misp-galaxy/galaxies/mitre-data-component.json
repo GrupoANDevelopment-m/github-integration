@@ -1,0 +1,9 @@
+{
+  "description": "Data components from MITRE ATT&CK, refining data sources into the specific properties relevant to detection.",
+  "icon": "sitemap",
+  "name": "MITRE ATT&CK Data Components",
+  "namespace": "mitre",
+  "type": "mitre-data-component",
+  "uuid": "afff2d74-5d4a-4aa7-995a-3701a2dbe593",
+  "version": 2
+}
