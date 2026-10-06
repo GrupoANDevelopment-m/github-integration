@@ -1,0 +1,45 @@
+package format
+
+import (
+	"io"
+
+	"github.com/anchore/syft/syft/format/cpes"
+	"github.com/anchore/syft/syft/format/cyclonedxjson"
+	"github.com/anchore/syft/syft/format/cyclonedxxml"
+	"github.com/anchore/syft/syft/format/purls"
+	"github.com/anchore/syft/syft/format/spdxjson"
+	"github.com/anchore/syft/syft/format/spdxtagvalue"
+	"github.com/anchore/syft/syft/format/syftjson"
+	"github.com/anchore/syft/syft/sbom"
+)
+
+var staticDecoders sbom.FormatDecoder
+
+func init() {
+	staticDecoders = NewDecoderCollection(Decoders()...)
+}
+
+func Decoders() []sbom.FormatDecoder {
+	return []sbom.FormatDecoder{
+		// syft-json must remain the first decoder tried: it is by far the most common input, and its decoder can
+		// identify a syft document from the tail of the file alone. Trying anything else first would pay for a full
+		// parse of a large document by another decoder before reaching the common path.
+		syftjson.NewFormatDecoder(),
+		cyclonedxxml.NewFormatDecoder(),
+		cyclonedxjson.NewFormatDecoder(),
+		spdxtagvalue.NewFormatDecoder(),
+		spdxjson.NewFormatDecoder(),
+		purls.NewFormatDecoder(),
+		cpes.NewFormatDecoder(),
+	}
+}
+
+// Identify takes a set of bytes and attempts to identify the format of the SBOM.
+func Identify(reader io.Reader) (sbom.FormatID, string) {
+	return staticDecoders.Identify(reader)
+}
+
+// Decode takes a set of bytes and attempts to decode it into an SBOM.
+func Decode(reader io.Reader) (*sbom.SBOM, sbom.FormatID, string, error) {
+	return staticDecoders.Decode(reader)
+}

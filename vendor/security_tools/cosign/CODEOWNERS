@@ -1,0 +1,6 @@
+* @sigstore/cosign-codeowners
+
+/.github/ @sigstore/dep-maintainers
+/release/ @sigstore/dep-maintainers
+go.mod @sigstore/dep-maintainers
+go.sum @sigstore/dep-maintainers

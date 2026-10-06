@@ -1,0 +1,472 @@
+//
+// Copyright 2021 The Sigstore Authors.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package cli
+
+import (
+	"context"
+	"fmt"
+
+	"github.com/google/go-containerregistry/pkg/name"
+	"github.com/sigstore/cosign/v3/cmd/cosign/cli/options"
+	"github.com/sigstore/cosign/v3/cmd/cosign/cli/verify"
+	"github.com/sigstore/cosign/v3/internal/ui"
+	"github.com/spf13/cobra"
+)
+
+const ignoreTLogMessage = "Skipping tlog verification is an insecure practice that lacks transparency and auditability verification for the %s."
+
+func Verify() *cobra.Command {
+	o := &options.VerifyOptions{}
+
+	cmd := &cobra.Command{
+		Use:   "verify",
+		Short: "Verify a signature on the supplied container image",
+		Long: `Verify signature and annotations on an image by checking the claims
+against the transparency log.`,
+		Example: `  cosign verify --key <key path>|<key url>|<kms uri> <image uri> [<image uri> ...]
+
+  # verify cosign claims and signing certificates on the image with the transparency log
+  cosign verify <IMAGE>
+
+  # verify multiple images
+  cosign verify <IMAGE_1> <IMAGE_2> ...
+
+  # additionally verify specified annotations
+  cosign verify -a key1=val1 -a key2=val2 <IMAGE>
+
+  # verify image with an on-disk public key
+  cosign verify --key cosign.pub <IMAGE>
+
+  # verify image with an on-disk signed image from 'cosign save'
+  cosign verify --key cosign.pub --local-image <PATH>
+
+  # verify image with a trusted root
+  cosign verify --trusted-root trusted_root.json <IMAGE>
+
+  # verify image with public key provided by URL
+  cosign verify --key https://host.for/[FILE] <IMAGE>
+
+  # verify image with a key stored in an environment variable
+  cosign verify --key env://[ENV_VAR] <IMAGE>
+
+  # verify image with public key stored in Google Cloud KMS
+  cosign verify --key gcpkms://projects/[PROJECT]/locations/global/keyRings/[KEYRING]/cryptoKeys/[KEY] <IMAGE>
+
+  # verify image with public key stored in Hashicorp Vault
+  cosign verify --key hashivault://[KEY] <IMAGE>
+
+  # verify image with public key stored in a Kubernetes secret
+  cosign verify --key k8s://[NAMESPACE]/[KEY] <IMAGE>
+
+  # verify image with public key stored in GitLab with project name
+  cosign verify --key gitlab://[OWNER]/[PROJECT_NAME] <IMAGE>
+
+  # verify image with public key stored in GitLab with project id
+  cosign verify --key gitlab://[PROJECT_ID] <IMAGE>`,
+
+		Args:             cobra.MinimumNArgs(1),
+		PersistentPreRun: options.BindViper,
+		RunE: func(cmd *cobra.Command, args []string) error {
+			if o.CommonVerifyOptions.PrivateInfrastructure {
+				o.CommonVerifyOptions.IgnoreTlog = true
+			}
+
+			annotations, err := o.AnnotationsMap()
+			if err != nil {
+				return err
+			}
+
+			hashAlgorithm, err := o.SignatureDigest.HashAlgorithm()
+			if err != nil {
+				return err
+			}
+
+			v := &verify.VerifyCommand{
+				RegistryOptions:              o.Registry,
+				CertVerifyOptions:            o.CertVerify,
+				CommonVerifyOptions:          o.CommonVerifyOptions,
+				CheckClaims:                  o.CheckClaims,
+				KeyRef:                       o.Key,
+				CertRef:                      o.CertVerify.Cert,
+				CertChain:                    o.CertVerify.CertChain,
+				CAIntermediates:              o.CertVerify.CAIntermediates,
+				CARoots:                      o.CertVerify.CARoots,
+				CertGithubWorkflowTrigger:    o.CertVerify.CertGithubWorkflowTrigger,
+				CertGithubWorkflowSha:        o.CertVerify.CertGithubWorkflowSha,
+				CertGithubWorkflowName:       o.CertVerify.CertGithubWorkflowName,
+				CertGithubWorkflowRepository: o.CertVerify.CertGithubWorkflowRepository,
+				CertGithubWorkflowRef:        o.CertVerify.CertGithubWorkflowRef,
+				IgnoreSCT:                    o.CertVerify.IgnoreSCT,
+				SCTRef:                       o.CertVerify.SCT,
+				Sk:                           o.SecurityKey.Use,
+				Slot:                         o.SecurityKey.Slot,
+				Output:                       o.Output,
+				RekorURL:                     o.Rekor.URL,
+				Attachment:                   o.Attachment,
+				Annotations:                  annotations,
+				HashAlgorithm:                hashAlgorithm,
+				SignatureRef:                 o.SignatureRef,
+				PayloadRef:                   o.PayloadRef,
+				LocalImage:                   o.LocalImage,
+				Offline:                      o.CommonVerifyOptions.Offline,
+				TSACertChainPath:             o.CommonVerifyOptions.TSACertChainPath,
+				IgnoreTlog:                   o.CommonVerifyOptions.IgnoreTlog,
+				MaxWorkers:                   o.CommonVerifyOptions.MaxWorkers,
+				ExperimentalOCI11:            o.CommonVerifyOptions.ExperimentalOCI11,
+				UseSignedTimestamps:          o.CommonVerifyOptions.UseSignedTimestamps,
+				NewBundleFormat:              o.CommonVerifyOptions.NewBundleFormat,
+			}
+
+			if o.CommonVerifyOptions.MaxWorkers == 0 {
+				return fmt.Errorf("please set the --max-worker flag to a value that is greater than 0")
+			}
+
+			if o.Registry.AllowInsecure {
+				v.NameOptions = append(v.NameOptions, name.Insecure)
+			}
+
+			ctx, cancel := context.WithTimeout(cmd.Context(), ro.Timeout)
+			defer cancel()
+
+			if o.CommonVerifyOptions.IgnoreTlog && !o.CommonVerifyOptions.PrivateInfrastructure {
+				ui.Warnf(ctx, ignoreTLogMessage, "signature")
+			}
+
+			return v.Exec(ctx, args)
+		},
+	}
+
+	o.AddFlags(cmd)
+	return cmd
+}
+
+func VerifyAttestation() *cobra.Command {
+	o := &options.VerifyAttestationOptions{}
+
+	cmd := &cobra.Command{
+		Use:   "verify-attestation",
+		Short: "Verify an attestation on the supplied container image",
+		Long: `Verify an attestation on an image by checking the claims
+against the transparency log.`,
+		Example: `  cosign verify-attestation --key <key path>|<key url>|<kms uri> <image uri> [<image uri> ...]
+
+  # verify cosign attestations on the image against the transparency log
+  cosign verify-attestation <IMAGE>
+
+  # verify multiple images
+  cosign verify-attestation <IMAGE_1> <IMAGE_2> ...
+
+  # additionally verify specified annotations
+  cosign verify-attestation -a key1=val1 -a key2=val2 <IMAGE>
+
+  # verify image with public key
+  cosign verify-attestation --key cosign.pub <IMAGE>
+
+  # verify image attestations with an on-disk signed image from 'cosign save'
+  cosign verify-attestation --key cosign.pub --local-image <PATH>
+
+  # verify image with public key provided by URL
+  cosign verify-attestation --key https://host.for/<FILE> <IMAGE>
+
+  # verify image with public key stored in Google Cloud KMS
+  cosign verify-attestation --key gcpkms://projects/<PROJECT>/locations/global/keyRings/<KEYRING>/cryptoKeys/<KEY> <IMAGE>
+
+  # verify image with public key stored in Hashicorp Vault
+  cosign verify-attestation --key hashivault:///<KEY> <IMAGE>
+
+  # verify image with public key stored in GitLab with project name
+  cosign verify-attestation --key gitlab://[OWNER]/[PROJECT_NAME] <IMAGE>
+
+  # verify image with public key stored in GitLab with project id
+  cosign verify-attestation --key gitlab://[PROJECT_ID] <IMAGE>
+
+  # verify image with public key and validate attestation based on Rego policy
+  cosign verify-attestation --key cosign.pub --type <PREDICATE_TYPE> --policy <REGO_POLICY> <IMAGE>
+
+  # verify image with public key and validate attestation based on CUE policy
+  cosign verify-attestation --key cosign.pub --type <PREDICATE_TYPE> --policy <CUE_POLICY> <IMAGE>`,
+
+		Args:             cobra.MinimumNArgs(1),
+		PersistentPreRun: options.BindViper,
+		RunE: func(cmd *cobra.Command, args []string) error {
+			if o.CommonVerifyOptions.PrivateInfrastructure {
+				o.CommonVerifyOptions.IgnoreTlog = true
+			}
+
+			hashAlgorithm, err := o.SignatureDigest.HashAlgorithm()
+			if err != nil {
+				return err
+			}
+
+			v := &verify.VerifyAttestationCommand{
+				RegistryOptions:              o.Registry,
+				CommonVerifyOptions:          o.CommonVerifyOptions,
+				CheckClaims:                  o.CheckClaims,
+				CertVerifyOptions:            o.CertVerify,
+				CertRef:                      o.CertVerify.Cert,
+				CertChain:                    o.CertVerify.CertChain,
+				CAIntermediates:              o.CertVerify.CAIntermediates,
+				CARoots:                      o.CertVerify.CARoots,
+				CertGithubWorkflowTrigger:    o.CertVerify.CertGithubWorkflowTrigger,
+				CertGithubWorkflowSha:        o.CertVerify.CertGithubWorkflowSha,
+				CertGithubWorkflowName:       o.CertVerify.CertGithubWorkflowName,
+				CertGithubWorkflowRepository: o.CertVerify.CertGithubWorkflowRepository,
+				CertGithubWorkflowRef:        o.CertVerify.CertGithubWorkflowRef,
+				IgnoreSCT:                    o.CertVerify.IgnoreSCT,
+				SCTRef:                       o.CertVerify.SCT,
+				KeyRef:                       o.Key,
+				Sk:                           o.SecurityKey.Use,
+				Slot:                         o.SecurityKey.Slot,
+				Output:                       o.Output,
+				RekorURL:                     o.Rekor.URL,
+				PredicateType:                o.Predicate.Type,
+				Policies:                     o.Policies,
+				LocalImage:                   o.LocalImage,
+				NameOptions:                  o.Registry.NameOptions(),
+				Offline:                      o.CommonVerifyOptions.Offline,
+				TSACertChainPath:             o.CommonVerifyOptions.TSACertChainPath,
+				IgnoreTlog:                   o.CommonVerifyOptions.IgnoreTlog,
+				MaxWorkers:                   o.CommonVerifyOptions.MaxWorkers,
+				HashAlgorithm:                hashAlgorithm,
+				UseSignedTimestamps:          o.CommonVerifyOptions.UseSignedTimestamps,
+			}
+
+			if o.CommonVerifyOptions.MaxWorkers == 0 {
+				return fmt.Errorf("please set the --max-worker flag to a value that is greater than 0")
+			}
+
+			ctx, cancel := context.WithTimeout(cmd.Context(), ro.Timeout)
+			defer cancel()
+
+			if o.CommonVerifyOptions.IgnoreTlog && !o.CommonVerifyOptions.PrivateInfrastructure {
+				ui.Warnf(ctx, ignoreTLogMessage, "attestation")
+			}
+
+			return v.Exec(ctx, args)
+		},
+	}
+
+	o.AddFlags(cmd)
+	return cmd
+}
+
+func VerifyBlob() *cobra.Command {
+	o := &options.VerifyBlobOptions{}
+
+	cmd := &cobra.Command{
+		Use:   "verify-blob",
+		Short: "Verify a signature on the supplied blob",
+		Long: `Verify a signature on the supplied blob input using the specified key reference.
+You may specify either a key, a bundle (optionally with trusted root), or a kms reference to verify against.
+	If you use a key, bundle, or trusted root, you must specify the path to them on disk.
+
+The preferred way to provide verification material is via a Sigstore bundle using --bundle,
+which contains the signature, certificate, and transparency log proof.
+The blob may be specified as a path to a file or - for stdin.`,
+		Example: ` cosign verify-blob --bundle <path> --certificate-identity <identity> --certificate-oidc-issuer <issuer> <blob>
+
+  # Verify a signature with a bundle and trusted root
+  cosign verify-blob --bundle artifact.sigstore.json --trusted-root trusted_root.json <blob>
+
+  # Verify a blob (keyless)
+  cosign verify-blob --bundle artifact.sigstore.json --certificate-identity foo@example.com --certificate-oidc-issuer https://accounts.google.com <blob>
+
+  # Verify a blob with an on-disk public key
+  cosign verify-blob --bundle artifact.sigstore.json --key cosign.pub <blob>
+
+  # Verify a blob against Azure Key Vault
+  cosign verify-blob --bundle artifact.sigstore.json --key azurekms://[VAULT_NAME][VAULT_URI]/[KEY] <blob>
+
+  # Verify a blob against AWS KMS
+  cosign verify-blob --bundle artifact.sigstore.json --key awskms://[ENDPOINT]/[ID/ALIAS/ARN] <blob>
+
+  # Verify a blob against Google Cloud KMS
+  cosign verify-blob --bundle artifact.sigstore.json --key gcpkms://projects/[PROJECT ID]/locations/[LOCATION]/keyRings/[KEYRING]/cryptoKeys/[KEY] <blob>
+
+  # Verify a blob against Hashicorp Vault
+  cosign verify-blob --bundle artifact.sigstore.json --key hashivault://[KEY] <blob>
+
+  # Verify a blob against GitLab with project name
+  cosign verify-blob --bundle artifact.sigstore.json --key gitlab://[OWNER]/[PROJECT_NAME] <blob>
+
+  # Verify a blob against GitLab with project id
+  cosign verify-blob --bundle artifact.sigstore.json --key gitlab://[PROJECT_ID] <blob>
+`,
+
+		Args:             cobra.ExactArgs(1),
+		PersistentPreRun: options.BindViper,
+		RunE: func(cmd *cobra.Command, args []string) error {
+			if o.CommonVerifyOptions.PrivateInfrastructure {
+				o.CommonVerifyOptions.IgnoreTlog = true
+			}
+
+			hashAlgorithm, err := o.SignatureDigest.HashAlgorithm()
+			if err != nil {
+				return err
+			}
+
+			ko := options.KeyOpts{
+				KeyRef:               o.Key,
+				Sk:                   o.SecurityKey.Use,
+				Slot:                 o.SecurityKey.Slot,
+				RekorURL:             o.Rekor.URL,
+				BundlePath:           o.BundlePath,
+				RFC3161TimestampPath: o.RFC3161TimestampPath,
+				TSACertChainPath:     o.CommonVerifyOptions.TSACertChainPath,
+				NewBundleFormat:      o.CommonVerifyOptions.NewBundleFormat,
+			}
+			verifyBlobCmd := &verify.VerifyBlobCmd{
+				KeyOpts:                      ko,
+				CertVerifyOptions:            o.CertVerify,
+				CertRef:                      o.CertVerify.Cert,
+				CertChain:                    o.CertVerify.CertChain,
+				CARoots:                      o.CertVerify.CARoots,
+				CAIntermediates:              o.CertVerify.CAIntermediates,
+				SigRef:                       o.Signature,
+				CertGithubWorkflowTrigger:    o.CertVerify.CertGithubWorkflowTrigger,
+				CertGithubWorkflowSHA:        o.CertVerify.CertGithubWorkflowSha,
+				CertGithubWorkflowName:       o.CertVerify.CertGithubWorkflowName,
+				CertGithubWorkflowRepository: o.CertVerify.CertGithubWorkflowRepository,
+				CertGithubWorkflowRef:        o.CertVerify.CertGithubWorkflowRef,
+				IgnoreSCT:                    o.CertVerify.IgnoreSCT,
+				SCTRef:                       o.CertVerify.SCT,
+				Offline:                      o.CommonVerifyOptions.Offline,
+				IgnoreTlog:                   o.CommonVerifyOptions.IgnoreTlog,
+				UseSignedTimestamps:          o.CommonVerifyOptions.UseSignedTimestamps,
+				TrustedRootPath:              o.CommonVerifyOptions.TrustedRootPath,
+				HashAlgorithm:                hashAlgorithm,
+				AllowCertificateChain:        o.CommonVerifyOptions.AllowCertificateChain,
+			}
+
+			ctx, cancel := context.WithTimeout(cmd.Context(), ro.Timeout)
+			defer cancel()
+
+			if o.CommonVerifyOptions.IgnoreTlog && !o.CommonVerifyOptions.PrivateInfrastructure {
+				ui.Warnf(ctx, ignoreTLogMessage, "blob")
+			}
+
+			return verifyBlobCmd.Exec(ctx, args[0])
+		},
+	}
+
+	o.AddFlags(cmd)
+	return cmd
+}
+
+func VerifyBlobAttestation() *cobra.Command {
+	o := &options.VerifyBlobAttestationOptions{}
+
+	cmd := &cobra.Command{
+		Use:   "verify-blob-attestation",
+		Short: "Verify an attestation on the supplied blob",
+		Long: `Verify an attestation on the supplied blob input using the specified key reference.
+You may specify either a key or a kms reference to verify against.
+
+Signed material is provided with the --bundle flag.
+The blob may be specified as a path to a file.`,
+		Example: ` cosign verify-blob-attestation --bundle <path> --certificate-identity <identity> --certificate-oidc-issuer <issuer> <blob>
+
+  # Verify a blob attestation (keyless)
+  cosign verify-blob-attestation --bundle artifact.sigstore.json --certificate-identity foo@example.com --certificate-oidc-issuer https://accounts.google.com <blob>
+
+  # Verify a blob attestation with a public key
+  cosign verify-blob-attestation --bundle artifact.sigstore.json --key cosign.pub <blob>
+
+  # Verify a blob attestation with Azure KMS
+  cosign verify-blob-attestation --bundle artifact.sigstore.json --key azurekms://[VAULT_NAME][VAULT_URI]/[KEY] <blob>
+
+  # Verify a blob attestation with AWS KMS
+  cosign verify-blob-attestation --bundle artifact.sigstore.json --key awskms://[ENDPOINT]/[ID/ALIAS/ARN] <blob>
+
+  # Verify a blob attestation with GCP KMS
+  cosign verify-blob-attestation --bundle artifact.sigstore.json --key gcpkms://projects/[PROJECT]/locations/global/keyRings/[KEYRING]/cryptoKeys/[KEY] <blob>
+
+  # Verify a blob attestation with Hashicorp Vault
+  cosign verify-blob-attestation --bundle artifact.sigstore.json --key hashivault://[KEY] <blob>
+
+`,
+
+		Args:             cobra.MaximumNArgs(1),
+		PersistentPreRun: options.BindViper,
+		RunE: func(cmd *cobra.Command, args []string) error {
+			if o.CommonVerifyOptions.PrivateInfrastructure {
+				o.CommonVerifyOptions.IgnoreTlog = true
+			}
+
+			hashAlgorithm, err := o.SignatureDigest.HashAlgorithm()
+			if err != nil {
+				return err
+			}
+
+			ko := options.KeyOpts{
+				KeyRef:               o.Key,
+				Sk:                   o.SecurityKey.Use,
+				Slot:                 o.SecurityKey.Slot,
+				RekorURL:             o.Rekor.URL,
+				BundlePath:           o.BundlePath,
+				RFC3161TimestampPath: o.RFC3161TimestampPath,
+				TSACertChainPath:     o.CommonVerifyOptions.TSACertChainPath,
+				NewBundleFormat:      o.CommonVerifyOptions.NewBundleFormat,
+			}
+			v := verify.VerifyBlobAttestationCommand{
+				KeyOpts:                      ko,
+				PredicateType:                o.Type,
+				CheckClaims:                  o.CheckClaims,
+				SignaturePath:                o.SignaturePath,
+				CertVerifyOptions:            o.CertVerify,
+				CertRef:                      o.CertVerify.Cert,
+				CertChain:                    o.CertVerify.CertChain,
+				CARoots:                      o.CertVerify.CARoots,
+				CAIntermediates:              o.CertVerify.CAIntermediates,
+				CertGithubWorkflowTrigger:    o.CertVerify.CertGithubWorkflowTrigger,
+				CertGithubWorkflowSHA:        o.CertVerify.CertGithubWorkflowSha,
+				CertGithubWorkflowName:       o.CertVerify.CertGithubWorkflowName,
+				CertGithubWorkflowRepository: o.CertVerify.CertGithubWorkflowRepository,
+				CertGithubWorkflowRef:        o.CertVerify.CertGithubWorkflowRef,
+				IgnoreSCT:                    o.CertVerify.IgnoreSCT,
+				SCTRef:                       o.CertVerify.SCT,
+				Offline:                      o.CommonVerifyOptions.Offline,
+				IgnoreTlog:                   o.CommonVerifyOptions.IgnoreTlog,
+				UseSignedTimestamps:          o.CommonVerifyOptions.UseSignedTimestamps,
+				TrustedRootPath:              o.CommonVerifyOptions.TrustedRootPath,
+				Digest:                       o.Digest,
+				DigestAlg:                    o.DigestAlg,
+				HashAlgorithm:                hashAlgorithm,
+				AllowCertificateChain:        o.CommonVerifyOptions.AllowCertificateChain,
+			}
+			// We only use the blob if we are checking claims.
+			if o.CheckClaims && len(args) == 0 && (o.Digest == "" || o.DigestAlg == "") {
+				return fmt.Errorf("must provide path to blob or digest and digestAlg; run `cosign verify-blob-attestation -h` for more help")
+			}
+			var path string
+			if len(args) > 0 {
+				path = args[0]
+			}
+
+			ctx, cancel := context.WithTimeout(cmd.Context(), ro.Timeout)
+			defer cancel()
+
+			if o.CommonVerifyOptions.IgnoreTlog && !o.CommonVerifyOptions.PrivateInfrastructure {
+				ui.Warnf(ctx, ignoreTLogMessage, "blob attestation")
+			}
+
+			return v.Exec(ctx, path)
+		},
+	}
+
+	o.AddFlags(cmd)
+	return cmd
+}

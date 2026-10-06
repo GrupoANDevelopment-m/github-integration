@@ -1,0 +1,39 @@
+## cosign piv-tool attestation
+
+Manage hardware token attestations
+
+```
+cosign piv-tool attestation [flags]
+```
+
+### Examples
+
+```
+  # print attestation information as text
+  cosign piv-tool attestation --slot 9c
+
+  # print attestation information as JSON
+  cosign piv-tool attestation --slot 9c --output json
+```
+
+### Options
+
+```
+  -h, --help            help for attestation
+  -o, --output string   format to output attestation information in. (text|json) (default "text")
+      --slot string     Slot to use for generated key (authentication|signature|card-authentication|key-management)
+```
+
+### Options inherited from parent commands
+
+```
+  -f, --no-input             skip warnings and confirmations
+      --output-file string   log output to a file
+  -t, --timeout duration     timeout for commands (default 3m0s)
+  -d, --verbose              log debug output
+```
+
+### SEE ALSO
+
+* [cosign piv-tool](cosign_piv-tool.md)	 - Provides utilities for managing a hardware token
+
