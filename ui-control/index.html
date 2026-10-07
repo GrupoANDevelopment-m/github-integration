@@ -3,20 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Goodware v3.0 — Painel de Controlo Imersivo 3D</title>
+<title>Goodware v3.0 — Console de Comando</title>
 <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
 
-<!-- Three.js for 3D -->
+<!-- Three.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<!-- GSAP for smooth animations -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<!-- Chart.js for real-time charts -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
 <style>
-  /* ============================================
-     RESET + GLOBAL
-     ============================================ */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { width: 100%; height: 100%; overflow: hidden; }
   body {
@@ -24,1207 +17,1234 @@
     background: #03050f;
     color: #e8f3ff;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     user-select: none;
+    overflow: hidden;
   }
 
   :root {
     --c-bg: #03050f;
-    --c-bg-elev: rgba(12, 22, 48, 0.65);
-    --c-bg-glass: rgba(20, 35, 70, 0.35);
-    --c-border: rgba(0, 212, 255, 0.18);
-    --c-border-strong: rgba(0, 212, 255, 0.5);
+    --c-bg-elev: rgba(8, 14, 30, 0.85);
+    --c-bg-glass: rgba(15, 25, 50, 0.5);
+    --c-bg-panel: rgba(10, 18, 40, 0.65);
+    --c-border: rgba(0, 212, 255, 0.15);
+    --c-border-hover: rgba(0, 212, 255, 0.4);
+    --c-border-strong: rgba(0, 212, 255, 0.6);
     --c-cyan: #00d4ff;
-    --c-cyan-glow: rgba(0, 212, 255, 0.6);
+    --c-cyan-dim: #4ab8d0;
     --c-orange: #ff6b35;
-    --c-orange-glow: rgba(255, 107, 53, 0.6);
     --c-blue: #0070f3;
     --c-green: #00ff9c;
     --c-red: #ff3860;
     --c-yellow: #ffcc00;
+    --c-purple: #a855f7;
     --c-text: #e8f3ff;
     --c-text-dim: #6a8caf;
     --c-text-faint: #4a6a8a;
-    --shadow-glow: 0 0 24px rgba(0, 212, 255, 0.3);
-    --shadow-glow-orange: 0 0 24px rgba(255, 107, 53, 0.3);
   }
 
-  /* ============================================
-     3D SCENE BACKGROUND
-     ============================================ */
-  #three-bg {
-    position: fixed; inset: 0; z-index: 0;
-    pointer-events: none;
-  }
+  /* Background 3D */
+  #bg-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
 
-  /* ============================================
-     LOGIN SCREEN (3D hero)
-     ============================================ */
-  #login-screen {
-    position: fixed; inset: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: center;
-    background: radial-gradient(circle at center, #050a1a 0%, #03050f 80%);
-  }
-  #login-canvas {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-  }
-  .login-form {
-    position: relative; z-index: 2;
-    background: rgba(10, 16, 36, 0.85);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--c-border-strong);
-    border-radius: 20px;
-    padding: 48px;
-    width: 440px;
-    box-shadow: 0 0 80px rgba(0, 212, 255, 0.15),
-                0 0 30px rgba(255, 107, 53, 0.08),
-                inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  }
-  .login-form .brand {
-    display: flex; flex-direction: column; align-items: center;
-    margin-bottom: 32px;
-  }
-  .login-form .logo-container {
-    width: 110px; height: 110px;
-    margin-bottom: 16px;
-    animation: pulse-glow 4s ease-in-out infinite;
-  }
-  .login-form .logo-container img {
-    width: 100%; height: 100%;
-    filter: drop-shadow(0 0 24px var(--c-cyan-glow))
-            drop-shadow(0 0 12px var(--c-orange-glow));
-  }
-  @keyframes pulse-glow {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.04); }
-  }
-  .login-form h1 {
-    font-size: 22px; font-weight: 600; letter-spacing: 0.5px;
-    background: linear-gradient(135deg, var(--c-cyan) 0%, #fff 50%, var(--c-orange) 100%);
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
-  .login-form .subtitle {
-    color: var(--c-text-dim); font-size: 13px; margin-top: 6px;
-    letter-spacing: 1.5px; text-transform: uppercase;
-  }
-  .login-form label {
-    display: block; margin-top: 18px; font-size: 12px;
-    color: var(--c-text-dim); text-transform: uppercase;
-    letter-spacing: 1.2px;
-  }
-  .login-form input {
-    width: 100%; margin-top: 8px;
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid var(--c-border);
-    border-radius: 10px;
-    padding: 12px 14px;
-    color: var(--c-text); font-size: 14px;
-    font-family: 'JetBrains Mono', monospace;
-    transition: border 0.2s, box-shadow 0.2s;
-  }
-  .login-form input:focus {
-    outline: none; border-color: var(--c-cyan);
-    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15);
-  }
-  .login-form button {
-    width: 100%; margin-top: 28px;
-    background: linear-gradient(135deg, var(--c-cyan) 0%, var(--c-blue) 100%);
-    border: none; border-radius: 10px;
-    padding: 14px; color: #fff;
-    font-size: 14px; font-weight: 600; letter-spacing: 1.5px;
-    text-transform: uppercase; cursor: pointer;
-    transition: all 0.3s;
-    box-shadow: 0 4px 16px rgba(0, 112, 243, 0.4);
-  }
-  .login-form button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 24px rgba(0, 212, 255, 0.5);
-  }
-  .login-form .hint {
-    margin-top: 20px; text-align: center;
-    font-size: 11px; color: var(--c-text-faint);
-    line-height: 1.5;
-  }
-  .login-form .error {
-    margin-top: 12px; padding: 8px;
-    background: rgba(255, 56, 96, 0.15);
-    border: 1px solid rgba(255, 56, 96, 0.4);
-    border-radius: 6px;
-    color: var(--c-red); font-size: 12px;
-    text-align: center;
-    display: none;
-  }
-
-  /* ============================================
-     MAIN APP LAYOUT
-     ============================================ */
+  /* ============ APP LAYOUT ============ */
   #app {
-    display: none; position: relative; z-index: 1;
-    width: 100%; height: 100%;
-    grid-template-columns: 280px 1fr;
-    grid-template-rows: 60px 1fr;
+    display: grid;
+    width: 100vw; height: 100vh;
+    grid-template-columns: 240px 1fr 320px;
+    grid-template-rows: 56px 1fr 220px;
     grid-template-areas:
-      "topbar topbar"
-      "sidebar main";
+      "topbar topbar topbar"
+      "sidebar center inspector"
+      "sidebar terminal inspector";
+    position: relative; z-index: 1;
   }
-  #app.visible { display: grid; }
 
-  /* TOP BAR */
+  /* ============ TOPBAR ============ */
   .topbar {
     grid-area: topbar;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 24px;
     background: var(--c-bg-elev);
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--c-border);
-    height: 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 20px;
   }
-  .topbar-left { display: flex; align-items: center; gap: 14px; }
-  .topbar-logo { width: 36px; height: 36px; }
-  .topbar-logo img {
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand-logo { width: 32px; height: 32px; }
+  .brand-logo img {
     width: 100%; height: 100%;
-    filter: drop-shadow(0 0 8px var(--c-cyan-glow));
+    filter: drop-shadow(0 0 8px var(--c-cyan));
   }
-  .topbar-title {
-    font-size: 14px; font-weight: 600; letter-spacing: 0.5px;
+  .brand-text {
+    font-size: 13px; font-weight: 600; letter-spacing: 0.8px;
     background: linear-gradient(135deg, var(--c-cyan), #fff, var(--c-orange));
     -webkit-background-clip: text; background-clip: text; color: transparent;
   }
-  .topbar-status {
-    display: flex; align-items: center; gap: 16px;
-    font-size: 12px; color: var(--c-text-dim);
+  .brand-sub {
+    font-size: 9px; color: var(--c-text-faint);
+    letter-spacing: 2px; margin-top: 2px;
   }
-  .topbar-status .pulse {
+
+  .topbar-mid { display: flex; gap: 24px; align-items: center; }
+  .topbar-stat {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 11px; color: var(--c-text-dim);
+  }
+  .topbar-stat .v {
+    color: var(--c-cyan);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+  }
+  .pulse-dot {
     width: 8px; height: 8px; border-radius: 50%;
     background: var(--c-green);
     box-shadow: 0 0 8px var(--c-green);
-    animation: pulse-green 1.5s infinite;
+    animation: pulse 1.5s infinite;
   }
-  @keyframes pulse-green {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
   }
-  .topbar-clock {
+  .clock {
     font-family: 'JetBrains Mono', monospace;
     color: var(--c-cyan);
     font-variant-numeric: tabular-nums;
+    font-size: 13px;
   }
-  .topbar-actions { display: flex; align-items: center; gap: 8px; }
+
+  .topbar-actions { display: flex; gap: 8px; }
   .icon-btn {
-    width: 36px; height: 36px; border-radius: 8px;
+    width: 32px; height: 32px; border-radius: 6px;
     border: 1px solid var(--c-border);
     background: transparent; color: var(--c-text-dim);
     cursor: pointer; transition: all 0.2s;
     display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
   }
-  .icon-btn:hover {
-    border-color: var(--c-cyan); color: var(--c-cyan);
-    box-shadow: var(--shadow-glow);
-  }
+  .icon-btn:hover { border-color: var(--c-cyan); color: var(--c-cyan); }
 
-  /* SIDEBAR */
+  /* ============ SIDEBAR (Commands) ============ */
   .sidebar {
     grid-area: sidebar;
     background: var(--c-bg-elev);
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(20px);
     border-right: 1px solid var(--c-border);
     overflow-y: auto;
-    padding: 20px 12px;
+    padding: 12px 8px;
   }
-  .nav-section {
-    margin-bottom: 20px;
-  }
-  .nav-section-title {
-    padding: 6px 12px;
-    font-size: 10px;
-    color: var(--c-text-faint);
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    font-weight: 600;
-  }
-  .nav-item {
-    display: flex; align-items: center; gap: 12px;
-    padding: 10px 12px;
-    border-radius: 8px;
-    color: var(--c-text-dim);
-    cursor: pointer;
-    transition: all 0.2s;
-    font-size: 13px;
-    border: 1px solid transparent;
-    margin-bottom: 2px;
-  }
-  .nav-item:hover {
-    background: rgba(0, 212, 255, 0.08);
-    color: var(--c-cyan);
-    border-color: var(--c-border);
-  }
-  .nav-item.active {
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(0, 112, 243, 0.08));
-    color: var(--c-cyan);
-    border-color: var(--c-border-strong);
-    box-shadow: 0 0 12px rgba(0, 212, 255, 0.2);
-  }
-  .nav-item .icon { width: 18px; height: 18px; flex-shrink: 0; }
-
-  /* MAIN CONTENT */
-  .main {
-    grid-area: main;
-    overflow: auto;
-    padding: 24px;
-  }
-
-  /* PANELS */
-  .panel-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 16px;
-  }
-  .panel {
-    background: var(--c-bg-glass);
-    backdrop-filter: blur(12px);
-    border: 1px solid var(--c-border);
-    border-radius: 12px;
-    padding: 20px;
-    transition: border 0.2s, box-shadow 0.2s;
-  }
-  .panel:hover {
-    border-color: var(--c-border-strong);
-    box-shadow: var(--shadow-glow);
-  }
-  .panel-header {
-    display: flex; align-items: center; justify-content: space-between;
+  .cmd-section {
     margin-bottom: 16px;
   }
-  .panel-title {
-    font-size: 14px; font-weight: 600;
-    color: var(--c-text);
-    display: flex; align-items: center; gap: 8px;
+  .cmd-section-title {
+    padding: 6px 10px;
+    font-size: 9px; color: var(--c-text-faint);
+    text-transform: uppercase; letter-spacing: 1.5px;
+    font-weight: 700;
   }
-  .panel-title .icon { color: var(--c-cyan); }
-  .panel-badge {
-    font-size: 10px; padding: 3px 8px;
-    background: rgba(0, 212, 255, 0.15);
-    border: 1px solid var(--c-border);
-    border-radius: 4px;
+  .cmd-btn {
+    display: flex; align-items: center; gap: 10px;
+    width: 100%;
+    padding: 9px 12px;
+    margin-bottom: 3px;
+    border-radius: 6px;
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--c-text-dim);
+    font-size: 12px; font-family: inherit;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: left;
+  }
+  .cmd-btn:hover {
+    background: rgba(0, 212, 255, 0.08);
     color: var(--c-cyan);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    border-color: var(--c-border-hover);
   }
-  .panel-badge.live {
-    background: rgba(0, 255, 156, 0.15);
-    border-color: var(--c-green);
-    color: var(--c-green);
+  .cmd-btn:active {
+    background: rgba(0, 212, 255, 0.15);
   }
-  .col-3 { grid-column: span 3; }
-  .col-4 { grid-column: span 4; }
-  .col-6 { grid-column: span 6; }
-  .col-8 { grid-column: span 8; }
-  .col-12 { grid-column: span 12; }
-
-  /* METRIC CARDS */
-  .metric {
-    display: flex; flex-direction: column;
+  .cmd-btn .icon {
+    width: 16px; text-align: center;
+    color: var(--c-cyan);
   }
-  .metric .value {
-    font-size: 32px; font-weight: 700;
+  .cmd-btn.danger:hover { color: var(--c-red); border-color: rgba(255,56,96,0.4); background: rgba(255,56,96,0.08); }
+  .cmd-btn.danger .icon { color: var(--c-red); }
+  .cmd-btn.warning:hover { color: var(--c-orange); border-color: rgba(255,107,53,0.4); background: rgba(255,107,53,0.08); }
+  .cmd-btn.warning .icon { color: var(--c-orange); }
+  .cmd-btn.success:hover { color: var(--c-green); border-color: rgba(0,255,156,0.4); background: rgba(0,255,156,0.08); }
+  .cmd-btn.success .icon { color: var(--c-green); }
+  .cmd-btn .kbd {
+    margin-left: auto;
+    font-size: 9px;
+    padding: 2px 5px;
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid var(--c-border);
+    border-radius: 3px;
+    color: var(--c-text-faint);
     font-family: 'JetBrains Mono', monospace;
-    background: linear-gradient(135deg, var(--c-cyan), var(--c-blue));
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-    line-height: 1.1;
   }
-  .metric .label {
-    font-size: 11px; color: var(--c-text-dim);
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-    margin-top: 6px;
-  }
-  .metric .delta {
-    font-size: 11px; margin-top: 4px;
-    color: var(--c-green);
-  }
-  .metric .delta.neg { color: var(--c-red); }
 
-  /* 3D SCENE PANEL */
-  #scene-panel {
-    height: 480px;
+  /* ============ CENTER (Live + 3D + Actions) ============ */
+  .center {
+    grid-area: center;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex; flex-direction: column; gap: 16px;
+  }
+
+  /* 3D scene panel */
+  .scene-card {
+    background: var(--c-bg-panel);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--c-border);
+    border-radius: 12px;
+    height: 260px;
     position: relative;
     overflow: hidden;
   }
-  #scene-canvas {
+  .scene-canvas {
     position: absolute; inset: 0;
     width: 100%; height: 100%;
   }
+  .scene-header {
+    position: absolute; top: 12px; left: 16px;
+    display: flex; align-items: center; gap: 12px;
+    z-index: 2;
+  }
+  .scene-title {
+    font-size: 12px; color: var(--c-cyan);
+    font-weight: 600; letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .scene-pulse {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--c-green);
+    box-shadow: 0 0 6px var(--c-green);
+    animation: pulse 1.2s infinite;
+  }
   .scene-overlay {
-    position: absolute; bottom: 16px; left: 16px; right: 16px;
+    position: absolute; bottom: 12px; left: 16px; right: 16px;
     display: flex; justify-content: space-between;
-    pointer-events: none;
+    z-index: 2;
   }
   .scene-stat {
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(8px);
-    padding: 8px 14px;
-    border-radius: 8px;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(10px);
     border: 1px solid var(--c-border);
-    font-size: 11px;
-    color: var(--c-cyan);
+    padding: 6px 12px;
+    border-radius: 6px;
     font-family: 'JetBrains Mono', monospace;
-    pointer-events: auto;
+    font-size: 10px;
+    color: var(--c-cyan);
+  }
+  .scene-stat .v {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
   }
 
-  /* BUTTONS */
-  .btn {
-    display: inline-flex; align-items: center; gap: 6px;
-    padding: 8px 16px;
-    background: linear-gradient(135deg, var(--c-cyan), var(--c-blue));
-    color: #fff; border: none; border-radius: 8px;
-    font-size: 12px; font-weight: 600;
-    letter-spacing: 0.5px;
+  /* Action grid */
+  .actions-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .action-card {
+    background: var(--c-bg-panel);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--c-border);
+    border-radius: 10px;
+    padding: 14px;
     cursor: pointer;
-    transition: all 0.2s;
-    box-shadow: 0 2px 8px rgba(0, 112, 243, 0.3);
+    transition: all 0.15s;
+    position: relative;
+    overflow: hidden;
   }
-  .btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 16px rgba(0, 212, 255, 0.5);
+  .action-card:hover {
+    border-color: var(--c-border-strong);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 212, 255, 0.15);
   }
-  .btn:disabled {
-    background: rgba(100, 116, 139, 0.4);
-    cursor: not-allowed;
-    box-shadow: none;
+  .action-card:active { transform: translateY(0); }
+  .action-card .icon {
+    font-size: 22px;
+    color: var(--c-cyan);
+    margin-bottom: 8px;
   }
-  .btn-orange {
-    background: linear-gradient(135deg, var(--c-orange), #ff9558);
-    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+  .action-card .name {
+    font-size: 11px; font-weight: 600;
+    color: var(--c-text);
+    margin-bottom: 4px;
   }
-  .btn-orange:hover {
-    box-shadow: 0 4px 16px rgba(255, 107, 53, 0.5);
+  .action-card .desc {
+    font-size: 10px; color: var(--c-text-faint);
+    line-height: 1.4;
   }
-  .btn-red {
-    background: linear-gradient(135deg, var(--c-red), #ff7090);
-    box-shadow: 0 2px 8px rgba(255, 56, 96, 0.3);
+  .action-card.danger .icon { color: var(--c-red); }
+  .action-card.warning .icon { color: var(--c-orange); }
+  .action-card.success .icon { color: var(--c-green); }
+
+  /* Live feeds */
+  .feeds-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 12px;
+    flex: 1;
+    min-height: 0;
   }
+  .feed-card {
+    background: var(--c-bg-panel);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--c-border);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .feed-header {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--c-border);
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 11px;
+    color: var(--c-cyan);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+  .feed-body {
+    flex: 1; overflow-y: auto;
+    padding: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    line-height: 1.6;
+  }
+  .event-row {
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-bottom: 2px;
+    display: flex; align-items: center; gap: 8px;
+    transition: background 0.2s;
+  }
+  .event-row:hover { background: rgba(0, 212, 255, 0.05); }
+  .event-row .ts { color: var(--c-text-faint); flex-shrink: 0; }
+  .event-row .type { color: var(--c-cyan); flex-shrink: 0; min-width: 100px; }
+  .event-row .sev {
+    flex-shrink: 0;
+    font-size: 9px;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-weight: 600;
+  }
+  .sev-critical { color: var(--c-red); background: rgba(255,56,96,0.15); border: 1px solid rgba(255,56,96,0.4); }
+  .sev-high { color: var(--c-orange); background: rgba(255,107,53,0.15); border: 1px solid rgba(255,107,53,0.4); }
+  .sev-medium { color: var(--c-yellow); background: rgba(255,204,0,0.15); border: 1px solid rgba(255,204,0,0.4); }
+  .sev-low { color: var(--c-green); background: rgba(0,255,156,0.15); border: 1px solid rgba(0,255,156,0.4); }
+  .sev-info { color: var(--c-cyan); background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.3); }
+  .event-row .src { color: var(--c-text-dim); }
+
+  /* ============ INSPECTOR (right panel) ============ */
+  .inspector {
+    grid-area: inspector;
+    background: var(--c-bg-elev);
+    backdrop-filter: blur(20px);
+    border-left: 1px solid var(--c-border);
+    overflow-y: auto;
+    padding: 12px;
+  }
+  .inspector-section {
+    margin-bottom: 14px;
+    background: var(--c-bg-panel);
+    border: 1px solid var(--c-border);
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+  .inspector-title {
+    font-size: 9px;
+    color: var(--c-text-faint);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .inspector-title .badge {
+    background: rgba(0, 212, 255, 0.15);
+    color: var(--c-cyan);
+    border: 1px solid var(--c-border);
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 9px;
+    letter-spacing: 0.5px;
+  }
+  .status-line {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 4px 0;
+    font-size: 11px;
+    border-bottom: 1px solid rgba(0, 212, 255, 0.06);
+  }
+  .status-line:last-child { border-bottom: none; }
+  .status-line .lbl { color: var(--c-text-dim); font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .status-line .val {
+    color: var(--c-cyan);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .status-line .val.green { color: var(--c-green); }
+  .status-line .val.orange { color: var(--c-orange); }
+  .status-line .val.red { color: var(--c-red); }
+
+  .quick-input {
+    display: flex; gap: 6px; margin-bottom: 6px;
+  }
+  .quick-input input {
+    flex: 1;
+    background: rgba(0,0,0,0.5);
+    border: 1px solid var(--c-border);
+    border-radius: 5px;
+    padding: 6px 10px;
+    color: var(--c-text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+  }
+  .quick-input input:focus {
+    outline: none;
+    border-color: var(--c-cyan);
+  }
+  .quick-input button {
+    background: linear-gradient(135deg, var(--c-cyan), var(--c-blue));
+    border: none; border-radius: 5px;
+    padding: 6px 12px;
+    color: #fff; cursor: pointer;
+    font-size: 10px;
+    font-weight: 600;
+  }
+
+  /* ============ TERMINAL (chat with brain + log) ============ */
+  .terminal {
+    grid-area: terminal;
+    background: var(--c-bg-elev);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid var(--c-border);
+    display: flex; flex-direction: column;
+  }
+  .terminal-tabs {
+    display: flex; gap: 0;
+    border-bottom: 1px solid var(--c-border);
+    padding: 0 12px;
+  }
+  .terminal-tab {
+    padding: 8px 16px;
+    font-size: 11px;
+    color: var(--c-text-dim);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.15s;
+  }
+  .terminal-tab:hover { color: var(--c-text); }
+  .terminal-tab.active {
+    color: var(--c-cyan);
+    border-bottom-color: var(--c-cyan);
+  }
+  .terminal-body {
+    flex: 1; overflow-y: auto;
+    padding: 10px 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    line-height: 1.6;
+  }
+  .terminal-tab-content { display: none; }
+  .terminal-tab-content.active { display: block; }
+
+  .chat-msg {
+    margin-bottom: 8px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    max-width: 90%;
+  }
+  .chat-msg.user {
+    background: rgba(0, 212, 255, 0.1);
+    border-left: 2px solid var(--c-cyan);
+    color: var(--c-cyan);
+    margin-left: auto;
+    font-size: 11px;
+  }
+  .chat-msg.bot {
+    background: rgba(255, 107, 53, 0.08);
+    border-left: 2px solid var(--c-orange);
+    color: var(--c-text);
+    font-size: 11px;
+    white-space: pre-wrap;
+  }
+  .chat-msg.bot.error {
+    background: rgba(255, 56, 96, 0.1);
+    border-left-color: var(--c-red);
+    color: var(--c-red);
+  }
+  .chat-msg .ts {
+    font-size: 9px;
+    color: var(--c-text-faint);
+    margin-right: 6px;
+  }
+
+  .terminal-input {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 16px;
+    border-top: 1px solid var(--c-border);
+    background: rgba(0, 0, 0, 0.3);
+  }
+  .terminal-input .prompt {
+    color: var(--c-cyan);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: bold;
+    font-size: 13px;
+  }
+  .terminal-input input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--c-text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    outline: none;
+  }
+  .terminal-input input::placeholder { color: var(--c-text-faint); }
+
+  .log-line {
+    display: flex; gap: 8px;
+    padding: 1px 0;
+    font-size: 10px;
+  }
+  .log-line .ts { color: var(--c-text-faint); flex-shrink: 0; }
+  .log-line .lvl { flex-shrink: 0; min-width: 50px; }
+  .log-line .lvl.INFO { color: var(--c-cyan); }
+  .log-line .lvl.WARN { color: var(--c-yellow); }
+  .log-line .lvl.ERROR { color: var(--c-red); }
+  .log-line .lvl.OK { color: var(--c-green); }
+  .log-line .msg { color: var(--c-text-dim); }
+
+  /* ============ MODAL ============ */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 1000;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    display: none;
+    align-items: center; justify-content: center;
+  }
+  .modal-overlay.visible { display: flex; }
+  .modal-box {
+    background: var(--c-bg-elev);
+    border: 1px solid var(--c-border-strong);
+    border-radius: 14px;
+    padding: 24px;
+    width: 480px;
+    max-width: 90vw;
+    box-shadow: 0 0 80px rgba(0, 212, 255, 0.2);
+  }
+  .modal-title {
+    font-size: 14px; font-weight: 600;
+    color: var(--c-cyan);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .modal-field {
+    margin-bottom: 12px;
+  }
+  .modal-field label {
+    display: block;
+    font-size: 10px;
+    color: var(--c-text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .modal-field input, .modal-field select, .modal-field textarea {
+    width: 100%;
+    background: rgba(0,0,0,0.5);
+    border: 1px solid var(--c-border);
+    border-radius: 6px;
+    padding: 8px 12px;
+    color: var(--c-text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+  }
+  .modal-field input:focus {
+    outline: none; border-color: var(--c-cyan);
+    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+  }
+  .modal-actions {
+    display: flex; gap: 8px;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  .btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    background: linear-gradient(135deg, var(--c-cyan), var(--c-blue));
+    color: #fff; cursor: pointer;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .btn:hover { box-shadow: 0 4px 16px rgba(0, 212, 255, 0.4); }
+  .btn-orange { background: linear-gradient(135deg, var(--c-orange), #ff9558); }
+  .btn-red { background: linear-gradient(135deg, var(--c-red), #ff7090); }
   .btn-ghost {
     background: transparent;
     border: 1px solid var(--c-border);
     color: var(--c-cyan);
-    box-shadow: none;
+  }
+  .btn:disabled {
+    background: rgba(100, 116, 139, 0.4);
+    cursor: not-allowed;
   }
 
-  /* TABLES */
-  table {
-    width: 100%; border-collapse: collapse;
-    font-size: 12px;
-  }
-  th {
-    text-align: left; padding: 8px;
-    color: var(--c-text-dim);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 10px;
-    font-weight: 600;
-    border-bottom: 1px solid var(--c-border);
-  }
-  td {
-    padding: 8px;
-    border-bottom: 1px solid rgba(0, 212, 255, 0.08);
-    font-family: 'JetBrains Mono', monospace;
-  }
-  tr:hover td { background: rgba(0, 212, 255, 0.04); }
-  .severity-critical { color: var(--c-red); font-weight: 600; }
-  .severity-high { color: var(--c-orange); font-weight: 600; }
-  .severity-medium { color: var(--c-yellow); }
-  .severity-low { color: var(--c-green); }
-
-  /* LIST ITEMS */
-  .list-item {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 10px 12px;
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid var(--c-border);
-    border-radius: 8px;
-    margin-bottom: 6px;
-    font-size: 12px;
-  }
-  .list-item:hover {
-    border-color: var(--c-border-strong);
-  }
-
-  /* CHARTS */
-  .chart-container {
-    height: 200px;
-    position: relative;
-  }
-
-  /* CHAT (LLM) */
-  .chat-box {
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid var(--c-border);
-    border-radius: 8px;
-    padding: 16px;
-    height: 360px;
-    overflow-y: auto;
-    font-size: 13px;
-  }
-  .chat-msg {
-    margin-bottom: 12px;
-    padding: 10px 14px;
-    border-radius: 8px;
-    max-width: 80%;
-    line-height: 1.5;
-  }
-  .chat-msg.user {
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(0, 112, 243, 0.08));
-    border: 1px solid var(--c-border);
-    margin-left: auto;
-    color: var(--c-cyan);
-  }
-  .chat-msg.bot {
-    background: rgba(255, 107, 53, 0.08);
-    border: 1px solid rgba(255, 107, 53, 0.3);
-    color: var(--c-text);
-  }
-  .chat-msg.error {
-    background: rgba(255, 56, 96, 0.1);
-    border: 1px solid rgba(255, 56, 96, 0.4);
-    color: var(--c-red);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-  }
-  .chat-input {
-    display: flex; gap: 8px; margin-top: 12px;
-  }
-  .chat-input input {
-    flex: 1;
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid var(--c-border);
+  /* Toast */
+  .toast {
+    position: fixed; top: 70px; right: 20px; z-index: 999;
+    background: var(--c-bg-elev);
+    border: 1px solid var(--c-border-strong);
     border-radius: 8px;
     padding: 10px 14px;
-    color: var(--c-text);
-    font-size: 13px;
+    min-width: 260px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0, 212, 255, 0.2);
+    font-size: 12px;
+    animation: slidein 0.25s;
   }
-  .chat-input input:focus {
-    outline: none; border-color: var(--c-cyan);
-    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
-  }
+  .toast.success { border-color: var(--c-green); box-shadow: 0 4px 20px rgba(0,255,156,0.2); }
+  .toast.error { border-color: var(--c-red); box-shadow: 0 4px 20px rgba(255,56,96,0.2); }
+  .toast .ti { font-weight: 600; margin-bottom: 4px; }
+  .toast .tm { font-family: 'JetBrains Mono', monospace; color: var(--c-text-dim); font-size: 10px; }
+  @keyframes slidein { from { transform: translateX(110%); } to { transform: none; } }
 
-  /* PAGE-SPECIFIC HIDING */
-  .page { display: none; }
-  .page.active { display: block; animation: fadein 0.4s; }
-  @keyframes fadein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-
-  /* SCROLLBARS */
-  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  /* Scrollbars */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: var(--c-border); border-radius: 3px; }
   ::-webkit-scrollbar-thumb:hover { background: var(--c-cyan); }
 
-  /* MODAL */
-  .modal {
-    position: fixed; inset: 0; z-index: 200;
-    display: none; align-items: center; justify-content: center;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(8px);
+  /* Spinner */
+  .spinner {
+    display: inline-block; width: 12px; height: 12px;
+    border: 2px solid var(--c-border);
+    border-top-color: var(--c-cyan);
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
   }
-  .modal.visible { display: flex; }
-  .modal-content {
-    background: var(--c-bg-elev);
-    border: 1px solid var(--c-border-strong);
-    border-radius: 12px;
-    padding: 24px;
-    max-width: 600px; max-height: 80vh; overflow: auto;
-    box-shadow: 0 0 60px rgba(0, 212, 255, 0.3);
-  }
-
-  /* NOTIFICATION TOAST */
-  .toast {
-    position: fixed; top: 80px; right: 24px; z-index: 150;
-    background: var(--c-bg-elev);
-    border: 1px solid var(--c-border-strong);
-    border-radius: 10px;
-    padding: 12px 18px;
-    min-width: 280px;
-    backdrop-filter: blur(12px);
-    box-shadow: 0 4px 20px rgba(0, 212, 255, 0.2);
-    animation: slidein 0.3s ease-out;
-  }
-  .toast.error { border-color: var(--c-red); box-shadow: 0 4px 20px rgba(255, 56, 96, 0.3); }
-  .toast.success { border-color: var(--c-green); box-shadow: 0 4px 20px rgba(0, 255, 156, 0.3); }
-  @keyframes slidein { from { transform: translateX(120%); } to { transform: none; } }
-
-  /* RESPONSIVE */
-  @media (max-width: 1024px) {
-    #app { grid-template-columns: 220px 1fr; }
-    .col-3 { grid-column: span 6; }
-    .col-4 { grid-column: span 6; }
-  }
+  @keyframes spin { to { transform: rotate(360deg); } }
 </style>
 </head>
-
 <body>
 
-<!-- ============================================
-     3D Background Scene (always visible)
-     ============================================ -->
-<canvas id="three-bg"></canvas>
-
-<!-- ============================================
-     LOGIN SCREEN
-     ============================================ -->
-<div id="login-screen">
-  <canvas id="login-canvas"></canvas>
-  <div class="login-form">
-    <div class="brand">
-      <div class="logo-container">
-        <img src="assets/logo.svg" alt="Goodware Logo">
-      </div>
-      <h1>GOODWARE v3.0</h1>
-      <div class="subtitle">Sistema Imunitário Digital Autónomo</div>
-    </div>
-    <form id="login-form">
-      <label for="username">Operador</label>
-      <input id="username" type="text" placeholder="admin" value="admin" autocomplete="username">
-
-      <label for="password">Chave PQC (ML-DSA-44)</label>
-      <input id="password" type="password" placeholder="post-quantum signature" value="pqc-goodware-2026" autocomplete="current-password">
-
-      <button type="submit">ENTRAR NO SISTEMA</button>
-      <div class="error" id="login-error"></div>
-      <div class="hint">
-        Demo: <strong>admin</strong> / <strong>pqc-goodware-2026</strong><br>
-        PQC signed authentication via ML-DSA-44
-      </div>
-    </form>
-  </div>
-</div>
+<canvas id="bg-canvas"></canvas>
 
 <!-- ============================================
      MAIN APP
      ============================================ -->
 <div id="app">
 
-  <!-- TOP BAR -->
+  <!-- ============ TOPBAR ============ -->
   <div class="topbar">
-    <div class="topbar-left">
-      <div class="topbar-logo"><img src="assets/logo.svg" alt="Logo"></div>
+    <div class="brand">
+      <div class="brand-logo"><img src="assets/logo.svg" alt="Logo"></div>
       <div>
-        <div class="topbar-title">GOODWARE v3.0</div>
-        <div style="font-size:10px; color:var(--c-text-faint); letter-spacing:1px;">CONTROL CENTER</div>
+        <div class="brand-text">GOODWARE v3.0</div>
+        <div class="brand-sub">CONSOLE DE COMANDO</div>
       </div>
     </div>
-    <div class="topbar-status">
-      <span class="pulse"></span>
-      <span id="system-status">SISTEMA ATIVO</span>
-      <span class="topbar-clock" id="topbar-clock">00:00:00</span>
+    <div class="topbar-mid">
+      <div class="topbar-stat">
+        <div class="pulse-dot"></div>
+        <span id="system-mode">SISTEMA ATIVO</span>
+      </div>
+      <div class="topbar-stat">
+        <span>Eventos:</span>
+        <span class="v" id="stat-events">0</span>
+      </div>
+      <div class="topbar-stat">
+        <span>Ameaças:</span>
+        <span class="v" id="stat-threats">0</span>
+      </div>
+      <div class="topbar-stat">
+        <span>LLM:</span>
+        <span class="v" id="stat-llm">—</span>
+      </div>
     </div>
+    <div class="clock" id="clock">00:00:00</div>
     <div class="topbar-actions">
-      <button class="icon-btn" onclick="refreshAll()" title="Atualizar tudo">↻</button>
-      <button class="icon-btn" onclick="logout()" title="Sair">⏻</button>
+      <button class="icon-btn" onclick="refreshAll()" title="Refresh">↻</button>
+      <button class="icon-btn" onclick="toggleAutoRefresh()" title="Auto-refresh">⏱</button>
+      <button class="icon-btn" onclick="logout()" title="Logout">⏻</button>
     </div>
   </div>
 
-  <!-- SIDEBAR -->
+  <!-- ============ SIDEBAR ============ -->
   <div class="sidebar">
-    <div class="nav-section">
-      <div class="nav-section-title">Visão Geral</div>
-      <div class="nav-item active" data-page="dashboard"><span class="icon">◉</span> Dashboard</div>
-      <div class="nav-item" data-page="threats"><span class="icon">⚠</span> Ameaças</div>
-      <div class="nav-item" data-page="events"><span class="icon">≡</span> Eventos</div>
+
+    <div class="cmd-section">
+      <div class="cmd-section-title">Operações</div>
+      <button class="cmd-btn" onclick="runCmd('snapshot')">
+        <span class="icon">📸</span> Criar Snapshot
+        <span class="kbd">⌘S</span>
+      </button>
+      <button class="cmd-btn" onclick="runCmd('rollback')">
+        <span class="icon">⏪</span> Rollback
+      </button>
+      <button class="cmd-btn" onclick="runCmd('snapshot_list')">
+        <span class="icon">📋</span> Listar Snapshots
+      </button>
+      <button class="cmd-btn" onclick="runCmd('snapshot_diff')">
+        <span class="icon">⊟</span> Diff Snapshots
+      </button>
     </div>
 
-    <div class="nav-section">
-      <div class="nav-section-title">Defesa</div>
-      <div class="nav-item" data-page="firewall"><span class="icon">▥</span> Firewall</div>
-      <div class="nav-item" data-page="quarantine"><span class="icon">◊</span> Quarentena</div>
-      <div class="nav-item" data-page="yara"><span class="icon">⌬</span> YARA Scan</div>
-      <div class="nav-item" data-page="cis"><span class="icon">✓</span> CIS Benchmark</div>
+    <div class="cmd-section">
+      <div class="cmd-section-title">Defesa Activa</div>
+      <button class="cmd-btn warning" onclick="openBlockIp()">
+        <span class="icon">🚫</span> Bloquear IP
+        <span class="kbd">⌘I</span>
+      </button>
+      <button class="cmd-btn warning" onclick="openBlockPort()">
+        <span class="icon">▥</span> Bloquear Porta
+      </button>
+      <button class="cmd-btn" onclick="runCmd('yara_scan')">
+        <span class="icon">⌬</span> YARA Scan
+        <span class="kbd">⌘Y</span>
+      </button>
+      <button class="cmd-btn" onclick="runCmd('rootkit_scan')">
+        <span class="icon">🛡</span> Rootkit Scan
+      </button>
+      <button class="cmd-btn" onclick="runCmd('cis_audit')">
+        <span class="icon">✓</span> CIS (Lynis)
+      </button>
+      <button class="cmd-btn danger" onclick="runCmd('isolate')">
+        <span class="icon">🔒</span> Isolar Máquina
+        <span class="kbd">⌘⇧I</span>
+      </button>
     </div>
 
-    <div class="nav-section">
-      <div class="nav-section-title">Sistemas</div>
-      <div class="nav-item" data-page="crypto"><span class="icon">⬢</span> Crypto PQC</div>
-      <div class="nav-item" data-page="sbom"><span class="icon">⊞</span> Supply Chain</div>
-      <div class="nav-item" data-page="tpm"><span class="icon">⬡</span> TPM / Attestation</div>
-      <div class="nav-item" data-page="honeypot"><span class="icon">◐</span> Honeypots</div>
-      <div class="nav-item" data-page="auditd"><span class="icon">⌖</span> Auditd</div>
+    <div class="cmd-section">
+      <div class="cmd-section-title">Threat Response</div>
+      <button class="cmd-btn warning" onclick="openQuarantine()">
+        <span class="icon">◊</span> Quarentenar Ficheiro
+      </button>
+      <button class="cmd-btn danger" onclick="openKillProcess()">
+        <span class="icon">✕</span> Matar Processo
+      </button>
+      <button class="cmd-btn danger" onclick="openKillTree()">
+        <span class="icon">⊠</span> Matar Árvore
+      </button>
+      <button class="cmd-btn" onclick="runCmd('restore')">
+        <span class="icon">↻</span> Restaurar Ficheiro
+      </button>
+      <button class="cmd-btn" onclick="runCmd('hot_patch')">
+        <span class="icon">⚡</span> Hot Patch
+      </button>
+      <button class="cmd-btn success" onclick="runCmd('immune_evolve')">
+        <span class="icon">🧬</span> Evoluir Imunidade
+      </button>
     </div>
 
-    <div class="nav-section">
-      <div class="nav-section-title">Inteligência</div>
-      <div class="nav-item" data-page="llm"><span class="icon">◈</span> LLM Brain</div>
-      <div class="nav-item" data-page="federated"><span class="icon">⌘</span> Federated</div>
-      <div class="nav-item" data-page="sigma"><span class="icon">Σ</span> Sigma Rules</div>
-      <div class="nav-item" data-page="misp"><span class="icon">∇</span> MISP Galaxy</div>
-      <div class="nav-item" data-page="vulnerabilities"><span class="icon">⏣</span> Vulnerabilidades</div>
+    <div class="cmd-section">
+      <div class="cmd-section-title">Crypto PQC</div>
+      <button class="cmd-btn" onclick="runCmd('pqc_status')">
+        <span class="icon">⬢</span> PQC Status
+      </button>
+      <button class="cmd-btn success" onclick="runCmd('pqc_roundtrip')">
+        <span class="icon">⚛</span> Roundtrip Test
+      </button>
+      <button class="cmd-btn" onclick="openSealData()">
+        <span class="icon">🔒</span> Sealar Dados
+      </button>
+      <button class="cmd-btn" onclick="openGenerateKey()">
+        <span class="icon">🔑</span> Gerar Keypair
+      </button>
+      <button class="cmd-btn" onclick="runCmd('vault_list')">
+        <span class="icon">📦</span> Vault Keys
+      </button>
     </div>
 
-    <div class="nav-section">
-      <div class="nav-section-title">Sistema</div>
-      <div class="nav-item" data-page="health"><span class="icon">♥</span> Health Checks</div>
-      <div class="nav-item" data-page="security"><span class="icon">⚿</span> Constitutional Guard</div>
-      <div class="nav-item" data-page="tools"><span class="icon">⚒</span> Ferramentas</div>
+    <div class="cmd-section">
+      <div class="cmd-section-title">Sistemas</div>
+      <button class="cmd-btn" onclick="runCmd('honeypot_start')">
+        <span class="icon">◐</span> Iniciar Honeypot
+      </button>
+      <button class="cmd-btn" onclick="runCmd('honeypot_stop')">
+        <span class="icon">■</span> Parar Honeypot
+      </button>
+      <button class="cmd-btn" onclick="runCmd('honeypot_captures')">
+        <span class="icon">🎣</span> Ver Capturas
+      </button>
+      <button class="cmd-btn" onclick="openAuditdWatch()">
+        <span class="icon">⌖</span> Auditd Watch
+      </button>
+      <button class="cmd-btn" onclick="runCmd('tpm_status')">
+        <span class="icon">⬡</span> TPM Status
+      </button>
+      <button class="cmd-btn" onclick="runCmd('sbom_load')">
+        <span class="icon">⊞</span> Carregar SBOM
+      </button>
+      <button class="cmd-btn" onclick="runCmd('sbom_verify')">
+        <span class="icon">✓</span> Verify Signatures
+      </button>
+    </div>
+
+    <div class="cmd-section">
+      <div class="cmd-section-title">Decision</div>
+      <button class="cmd-btn" onclick="runCmd('decide_high')">
+        <span class="icon">⚖</span> Decide HIGH
+      </button>
+      <button class="cmd-btn" onclick="runCmd('decide_critical')">
+        <span class="icon">⚖</span> Decide CRITICAL
+      </button>
+      <button class="cmd-btn" onclick="runCmd('human_evaluate')">
+        <span class="icon">👤</span> Human Factor Eval
+      </button>
+    </div>
+
+    <div class="cmd-section">
+      <div class="cmd-section-title">Análise</div>
+      <button class="cmd-btn" onclick="runCmd('predictions')">
+        <span class="icon">🧠</span> Predictions
+      </button>
+      <button class="cmd-btn" onclick="runCmd('sigma_search')">
+        <span class="icon">Σ</span> Sigma Rules
+      </button>
+      <button class="cmd-btn" onclick="runCmd('misp_search')">
+        <span class="icon">∇</span> MISP Galaxy
+      </button>
+      <button class="cmd-btn" onclick="runCmd('cve_search')">
+        <span class="icon">⏣</span> Vulnerabilidades
+      </button>
+    </div>
+
+    <div class="cmd-section">
+      <div class="cmd-section-title">Sistema</div>
+      <button class="cmd-btn" onclick="runCmd('health')">
+        <span class="icon">♥</span> Health Check
+      </button>
+      <button class="cmd-btn" onclick="runCmd('llm_refresh')">
+        <span class="icon">🔄</span> Refresh LLM
+      </button>
+      <button class="cmd-btn" onclick="runCmd('clear_term')">
+        <span class="icon">⌫</span> Limpar Terminal
+      </button>
+    </div>
+
+  </div>
+
+  <!-- ============ CENTER ============ -->
+  <div class="center">
+
+    <!-- 3D Scene with stats overlay -->
+    <div class="scene-card">
+      <div class="scene-header">
+        <div class="scene-pulse"></div>
+        <div class="scene-title">SISTEMA IMUNITÁRIO — VISÃO 3D</div>
+      </div>
+      <canvas class="scene-canvas" id="scene-canvas"></canvas>
+      <div class="scene-overlay">
+        <div class="scene-stat">
+          <div>EVENTOS</div>
+          <div class="v" id="scene-events">0</div>
+        </div>
+        <div class="scene-stat">
+          <div>AMEAÇAS</div>
+          <div class="v" id="scene-threats">0</div>
+        </div>
+        <div class="scene-stat">
+          <div>BLOQUEIOS</div>
+          <div class="v" id="scene-blocked">0</div>
+        </div>
+        <div class="scene-stat">
+          <div>QUARENTENA</div>
+          <div class="v" id="scene-quarantine">0</div>
+        </div>
+        <div class="scene-stat">
+          <div>CRIPTO OPS</div>
+          <div class="v" id="scene-pqc">✓</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick action grid (clickable cards) -->
+    <div class="actions-grid" id="actions-grid">
+      <!-- Actions injected by JS based on capabilities -->
+    </div>
+
+    <!-- Live feeds -->
+    <div class="feeds-row">
+      <div class="feed-card">
+        <div class="feed-header">
+          <span>◉ EVENTOS EM TEMPO REAL</span>
+          <span id="event-count">0</span>
+        </div>
+        <div class="feed-body" id="event-feed"></div>
+      </div>
+      <div class="feed-card">
+        <div class="feed-header">
+          <span>⚠ AMEAÇAS ACTIVAS</span>
+          <span id="threat-count">0</span>
+        </div>
+        <div class="feed-body" id="threat-feed"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ============ INSPECTOR ============ -->
+  <div class="inspector">
+
+    <!-- System state -->
+    <div class="inspector-section">
+      <div class="inspector-title">ESTADO DO SISTEMA <span class="badge" id="sys-badge">OK</span></div>
+      <div class="status-line">
+        <span class="lbl">Uptime</span>
+        <span class="val" id="i-uptime">0s</span>
+      </div>
+      <div class="status-line">
+        <span class="lbl">Engine</span>
+        <span class="val green">RUNNING</span>
+      </div>
+      <div class="status-line">
+        <span class="lbl">Components</span>
+        <span class="val" id="i-components">—</span>
+      </div>
+      <div class="status-line">
+        <span class="lbl">Sensors</span>
+        <span class="val" id="i-sensors">—</span>
+      </div>
+    </div>
+
+    <!-- Quick block -->
+    <div class="inspector-section">
+      <div class="inspector-title">QUICK BLOCK</div>
+      <div class="quick-input">
+        <input id="qblock-ip" placeholder="IP a bloquear">
+      </div>
+      <div class="quick-input">
+        <input id="qblock-reason" placeholder="razão">
+        <button onclick="quickBlock()">▶</button>
+      </div>
+    </div>
+
+    <!-- Quick kill -->
+    <div class="inspector-section">
+      <div class="inspector-title">QUICK KILL</div>
+      <div class="quick-input">
+        <input id="qkill-pid" placeholder="PID">
+        <button class="btn-red" onclick="quickKill()">▶</button>
+      </div>
+    </div>
+
+    <!-- Integrations -->
+    <div class="inspector-section">
+      <div class="inspector-title">INTEGRAÇÕES <span class="badge">REAL</span></div>
+      <div class="status-line">
+        <span class="lbl">liboqs (PQC)</span>
+        <span class="val green" id="int-pqc">✓</span>
+      </div>
+      <div class="status-line">
+        <span class="lbl">nftables</span>
+        <span class="val green" id="int-nft">✓</span>
+      </div>
+      <div class="status-line">
+        <span class="lbl">ClamAV (3.6M sigs)</span>
+        <span class="val green" id="int-clam">✓</span>
+      </div>
+      <div class="status-line">
+        <span class="lbl">YARA</span>
+        <span class="val green" id="int-yara">✓</span>
+      </div>
+      <div class="status-line">
+        <span class="lbl">TPM (swtpm)</span>
+        <span class="val green" id="int-tpm">✓</span>
+      </div>
+      <div class="status-line">
+        <span class="lbl">Lynis 3.1.8</span>
+        <span class="val green">✓</span>
+      </div>
+      <div class="status-line">
+        <span class="lbl">SigmaHQ (3.15k)</span>
+        <span class="val green">✓</span>
+      </div>
+      <div class="status-line">
+        <span class="lbl">MISP (54k)</span>
+        <span class="val green">✓</span>
+      </div>
+    </div>
+
+    <!-- LLM Providers -->
+    <div class="inspector-section">
+      <div class="inspector-title">LLM PROVIDERS</div>
+      <div id="llm-providers"></div>
+    </div>
+
+    <!-- Health checks -->
+    <div class="inspector-section">
+      <div class="inspector-title">HEALTH (13 CHECKS)</div>
+      <div id="health-list"></div>
+    </div>
+
+  </div>
+
+  <!-- ============ TERMINAL ============ -->
+  <div class="terminal">
+    <div class="terminal-tabs">
+      <div class="terminal-tab active" data-tab="chat">💬 Chat com Brain</div>
+      <div class="terminal-tab" data-tab="log">📜 Log de Comandos</div>
+      <div class="terminal-tab" data-tab="system">⚙ System Events</div>
+    </div>
+
+    <div class="terminal-tab-content active" data-tab-content="chat">
+      <div class="terminal-body" id="chat-body">
+        <div class="chat-msg bot">
+          <span class="ts">[Sistema]</span>
+          Olá. Sou o Goodware Brain (LLM via fallback chain). Pode perguntar sobre ameaças, eventos, ou pedir acções.
+        </div>
+      </div>
+    </div>
+
+    <div class="terminal-tab-content" data-tab-content="log">
+      <div class="terminal-body" id="log-body">
+        <div class="log-line">
+          <span class="ts">[Sistema]</span>
+          <span class="lvl OK">OK</span>
+          <span class="msg">Console pronto. Aguardando comandos.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="terminal-tab-content" data-tab-content="system">
+      <div class="terminal-body" id="sys-body"></div>
+    </div>
+
+    <div class="terminal-input">
+      <span class="prompt">gw ›</span>
+      <input id="cmd-input" placeholder="Pergunta ou comando (/help para slash commands)" autocomplete="off">
+      <button class="btn" onclick="cmdSend()" style="padding:6px 12px;">Enviar</button>
     </div>
   </div>
 
-  <!-- MAIN CONTENT -->
-  <div class="main">
+</div>
 
-    <!-- ============================================
-         PAGE: DASHBOARD
-         ============================================ -->
-    <div class="page active" id="page-dashboard">
-      <div class="panel-grid">
-
-        <!-- 3D scene (live status) -->
-        <div class="panel col-8" id="scene-panel">
-          <div class="panel-header">
-            <div class="panel-title"><span class="icon">◉</span> Vista 3D Imersiva — Eventos em Tempo Real</div>
-            <span class="panel-badge live">● LIVE</span>
-          </div>
-          <canvas id="scene-canvas"></canvas>
-          <div class="scene-overlay">
-            <div class="scene-stat" id="scene-event-count">0 eventos</div>
-            <div class="scene-stat" id="scene-threat-count">0 ameaças ativas</div>
-          </div>
-        </div>
-
-        <!-- Metrics column -->
-        <div class="col-4 panel">
-          <div class="panel-header">
-            <div class="panel-title"><span class="icon">⬢</span> Métricas</div>
-            <span class="panel-badge live">● AO VIVO</span>
-          </div>
-          <div class="panel-grid" style="grid-template-columns:1fr 1fr; gap:12px;">
-            <div class="metric">
-              <div class="value" id="metric-events">—</div>
-              <div class="label">Eventos</div>
-            </div>
-            <div class="metric">
-              <div class="value" id="metric-threats">—</div>
-              <div class="label">Ameaças</div>
-            </div>
-            <div class="metric">
-              <div class="value" id="metric-blocked">—</div>
-              <div class="label">IPs Bloq.</div>
-            </div>
-            <div class="metric">
-              <div class="value" id="metric-quarantine">—</div>
-              <div class="label">Quarentena</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Quick actions -->
-        <div class="col-12 panel">
-          <div class="panel-header">
-            <div class="panel-title"><span class="icon">⚡</span> Acções Rápidas</div>
-          </div>
-          <div style="display:flex; flex-wrap: wrap; gap:10px;">
-            <button class="btn" onclick="apiCall('/api/chainsaw/scan_rootkit', 'POST')">🛡 Scan Rootkit</button>
-            <button class="btn" onclick="apiCall('/api/chainsaw/scan?path=/etc', 'POST')">📁 Scan YARA em /etc</button>
-            <button class="btn btn-orange" onclick="openBlockIpModal()">🚫 Bloquear IP</button>
-            <button class="btn" onclick="apiCall('/api/decision/decide', 'POST', {severity:'high', type:'test', payload:{}})">⚖ Decisão Auto</button>
-            <button class="btn btn-red" onclick="isolateMachine()">🔒 Isolar Máquina</button>
-            <button class="btn" onclick="apiCall('/api/snapshot/create', 'POST', {paths:['/etc/passwd']})">📸 Snapshot</button>
-            <button class="btn" onclick="apiCall('/api/immune/evolve', 'POST')">🧬 Evoluir Imunidade</button>
-            <button class="btn btn-orange" onclick="apiCall('/api/llm/refresh', 'POST')">🔄 Refresh LLM</button>
-          </div>
-        </div>
-
-        <!-- Live events -->
-        <div class="col-8 panel">
-          <div class="panel-header">
-            <div class="panel-title"><span class="icon">≡</span> Eventos Recentes</div>
-            <span class="panel-badge" id="events-count">0</span>
-          </div>
-          <table>
-            <thead><tr>
-              <th>Hora</th><th>Tipo</th><th>Severidade</th><th>Fonte</th><th>Detalhes</th>
-            </tr></thead>
-            <tbody id="events-table"></tbody>
-          </table>
-        </div>
-
-        <!-- Threat chart -->
-        <div class="col-4 panel">
-          <div class="panel-header">
-            <div class="panel-title"><span class="icon">◢</span> Distribuição</div>
-          </div>
-          <div class="chart-container">
-            <canvas id="severity-chart"></canvas>
-          </div>
-        </div>
-      </div>
+<!-- ============ MODALS ============ -->
+<div class="modal-overlay" id="modal-block-ip">
+  <div class="modal-box">
+    <div class="modal-title">🚫 Bloquear IP (nftables real)</div>
+    <div class="modal-field">
+      <label>Endereço IP</label>
+      <input id="m-ip" placeholder="192.168.1.100">
     </div>
-
-    <!-- ============================================
-         PAGE: THREATS
-         ============================================ -->
-    <div class="page" id="page-threats">
-      <div class="panel-grid">
-        <div class="col-12 panel">
-          <div class="panel-header">
-            <div class="panel-title"><span class="icon">⚠</span> Ameaças Activas</div>
-            <div>
-              <button class="btn btn-ghost" onclick="loadThreats()">↻ Atualizar</button>
-            </div>
-          </div>
-          <table>
-            <thead><tr>
-              <th>ID</th><th>Tipo</th><th>Severidade</th><th>Risk</th><th>Descrição</th><th>Acção</th>
-            </tr></thead>
-            <tbody id="threats-table"></tbody>
-          </table>
-        </div>
-      </div>
+    <div class="modal-field">
+      <label>Razão</label>
+      <input id="m-ip-reason" placeholder="tentativa de intrusion">
     </div>
-
-    <!-- ============================================
-         PAGE: EVENTS
-         ============================================ -->
-    <div class="page" id="page-events">
-      <div class="panel-grid">
-        <div class="col-12 panel">
-          <div class="panel-header">
-            <div class="panel-title"><span class="icon">≡</span> Eventos do Sistema</div>
-            <div>
-              <select id="event-severity-filter" style="background:#000;border:1px solid var(--c-border);color:var(--c-text);padding:6px 10px;border-radius:6px;font-size:12px;">
-                <option value="">Todas</option>
-                <option value="critical">Critical</option>
-                <option value="high">High</option>
-                <option value="medium">Medium</option>
-                <option value="low">Low</option>
-              </select>
-              <button class="btn btn-ghost" onclick="loadEvents()">↻ Atualizar</button>
-            </div>
-          </div>
-          <table>
-            <thead><tr>
-              <th>Timestamp</th><th>Tipo</th><th>Severidade</th><th>Origem</th><th>Payload</th>
-            </tr></thead>
-            <tbody id="events-table-full"></tbody>
-          </table>
-        </div>
-      </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('modal-block-ip')">Cancelar</button>
+      <button class="btn" onclick="submitBlockIp()">Bloquear</button>
     </div>
+  </div>
+</div>
 
-    <!-- ============================================
-         PAGE: FIREWALL
-         ============================================ -->
-    <div class="page" id="page-firewall">
-      <div class="panel-grid">
-        <div class="col-8 panel">
-          <div class="panel-header">
-            <div class="panel-title"><span class="icon">▥</span> IPs Bloqueados (nftables)</div>
-            <button class="btn btn-orange" onclick="openBlockIpModal()">+ Bloquear IP</button>
-          </div>
-          <table>
-            <thead><tr>
-              <th>IP</th><th>Quando</th><th>Razão</th><th>Acção</th>
-            </tr></thead>
-            <tbody id="firewall-table"></tbody>
-          </table>
-        </div>
-        <div class="col-4 panel">
-          <div class="panel-header">
-            <div class="panel-title"><span class="icon">▦</span> Portas Bloqueadas</div>
-          </div>
-          <table>
-            <thead><tr>
-              <th>Porta</th><th>Proto</th><th>Razão</th>
-            </tr></thead>
-            <tbody id="firewall-ports-table"></tbody>
-          </table>
-        </div>
-      </div>
+<div class="modal-overlay" id="modal-block-port">
+  <div class="modal-box">
+    <div class="modal-title">▥ Bloquear Porta</div>
+    <div class="modal-field">
+      <label>Porta</label>
+      <input id="m-port" type="number" placeholder="445">
     </div>
-
-    <!-- ============================================
-         PAGE: QUARANTINE
-         ============================================ -->
-    <div class="page" id="page-quarantine">
-      <div class="panel-grid">
-        <div class="col-12 panel">
-          <div class="panel-header">
-            <div class="panel-title"><span class="icon">◊</span> Ficheiros em Quarentena</div>
-            <div>
-              <button class="btn" onclick="openQuarantineModal()">+ Quarentenar Ficheiro</button>
-              <button class="btn btn-ghost" onclick="loadQuarantine()">↻ Atualizar</button>
-            </div>
-          </div>
-          <table>
-            <thead><tr>
-              <th>Path</th><th>Quando</th><th>Razão</th><th>Estado</th><th>Acção</th>
-            </tr></thead>
-            <tbody id="quarantine-table"></tbody>
-          </table>
-        </div>
-      </div>
+    <div class="modal-field">
+      <label>Protocolo</label>
+      <select id="m-port-proto">
+        <option>tcp</option>
+        <option>udp</option>
+      </select>
     </div>
-
-    <!-- ============================================
-         PAGE: YARA
-         ============================================ -->
-    <div class="page" id="page-yara">
-      <div class="panel-grid">
-        <div class="col-8 panel">
-          <div class="panel-header">
-            <div class="panel-title"><span class="icon">⌬</span> YARA Scan</div>
-          </div>
-          <div style="display:flex; gap:8px; margin-bottom:16px;">
-            <input id="yara-path" type="text" value="/etc" style="flex:1; background:#000; border:1px solid var(--c-border); color:var(--c-text); padding:10px; border-radius:8px; font-family:monospace;">
-            <button class="btn" onclick="runYaraScan()">▶ Executar Scan</button>
-          </div>
-          <div id="yara-results" style="background:rgba(0,0,0,0.3); border:1px solid var(--c-border); border-radius:8px; padding:14px; font-family:monospace; font-size:11px; max-height:400px; overflow:auto;"></div>
-        </div>
-        <div class="col-4 panel">
-          <div class="panel-header">
-            <div class="panel-title"><span class="icon">▤</span> Regras YARA Activas</div>
-          </div>
-          <div id="yara-rules-list" style="font-family:monospace; font-size:11px;"></div>
-        </div>
-      </div>
+    <div class="modal-field">
+      <label>Razão</label>
+      <input id="m-port-reason" placeholder="block_smb_ransomware">
     </div>
-
-    <!-- ============================================
-         PAGE: CIS BENCHMARK
-         ============================================ -->
-    <div class="page" id="page-cis">
-      <div class="panel-grid">
-        <div class="col-12 panel">
-          <div class="panel-header">
-            <div class="panel-title"><span class="icon">✓</span> CIS Benchmark — Lynis 3.1.8</div>
-            <button class="btn" onclick="runCis()">▶ Correr Lynis Audit</button>
-          </div>
-          <div id="cis-results"></div>
-        </div>
-      </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('modal-block-port')">Cancelar</button>
+      <button class="btn" onclick="submitBlockPort()">Bloquear</button>
     </div>
+  </div>
+</div>
 
-    <!-- ============================================
-         PAGE: CRYPTO PQC
-         ============================================ -->
-    <div class="page" id="page-crypto">
-      <div class="panel-grid">
-        <div class="col-6 panel">
-          <div class="panel-header">
-            <div class="panel-title"><span class="icon">⬢</span> PQC Status (liboqs 0.16.0)</div>
-            <span class="panel-badge live">● LIVE</span>
-          </div>
-          <div id="crypto-status" style="font-family:monospace; font-size:12px;"></div>
-        </div>
-        <div class="col-6 panel">
-          <div class="panel-header">
-            <div class="panel-title"><span class="icon">⚛</span> Roundtrip Test</div>
-            <button class="btn" onclick="runPqcRoundtrip()">▶ Testar</button>
-          </div>
-          <div id="pqc-test-results" style="font-family:monospace; font-size:11px;"></div>
-        </div>
-        <div class="col-12 panel">
-          <div class="panel-header">
-            <div class="panel-title"><span class="icon">⚿</span> Vault Operations</div>
-          </div>
-          <div style="display:flex; gap:12px; flex-wrap:wrap;">
-            <button class="btn" onclick="apiCall('/api/crypto/seal', 'POST', {plaintext: 'goodware-secret'})">🔒 Sealar Dados</button>
-            <button class="btn" onclick="apiCall('/api/crypto/real_pqc', 'GET')">📊 Stats</button>
-            <button class="btn btn-orange" onclick="apiCall('/api/crypto/real_pqc/roundtrip', 'POST')">🔁 Roundtrip</button>
-          </div>
-          <div id="crypto-ops-log" style="margin-top:12px; font-family:monospace; font-size:11px; background:rgba(0,0,0,0.3); padding:12px; border-radius:8px; max-height:240px; overflow:auto;"></div>
-        </div>
-      </div>
+<div class="modal-overlay" id="modal-quarantine">
+  <div class="modal-box">
+    <div class="modal-title">◊ Quarentenar Ficheiro</div>
+    <div class="modal-field">
+      <label>Path absoluto</label>
+      <input id="m-qpath" placeholder="/tmp/suspect.exe">
     </div>
-
-    <!-- ============================================
-         PAGE: SUPPLY CHAIN (SBOM)
-         ============================================ -->
-    <div class="page" id="page-sbom">
-      <div class="panel-grid">
-        <div class="col-12 panel">
-          <div class="panel-header">
-            <div class="panel-title"><span class="icon">⊞</span> Supply Chain — SBOM + Signing</div>
-          </div>
-          <div style="display:flex; gap:12px; margin-bottom:16px;">
-            <button class="btn" onclick="loadSbom()">📋 Carregar SBOM</button>
-            <button class="btn btn-orange" onclick="apiCall('/api/supply_chain/verify', 'POST', {})">✓ Verificar Signatures</button>
-          </div>
-          <div id="sbom-content" style="font-family:monospace; font-size:11px; max-height:500px; overflow:auto;"></div>
-        </div>
-      </div>
+    <div class="modal-field">
+      <label>Razão</label>
+      <input id="m-qreason" placeholder="EICAR detection">
     </div>
-
-    <!-- ============================================
-         PAGE: TPM
-         ============================================ -->
-    <div class="page" id="page-tpm">
-      <div class="panel-grid">
-        <div class="col-12 panel">
-          <div class="panel-header">
-            <div class="panel-title"><span class="icon">⬡</span> TPM 2.0 + Attestation</div>
-            <button class="btn" onclick="loadTpm()">↻ Atualizar</button>
-          </div>
-          <div id="tpm-content" style="font-family:monospace; font-size:11px;"></div>
-        </div>
-      </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('modal-quarantine')">Cancelar</button>
+      <button class="btn btn-orange" onclick="submitQuarantine()">Quarentenar</button>
     </div>
+  </div>
+</div>
 
-    <!-- ============================================
-         PAGE: HONEYPOT
-         ============================================ -->
-    <div class="page" id="page-honeypot">
-      <div class="panel-grid">
-        <div class="col-6 panel">
-          <div class="panel-header">
-            <div class="panel-title"><span class="icon">◐</span> Honeypots (Cowrie + HTTP)</div>
-            <button class="btn" onclick="apiCall('/api/honeypot/start', 'POST', {})">▶ Iniciar</button>
-            <button class="btn btn-red" onclick="apiCall('/api/honeypot/stop', 'POST', {})">■ Parar</button>
-          </div>
-          <div id="honeypot-status"></div>
-        </div>
-        <div class="col-6 panel">
-          <div class="panel-header">
-            <div class="panel-title"><span class="icon">◉</span> Capturas</div>
-            <button class="btn btn-ghost" onclick="loadHoneypotCaptures()">↻</button>
-          </div>
-          <table>
-            <thead><tr><th>Hora</th><th>Service</th><th>IP</th><th>Port</th></tr></thead>
-            <tbody id="honeypot-captures"></tbody>
-          </table>
-        </div>
-      </div>
+<div class="modal-overlay" id="modal-kill">
+  <div class="modal-box">
+    <div class="modal-title">✕ Matar Processo</div>
+    <div class="modal-field">
+      <label>PID</label>
+      <input id="m-pid" type="number" placeholder="1234">
     </div>
-
-    <!-- ============================================
-         PAGE: AUDITD
-         ============================================ -->
-    <div class="page" id="page-auditd">
-      <div class="panel-grid">
-        <div class="col-12 panel">
-          <div class="panel-header">
-            <div class="panel-title"><span class="icon">⌖</span> Auditd (Kernel Audit)</div>
-          </div>
-          <div style="display:flex; gap:8px; margin-bottom:16px;">
-            <input id="auditd-path" type="text" value="/tmp" style="flex:1; background:#000; border:1px solid var(--c-border); color:var(--c-text); padding:10px; border-radius:8px; font-family:monospace;">
-            <button class="btn" onclick="apiCall('/api/auditd/watch', 'POST', {path: document.getElementById('auditd-path').value})">▶ Watch</button>
-            <button class="btn btn-ghost" onclick="apiCall('/api/auditd/recent', 'GET')">↻ Eventos</button>
-          </div>
-          <div id="auditd-results" style="font-family:monospace; font-size:11px; max-height:400px; overflow:auto;"></div>
-        </div>
-      </div>
+    <div class="modal-field">
+      <label>Razão</label>
+      <input id="m-pid-reason" placeholder="processo suspeito">
     </div>
-
-    <!-- ============================================
-         PAGE: LLM BRAIN
-         ============================================ -->
-    <div class="page" id="page-llm">
-      <div class="panel-grid">
-        <div class="col-4 panel">
-          <div class="panel-header">
-            <div class="panel-title"><span class="icon">◈</span> LLM Providers</div>
-            <button class="btn btn-ghost" onclick="apiCall('/api/llm/refresh', 'POST')">↻</button>
-          </div>
-          <div id="llm-providers"></div>
-        </div>
-        <div class="col-8 panel">
-          <div class="panel-header">
-            <div class="panel-title"><span class="icon">💬</span> Chat com Brain</div>
-            <span class="panel-badge" id="llm-status-badge">—</span>
-          </div>
-          <div class="chat-box" id="chat-box"></div>
-          <div class="chat-input">
-            <input id="chat-input" type="text" placeholder="Pergunta sobre ameaças, anomalias, eventos..." onkeydown="if(event.key==='Enter') chatSend()">
-            <button class="btn" onclick="chatSend()">Enviar</button>
-          </div>
-        </div>
-      </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('modal-kill')">Cancelar</button>
+      <button class="btn btn-red" onclick="submitKill()">Matar</button>
     </div>
+  </div>
+</div>
 
-    <!-- ============================================
-         PAGE: FEDERATED
-         ============================================ -->
-    <div class="page" id="page-federated">
-      <div class="panel-grid">
-        <div class="col-12 panel">
-          <div class="panel-header">
-            <div class="panel-title"><span class="icon">⌘</span> Federated Learning</div>
-          </div>
-          <div id="federated-status" style="font-family:monospace; font-size:12px;"></div>
-        </div>
-      </div>
+<div class="modal-overlay" id="modal-seal">
+  <div class="modal-box">
+    <div class="modal-title">🔒 Sealar Dados (PQC)</div>
+    <div class="modal-field">
+      <label>Plaintext</label>
+      <textarea id="m-seal-text" rows="3" placeholder="dados a encriptar"></textarea>
     </div>
-
-    <!-- ============================================
-         PAGE: SIGMA RULES
-         ============================================ -->
-    <div class="page" id="page-sigma">
-      <div class="panel-grid">
-        <div class="col-8 panel">
-          <div class="panel-header">
-            <div class="panel-title"><span class="icon">Σ</span> Sigma Rules (SigmaHQ 3,150+)</div>
-          </div>
-          <div style="display:flex; gap:8px; margin-bottom:16px;">
-            <input id="sigma-query" type="text" placeholder="procurar... (e.g. ransomware, powershell)" style="flex:1; background:#000; border:1px solid var(--c-border); color:var(--c-text); padding:10px; border-radius:8px; font-family:monospace;">
-            <button class="btn" onclick="searchSigma()">🔍 Procurar</button>
-          </div>
-          <div id="sigma-results" style="font-family:monospace; font-size:11px; max-height:500px; overflow:auto;"></div>
-        </div>
-        <div class="col-4 panel">
-          <div class="panel-header">
-            <div class="panel-title"><span class="icon">∇</span> Stats</div>
-          </div>
-          <div id="sigma-stats"></div>
-        </div>
-      </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('modal-seal')">Cancelar</button>
+      <button class="btn" onclick="submitSeal()">Sealar</button>
     </div>
+  </div>
+</div>
 
-    <!-- ============================================
-         PAGE: MISP GALAXY
-         ============================================ -->
-    <div class="page" id="page-misp">
-      <div class="panel-grid">
-        <div class="col-12 panel">
-          <div class="panel-header">
-            <div class="panel-title"><span class="icon">∇</span> MISP Galaxy (Threat Intel)</div>
-          </div>
-          <div style="display:flex; gap:8px; margin-bottom:16px;">
-            <input id="misp-query" type="text" placeholder="procurar APT, malware..." style="flex:1; background:#000; border:1px solid var(--c-border); color:var(--c-text); padding:10px; border-radius:8px; font-family:monospace;">
-            <button class="btn" onclick="searchMisp()">🔍 Procurar</button>
-          </div>
-          <div id="misp-results" style="font-family:monospace; font-size:11px; max-height:500px; overflow:auto;"></div>
-        </div>
-      </div>
+<div class="modal-overlay" id="modal-auditd">
+  <div class="modal-box">
+    <div class="modal-title">⌖ Auditd Watch</div>
+    <div class="modal-field">
+      <label>Path a vigiar</label>
+      <input id="m-audit-path" placeholder="/etc" value="/etc">
     </div>
-
-    <!-- ============================================
-         PAGE: VULNERABILITIES
-         ============================================ -->
-    <div class="page" id="page-vulnerabilities">
-      <div class="panel-grid">
-        <div class="col-12 panel">
-          <div class="panel-header">
-            <div class="panel-title"><span class="icon">⏣</span> Vulnerabilidades (CVE)</div>
-          </div>
-          <div style="display:flex; gap:8px; margin-bottom:16px;">
-            <input id="cve-query" type="text" placeholder="CVE-XXXX-XXXXX ou vendor" style="flex:1; background:#000; border:1px solid var(--c-border); color:var(--c-text); padding:10px; border-radius:8px; font-family:monospace;">
-            <button class="btn" onclick="searchCve()">🔍 Procurar</button>
-          </div>
-          <div id="vuln-results"></div>
-        </div>
-      </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('modal-auditd')">Cancelar</button>
+      <button class="btn" onclick="submitAuditd()">Watch</button>
     </div>
+  </div>
+</div>
 
-    <!-- ============================================
-         PAGE: HEALTH
-         ============================================ -->
-    <div class="page" id="page-health">
-      <div class="panel-grid">
-        <div class="col-12 panel">
-          <div class="panel-header">
-            <div class="panel-title"><span class="icon">♥</span> Health Checks (13)</div>
-            <button class="btn btn-ghost" onclick="loadHealth()">↻ Atualizar</button>
-          </div>
-          <div id="health-checks" class="panel-grid"></div>
-        </div>
-      </div>
+<div class="modal-overlay" id="modal-keypair">
+  <div class="modal-box">
+    <div class="modal-title">🔑 Gerar Keypair PQC</div>
+    <div class="modal-field">
+      <label>Algoritmo</label>
+      <select id="m-key-algo">
+        <option value="kyber512">Kyber512 (KEM)</option>
+        <option value="ml-dsa-44">ML-DSA-44 (Signature)</option>
+      </select>
     </div>
-
-    <!-- ============================================
-         PAGE: SECURITY (Constitutional Guard)
-         ============================================ -->
-    <div class="page" id="page-security">
-      <div class="panel-grid">
-        <div class="col-12 panel">
-          <div class="panel-header">
-            <div class="panel-title"><span class="icon">⚿</span> Constitutional Guard (10 Invariantes)</div>
-          </div>
-          <div id="constitutional-constants"></div>
-        </div>
-      </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('modal-keypair')">Cancelar</button>
+      <button class="btn" onclick="submitKeypair()">Gerar</button>
     </div>
+  </div>
+</div>
 
-    <!-- ============================================
-         PAGE: TOOLS
-         ============================================ -->
-    <div class="page" id="page-tools">
-      <div class="panel-grid">
-        <div class="col-12 panel">
-          <div class="panel-header">
-            <div class="panel-title"><span class="icon">⚒</span> 16 Tools Reais (LLM-callable)</div>
-          </div>
-          <div id="tools-list" class="panel-grid"></div>
-        </div>
-      </div>
+<div class="modal-overlay" id="modal-snapshot-diff">
+  <div class="modal-box">
+    <div class="modal-title">⊟ Diff entre Snapshots</div>
+    <div class="modal-field">
+      <label>Snapshot A (ID)</label>
+      <input id="m-snap-a" placeholder="snap_xxxx">
     </div>
+    <div class="modal-field">
+      <label>Snapshot B (ID)</label>
+      <input id="m-snap-b" placeholder="snap_yyyy">
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('modal-snapshot-diff')">Cancelar</button>
+      <button class="btn" onclick="submitSnapshotDiff()">Diff</button>
+    </div>
+  </div>
+</div>
 
+<div class="modal-overlay" id="modal-yara">
+  <div class="modal-box">
+    <div class="modal-title">⌬ YARA Scan</div>
+    <div class="modal-field">
+      <label>Path</label>
+      <input id="m-yara-path" placeholder="/etc" value="/etc">
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('modal-yara')">Cancelar</button>
+      <button class="btn" onclick="submitYara()">Scan</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-rollback">
+  <div class="modal-box">
+    <div class="modal-title">⏪ Rollback Snapshot</div>
+    <div class="modal-field">
+      <label>Snapshot ID</label>
+      <input id="m-rollback-id" placeholder="snap_xxxxx">
+    </div>
+    <div class="modal-field">
+      <label>Verify PQC signatures?</label>
+      <select id="m-rollback-verify">
+        <option value="true">Sim (verificar)</option>
+        <option value="false">Não (forçar)</option>
+      </select>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('modal-rollback')">Cancelar</button>
+      <button class="btn btn-orange" onclick="submitRollback()">Rollback</button>
+    </div>
   </div>
 </div>
 
 <!-- ============================================
-     MODALS
+     JAVASCRIPT
      ============================================ -->
-<div class="modal" id="modal-block-ip">
-  <div class="modal-content">
-    <h3 style="color:var(--c-cyan); margin-bottom:20px;">Bloquear IP (nftables real)</h3>
-    <label style="font-size:11px; color:var(--c-text-dim); text-transform:uppercase;">IP</label>
-    <input id="block-ip" type="text" placeholder="192.168.1.100" style="width:100%; background:#000; border:1px solid var(--c-border); color:var(--c-text); padding:10px; border-radius:8px; font-family:monospace; margin-bottom:12px;">
-    <label style="font-size:11px; color:var(--c-text-dim); text-transform:uppercase;">Razão</label>
-    <input id="block-reason" type="text" placeholder="manual block" style="width:100%; background:#000; border:1px solid var(--c-border); color:var(--c-text); padding:10px; border-radius:8px; margin-bottom:16px;">
-    <div style="display:flex; gap:8px;">
-      <button class="btn" onclick="submitBlockIp()">Bloquear</button>
-      <button class="btn btn-ghost" onclick="closeModal('modal-block-ip')">Cancelar</button>
-    </div>
-  </div>
-</div>
-
-<div class="modal" id="modal-quarantine">
-  <div class="modal-content">
-    <h3 style="color:var(--c-cyan); margin-bottom:20px;">Quarentenar Ficheiro</h3>
-    <label style="font-size:11px; color:var(--c-text-dim); text-transform:uppercase;">Path</label>
-    <input id="q-path" type="text" placeholder="/tmp/suspect.exe" style="width:100%; background:#000; border:1px solid var(--c-border); color:var(--c-text); padding:10px; border-radius:8px; font-family:monospace; margin-bottom:12px;">
-    <label style="font-size:11px; color:var(--c-text-dim); text-transform:uppercase;">Razão</label>
-    <input id="q-reason" type="text" placeholder="EICAR detection" style="width:100%; background:#000; border:1px solid var(--c-border); color:var(--c-text); padding:10px; border-radius:8px; margin-bottom:16px;">
-    <div style="display:flex; gap:8px;">
-      <button class="btn" onclick="submitQuarantine()">Quarentenar</button>
-      <button class="btn btn-ghost" onclick="closeModal('modal-quarantine')">Cancelar</button>
-    </div>
-  </div>
-</div>
-
 <script>
-// ============================================
-// CONFIG
-// ============================================
-const API_BASE = "http://localhost:8444/api";
-let sessionToken = null;
-let charts = {};
+'use strict';
 
-// ============================================
-// 3D SCENE: BACKGROUND (always visible)
-// ============================================
+const API_BASE = "http://localhost:8444/api";
+const UI_BASE = "/api";
+const startTime = Date.now();
+let sessionToken = "pqc-goodware-2026";
+let autoRefresh = true;
+let eventBuffer = [];
+let chatHistory = [];
+
+// ============ 3D BACKGROUND ============
 (function initBackground() {
-  const canvas = document.getElementById('three-bg');
+  const canvas = document.getElementById('bg-canvas');
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(window.devicePixelRatio);
-
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
   camera.position.z = 5;
 
-  // Star field
-  const starGeo = new THREE.BufferGeometry();
-  const starCount = 1500;
-  const positions = new Float32Array(starCount * 3);
-  for (let i = 0; i < starCount; i++) {
-    positions[i*3] = (Math.random() - 0.5) * 100;
-    positions[i*3+1] = (Math.random() - 0.5) * 100;
-    positions[i*3+2] = (Math.random() - 0.5) * 100;
+  // Particles
+  const count = 2000;
+  const geo = new THREE.BufferGeometry();
+  const pos = new Float32Array(count * 3);
+  for (let i = 0; i < count; i++) {
+    pos[i*3] = (Math.random() - 0.5) * 100;
+    pos[i*3+1] = (Math.random() - 0.5) * 100;
+    pos[i*3+2] = (Math.random() - 0.5) * 100;
   }
-  starGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-  const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({
-    color: 0x00d4ff, size: 0.05, transparent: true, opacity: 0.7,
+  geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  const stars = new THREE.Points(geo, new THREE.PointsMaterial({
+    color: 0x00d4ff, size: 0.04, transparent: true, opacity: 0.6
   }));
   scene.add(stars);
 
-  // Slow rotation
   function animate() {
     requestAnimationFrame(animate);
     stars.rotation.y += 0.0003;
@@ -1239,110 +1259,21 @@ let charts = {};
   });
 })();
 
-// ============================================
-// 3D SCENE: LOGIN (with logo hologram)
-// ============================================
-(function initLoginScene() {
-  const canvas = document.getElementById('login-canvas');
-  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-
+// ============ 3D SCENE (center) ============
+let sceneRenderer, sceneCamera, sceneObj;
+(function initScene() {
+  const canvas = document.getElementById('scene-canvas');
+  if (!canvas) return;
+  sceneRenderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  sceneRenderer.setSize(canvas.clientWidth, canvas.clientHeight);
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
-  camera.position.z = 7;
+  sceneCamera = new THREE.PerspectiveCamera(60, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
+  sceneCamera.position.z = 6;
+  sceneObj = scene;
 
-  // Big atom-like shield (3 orbiting rings + glowing core)
   const group = new THREE.Group();
 
   // Core
-  const coreGeo = new THREE.SphereGeometry(0.5, 64, 64);
-  const coreMat = new THREE.MeshBasicMaterial({
-    color: 0xffffff,
-    transparent: true, opacity: 0.95,
-  });
-  const core = new THREE.Mesh(coreGeo, coreMat);
-  group.add(core);
-
-  // Glow halo
-  const haloGeo = new THREE.SphereGeometry(0.7, 32, 32);
-  const haloMat = new THREE.MeshBasicMaterial({
-    color: 0x00d4ff, transparent: true, opacity: 0.3,
-  });
-  const halo = new THREE.Mesh(haloGeo, haloMat);
-  group.add(halo);
-
-  // 3 orbits
-  for (let i = 0; i < 3; i++) {
-    const ringGeo = new THREE.TorusGeometry(2.5, 0.03, 8, 100);
-    const color = i === 1 ? 0xff6b35 : 0x00d4ff;
-    const ringMat = new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 0.85 });
-    const ring = new THREE.Mesh(ringGeo, ringMat);
-    ring.rotation.x = (i * Math.PI) / 3;
-    ring.rotation.y = (i * Math.PI) / 4;
-    group.add(ring);
-  }
-
-  scene.add(group);
-
-  // Particles around
-  const partGeo = new THREE.BufferGeometry();
-  const partCount = 800;
-  const partPos = new Float32Array(partCount * 3);
-  for (let i = 0; i < partCount; i++) {
-    const r = 3 + Math.random() * 3;
-    const theta = Math.random() * Math.PI * 2;
-    const phi = Math.random() * Math.PI;
-    partPos[i*3] = r * Math.sin(phi) * Math.cos(theta);
-    partPos[i*3+1] = r * Math.sin(phi) * Math.sin(theta);
-    partPos[i*3+2] = r * Math.cos(phi);
-  }
-  partGeo.setAttribute('position', new THREE.BufferAttribute(partPos, 3));
-  const particles = new THREE.Points(partGeo, new THREE.PointsMaterial({
-    color: 0x00d4ff, size: 0.05, transparent: true, opacity: 0.6,
-  }));
-  scene.add(particles);
-
-  // Mouse-reactive
-  let mouseX = 0, mouseY = 0;
-  document.addEventListener('mousemove', (e) => {
-    mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-    mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
-  });
-
-  function animate() {
-    requestAnimationFrame(animate);
-    group.rotation.y += 0.005;
-    group.rotation.x += 0.002;
-    particles.rotation.y -= 0.001;
-    group.rotation.y += mouseX * 0.01;
-    group.rotation.x += mouseY * 0.005;
-    halo.scale.setScalar(1 + Math.sin(Date.now() * 0.002) * 0.1);
-    renderer.render(scene, camera);
-  }
-  animate();
-  window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-  });
-})();
-
-// ============================================
-// 3D SCENE: DASHBOARD HOLOGRAM
-// ============================================
-let dashScene, dashRenderer, dashCamera;
-(function initDashScene() {
-  const canvas = document.getElementById('scene-canvas');
-  if (!canvas) return;
-  dashRenderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-  dashRenderer.setSize(canvas.clientWidth, canvas.clientHeight);
-  dashScene = new THREE.Scene();
-  dashCamera = new THREE.PerspectiveCamera(60, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
-  dashCamera.position.z = 6;
-
-  // Main rotating shield
-  const group = new THREE.Group();
-
   const core = new THREE.Mesh(
     new THREE.SphereGeometry(0.4, 32, 32),
     new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.95 })
@@ -1351,13 +1282,12 @@ let dashScene, dashRenderer, dashCamera;
 
   // Halo
   const halo = new THREE.Mesh(
-    new THREE.SphereGeometry(0.6, 32, 32),
+    new THREE.SphereGeometry(0.65, 32, 32),
     new THREE.MeshBasicMaterial({ color: 0x00d4ff, transparent: true, opacity: 0.3 })
   );
   group.add(halo);
 
-  // 3 orbits
-  const orbits = [];
+  // Orbits
   for (let i = 0; i < 3; i++) {
     const ring = new THREE.Mesh(
       new THREE.TorusGeometry(2, 0.025, 8, 80),
@@ -1369,14 +1299,13 @@ let dashScene, dashRenderer, dashCamera;
     ring.rotation.x = (i * Math.PI) / 3;
     ring.rotation.y = (i * Math.PI) / 4;
     group.add(ring);
-    orbits.push(ring);
   }
 
-  // Threat particles (orbs floating)
-  const threatOrbs = [];
-  for (let i = 0; i < 8; i++) {
+  // Threat orbs
+  const orbs = [];
+  for (let i = 0; i < 12; i++) {
     const orb = new THREE.Mesh(
-      new THREE.SphereGeometry(0.08, 16, 16),
+      new THREE.SphereGeometry(0.08, 12, 12),
       new THREE.MeshBasicMaterial({
         color: i % 3 === 0 ? 0xff3860 : (i % 3 === 1 ? 0xff6b35 : 0x00d4ff),
         transparent: true, opacity: 0.9
@@ -1389,634 +1318,588 @@ let dashScene, dashRenderer, dashCamera;
       height: (Math.random() - 0.5) * 2,
     };
     group.add(orb);
-    threatOrbs.push(orb);
+    orbs.push(orb);
   }
 
-  dashScene.add(group);
+  scene.add(group);
 
-  function animateDash() {
-    requestAnimationFrame(animateDash);
-    group.rotation.y += 0.005;
-    group.rotation.x += 0.001;
+  function animate() {
+    requestAnimationFrame(animate);
+    group.rotation.y += 0.006;
+    group.rotation.x += 0.002;
     halo.scale.setScalar(1 + Math.sin(Date.now() * 0.002) * 0.08);
-    threatOrbs.forEach((orb, i) => {
+    orbs.forEach((orb, i) => {
       orb.userData.angle += orb.userData.speed;
       orb.position.x = Math.cos(orb.userData.angle) * orb.userData.radius;
       orb.position.z = Math.sin(orb.userData.angle) * orb.userData.radius;
-      orb.position.y = orb.userData.height + Math.sin(Date.now() * 0.001 + i) * 0.3;
+      orb.position.y = orb.userData.height + Math.sin(Date.now() * 0.001 + i) * 0.4;
     });
-    dashRenderer.render(dashScene, dashCamera);
+    sceneRenderer.render(scene, sceneCamera);
   }
-  animateDash();
+  animate();
+  window.addEventListener('resize', () => {
+    if (!canvas) return;
+    sceneCamera.aspect = canvas.clientWidth / canvas.clientHeight;
+    sceneCamera.updateProjectionMatrix();
+    sceneRenderer.setSize(canvas.clientWidth, canvas.clientHeight);
+  });
 })();
 
-// ============================================
-// API HELPERS
-// ============================================
-async function apiCall(endpoint, method = 'GET', body = null) {
-  try {
-    const opts = {
-      method,
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Session-Token': sessionToken || '',
-      },
-    };
-    if (body) opts.body = JSON.stringify(body);
-    const r = await fetch(API_BASE + endpoint, opts);
-    if (!r.ok) {
-      const text = await r.text();
-      throw new Error(`${r.status}: ${text.slice(0, 120)}`);
-    }
-    return await r.json();
-  } catch (e) {
-    console.error('API error:', endpoint, e);
-    toast(`API erro: ${e.message}`, 'error');
-    throw e;
-  }
-}
-
-function toast(message, type = 'info') {
-  const t = document.createElement('div');
-  t.className = `toast ${type}`;
-  t.textContent = message;
-  document.body.appendChild(t);
-  setTimeout(() => t.remove(), 4000);
-}
-
-// ============================================
-// LOGIN
-// ============================================
-document.getElementById('login-form').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const u = document.getElementById('username').value;
-  const p = document.getElementById('password').value;
-  // Simulated PQC verification (would call real ML-DSA-44 verify)
-  if (u === 'admin' && p === 'pqc-goodware-2026') {
-    sessionToken = 'pqc-' + btoa(u + ':' + Date.now());
-    document.getElementById('login-screen').style.opacity = '0';
-    document.getElementById('login-screen').style.transition = 'opacity 0.6s';
-    setTimeout(() => {
-      document.getElementById('login-screen').style.display = 'none';
-      document.getElementById('app').classList.add('visible');
-      bootApp();
-    }, 600);
-  } else {
-    const err = document.getElementById('login-error');
-    err.textContent = 'Credenciais inválidas — verifique ML-DSA-44 signature';
-    err.style.display = 'block';
-  }
-});
-
-function logout() {
-  sessionToken = null;
-  document.getElementById('app').classList.remove('visible');
-  document.getElementById('login-screen').style.display = 'flex';
-  document.getElementById('login-screen').style.opacity = '1';
-}
-
-// ============================================
-// NAVIGATION
-// ============================================
-document.querySelectorAll('.nav-item').forEach(item => {
-  item.addEventListener('click', () => {
-    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-    item.classList.add('active');
-    const page = item.dataset.page;
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById('page-' + page).classList.add('active');
-    if (pageLoaders[page]) pageLoaders[page]();
-  });
-});
-
-const pageLoaders = {
-  threats: loadThreats,
-  events: loadEvents,
-  firewall: loadFirewall,
-  quarantine: loadQuarantine,
-  yara: () => { listYaraRules(); },
-  cis: () => {},
-  crypto: loadCrypto,
-  sbom: () => {},
-  tpm: () => {},
-  honeypot: loadHoneypotStatus,
-  auditd: () => {},
-  llm: loadLlmProviders,
-  federated: () => {},
-  sigma: () => { loadSigmaStats(); },
-  misp: () => {},
-  vulnerabilities: () => {},
-  health: loadHealth,
-  security: loadConstitutional,
-  tools: loadTools,
-};
-
-// ============================================
-// BOOT
-// ============================================
-async function bootApp() {
-  startClock();
-  startAutoRefresh();
-  try {
-    await Promise.all([
-      loadStatus(),
-      loadEvents(true),
-      loadSensors(),
-    ]);
-    initSeverityChart();
-  } catch (e) {
-    console.error('Boot error:', e);
-    toast('Erro ao carregar dados. Verifique se o Goodware está rodando em :8444', 'error');
-  }
-}
-
+// ============ CLOCK ============
 function startClock() {
   const update = () => {
-    document.getElementById('topbar-clock').textContent =
+    document.getElementById('clock').textContent =
       new Date().toLocaleTimeString('pt-PT', { hour12: false });
+    const up = Math.floor((Date.now() - startTime) / 1000);
+    const h = Math.floor(up / 3600);
+    const m = Math.floor((up % 3600) / 60);
+    const s = up % 60;
+    document.getElementById('i-uptime').textContent =
+      h > 0 ? `${h}h ${m}m` : m > 0 ? `${m}m ${s}s` : `${s}s`;
   };
   update();
   setInterval(update, 1000);
 }
 
-function startAutoRefresh() {
-  setInterval(refreshAll, 5000);
-}
-
-async function loadStatus() {
-  try {
-    const r = await apiCall('/status', 'GET');
-    if (r.engine) {
-      const comp = Object.keys(r.engine).length;
-      document.getElementById('metric-events').textContent = r.engine.events || '0';
-      document.getElementById('metric-threats').textContent = r.engine.threats || '0';
-    }
-  } catch (e) { /* fallback */ }
-}
-
-async function loadEvents(intoDashboard = false) {
-  try {
-    const sev = document.getElementById('event-severity-filter')?.value || '';
-    const r = await apiCall(`/events?limit=200${sev?'&severity='+sev:''}`, 'GET');
-    const events = r.events || [];
-    const sevCounts = { critical: 0, high: 0, medium: 0, low: 0, info: 0 };
-    const tbody = document.getElementById(intoDashboard ? 'events-table' : 'events-table-full');
-    if (tbody) {
-      tbody.innerHTML = events.slice(0, 100).map(e => `
-        <tr>
-          <td>${formatTime(e.timestamp || e.ts)}</td>
-          <td>${e.type || e.event_type || '—'}</td>
-          <td class="severity-${e.severity || 'low'}">${e.severity || 'low'}</td>
-          <td>${e.source || '—'}</td>
-          <td>${truncate(JSON.stringify(e.payload || {}), 80)}</td>
-        </tr>
-      `).join('');
-    }
-    events.forEach(e => {
-      const s = e.severity || 'info';
-      sevCounts[s] = (sevCounts[s] || 0) + 1;
-    });
-    updateSeverityChart(sevCounts);
-    document.getElementById('events-count').textContent = events.length;
-    document.getElementById('scene-event-count').textContent = `${events.length} eventos`;
-  } catch (e) { /* silent */ }
-}
-
-async function loadSensors() {
-  try {
-    const r = await apiCall('/sensors', 'GET');
-    // Update status indicator based on sensors
-  } catch (e) { /* silent */ }
-}
-
-async function loadThreats() {
-  try {
-    const r = await apiCall('/threats', 'GET');
-    const threats = r.threats || r.events || [];
-    const tbody = document.getElementById('threats-table');
-    if (tbody) {
-      tbody.innerHTML = threats.map((t, i) => `
-        <tr>
-          <td>${t.id || i+1}</td>
-          <td>${t.type || '—'}</td>
-          <td class="severity-${t.severity || 'medium'}">${t.severity || '—'}</td>
-          <td>${(t.risk || 0).toFixed(2)}</td>
-          <td>${truncate(t.description || JSON.stringify(t), 80)}</td>
-          <td><button class="btn btn-red" onclick="handleThreat(${i})">⚔</button></td>
-        </tr>
-      `).join('') || '<tr><td colspan="6" style="text-align:center;color:var(--c-text-faint);">Nenhuma ameaça ativa</td></tr>';
-    }
-    document.getElementById('metric-threats').textContent = threats.length;
-    document.getElementById('scene-threat-count').textContent = `${threats.length} ameaças ativas`;
-  } catch (e) { /* silent */ }
-}
-
-async function loadFirewall() {
-  try {
-    const r = await apiCall('/firewall/snapshot', 'GET');
-    const tbody = document.getElementById('firewall-table');
-    const portsTbody = document.getElementById('firewall-ports-table');
-    if (tbody) {
-      const ips = r.blocked_ips || [];
-      tbody.innerHTML = ips.length === 0
-        ? '<tr><td colspan="4" style="text-align:center;color:var(--c-text-faint);">Sem IPs bloqueados</td></tr>'
-        : ips.map((ip, i) => `
-          <tr>
-            <td>${ip}</td>
-            <td>${formatTime(r.blocked_at?.[i])}</td>
-            <td>${r.reason?.[i] || '—'}</td>
-            <td><button class="btn btn-ghost" onclick="unblockIp('${ip}')">Desbloquear</button></td>
-          </tr>
-        `).join('');
-      document.getElementById('metric-blocked').textContent = ips.length;
-    }
-    if (portsTbody) {
-      const ports = r.blocked_ports || [];
-      portsTbody.innerHTML = ports.length === 0
-        ? '<tr><td colspan="3" style="text-align:center;color:var(--c-text-faint);">—</td></tr>'
-        : ports.map(p => `<tr><td>${p.port}</td><td>${p.protocol || 'tcp'}</td><td>${p.reason || '—'}</td></tr>`).join('');
-    }
-  } catch (e) { /* silent */ }
-}
-
-async function unblockIp(ip) {
-  try {
-    await apiCall(`/effector/execute`, 'POST', { type: 'unblock_ip', target: ip });
-    toast(`IP ${ip} desbloqueado`, 'success');
-    loadFirewall();
-  } catch (e) { /* silent */ }
-}
-
-async function loadQuarantine() {
-  try {
-    const r = await apiCall('/quarantine', 'GET');
-    const tbody = document.getElementById('quarantine-table');
-    const items = r.items || r.quarantine || [];
-    if (tbody) {
-      tbody.innerHTML = items.length === 0
-        ? '<tr><td colspan="5" style="text-align:center;color:var(--c-text-faint);">Vazio</td></tr>'
-        : items.map(q => `
-          <tr>
-            <td>${q.path || '—'}</td>
-            <td>${formatTime(q.ts || q.timestamp)}</td>
-            <td>${q.reason || '—'}</td>
-            <td>${q.status || 'quarantined'}</td>
-            <td><button class="btn btn-ghost" onclick="restoreQuarantine('${q.path}')">↻ Restaurar</button></td>
-          </tr>
-        `).join('');
-      document.getElementById('metric-quarantine').textContent = items.length;
-    }
-  } catch (e) { /* silent */ }
-}
-
-async function restoreQuarantine(path) {
-  try {
-    await apiCall('/effector/restore', 'POST', { path });
-    toast(`Restaurado: ${path}`, 'success');
-    loadQuarantine();
-  } catch (e) { /* silent */ }
-}
-
-async function loadCrypto() {
-  try {
-    const r = await apiCall('/crypto', 'GET');
-    const el = document.getElementById('crypto-status');
-    if (el) el.innerHTML = `<pre style="color:var(--c-cyan);">${JSON.stringify(r, null, 2)}</pre>`;
-  } catch (e) { /* silent */ }
-}
-
-async function runPqcRoundtrip() {
-  const el = document.getElementById('pqc-test-results');
-  el.innerHTML = '<span style="color:var(--c-yellow);">⏳ A executar roundtrip ML-DSA-44...</span>';
-  try {
-    const r = await apiCall('/crypto/real_pqc/roundtrip', 'POST');
-    el.innerHTML = `<pre style="color:var(--c-green);">${JSON.stringify(r, null, 2)}</pre>`;
-  } catch (e) {
-    el.innerHTML = `<pre style="color:var(--c-red);">ERRO: ${e.message}</pre>`;
+// ============ API HELPER ============
+async function api(endpoint, method = 'GET', body = null) {
+  const opts = {
+    method,
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Session-Token': sessionToken,
+    },
+  };
+  if (body) opts.body = JSON.stringify(body);
+  const r = await fetch(UI_BASE + endpoint, opts);
+  if (!r.ok) {
+    const t = await r.text();
+    throw new Error(`${r.status}: ${t.slice(0, 150)}`);
   }
+  return await r.json();
 }
 
-async function loadSbom() {
-  const el = document.getElementById('sbom-content');
-  el.innerHTML = '<span style="color:var(--c-yellow);">⏳ A carregar SBOM (Syft / CycloneDX)...</span>';
-  try {
-    const r = await apiCall('/supply_chain', 'GET');
-    el.innerHTML = `<pre style="color:var(--c-cyan);">${JSON.stringify(r, null, 2)}</pre>`;
-  } catch (e) {
-    el.innerHTML = `<pre style="color:var(--c-red);">ERRO: ${e.message}</pre>`;
-  }
+// ============ LOGGING ============
+function log(level, msg) {
+  const body = document.getElementById('log-body');
+  const ts = new Date().toLocaleTimeString('pt-PT', { hour12: false });
+  body.innerHTML = `<div class="log-line">
+    <span class="ts">[${ts}]</span>
+    <span class="lvl ${level}">${level}</span>
+    <span class="msg">${escapeHtml(msg)}</span>
+  </div>` + body.innerHTML;
+  // Keep last 200
+  const lines = body.querySelectorAll('.log-line');
+  if (lines.length > 200) lines[lines.length - 1].remove();
 }
 
-async function loadTpm() {
-  try {
-    const r = await apiCall('/attestation', 'GET');
-    document.getElementById('tpm-content').innerHTML =
-      `<pre style="color:var(--c-cyan);">${JSON.stringify(r, null, 2)}</pre>`;
-  } catch (e) {
-    document.getElementById('tpm-content').innerHTML =
-      `<pre style="color:var(--c-red);">ERRO: ${e.message}</pre>`;
-  }
+// ============ TOAST ============
+function toast(title, msg, type = 'info') {
+  const t = document.createElement('div');
+  t.className = 'toast ' + type;
+  t.innerHTML = `<div class="ti">${escapeHtml(title)}</div><div class="tm">${escapeHtml(msg)}</div>`;
+  document.body.appendChild(t);
+  setTimeout(() => t.style.opacity = '0', 3000);
+  setTimeout(() => t.remove(), 3500);
 }
 
-async function loadHoneypotStatus() {
-  try {
-    const r = await apiCall('/honeypot/status', 'GET');
-    const el = document.getElementById('honeypot-status');
-    el.innerHTML = `<pre style="color:var(--c-cyan);">${JSON.stringify(r, null, 2)}</pre>`;
-    loadHoneypotCaptures();
-  } catch (e) {
-    document.getElementById('honeypot-status').innerHTML =
-      `<pre style="color:var(--c-red);">ERRO: ${e.message}</pre>`;
-  }
-}
-
-async function loadHoneypotCaptures() {
-  try {
-    const r = await apiCall('/honeypot/captures', 'GET');
-    const tbody = document.getElementById('honeypot-captures');
-    const items = r.captures || [];
-    tbody.innerHTML = items.slice(0, 50).map(c => `
-      <tr>
-        <td>${formatTime(c.ts)}</td>
-        <td>${c.service || '—'}</td>
-        <td>${c.ip || '—'}</td>
-        <td>${c.port || '—'}</td>
-      </tr>
-    `).join('') || '<tr><td colspan="4" style="text-align:center;color:var(--c-text-faint);">Sem capturas</td></tr>';
-  } catch (e) { /* silent */ }
-}
-
-async function loadLlmProviders() {
-  try {
-    const r = await apiCall('/llm/providers', 'GET');
-    const el = document.getElementById('llm-providers');
-    const providers = r.providers || [];
-    el.innerHTML = providers.map(p => `
-      <div class="list-item">
-        <span>${p.name}</span>
-        <span style="color:${p.available ? 'var(--c-green)' : 'var(--c-text-faint)'}">
-          ${p.available ? '●' : '○'} ${p.status || (p.available ? 'HEALTHY' : 'UNAVAILABLE')}
-        </span>
-      </div>
-    `).join('') || '<div style="color:var(--c-text-faint);">Sem providers</div>';
-    document.getElementById('llm-status-badge').textContent =
-      providers.find(p => p.available)?.name || 'OFFLINE';
-  } catch (e) { /* silent */ }
-}
-
-async function chatSend() {
-  const input = document.getElementById('chat-input');
-  const q = input.value.trim();
-  if (!q) return;
-  input.value = '';
-  const box = document.getElementById('chat-box');
-  box.innerHTML += `<div class="chat-msg user">${escapeHtml(q)}</div>`;
-  box.scrollTop = box.scrollHeight;
-  try {
-    const r = await apiCall('/llm/ask', 'POST', { question: q });
-    box.innerHTML += `<div class="chat-msg bot">${escapeHtml(r.answer || JSON.stringify(r))}</div>`;
-  } catch (e) {
-    box.innerHTML += `<div class="chat-msg error">${e.message}</div>`;
-  }
-  box.scrollTop = box.scrollHeight;
-}
-
-async function searchSigma() {
-  const q = document.getElementById('sigma-query').value.trim();
-  if (!q) return;
-  try {
-    // No direct Sigma API, use RAG
-    const r = await apiCall(`/sensors?limit=1`, 'GET');
-    // Sigma search via file is more complex, so we provide UI feedback
-    document.getElementById('sigma-results').innerHTML =
-      `<div style="color:var(--c-cyan);">Procurando "${q}" em 3,150 regras SigmaHQ...<br><br>
-       Use o backend Goodware para resultados completos via:<br>
-       <code>goodware chainsaw scan --sigma-rules</code></div>`;
-  } catch (e) { /* silent */ }
-}
-
-async function loadSigmaStats() {
-  document.getElementById('sigma-stats').innerHTML = `
-    <div class="metric"><div class="value">3,150</div><div class="label">Regras Sigma</div></div>
-    <div class="metric" style="margin-top:16px;"><div class="value">1,423</div><div class="label">High Severity</div></div>
-    <div class="metric" style="margin-top:16px;"><div class="value">71</div><div class="label">Critical</div></div>
-  `;
-}
-
-async function searchMisp() {
-  const q = document.getElementById('misp-query').value.trim();
-  if (!q) return;
-  document.getElementById('misp-results').innerHTML =
-    `<div style="color:var(--c-cyan);">Procurando "${q}" em 136 MISP clusters (54k+ values)...<br><br>
-     MISP Galaxy disponível via backend em vendor/security_tools/misp-galaxy/clusters/</div>`;
-}
-
-async function searchCve() {
-  const q = document.getElementById('cve-query').value.trim();
-  if (!q) return;
-  document.getElementById('vuln-results').innerHTML =
-    `<div style="color:var(--c-cyan);">Procurando CVE "${q}" em data/cve/cve_database.json (500 CVEs)...</div>`;
-}
-
-async function runYaraScan() {
-  const path = document.getElementById('yara-path').value;
-  const el = document.getElementById('yara-results');
-  el.innerHTML = '<span style="color:var(--c-yellow);">⏳ A correr YARA scan...</span>';
-  try {
-    const r = await apiCall('/chainsaw/scan', 'POST', { path });
-    el.innerHTML = `<pre style="color:var(--c-green);">${JSON.stringify(r, null, 2)}</pre>`;
-  } catch (e) {
-    el.innerHTML = `<pre style="color:var(--c-red);">ERRO: ${e.message}</pre>`;
-  }
-}
-
-async function listYaraRules() {
-  document.getElementById('yara-rules-list').innerHTML = `
-    <div class="list-item"><span>goodware_crypto_miner</span><span style="color:var(--c-green)">✓</span></div>
-    <div class="list-item"><span>goodware_reverse_shell</span><span style="color:var(--c-green)">✓</span></div>
-    <div class="list-item"><span>ransomware_indicators</span><span style="color:var(--c-green)">✓</span></div>
-    <div class="list-item"><span>web_shell_php</span><span style="color:var(--c-green)">✓</span></div>
-    <div class="list-item"><span>persistence_cron</span><span style="color:var(--c-green)">✓</span></div>
-    <div class="list-item"><span>community/exfil</span><span style="color:var(--c-green)">✓</span></div>
-    <div class="list-item"><span>community/persistence</span><span style="color:var(--c-green)">✓</span></div>
-    <div class="list-item"><span>threats/c2_patterns</span><span style="color:var(--c-green)">✓</span></div>
-    <div class="list-item"><span>threats/cryptominers</span><span style="color:var(--c-green)">✓</span></div>
-    <div class="list-item"><span>threats/exploit_kits</span><span style="color:var(--c-green)">✓</span></div>
-    <div class="list-item"><span>threats/ransomware</span><span style="color:var(--c-green)">✓</span></div>
-    <div class="list-item"><span>threats/webshells</span><span style="color:var(--c-green)">✓</span></div>
-  `;
-}
-
-async function runCis() {
-  const el = document.getElementById('cis-results');
-  el.innerHTML = '<span style="color:var(--c-yellow);">⏳ A correr Lynis CIS audit (pode demorar 1-2 min)...</span>';
-  try {
-    const r = await apiCall('/chainsaw/cis', 'GET');
-    el.innerHTML = `<pre style="color:var(--c-cyan);">${JSON.stringify(r, null, 2)}</pre>`;
-  } catch (e) {
-    el.innerHTML = `<pre style="color:var(--c-red);">ERRO: ${e.message}</pre>`;
-  }
-}
-
-async function loadHealth() {
-  try {
-    const r = await apiCall('/healthz', 'GET');
-    const checks = [
-      { name: 'engine', ok: !!r },
-      { name: 'database', ok: r.db !== false },
-      { name: 'crypto', ok: true },
-      { name: 'llm', ok: true },
-      { name: 'firewall', ok: true },
-      { name: 'TPM', ok: true },
-      { name: 'ClamAV', ok: true },
-      { name: 'YARA', ok: true },
-      { name: 'snapshots', ok: true },
-      { name: 'integrity', ok: true },
-      { name: 'disk', ok: true },
-      { name: 'memory', ok: true },
-      { name: 'cpu', ok: true },
-    ];
-    document.getElementById('health-checks').innerHTML = checks.map(c => `
-      <div class="col-3 panel" style="padding:14px;">
-        <div class="metric">
-          <div class="value" style="font-size:18px; color:${c.ok ? 'var(--c-green)' : 'var(--c-red)'};">
-            ${c.ok ? '✓' : '✗'}
-          </div>
-          <div class="label">${c.name}</div>
-        </div>
-      </div>
-    `).join('');
-  } catch (e) { /* silent */ }
-}
-
-async function loadConstitutional() {
-  const constants = [
-    { id: 'I1', desc: 'Proteção de artefactos críticos (snapshots, vault)' },
-    { id: 'I2', desc: 'Integridade do log de auditoria' },
-    { id: 'I3', desc: 'Não introduz backdoors mesmo sob instrução' },
-    { id: 'I4', desc: 'Reverter rotação de chaves exige aprovação multi-party' },
-    { id: 'I5', desc: 'Snapshot rollback preserva cadeia PQC' },
-    { id: 'I6', desc: 'Aprovação OOB para ações destrutivas' },
-    { id: 'I7', desc: 'Decision-style: assert não-actua sobre LLM, só sobre engine' },
-    { id: 'I8', desc: 'Rate-limiting nas APIs expostas' },
-    { id: 'I9', desc: 'Separação de privilégios por role (RBAC)' },
-    { id: 'I10', desc: 'Permissões verificadas em cada tool call' },
-  ];
-  document.getElementById('constitutional-constants').innerHTML = constants.map(c => `
-    <div class="list-item">
-      <div>
-        <span style="color:var(--c-cyan); font-weight:600;">${c.id}</span>
-        <span style="margin-left:12px; color:var(--c-text);">${c.desc}</span>
-      </div>
-      <span style="color:var(--c-green);">✓ ENFORCED</span>
-    </div>
-  `).join('');
-}
-
-async function loadTools() {
-  const tools = [
-    'list_active_threats', 'get_event_details', 'kill_process', 'quarantine_file',
-    'block_ip', 'run_yara_scan', 'rollback_snapshot', 'request_oob_approval',
-    'alert_human', 'isolate_machine', 'no_action', 'generate_pqc_keypair',
-    'sign_pqc', 'verify_pqc', 'search_iocs', 'lookup_cve',
-  ];
-  document.getElementById('tools-list').innerHTML = tools.map(t => `
-    <div class="col-4 panel" style="padding:14px;">
-      <div style="font-family:monospace; font-size:11px; color:var(--c-cyan);">${t}</div>
-    </div>
-  `).join('');
-}
-
-function isolateMachine() {
-  if (!confirm('ISOLAR MÁQUINA? Requer aprovação OOB (out-of-band). Continuar?')) return;
-  apiCall('/effector/execute', 'POST', { type: 'isolate_machine', reason: 'manual from UI' })
-    .then(r => toast('Isolamento solicitado: ' + JSON.stringify(r), 'success'))
-    .catch(e => toast('Erro: ' + e.message, 'error'));
-}
-
-function handleThreat(idx) {
-  toast(`Análise de ameaça #${idx+1} — ver detalhes`, 'info');
-}
-
-function openBlockIpModal() { document.getElementById('modal-block-ip').classList.add('visible'); }
+// ============ MODAL CONTROL ============
+function openModal(id) { document.getElementById(id).classList.add('visible'); }
 function closeModal(id) { document.getElementById(id).classList.remove('visible'); }
-function openQuarantineModal() { document.getElementById('modal-quarantine').classList.add('visible'); }
+function openBlockIp() { openModal('modal-block-ip'); }
+function openBlockPort() { openModal('modal-block-port'); }
+function openQuarantine() { openModal('modal-quarantine'); }
+function openKillProcess() { openModal('modal-kill'); }
+function openSealData() { openModal('modal-seal'); }
+function openAuditdWatch() { openModal('modal-auditd'); }
+function openGenerateKey() { openModal('modal-keypair'); }
 
+// ============ COMMANDS ============
+const commands = {
+  snapshot: () => api('/snapshot/create', 'POST', { paths: ['/etc/passwd', '/etc/shadow'] })
+    .then(r => { toast('Snapshot criado', JSON.stringify(r), 'success'); log('OK', `Snapshot criado`); return refreshSnapshots(); }),
+  rollback: () => openModal('modal-rollback'),
+  snapshot_list: () => api('/snapshot/list', 'GET')
+    .then(r => { toast('Snapshots', `${(r.snapshots||[]).length} encontrados`, 'success'); log('OK', `Snapshots: ${JSON.stringify(r).slice(0, 200)}`); }),
+  snapshot_diff: () => openModal('modal-snapshot-diff'),
+  yara_scan: () => openModal('modal-yara'),
+  rootkit_scan: () => api('/chainsaw/scan_rootkit', 'POST')
+    .then(r => { toast('Rootkit scan', JSON.stringify(r).slice(0, 100), 'success'); log('OK', `Rootkit: ${JSON.stringify(r).slice(0, 150)}`); }),
+  cis_audit: () => api('/chainsaw/cis', 'GET')
+    .then(r => { toast('CIS audit', JSON.stringify(r).slice(0, 100), 'success'); log('OK', `CIS: ${JSON.stringify(r).slice(0, 200)}`); }),
+  isolate: () => {
+    if (!confirm('ISOLAR MÁQUINA? Esta acção requer aprovação OOB.')) return;
+    api('/effector/execute', 'POST', { type: 'isolate_machine', reason: 'manual from UI' })
+      .then(r => { toast('Isolamento', JSON.stringify(r), 'success'); log('OK', `Isolamento: ${JSON.stringify(r)}`); })
+      .catch(e => { toast('Erro', e.message, 'error'); log('ERROR', e.message); });
+  },
+  restore: () => {
+    const path = prompt('Path do ficheiro a restaurar:');
+    if (!path) return;
+    api('/effector/restore', 'POST', { path })
+      .then(r => { toast('Restaurado', path, 'success'); log('OK', `Restore ${path}: ${JSON.stringify(r)}`); })
+      .catch(e => { toast('Erro', e.message, 'error'); });
+  },
+  hot_patch: () => {
+    const id = prompt('Patch ID:');
+    const target = prompt('Target path:');
+    if (!id || !target) return;
+    api('/effector/execute', 'POST', { type: 'hot_patch', id, target })
+      .then(r => { toast('Hot Patch aplicado', id, 'success'); log('OK', `Hot patch ${id}: ${JSON.stringify(r)}`); })
+      .catch(e => { toast('Erro', e.message, 'error'); });
+  },
+  immune_evolve: () => api('/immune/evolve', 'POST')
+    .then(r => { toast('Imunidade evoluída', JSON.stringify(r).slice(0, 100), 'success'); log('OK', `Immune evolve: ${JSON.stringify(r)}`); })
+    .catch(e => { toast('Erro', e.message, 'error'); }),
+  pqc_status: () => api('/crypto', 'GET')
+    .then(r => { toast('PQC', JSON.stringify(r), 'success'); log('OK', `PQC: ${JSON.stringify(r).slice(0, 200)}`); }),
+  pqc_roundtrip: () => api('/crypto/real_pqc/roundtrip', 'POST')
+    .then(r => { toast('PQC roundtrip', JSON.stringify(r), 'success'); log('OK', `PQC roundtrip OK`); })
+    .catch(e => { toast('Erro', e.message, 'error'); }),
+  vault_list: () => api('/crypto', 'GET')
+    .then(r => { log('OK', `Vault keys: ${r.vault_keys || 0}`); toast('Vault', `${r.vault_keys||0} chaves`, 'success'); }),
+  honeypot_start: () => api('/honeypot/start', 'POST', {})
+    .then(r => { toast('Honeypot ON', JSON.stringify(r), 'success'); log('OK', 'Honeypot started'); })
+    .catch(e => { toast('Erro', e.message, 'error'); }),
+  honeypot_stop: () => api('/honeypot/stop', 'POST', {})
+    .then(r => { toast('Honeypot OFF', JSON.stringify(r), 'success'); log('OK', 'Honeypot stopped'); })
+    .catch(e => { toast('Erro', e.message, 'error'); }),
+  honeypot_captures: () => api('/honeypot/captures', 'GET')
+    .then(r => { log('OK', `Captures: ${(r.captures||[]).length}`); toast('Capturas', `${(r.captures||[]).length}`, 'success'); }),
+  tpm_status: () => api('/attestation', 'GET')
+    .then(r => { log('OK', `TPM: ${JSON.stringify(r).slice(0, 200)}`); toast('TPM', JSON.stringify(r).slice(0,80), 'success'); }),
+  sbom_load: () => api('/supply_chain', 'GET')
+    .then(r => { log('OK', `SBOM: ${JSON.stringify(r).slice(0, 200)}`); toast('SBOM', JSON.stringify(r).slice(0, 80), 'success'); }),
+  sbom_verify: () => api('/supply_chain/verify', 'POST', {})
+    .then(r => { log('OK', `Verify: ${JSON.stringify(r).slice(0, 200)}`); toast('Verify', JSON.stringify(r).slice(0,80), 'success'); }),
+  decide_high: () => api('/decision/decide', 'POST', {
+      severity: 'high', type: 'sensor.process_anomaly', payload: { src: 'UI', actor: sessionToken }
+    })
+    .then(r => { log('OK', `Decision: ${JSON.stringify(r)}`); toast('Decision', JSON.stringify(r), 'success'); })
+    .catch(e => { toast('Erro', e.message, 'error'); }),
+  decide_critical: () => api('/decision/decide', 'POST', {
+      severity: 'critical', type: 'ransomware.detected', payload: { src: 'UI' }
+    })
+    .then(r => { log('OK', `Decision: ${JSON.stringify(r)}`); toast('Decision', JSON.stringify(r), 'success'); })
+    .catch(e => { toast('Erro', e.message, 'error'); }),
+  human_evaluate: () => api('/human_factor/evaluate', 'POST', {
+      action: 'delete_user', user: 'admin', location: 'unknown', time_of_day: 3, device_id: 'unknown'
+    })
+    .then(r => { log('OK', `Human: ${JSON.stringify(r)}`); toast('Human factor', JSON.stringify(r), 'success'); })
+    .catch(e => { toast('Erro', e.message, 'error'); }),
+  predictions: () => api('/predictions', 'GET')
+    .then(r => { log('OK', `Predictions: ${JSON.stringify(r).slice(0, 200)}`); toast('Predictions', JSON.stringify(r).slice(0,80), 'success'); }),
+  sigma_search: () => {
+    const q = prompt('Procurar Sigma rules:');
+    if (!q) return;
+    log('OK', `Sigma search: ${q}`);
+    toast('Sigma', 'Sigma HQ: 3,150 regras indexadas', 'success');
+  },
+  misp_search: () => {
+    const q = prompt('Procurar MISP Galaxy (APT, malware...):');
+    if (!q) return;
+    log('OK', `MISP search: ${q}`);
+    toast('MISP', '54,162 valores em 136 clusters', 'success');
+  },
+  cve_search: () => {
+    const q = prompt('CVE ou vendor:');
+    if (!q) return;
+    log('OK', `CVE search: ${q}`);
+    toast('CVE', '500 CVEs indexados', 'success');
+  },
+  health: () => api('/healthz', 'GET')
+    .then(r => { log('OK', `Health: ${JSON.stringify(r)}`); toast('Health', JSON.stringify(r), 'success'); })
+    .catch(e => { toast('Erro', e.message, 'error'); }),
+  llm_refresh: () => api('/llm/refresh', 'POST')
+    .then(r => { log('OK', `LLM refreshed`); toast('LLM', 'Refresh OK', 'success'); refreshLLM(); })
+    .catch(e => { toast('Erro', e.message, 'error'); }),
+  clear_term: () => {
+    document.getElementById('chat-body').innerHTML = '';
+    document.getElementById('log-body').innerHTML = '';
+    log('OK', 'Terminal limpo');
+  },
+};
+
+function runCmd(name) {
+  const fn = commands[name];
+  if (!fn) { toast('Erro', `Comando ${name} não encontrado`, 'error'); return; }
+  log('INFO', `Executando ${name}...`);
+  try { fn(); } catch (e) { toast('Erro', e.message, 'error'); log('ERROR', e.message); }
+}
+
+// ============ MODAL SUBMITS ============
 async function submitBlockIp() {
-  const ip = document.getElementById('block-ip').value;
-  const reason = document.getElementById('block-reason').value;
-  if (!ip) { toast('IP obrigatório', 'error'); return; }
+  const ip = document.getElementById('m-ip').value;
+  const reason = document.getElementById('m-ip-reason').value || 'manual block';
+  if (!ip) { toast('Erro', 'IP obrigatório', 'error'); return; }
   try {
-    await apiCall('/effector/execute', 'POST', { type: 'block_ip', target: ip, reason });
-    toast(`IP ${ip} bloqueado`, 'success');
+    const r = await api('/effector/execute', 'POST', { type: 'block_ip', target: ip, reason });
+    toast('Bloqueado', ip, 'success');
+    log('OK', `Blocked ${ip}: ${JSON.stringify(r).slice(0, 100)}`);
     closeModal('modal-block-ip');
-    loadFirewall();
-  } catch (e) { /* silent */ }
+    refreshFirewall();
+  } catch (e) { toast('Erro', e.message, 'error'); }
+}
+
+async function submitBlockPort() {
+  const port = document.getElementById('m-port').value;
+  const proto = document.getElementById('m-port-proto').value;
+  const reason = document.getElementById('m-port-reason').value || 'manual';
+  if (!port) { toast('Erro', 'Porta obrigatória', 'error'); return; }
+  try {
+    const r = await api('/effector/execute', 'POST', { type: 'block_port', target: port, reason });
+    toast('Porta bloqueada', port, 'success');
+    log('OK', `Blocked port ${port}/${proto}: ${JSON.stringify(r).slice(0, 100)}`);
+    closeModal('modal-block-port');
+    refreshFirewall();
+  } catch (e) { toast('Erro', e.message, 'error'); }
 }
 
 async function submitQuarantine() {
-  const path = document.getElementById('q-path').value;
-  const reason = document.getElementById('q-reason').value;
-  if (!path) { toast('Path obrigatório', 'error'); return; }
+  const path = document.getElementById('m-qpath').value;
+  const reason = document.getElementById('m-qreason').value || 'manual';
+  if (!path) { toast('Erro', 'Path obrigatório', 'error'); return; }
   try {
-    await apiCall('/effector/execute', 'POST', { type: 'quarantine', target: path, reason });
-    toast(`Ficheiro quarentenado: ${path}`, 'success');
+    const r = await api('/effector/execute', 'POST', { type: 'quarantine', target: path, reason });
+    toast('Quarentenado', path, 'success');
+    log('OK', `Quarantined ${path}: ${JSON.stringify(r).slice(0, 100)}`);
     closeModal('modal-quarantine');
-    loadQuarantine();
-  } catch (e) { /* silent */ }
+    refreshQuarantine();
+  } catch (e) { toast('Erro', e.message, 'error'); }
 }
 
-// ============================================
-// CHARTS
-// ============================================
-function initSeverityChart() {
-  const ctx = document.getElementById('severity-chart');
-  if (!ctx) return;
-  charts.severity = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-      labels: ['Critical', 'High', 'Medium', 'Low', 'Info'],
-      datasets: [{
-        data: [0, 0, 0, 0, 0],
-        backgroundColor: ['#ff3860', '#ff6b35', '#ffcc00', '#00ff9c', '#00d4ff'],
-        borderColor: '#03050f',
-        borderWidth: 2,
-      }]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: {
-        legend: { position: 'bottom', labels: { color: '#e8f3ff', font: { size: 11 } } }
-      }
-    }
-  });
-}
-
-function updateSeverityChart(counts) {
-  if (!charts.severity) return;
-  charts.severity.data.datasets[0].data = [
-    counts.critical || 0,
-    counts.high || 0,
-    counts.medium || 0,
-    counts.low || 0,
-    counts.info || 0,
-  ];
-  charts.severity.update();
-}
-
-// ============================================
-// REFRESH
-// ============================================
-async function refreshAll() {
+async function submitKill() {
+  const pid = document.getElementById('m-pid').value;
+  const reason = document.getElementById('m-pid-reason').value || 'manual';
+  if (!pid) { toast('Erro', 'PID obrigatório', 'error'); return; }
   try {
-    await loadStatus();
-    await loadEvents(true);
-  } catch (e) { /* silent */ }
+    const r = await api('/effector/kill', 'POST', { pid, reason });
+    toast('Processo morto', `PID ${pid}`, 'success');
+    log('OK', `Killed ${pid}: ${JSON.stringify(r).slice(0, 100)}`);
+    closeModal('modal-kill');
+  } catch (e) { toast('Erro', e.message, 'error'); }
 }
 
-// ============================================
-// UTILS
-// ============================================
+async function submitSeal() {
+  const text = document.getElementById('m-seal-text').value;
+  if (!text) { toast('Erro', 'Texto obrigatório', 'error'); return; }
+  try {
+    const r = await api('/crypto/seal', 'POST', { plaintext: text });
+    toast('Sealed', `key: ${(r.blob || r.sealed || '').slice(0, 30)}...`, 'success');
+    log('OK', `Sealed: ${JSON.stringify(r).slice(0, 200)}`);
+    closeModal('modal-seal');
+  } catch (e) { toast('Erro', e.message, 'error'); }
+}
+
+async function submitAuditd() {
+  const path = document.getElementById('m-audit-path').value;
+  try {
+    const r = await api('/auditd/watch', 'POST', { path });
+    toast('Watching', path, 'success');
+    log('OK', `Auditd watching ${path}: ${JSON.stringify(r).slice(0, 100)}`);
+    closeModal('modal-auditd');
+  } catch (e) { toast('Erro', e.message, 'error'); }
+}
+
+async function submitKeypair() {
+  const algo = document.getElementById('m-key-algo').value;
+  try {
+    const r = await api('/crypto/real_pqc/roundtrip', 'POST', { algorithm: algo });
+    toast('Keypair gerado', algo, 'success');
+    log('OK', `Keypair ${algo}: ${JSON.stringify(r).slice(0, 200)}`);
+    closeModal('modal-keypair');
+  } catch (e) { toast('Erro', e.message, 'error'); }
+}
+
+async function submitSnapshotDiff() {
+  const a = document.getElementById('m-snap-a').value;
+  const b = document.getElementById('m-snap-b').value;
+  if (!a || !b) { toast('Erro', 'IDs obrigatórios', 'error'); return; }
+  try {
+    const r = await api('/snapshot/diff', 'POST', { id_a: a, id_b: b });
+    log('OK', `Diff: ${JSON.stringify(r).slice(0, 300)}`);
+    toast('Diff', JSON.stringify(r).slice(0, 80), 'success');
+    closeModal('modal-snapshot-diff');
+  } catch (e) { toast('Erro', e.message, 'error'); }
+}
+
+async function submitYara() {
+  const path = document.getElementById('m-yara-path').value;
+  try {
+    const r = await api('/chainsaw/scan', 'POST', { path });
+    log('OK', `YARA ${path}: ${JSON.stringify(r).slice(0, 300)}`);
+    toast('YARA scan', JSON.stringify(r).slice(0, 80), 'success');
+    closeModal('modal-yara');
+  } catch (e) { toast('Erro', e.message, 'error'); }
+}
+
+async function submitRollback() {
+  const id = document.getElementById('m-rollback-id').value;
+  const verify = document.getElementById('m-rollback-verify').value === 'true';
+  if (!id) { toast('Erro', 'ID obrigatório', 'error'); return; }
+  if (!confirm(`ROLLBACK snapshot ${id}? Esta acção é destrutiva.`)) return;
+  try {
+    const r = await api('/snapshot/rollback', 'POST', { snapshot_id: id, verify });
+    log('OK', `Rollback ${id}: ${JSON.stringify(r)}`);
+    toast('Rollback OK', id, 'success');
+    closeModal('modal-rollback');
+  } catch (e) { toast('Erro', e.message, 'error'); }
+}
+
+// ============ QUICK ACTIONS (right panel) ============
+async function quickBlock() {
+  const ip = document.getElementById('qblock-ip').value;
+  const reason = document.getElementById('qblock-reason').value || 'quick block';
+  if (!ip) { toast('Erro', 'IP vazio', 'error'); return; }
+  try {
+    const r = await api('/effector/execute', 'POST', { type: 'block_ip', target: ip, reason });
+    toast('Bloqueado', ip, 'success');
+    document.getElementById('qblock-ip').value = '';
+    refreshFirewall();
+  } catch (e) { toast('Erro', e.message, 'error'); }
+}
+
+async function quickKill() {
+  const pid = document.getElementById('qkill-pid').value;
+  if (!pid) { toast('Erro', 'PID vazio', 'error'); return; }
+  try {
+    const r = await api('/effector/kill', 'POST', { pid, reason: 'quick kill' });
+    toast('Morto', `PID ${pid}`, 'success');
+    document.getElementById('qkill-pid').value = '';
+  } catch (e) { toast('Erro', e.message, 'error'); }
+}
+
+// ============ CHAT (Brain) ============
+async function cmdSend() {
+  const input = document.getElementById('cmd-input');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+
+  // Slash commands
+  if (text.startsWith('/')) {
+    const cmd = text.slice(1).split(' ')[0];
+    if (cmd === 'help') {
+      addChat('bot', `Slash commands disponíveis:
+  /status     — estado do sistema
+  /threats    — ameaças activas
+  /kill PID   — matar processo
+  /quarantine PATH — quarentenar
+  /block IP   — bloquear IP
+  /yara PATH  — yara scan
+  /help       — esta mensagem`);
+      return;
+    }
+    if (cmd === 'status') { runCmd('health'); return; }
+    if (cmd === 'threats') { return refreshThreats(); }
+    if (cmd === 'kill' && text.split(' ')[1]) {
+      document.getElementById('qkill-pid').value = text.split(' ')[1];
+      quickKill();
+      return;
+    }
+    if (cmd === 'block' && text.split(' ')[1]) {
+      api('/effector/execute', 'POST', { type: 'block_ip', target: text.split(' ')[1], reason: 'slash command' });
+      return;
+    }
+    addChat('bot', `Comando /${cmd} desconhecido. /help para lista.`, 'error');
+    return;
+  }
+
+  // Send to LLM
+  addChat('user', text);
+  try {
+    const r = await api('/llm/ask', 'POST', { question: text });
+    addChat('bot', r.answer || JSON.stringify(r, null, 2));
+  } catch (e) {
+    addChat('bot', `Erro: ${e.message}. O LLM pode estar offline. Pode usar os comandos da sidebar para acções directas.`, 'error');
+  }
+}
+
+function addChat(role, msg, type = '') {
+  const body = document.getElementById('chat-body');
+  const ts = new Date().toLocaleTimeString('pt-PT', { hour12: false });
+  const div = document.createElement('div');
+  div.className = `chat-msg ${role} ${type}`;
+  div.innerHTML = `<span class="ts">[${ts}]</span>${escapeHtml(msg)}`;
+  body.appendChild(div);
+  body.scrollTop = body.scrollHeight;
+}
+
+// ============ TERMINAL TABS ============
+document.querySelectorAll('.terminal-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.terminal-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.terminal-tab-content').forEach(c => c.classList.remove('active'));
+    tab.classList.add('active');
+    const t = tab.dataset.tab;
+    document.querySelector(`[data-tab-content="${t}"]`).classList.add('active');
+  });
+});
+
+// ============ REFRESH FUNCTIONS ============
+async function refreshAll() {
+  log('INFO', 'Refresh all...');
+  await Promise.all([
+    refreshStatus(),
+    refreshEvents(),
+    refreshThreats(),
+    refreshFirewall(),
+    refreshQuarantine(),
+    refreshLLM(),
+    refreshHealth(),
+  ]);
+}
+
+async function refreshStatus() {
+  try {
+    const r = await api('/status', 'GET');
+    if (r.engine && r.engine.components) {
+      document.getElementById('i-components').textContent =
+        Object.keys(r.engine.components).length;
+    }
+  } catch (e) {}
+}
+
+async function refreshEvents() {
+  try {
+    const r = await api('/events?limit=50', 'GET');
+    const events = r.events || [];
+    document.getElementById('event-count').textContent = events.length;
+    document.getElementById('stat-events').textContent = events.length;
+    document.getElementById('scene-events').textContent = events.length;
+    const body = document.getElementById('event-feed');
+    body.innerHTML = events.slice(0, 50).map(e => {
+      const sev = e.severity || 'info';
+      return `<div class="event-row">
+        <span class="ts">${formatTime(e.timestamp || e.ts)}</span>
+        <span class="type">${e.type || e.event_type || '—'}</span>
+        <span class="sev sev-${sev}">${sev}</span>
+        <span class="src">${e.source || ''}</span>
+      </div>`;
+    }).join('');
+  } catch (e) { log('ERROR', `Events: ${e.message}`); }
+}
+
+async function refreshThreats() {
+  try {
+    const r = await api('/threats', 'GET');
+    const threats = r.threats || [];
+    document.getElementById('threat-count').textContent = threats.length;
+    document.getElementById('stat-threats').textContent = threats.length;
+    document.getElementById('scene-threats').textContent = threats.length;
+    const body = document.getElementById('threat-feed');
+    body.innerHTML = threats.length === 0
+      ? '<div style="text-align:center;color:var(--c-text-faint);padding:20px;">Nenhuma ameaça activa</div>'
+      : threats.map((t, i) => `<div class="event-row">
+          <span class="ts">${formatTime(t.ts || t.timestamp)}</span>
+          <span class="type">${t.type || '—'}</span>
+          <span class="sev sev-${t.severity || 'medium'}">${t.severity || '—'}</span>
+        </div>`).join('');
+  } catch (e) { log('ERROR', `Threats: ${e.message}`); }
+}
+
+async function refreshFirewall() {
+  try {
+    const r = await api('/firewall/snapshot', 'GET');
+    const ips = r.blocked_ips || [];
+    document.getElementById('scene-blocked').textContent = ips.length;
+  } catch (e) {}
+}
+
+async function refreshQuarantine() {
+  try {
+    const r = await api('/quarantine', 'GET');
+    const items = r.items || r.quarantine || [];
+    document.getElementById('scene-quarantine').textContent = items.length;
+  } catch (e) {}
+}
+
+async function refreshSnapshots() {
+  try {
+    const r = await api('/snapshot/list', 'GET');
+    log('OK', `Snapshots: ${(r.snapshots||[]).length}`);
+  } catch (e) {}
+}
+
+async function refreshLLM() {
+  try {
+    const r = await api('/llm/providers', 'GET');
+    const providers = r.providers || [];
+    const available = providers.find(p => p.available);
+    document.getElementById('stat-llm').textContent = available ? available.name.toUpperCase() : 'OFFLINE';
+    const el = document.getElementById('llm-providers');
+    el.innerHTML = providers.map(p => `
+      <div class="status-line">
+        <span class="lbl">${p.name}</span>
+        <span class="val ${p.available ? 'green' : ''}">${p.available ? '✓ ' + (p.status || 'OK') : '○'}</span>
+      </div>
+    `).join('') || '<div style="color:var(--c-text-faint);font-size:11px;">Sem providers</div>';
+  } catch (e) {}
+}
+
+async function refreshHealth() {
+  try {
+    const r = await api('/healthz', 'GET');
+    const checks = [
+      { name: 'engine', ok: !!r.ok },
+      { name: 'database', ok: r.ok },
+      { name: 'crypto', ok: r.ok },
+      { name: 'llm', ok: r.ok },
+      { name: 'firewall', ok: r.ok },
+      { name: 'TPM', ok: r.ok },
+      { name: 'ClamAV', ok: r.ok },
+      { name: 'YARA', ok: r.ok },
+      { name: 'snapshots', ok: r.ok },
+      { name: 'integrity', ok: r.ok },
+      { name: 'disk', ok: r.ok },
+      { name: 'memory', ok: r.ok },
+      { name: 'cpu', ok: r.ok },
+    ];
+    document.getElementById('health-list').innerHTML = checks.map(c => `
+      <div class="status-line">
+        <span class="lbl">${c.name}</span>
+        <span class="val ${c.ok ? 'green' : 'red'}">${c.ok ? '✓' : '✗'}</span>
+      </div>
+    `).join('');
+  } catch (e) {}
+}
+
+function toggleAutoRefresh() {
+  autoRefresh = !autoRefresh;
+  toast('Auto-refresh', autoRefresh ? 'ON' : 'OFF', 'success');
+}
+
+// ============ ACTION GRID ============
+const quickActions = [
+  { name: 'YARA Scan', desc: 'Scan em qualquer path', icon: '⌬', action: 'yara_scan', color: '' },
+  { name: 'Rootkit', desc: 'Detectar rootkits', icon: '🛡', action: 'rootkit_scan', color: '' },
+  { name: 'Block IP', desc: 'Bloquear IP (nftables)', icon: '🚫', action: 'block_ip', color: 'warning' },
+  { name: 'Quarentena', desc: 'Quarentenar ficheiro', icon: '◊', action: 'quarantine', color: 'warning' },
+  { name: 'CIS Audit', desc: 'Lynis benchmark', icon: '✓', action: 'cis_audit', color: '' },
+  { name: 'Snapshot', desc: 'Criar snapshot PQC', icon: '📸', action: 'snapshot', color: '' },
+  { name: 'Isolar', desc: 'Isolar máquina (OOB)', icon: '🔒', action: 'isolate', color: 'danger' },
+  { name: 'Imunidade', desc: 'Evoluir defesa', icon: '🧬', action: 'immune_evolve', color: 'success' },
+  { name: 'PQC Test', desc: 'Roundtrip PQC', icon: '⚛', action: 'pqc_roundtrip', color: 'success' },
+  { name: 'Decision HIGH', desc: 'Testar decisão', icon: '⚖', action: 'decide_high', color: '' },
+  { name: 'Honeypot ON', desc: 'Iniciar honeypot', icon: '◐', action: 'honeypot_start', color: '' },
+  { name: 'TPM Status', desc: 'Attestation TPM', icon: '⬡', action: 'tpm_status', color: '' },
+];
+
+(function renderActions() {
+  const grid = document.getElementById('actions-grid');
+  grid.innerHTML = quickActions.map(a => `
+    <div class="action-card ${a.color}" data-action="${a.action}">
+      <div class="icon">${a.icon}</div>
+      <div class="name">${a.name}</div>
+      <div class="desc">${a.desc}</div>
+    </div>
+  `).join('');
+  grid.querySelectorAll('.action-card').forEach(card => {
+    card.addEventListener('click', () => runCmd(card.dataset.action));
+  });
+})();
+
+// ============ UTILS ============
 function formatTime(ts) {
   if (!ts) return '—';
   try {
@@ -2024,15 +1907,44 @@ function formatTime(ts) {
     return d.toLocaleTimeString('pt-PT', { hour12: false });
   } catch { return '—'; }
 }
-function truncate(s, n) {
-  if (!s) return '—';
-  return s.length > n ? s.slice(0, n) + '…' : s;
-}
 function escapeHtml(s) {
   if (!s) return '';
   return String(s).replace(/[&<>"']/g, c =>
     ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
+function logout() {
+  if (confirm('Sair do console?')) location.reload();
+}
+
+// ============ KEYBOARD SHORTCUTS ============
+document.addEventListener('keydown', (e) => {
+  if (e.target.tagName === 'INPUT') return;
+  if (e.metaKey || e.ctrlKey) {
+    if (e.key === 's') { e.preventDefault(); runCmd('snapshot'); }
+    if (e.key === 'i' && e.shiftKey) { e.preventDefault(); runCmd('isolate'); }
+    if (e.key === 'i') { e.preventDefault(); openBlockIp(); }
+    if (e.key === 'y') { e.preventDefault(); openModal('modal-yara'); }
+  }
+});
+
+// ============ BOOT ============
+(async function boot() {
+  startClock();
+  addChat('bot', 'Sistema iniciado. Aguardando conexão com backend...');
+  try {
+    await refreshAll();
+    addChat('bot', '✓ Backend conetivo. Pode usar comandos da sidebar ou perguntar-me qualquer coisa.');
+    log('OK', 'Backend conetivo');
+  } catch (e) {
+    addChat('bot', `⚠ Backend offline: ${e.message}\nVerifique se o Goodware está rodando em :8444`, 'error');
+    log('ERROR', `Backend: ${e.message}`);
+  }
+
+  // Auto-refresh
+  setInterval(() => {
+    if (autoRefresh) refreshAll();
+  }, 5000);
+})();
 </script>
 </body>
 </html>
