@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <!-- Glow filter -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Inner glow for the core -->
+    <filter id="coreGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Radial gradient for the core -->
+    <radialGradient id="coreGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
+      <stop offset="40%" stop-color="#e0f7ff" stop-opacity="0.9"/>
+      <stop offset="70%" stop-color="#a0c4ff" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#0070f3" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Cyan orbit gradient -->
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00d4ff" stop-opacity="1"/>
+      <stop offset="50%" stop-color="#0070f3" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#00d4ff" stop-opacity="0.4"/>
+    </linearGradient>
+
+    <!-- Orange/coral orbit gradient -->
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff6b35" stop-opacity="1"/>
+      <stop offset="50%" stop-color="#ff9558" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#ff6b35" stop-opacity="0.4"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background dark space -->
+  <rect width="400" height="400" fill="#0a0e27"/>
+
+  <!-- Subtle stars/particles -->
+  <g opacity="0.6">
+    <circle cx="50" cy="50" r="0.8" fill="#ffffff"/>
+    <circle cx="350" cy="80" r="0.6" fill="#ffffff"/>
+    <circle cx="80" cy="320" r="0.7" fill="#ffffff"/>
+    <circle cx="320" cy="350" r="0.5" fill="#ffffff"/>
+    <circle cx="200" cy="40" r="0.6" fill="#ffffff"/>
+    <circle cx="40" cy="200" r="0.5" fill="#ffffff"/>
+    <circle cx="380" cy="280" r="0.7" fill="#ffffff"/>
+    <circle cx="150" cy="370" r="0.4" fill="#ffffff"/>
+    <circle cx="270" cy="60" r="0.5" fill="#ffffff"/>
+    <circle cx="120" cy="100" r="0.6" fill="#ffffff"/>
+  </g>
+
+  <!-- Outer orbits (3 crossing ellipses, like atom orbits) -->
+  <g transform="translate(200, 200)" filter="url(#glow)">
+    <!-- Orbit 1 (cyan, vertical) -->
+    <ellipse cx="0" cy="0" rx="115" ry="40" fill="none"
+             stroke="url(#cyanGrad)" stroke-width="2.5"
+             transform="rotate(60)"/>
+
+    <!-- Orbit 2 (orange, vertical) -->
+    <ellipse cx="0" cy="0" rx="115" ry="40" fill="none"
+             stroke="url(#orangeGrad)" stroke-width="2.5"
+             transform="rotate(-60)"/>
+
+    <!-- Orbit 3 (cyan, horizontal-ish) -->
+    <ellipse cx="0" cy="0" rx="115" ry="40" fill="none"
+             stroke="url(#cyanGrad)" stroke-width="2.5"
+             transform="rotate(0)"/>
+
+    <!-- Brighter secondary trace (inner curve highlight) -->
+    <ellipse cx="0" cy="0" rx="100" ry="38" fill="none"
+             stroke="#00d4ff" stroke-width="1"
+             opacity="0.5"
+             transform="rotate(45)"/>
+  </g>
+
+  <!-- Central glowing core -->
+  <g transform="translate(200, 200)">
+    <!-- Outer halo -->
+    <circle r="55" fill="url(#coreGradient)" opacity="0.6" filter="url(#coreGlow)"/>
+    <!-- Mid layer -->
+    <circle r="40" fill="url(#coreGradient)" opacity="0.85"/>
+    <!-- Bright core -->
+    <circle r="22" fill="#ffffff" opacity="0.95" filter="url(#coreGlow)"/>
+    <!-- Tiny bright center -->
+    <circle r="8" fill="#ffffff"/>
+  </g>
+
+  <!-- Particle sparks around orbits -->
+  <g opacity="0.9">
+    <circle cx="305" cy="170" r="2" fill="#00d4ff"/>
+    <circle cx="95" cy="230" r="1.5" fill="#ff6b35"/>
+    <circle cx="270" cy="285" r="1.8" fill="#00d4ff"/>
+    <circle cx="130" cy="115" r="2" fill="#ff6b35"/>
+    <circle cx="200" cy="320" r="1.5" fill="#00d4ff"/>
+    <circle cx="200" cy="80" r="1.8" fill="#ff6b35"/>
+  </g>
+
+  <!-- Geometric fragments (triangles from the source image) -->
+  <g opacity="0.4">
+    <polygon points="115,290 120,295 110,300" fill="#00d4ff"/>
+    <polygon points="280,110 285,105 290,115" fill="#ff6b35"/>
+    <polygon points="105,170 100,175 105,180" fill="#00d4ff"/>
+    <polygon points="295,225 300,220 305,230" fill="#ff6b35"/>
+  </g>
+</svg>
