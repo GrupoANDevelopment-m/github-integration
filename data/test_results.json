@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-10-05T07:25:36Z",
-  "total": 368,
+  "timestamp": "2026-10-11T16:58:27Z",
+  "total": 381,
   "pass_rate": 1.0,
   "suites": {
     "e2e": 11,
@@ -9,6 +9,7 @@
     "security": 27,
     "real_sec_tools": 12,
     "intel_sources": 14,
+    "production_repos": 13,
     "llm_brain": 34,
     "llm_fallback": 12,
     "load": 6

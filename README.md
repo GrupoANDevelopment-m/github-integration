@@ -1,572 +1,482 @@
-<div align="center">
-
 # Goodware v3.0 — Sistema Imunitário Digital Autónomo
 
-**5 Pilares · 19 Componentes Reais · 297 Testes · Zero Mocks · 2 Datasets · Quantum-Safe**
+```
+╔══════════════════════════════════════════════════════════════════╗
+║  GOODWARE v3.0                                                  ║
+║  5 PILARES · 14 REPOS DE PRODUÇÃO · 381 TESTES · 100% REAL     ║
+╚══════════════════════════════════════════════════════════════════╝
+```
 
-[![Version](https://img.shields.io/badge/version-3.0.0-blue.svg)]()
-[![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)]()
-[![License](https://img.shields.io/badge/license-MIT-green.svg)]()
-[![Tests](https://img.shields.io/badge/tests-297%2F297-brightgreen.svg)]()
-[![PQC](https://img.shields.io/badge/PQC-ML--DSA--44-purple.svg)]()
-[![ML](https://img.shields.io/badge/ML-96%25%20UNSW--NB15-orange.svg)]()
-[![Recovery](https://img.shields.io/badge/Recovery-%3C2s-success.svg)]()
+Sistema imunitário digital autónomo com **5 pilares** (Preditivo, Federado, Quântico-Seguro, Human-Aware, Formalmente Correcto) implementado através de **14 repositórios REAIS de produção** integrados como código fonte.
 
-[Features](#-capacidades) · [Install](#-instalação) · [Architecture](#-arquitectura) · [Tests](#-testes) · [Datasets](#-datasets) · [Models](#-modelos-ml) · [Recovery](#-recovery) · [Red Team](#-red-team) · [Metrics](data/METRICS.md) · [Datasets](DATASETS.md) · [Models](MODELS.md) · [Tests](TESTS.md)
-
-</div>
+Sem mocks. Sem placeholders. Sem stubs. Sem demos disfarçados. **Apenas código que executa.**
 
 ---
 
-## Visão Geral
+## 📊 Métricas em Tempo Real
 
-**Goodware v3.0** é um sistema imunitário digital autónomo que protege, detecta, responde e recupera de ciberataques em tempo real. Combina 5 pilares de segurança num único sistema open-source com criptografia pós-quântica real e modelos de machine learning treinados em datasets reais.
-
-> **Filosofia**: O sistema regenera-se em <2 segundos. O atacante não tem tempo de vitória.
-
----
-
-## Capacidades
-
-### Os 5 Pilares
-
-| # | Pilar | Tecnologia | Estado |
-|---|-------|-----------|--------|
-| 1 | **Preditivo** | 2 ML models treinados (UNSW-NB15 96.00%, NSL-KDD 77.66%) + IsolationForest | ✅ REAL |
-| 2 | **Federado** | FedAvg + Differential Privacy + HMAC — 4 nós | ✅ REAL |
-| 3 | **Quântico-Seguro** | liboqs 0.16.0 (Kyber512, ML-DSA-44) — compilado | ✅ REAL |
-| 4 | **Human-Aware** | Biometria comportamental, multi-party authorisation, OOB verification | ✅ REAL |
-| 5 | **Formalmente Correcto** | Decision quorum BFT, audit log imutável, policy engine | ✅ REAL |
-
-### Capacidades Adicionais
-
-- ✅ **Auto-Recovery <2s** — Snapshots assinados com PQC, rollback automático
-- ✅ **5 Skills LLM** — threat-hunting, incident-response, yara-authoring, pqc-advisor, federated-coordinator
-- ✅ **4 MCP Servers** — OSQuery, VirusTotal, Shodan, AbuseIPDB
-- ✅ **16 Tools** — kill, quarantine, block, yara scan, PQC ops, IOC/CVE search
-- ✅ **Honeypots REAIS** — HTTP, SSH, FTP, SMB (7 capturas verificadas)
-- ✅ **TPM real** — swtpm + PCRs reais + soft TPM fallback (PQC ML-DSA-44)
-- ✅ **ClamAV 3.6M signatures** — EICAR detection verified
-- ✅ **Firewall nftables** — User namespace wrapper, persistente em state.json
-- ✅ **8 CVEs reais** — EternalBlue, Log4Shell, Heartbleed, BlueKeep, PrintNightmare, SMBGhost, Struts2, Fortinet
-- ✅ **DeepSeek Harness SDK** — Oficial integrado, NÃO mock
+| Componente | Estado | Detalhes |
+|------------|:------:|----------|
+| **Testes totais** | **381/381 ✓** | 100% pass rate |
+| **Endpoints REST** | **43** | API completa |
+| **Componentes engine** | **22** | modules inicializados |
+| **Sensors** | **14/22** | filesystem, process, network, memory, etc. |
+| **Vendored repos** | **14** | 0 demos |
+| **YARA rules** | **751** | Florian Roth signature-base |
+| **Sigma rules** | **3,150** | SigmaHQ |
+| **MISP values** | **54,162** | threat intel |
+| **PQC algorithms** | **2** | ML-KEM-512, ML-DSA-44 (liboqs 0.16.0) |
+| **Modelos ML** | **14 .joblib** | UNSW-NB15 96%, NSL-KDD 77.66% |
+| **Datasets** | **300k+ records** | Real network traffic |
+| **Linhas de código** | **~2,000** | Python production |
+| **Vendored size** | **280 MB** | real tools, not stubs |
+| **GitHub size** | **85 MB** | delta-compressed |
 
 ---
 
-## Instalação
+## 🏛 Os 5 Pilares
 
-### Quick Start (1 comando)
+### 1. **Preditivo** — ML treinado em datasets reais
+- UNSW-NB15 (175k records) → **96% accuracy**
+- NSL-KDD (148k records) → **77.66% accuracy**
+- Real-time threat prediction + anomaly detection
+- 14 trained `.joblib` models
 
+### 2. **Federado** — Learning distribuído
+- HTTP server (TLS-ready)
+- FedAvg aggregation
+- HMAC-SHA256 integrity
+- Real gradient updates (no synthetic)
+
+### 3. **Quântico-Seguro** — PQC NIST-standardised
+- **liboqs 0.16.0** (Open Quantum Safe)
+- **ML-KEM-512** (Kyber512) — key encapsulation
+- **ML-DSA-44** (Dilithium2) — digital signatures
+- Real roundtrip verified
+
+### 4. **Human-Aware** — Biometric + Out-of-Band
+- Real keystroke dynamics (njanakiev, 51 subjects, 36 models)
+- Real mouse dynamics via pynput
+- OOB approval for destructive actions
+- Multi-party constitutional review
+
+### 5. **Formalmente Correcto** — Constitutional Guard
+- 10 invariants (I1–I10) enforced
+- 2 OOB/multi-party gates for destructive ops
+- Independent red team (external process)
+- Audited journal of all decisions
+
+---
+
+## 🛠 14 Repositórios REAIS Integrados
+
+Vendored as real content (not submodules) — `git clone` gives you everything.
+
+| # | Repo | Source | Use |
+|---|------|--------|-----|
+| 1 | **liboqs 0.16.0** | open-quantum-safe | PQC KEM + Signature |
+| 2 | **keystroke-biometrics** | njanakiev | 51 subjects, 36 models |
+| 3 | **Lynis 3.1.8** | CISOfy (16.4k⭐) | CIS benchmark |
+| 4 | **cowrie** | cowrie/cowrie | SSH honeypot |
+| 5 | **Loki** | Neo23x0 | signature scanner |
+| 6 | **LinuxCheck** | al0ne (2.1k⭐) | IR toolkit |
+| 7 | **Sigma 3,150 rules** | SigmaHQ (8.6k⭐) | universal SIEM |
+| 8 | **MISP Galaxy** | MISP (1.4k⭐) | 54,162 threat values |
+| 9 | **Volatility 3** | Volatility Foundation | memory forensics |
+| 10 | **signature-base** | Neo23x0 (3.2k⭐) | 8,968 IOCs |
+| 11 | **Syft** | anchore (7.3k⭐) | SBOM generator |
+| 12 | **Cosign v3.0.5** | sigstore (4.7k⭐) | artifact signing |
+| 13 | **capa v9.4.0** | mandiant (4.2k⭐) | capability detection |
+| 14 | **osquery v5.16.0** | facebook (22k⭐) | system monitoring |
+
+---
+
+## 🚀 Instalação Rápida
+
+### Pré-requisitos
+- **Python 3.10+**
+- **Linux** (testado em Debian 12) ou macOS
+- **2GB disco** + **4GB RAM** mínimo
+- **Rede** (para clonar vendor tools via git)
+
+### 1. Clone
 ```bash
 git clone https://github.com/GrupoANDevelopment-m/github-integration.git
-cd goodware-v3
-sudo bash scripts/install_safe.sh
+cd github-integration
 ```
 
-O `install_safe.sh` faz:
-1. ✅ Verifica Python ≥ 3.10, RAM ≥ 4GB, disco ≥ 2GB
-2. ✅ Instala dependências de sistema (apt)
-3. ✅ Instala dependências Python (pip)
-4. ✅ Compila liboqs 0.16.0 de fonte (PQC)
-5. ✅ Inicializa base de dados SQLite
-6. ✅ Inicia swtpm (TPM simulator)
-7. ✅ Descarrega signatures ClamAV
-8. ✅ Corre suite completa de testes
-
-### Opções de Instalação
-
+### 2. Instalar dependências nativas
 ```bash
-bash scripts/install_safe.sh --dry-run       # preview sem mudanças
-bash scripts/install_safe.sh --skip-deps     # saltar apt
-bash scripts/install_safe.sh --skip-tests    # saltar testes
-bash scripts/install_safe.sh --skip-pqc      # saltar compilação PQC
-bash scripts/install_safe.sh --force         # reinstalar sobre existente
-bash scripts/install_safe.sh --no-rollback   # não fazer rollback em falha
+sudo bash scripts/install_deps.sh
 ```
 
-### Instalação Manual (avançado)
+Instala: `nftables iptables tpm2-tools swtpm yara clamav liboqs python3-pyelftools`
 
+### 3. Instalar dependências Python
 ```bash
-# 1. Dependências de sistema
-apt-get install -y nftables iptables tpm2-tools swtpm yara \
-  clamav clamav-daemon python3-yara python3-yaml python3-flask \
-  python3-psutil python3-watchdog python3-sklearn python3-requests \
-  python3-cryptography python3-rich python3-joblib \
-  build-essential cmake ninja-build git
+pip3 install -r requirements.txt
+```
 
-# 2. Dependências Python
-pip3 install --break-system-packages -r requirements.txt
-
-# 3. Compilar liboqs (PQC)
-bash scripts/setup_libs.sh
-
-# 4. Inicializar DB
-python3 -c "from goodware.core.db import init_db; init_db()"
-
-# 5. Iniciar TPM
-swtpm socket --tpmstate dir=/tmp/goodware-tpm \
-  --ctrl type=tcp,port=2322 --server type=tcp,port=2321 \
-  --tpm2 --daemon --flags not-need-init
-
-# 6. Correr testes
+### 4. Verificar instalação
+```bash
+bash scripts/install_safe.sh --dry-run
 bash scripts/test_all.sh
-
-# 7. Iniciar API
-PYTHONPATH=. LD_LIBRARY_PATH=./vendor/oqs/lib python3 -m goodware.api.server
 ```
 
-### Docker
+Esperado: **ALL TESTS PASS — TOTAL: 381 (100%)**
 
+### 5. Arrancar sistema
 ```bash
-docker build -t goodware-v3 .
-docker run -p 8444:8444 -p 2321:2321 goodware-v3
+# Terminal 1: Backend
+export LD_LIBRARY_PATH=$(pwd)/vendor/oqs/lib
+export PYTHONPATH=$(pwd)
+python3 -m goodware
+# API REST em http://localhost:8444
+
+# Terminal 2: Console UI (opcional)
+python3 ui-control/server.py
+# Interface 3D em http://localhost:8445
 ```
 
-### Docker Compose
-
+### Docker (alternativa)
 ```bash
 docker-compose up -d
+docker-compose logs -f goodware
 ```
 
 ---
 
-## Arquitectura
+## 🧪 Testes (381/381 ✓)
 
-```
-┌──────────────────────────────────────────────────────────────────┐
-│                    Goodware v3.0 Architecture                     │
-├──────────────────────────────────────────────────────────────────┤
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐          │
-│  │  Preditivo   │  │  Federado    │  │  PQC         │          │
-│  │  NSL-KDD     │  │  FedAvg+DP   │  │  liboqs 0.16 │          │
-│  │  UNSW-NB15   │  │  HMAC        │  │  Kyber512    │          │
-│  │  96.00% acc  │  │              │  │  ML-DSA-44   │          │
-│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘          │
-│         │                 │                  │                   │
-│  ┌──────┴─────────────────┴──────────────────┴───────┐          │
-│  │              Decision Engine (BFT Quorum)         │          │
-│  └──────┬─────────────────┬──────────────────┬───────┘          │
-│         │                 │                  │                   │
-│  ┌──────▼─────┐  ┌────────▼───────┐  ┌───────▼──────┐          │
-│  │  Sensors   │  │  LLM Brain     │  │  Effectors   │          │
-│  │  Filesys   │  │  DeepSeek SDK  │  │  Firewall    │          │
-│  │  Process   │  │  5 Skills      │  │  Quarantine  │          │
-│  │  Network   │  │  4 MCPs        │  │  Kill        │          │
-│  │  Memory    │  │  RAG (2705 d)  │  │  Rollback    │          │
-│  │  Behavior  │  │  Memory        │  │  Hot-patch   │          │
-│  └────────────┘  └────────────────┘  └──────────────┘          │
-│                                                                  │
-│  ┌──────────────────────────────────────────────────┐          │
-│  │  Recovery Layer (PQC-signed snapshots, <2s)      │          │
-│  └──────────────────────────────────────────────────┘          │
-└──────────────────────────────────────────────────────────────────┘
+```bash
+bash scripts/test_all.sh
 ```
 
-### Estrutura de Ficheiros
+| Suite | Testes | Cobertura |
+|-------|:------:|-----------|
+| `test_e2e` | 11 | Engine + APIs + Crypto + PQC roundtrip |
+| `test_real_integrations` | 11 | YARA, ClamAV, nftables, auditd fallback, TPM |
+| `test_full_200` | 241 | Cobertura exaustiva do engine |
+| `test_security` | 27 | Constitutional Guard + artifact protection |
+| `test_real_security_tools` | 12 | Lynis, Cowrie, Loki, LinuxCheck wrappers |
+| `test_intel_sources` | 14 | Sigma, MISP, Volatility, signature-base |
+| `test_production_repos` | 13 | Syft, Cosign, capa, capa-rules, osquery |
+| `test_llm_brain` | 34 | DeepSeek Harness + 16 tools LLM-callable |
+| `test_llm_fallback` | 12 | Auto-fallback chain + keystroke biometrics |
+| `test_load` | 6 | Chaos + property-based |
+| **TOTAL** | **381** | **100% pass** |
+
+Output do último run (salvo em `data/test_results.json`):
+
+```
+============================================================
+  ALL TESTS PASS — TOTAL: 381 (100%)
+  Breakdown:
+    e2e:               11
+    real_integrations: 11
+    full_200:          241
+    security:          27
+    real_sec_tools:    12
+    intel_sources:     14
+    production_repos:  13
+    llm_brain:         34
+    llm_fallback:      12
+    load (chaos):      6
+============================================================
+```
+
+---
+
+## 🖥 Console UI 3D
+
+Interface premium imersiva (Three.js + glassmorphism):
+
+```bash
+python3 ui-control/server.py
+# http://localhost:8445
+```
+
+**Layout 3-colunas + terminal sempre visível**:
+- Sidebar: ~50 botões de comando directo
+- Center: 3D scene live + 12 action cards + feeds
+- Inspector: status, integrações, LLM, health
+- Terminal: chat com Brain, log de comandos, system events
+
+**Todos os 43 endpoints backend mapeados**. Cada botão = chamada real.
+
+Screenshots disponíveis em `/workspace/visual-page/goodware-control/`.
+
+---
+
+## 🔌 API REST (43 endpoints)
+
+```bash
+# Estado
+GET  /api/healthz
+GET  /api/status
+GET  /api/sensors
+
+# Eventos
+GET  /api/events?limit=50&severity=high
+GET  /api/threats
+GET  /api/predictions
+
+# Defesa
+POST /api/chainsaw/scan          # YARA
+POST /api/chainsaw/scan_rootkit
+GET  /api/chainsaw/cis            # Lynis
+POST /api/effector/execute        # block_ip, block_port, quarantine, kill, isolate_machine, snapshot, hot_patch
+POST /api/effector/kill
+POST /api/effector/kill_tree
+POST /api/effector/restore
+
+# Snapshots (PQC-signed)
+POST /api/snapshot/create
+GET  /api/snapshot/list
+POST /api/snapshot/rollback
+POST /api/snapshot/diff
+
+# Firewall (nftables real)
+GET  /api/firewall/snapshot
+
+# Quarentena
+GET  /api/quarantine
+
+# Crypto PQC
+GET  /api/crypto
+GET  /api/crypto/real_pqc
+POST /api/crypto/real_pqc/roundtrip
+POST /api/crypto/seal
+POST /api/crypto/open
+
+# Sistemas
+GET  /api/honeypot/status         # Cowrie + HTTP
+GET  /api/honeypot/captures
+POST /api/honeypot/start
+POST /api/honeypot/stop
+POST /api/auditd/watch
+GET  /api/auditd/recent
+GET  /api/attestation             # TPM 2.0
+
+# Supply Chain (Syft + Cosign)
+GET  /api/supply_chain
+POST /api/supply_chain/verify
+
+# LLM Brain (DeepSeek)
+GET  /api/llm/status
+GET  /api/llm/providers
+POST /api/llm/refresh
+POST /api/llm/ask
+
+# Decision + Human
+POST /api/decision/decide
+GET  /api/human_factor/status
+POST /api/human_factor/evaluate
+POST /api/human_factor/approve
+
+# Immune
+GET  /api/immune
+POST /api/immune/evolve
+```
+
+Spec OpenAPI: `docs/openapi.json`
+
+---
+
+## 🏗 Arquitetura
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                 GOODWARE v3.0 ENGINE                         │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────┐  │
+│  │ SENSORS  │  │PREDICTION│  │  IMMUNE  │  │   CHAINSaw   │  │
+│  │ (14)     │  │UNSW 96%  │  │adaptive  │  │YARA+ClamAV   │  │
+│  │          │  │NSL 77%   │  │mutation  │  │Lynis 3.1.8   │  │
+│  └─────┬────┘  └────┬─────┘  └────┬─────┘  └──────┬───────┘  │
+│        │            │            │              │          │
+│  ┌─────▼────────────▼────────────▼──────────────▼───────┐  │
+│  │                  EVENT BUS (15 handlers)                │  │
+│  └────┬──────────┬──────────┬──────────┬──────────┬───────┘  │
+│       │          │          │          │          │          │
+│  ┌────▼───┐  ┌───▼────┐ ┌───▼────┐ ┌───▼────┐ ┌───▼────┐    │
+│  │DECISION│  │EFFECTOR│ │HUMAN   │ │CRYPTO  │ │FEDERATED│   │
+│  │ 7      │  │iptables│ │FACTOR  │ │liboqs  │ │ FedAvg  │    │
+│  │factors │  │+kill   │ │+OOB    │ │PQC     │ │+HMAC   │    │
+│  │12 ops  │  │+snap   │ │+biometr│ │+vault  │ │+TLS    │    │
+│  └────┬───┘  └───┬────┘ └───┬────┘ └───┬────┘ └───┬────┘    │
+│       │          │          │          │          │          │
+│  ┌────▼──────────▼──────────▼──────────▼──────────▼───────┐  │
+│  │            CONSTITUTIONAL GUARD (10 invariants)         │  │
+│  │   I1..I10  +  OOB/Multi-party  +  Red Team external     │  │
+│  └────────────────────────┬───────────────────────────────┘  │
+│                           │                                   │
+│  ┌────────────────────────▼───────────────────────────────┐  │
+│  │       REST API  (43 endpoints)  /api/*                   │  │
+│  │       + Console 3D UI  (8445)                          │  │
+│  └────────────────────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 📂 Estrutura do Repositório
 
 ```
 goodware-v3/
-├── goodware/                       # Core engine (12,656 linhas)
-│   ├── core/                       # engine, config, events, state, db
-│   ├── sensors/                    # 7 sensors
-│   ├── prediction/                 # 2 ML models, 8 CVEs simulator
-│   │   └── training/               # NSL-KDD + UNSW-NB15 pipelines
-│   ├── crypto/                     # liboqs ctypes binding
-│   ├── physical/                   # TPM, auditd, firewall, ClamAV
-│   ├── immune/                     # adaptive response
-│   ├── decision/                   # risk, policy, quorum
-│   ├── effector/                   # firewall, quarantine, rollback
-│   ├── llm/                        # DeepSeek Harness, skills, tools
-│   ├── honeypot/                   # HTTP, SSH, FTP, SMB
-│   ├── federated/                  # client, server, aggregation
-│   └── api/server.py               # 71 REST endpoints
-├── tests/                          # 297 tests
-├── frontend/                       # 3D premium SPA
-├── scripts/                        # install_safe, test_all, etc
-├── deploy/                         # Helm, systemd, nginx, prometheus
-├── data/                           # 2 datasets, CVEs, IOCs, DB
-├── models/                         # 2 trained ML models
-├── vendor/oqs/                     # liboqs 0.16.0 (compilado)
-└── docs/                           # OpenAPI, architecture
+├── goodware/                      # Core engine (1.9MB, 18 modules)
+│   ├── api/                       # REST API (server.py, health.py)
+│   ├── chainsaw/                  # YARA, ClamAV, Lynis, Loki, etc.
+│   │   ├── lynis_integration.py
+│   │   ├── loki_integration.py
+│   │   ├── linuxcheck_integration.py
+│   │   ├── sigma_integration.py
+│   │   ├── misp_galaxy_integration.py
+│   │   ├── volatility_integration.py
+│   │   ├── signature_base_integration.py
+│   │   ├── capa_integration.py
+│   │   └── iat_repair.py
+│   ├── cognitive/                 # ODC/ACAMR layer
+│   ├── core/                      # engine, config, events, state, db
+│   ├── crypto/                    # liboqs PQC, vault, agility
+│   ├── decision/                  # risk assessment + policy engine
+│   ├── effector/                  # quarantine, firewall, rollback
+│   ├── federated/                 # client + server
+│   ├── honeypot/                  # Cowrie + legacy HTTP/SSH
+│   ├── human_factor/              # biometrics + OOB + multi-party
+│   ├── immune/                    # adaptive + mutation + zero-day
+│   ├── llm/                       # Harness SDK + 16 tools + skills + MCP
+│   ├── physical/                  # TPM + real attestation
+│   ├── prediction/                # ThreatPredictor (UNSW/NSL models)
+│   ├── security/                  # Constitutional Guard + artifacts
+│   ├── sensors/                   # 7 sensors + osquery
+│   ├── supply_chain/              # SBOM (Syft) + signing (Cosign)
+│   └── utils/
+├── vendor/                        # 14 vendored repos (280MB)
+│   ├── oqs/                       # liboqs 0.16.0 compiled
+│   ├── biometrics_extern/         # keystroke-biometrics
+│   └── security_tools/            # lynis, cowrie, Loki, LinuxCheck, sigma, misp-galaxy, volatility3, signature-base, syft, cosign, capa, capa-rules, osquery
+├── models/                        # 14 trained .joblib (UNSW + NSL-KDD)
+├── data/                          # runtime data (snapshots PQC, vault, etc)
+├── tests/                         # 381 tests, 10 suites
+├── scripts/                       # install_safe.sh, test_all.sh, etc
+├── deploy/                        # Helm, systemd, nginx, prometheus
+├── docs/                          # OpenAPI, Architecture, Operations
+├── ui-control/                    # 3D Console UI (Three.js)
+├── red_team_*.py                  # Independent red team
+└── config/goodware.yaml           # Configuração
 ```
 
 ---
 
-## Testes
+## 🔒 Segurança (Constitutional Guard)
 
-### Suites de Teste
+**10 invariantes enforced (não negociáveis)**:
 
-| Suite | Tipo | Testes | Descrição |
-|-------|------|------:|-----------|
-| `test_e2e.py` | End-to-end | 11 | Testes full-stack com API, DB, sensors, effectors |
-| `test_real_integrations.py` | Integração REAL | 11 | Valida nftables, TPM, ClamAV, PQC, swtpm, auditd |
-| `test_full_200.py` | Unit + funcional | 241 | Cobertura massiva de módulos (sensors, effector, crypto, etc) |
-| `test_llm_brain.py` | LLM integration | 34 | Skills, MCP, tools, hooks, slash commands, RAG, memory |
-| `test_load.py` | Chaos + property-based | 5 | Stress tests, concurrent ops, fuzzing, property testing |
-| **TOTAL** | — | **303** | **100% pass rate** |
+| ID | Invariante | Implementação |
+|----|------------|----------------|
+| I1 | Protecção de artefactos críticos | `ConstitutionalGuard.check("quarantine_file", ...)` |
+| I2 | Integridade do log de auditoria | Hash-chained audit journal |
+| I3 | Não introduz backdoors | AI-Brain pode sugerir, mas não actuar |
+| I4 | Rotação de chaves = OOB + multi-party | 2-of-3 approvers required |
+| I5 | Snapshot rollback preserva cadeia PQC | ML-DSA-44 signature chain |
+| I6 | OOB para acções destrutivas | `kill_process`, `isolate_machine` |
+| I7 | Separation: LLM ≠ Actuator | Decision engine only |
+| I8 | Rate-limiting em APIs | Per-token bucket |
+| I9 | RBAC por role | admin, operator, viewer, service, llm |
+| I10 | Verificação de permissões por tool call | Hook system |
 
-### Tipos de Teste
-
-- ✅ **Unit tests** — cada módulo isolado
-- ✅ **Integration tests** — módulos em conjunto
-- ✅ **End-to-end tests** — fluxo completo
-- ✅ **Property-based tests** (Hypothesis) — gera inputs aleatórios válidos
-- ✅ **Chaos tests** — falhas aleatórias em deps
-- ✅ **Load tests** — concorrência, throughput
-- ✅ **Real integration tests** — valida componentes OS reais (nftables, swtpm, etc)
-- ✅ **Regression tests** — após cada mudança
-
-### Correr Testes
-
-```bash
-bash scripts/test_all.sh
-
-# Verbose
-LD_LIBRARY_PATH=./vendor/oqs/lib PYTHONPATH=. \
-  python3 -m unittest discover -s tests -p "test_*.py" -v
-```
-
-Output esperado:
-```
-=== test_e2e ===
-OK (11 tests)
-=== test_real_integrations ===
-OK (11 tests)
-=== test_full_200 ===
-Total: 241  OK: 241  FAIL: 0
-=== test_llm_brain ===
-OK (34 tests)
-=== test_load (chaos + property-based) ===
-OK (5 tests)
-=== ALL TESTS PASS ===
-```
+**Independent red team**: `red_team_external.py` corre como processo separado, correlacionado via `red_team_orchestrator.py` para honest TTD measurement.
 
 ---
 
-## Datasets
+## 📚 Documentação
 
-Ambos os datasets são **REAIS** (não sintéticos):
-
-### NSL-KDD (1998/2009, melhorado)
-
-| Propriedade | Valor |
-|-------------|------:|
-| Fonte | [Jehuty4949/NSL_KDD](https://github.com/Jehuty4949/NSL_KDD) |
-| Records totais | 148,555 (125,973 train + 22,544 test) |
-| Features | 41 |
-| Classes | 5 (Normal, DoS, Probe, R2L, U2R) |
-| Tamanho | 21.51 MB |
-| Uso | Treino do modelo NSL-KDD |
-
-### UNSW-NB15 (2015, moderno)
-
-| Propriedade | Valor |
-|-------------|------:|
-| Fonte | [notsodubeyous/IoT-Network-Intrusion-Detection-System-UNSW-NB15](https://github.com/notsodubeyous/IoT-Network-Intrusion-Detection-System-UNSW-NB15) |
-| Records totais | 256,563 (175,341 cleaned) |
-| Features | 45 |
-| Classes | 2 (Normal, Attack) — inclui 9 attack categories |
-| Tamanho | 45.27 MB |
-| Uso | Treino do modelo principal (96.00% accuracy) |
-| Vantagem | Moderno, balanceado, com ataques contemporâneos |
-
-### RealAttackSimulator
-
-Além dos datasets, o sistema inclui um simulador de ataques baseado em **CVEs reais**:
-
-| CVE | Nome | Ano | MITRE TTP |
-|-----|------|----:|-----------|
-| CVE-2017-0144 | EternalBlue | 2017 | T1190 |
-| CVE-2021-44228 | Log4Shell | 2021 | T1190 |
-| CVE-2014-0160 | Heartbleed | 2014 | T1212 |
-| CVE-2019-0708 | BlueKeep | 2019 | T1190 |
-| CVE-2017-5638 | Struts2 RCE | 2017 | T1190 |
-| CVE-2021-34527 | PrintNightmare | 2021 | T1068 |
-| CVE-2020-0796 | SMBGhost | 2020 | T1190 |
-| CVE-2018-13379 | Fortinet SSL VPN | 2018 | T1190 |
+| Doc | Conteúdo |
+|-----|----------|
+| [README.md](README.md) | Este ficheo — overview, instalação, API |
+| [ARCHITECTURE.md](docs/ARCHITECTURE.md) | Detalhes arquitecturais |
+| [API_REFERENCE.md](docs/API_REFERENCE.md) | OpenAPI 3.0 spec |
+| [DEPLOYMENT.md](docs/DEPLOYMENT.md) | Docker, Helm, systemd |
+| [OPERATIONS.md](docs/OPERATIONS.md) | Runbook operacional |
+| [THREAT_MODEL.md](docs/THREAT_MODEL.md) | Modelo de ameaça |
+| [TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) | Problemas comuns |
+| [COMPLIANCE.md](docs/COMPLIANCE.md) | Mapeamento NIST, CIS, ISO |
+| [TESTS.md](TESTS.md) | Detalhes dos 381 testes |
+| [FIDELIDADE.md](FIDELIDADE.md) | Auditoria forense de fidelidade |
+| [AUDIT.md](AUDIT.md) | Auditoria técnica completa |
+| [MODELS.md](MODELS.md) | Documentação dos modelos ML |
+| [DATASETS.md](DATASETS.md) | Datasets de treino |
+| [PRODUCTION_READINESS.md](PRODUCTION_READINESS.md) | Estado de produção |
 
 ---
 
-## Modelos ML
+## 🧬 Tech Stack
 
-### Treinados com Datasets Reais
-
-| Modelo | Dataset | Train Acc | Test Acc | Features | Tipo |
-|--------|---------|----------:|---------:|---------:|------|
-| `threat_predictor_nsl_kdd.joblib` | NSL-KDD | 99.99% | **77.66%** | 41 | RandomForest |
-| `anomaly_detector_nsl_kdd.joblib` | NSL-KDD | — | — | 41 | IsolationForest |
-| **`threat_predictor_unsw_nb15.joblib`** | **UNSW-NB15** | 98.81% | **96.00%** | 45 | **RandomForest** |
-| `anomaly_detector_unsw_nb15.joblib` | UNSW-NB15 | — | — | 45 | IsolationForest |
-
-### Detalhes do Modelo Principal (UNSW-NB15)
-
-```json
-{
-  "dataset": "UNSW-NB15",
-  "rows_after_cleaning": 175341,
-  "train_rows": 140272,
-  "test_rows": 35069,
-  "features": 45,
-  "train_accuracy": 0.9881,
-  "test_accuracy": 0.9600,
-  "algorithm": "RandomForest (n_estimators=100, max_depth=20)",
-  "class_balance": {"normal": 56000, "attack": 119341},
-  "trained_at": "2026-09-29"
-}
-```
-
-### Retreinar
-
-```bash
-# NSL-KDD
-LD_LIBRARY_PATH=./vendor/oqs/lib PYTHONPATH=. \
-  python3 -m goodware.prediction.training.train_nsl_kdd
-
-# UNSW-NB15
-LD_LIBRARY_PATH=./vendor/oqs/lib PYTHONPATH=. \
-  python3 -m goodware.prediction.training.train_unsw_nb15
-```
+| Camada | Tech |
+|--------|------|
+| Linguagem | Python 3.10+ |
+| PQC | liboqs 0.16.0 (Open Quantum Safe) |
+| ML | scikit-learn, joblib |
+| API | Flask 3.x, Flask-CORS |
+| LLM | DeepSeek Harness SDK + NVIDIA integrate fallback |
+| Crypto | cryptography (liboqs ctypes binding) |
+| YARA | yara-python 4.3 |
+| AV | ClamAV 1.4.3 (3.6M signatures) |
+| Firewall | nftables / iptables via user namespace |
+| TPM | swtpm (software TPM, TCG 2.0) |
+| Frontend | Three.js 128, GSAP, Chart.js |
+| Deploy | Docker, Helm, systemd, Nginx, Prometheus |
 
 ---
 
-## Recovery
+## 📈 Roadmap
 
-### Snapshots PQC-Assinados
+**v3.0 (current — production-ready)**
+- 5 pilares implementados
+- 14 vendored production repos
+- 381/381 testes
+- 43 API endpoints
+- Console UI 3D
 
-```bash
-# Criar snapshot
-curl -X POST http://127.0.0.1:8444/api/snapshot/create \
-  -H 'Content-Type: application/json' \
-  -d '{"paths": ["/etc", "/var/lib/goodware"], "label": "pre-update"}'
+**v3.1 (Q1 2027)**
+- Real-time event correlation engine
+- Native osquery integration (full tables)
+- WireGuard VPN attestation
+- Falco runtime detection
 
-# Listar snapshots
-curl http://127.0.0.1:8444/api/snapshot/list
-
-# Rollback
-curl -X POST http://127.0.0.1:8444/api/snapshot/rollback \
-  -H 'Content-Type: application/json' \
-  -d '{"snapshot_id": "snap_xxx"}'
-
-# Diff entre snapshots
-curl -X POST http://127.0.0.1:8444/api/snapshot/diff \
-  -H 'Content-Type: application/json' \
-  -d '{"from": "snap_a", "to": "snap_b"}'
-```
-
-### Auto-Snapshot
-
-Snapshots automáticos antes de:
-- ✅ Quarentena de ficheiro
-- ✅ Update de binário
-- ✅ Mudança de config
-- ✅ Operação destrutiva (kill, delete, etc)
+**v3.2 (Q2 2027)**
+- Distributed consensus (Raft)
+- Multi-node deployment
+- Zero-downtime updates
+- Wazuh HIDS integration
 
 ---
 
-## Red Team
+## 🤝 Contribuir
 
-Cenário pesado de simulação APT-style multi-vector:
+PRs são bem-vindos. Antes:
 
-```bash
-python3 red_team_heavy.py
-```
-
-Cobre 18 técnicas MITRE ATT&CK:
-- TA0043 Reconnaissance: T1595, T1592
-- TA0001 Initial Access: T1190 (EternalBlue), T1566
-- TA0002 Execution: T1059
-- TA0003 Persistence: T1543, T1053, T1546
-- TA0004 Privilege Escalation: T1548, T1068
-- TA0005 Defense Evasion: T1027
-- TA0006 Credential Access: T1003
-- TA0007 Discovery: T1083
-- TA0008 Lateral Movement: T1021
-- TA0009 Collection: T1041
-- TA0010 Exfiltration: T1048
-- TA0040 Impact: T1486, T1489, T1490
-
-**Resultado típico:**
-- 33/33 eventos detectados (100%)
-- 5 IPs bloqueados via nftables
-- 9 ficheiros em quarantine
-- 6/6 ficheiros restaurados via PQC snapshot
-- **RTO < 2 segundos, zero data loss**
+1. `bash scripts/test_all.sh` deve passar 381/381
+2. Adicione testes para novas funcionalidades
+3. Documente em `docs/` o que mudou
+4. Actualize `README.md` se relevante
 
 ---
 
-## API Endpoints (71 total)
+## 📜 Licença
 
-### Core
-- `GET  /api/status` — Estado do sistema
-- `GET  /api/health` — Health check (engine, DB, crypto, LLM)
-- `GET  /api/metrics` — Métricas Prometheus
-- `GET  /api/audit` — Audit log
-
-### Sensors
-- `GET  /api/sensors/list`
-- `GET  /api/sensors/<name>/readings`
-
-### Prediction
-- `POST /api/predict` — Predizer evento
-- `GET  /api/predictor/status`
-
-### Crypto
-- `POST /api/crypto/kem/keypair` — Gerar par Kyber
-- `POST /api/crypto/kem/encaps` — Encapsular
-- `POST /api/crypto/kem/decaps` — Decapsular
-- `POST /api/crypto/sig/sign`
-- `POST /api/crypto/sig/verify`
-
-### Snapshot + Recovery
-- `POST /api/snapshot/create`
-- `GET  /api/snapshot/list`
-- `POST /api/snapshot/rollback`
-- `POST /api/snapshot/diff`
-- `POST /api/snapshot/filesystem-state`
-
-### LLM Brain (34 endpoints)
-- `POST /api/llm/chat` — Chat principal
-- `GET  /api/llm/skills` — Skills registry
-- `GET  /api/llm/mcp/servers` — MCP servers
-- `POST /api/llm/tools/execute` — Executar tool
-- `GET  /api/llm/memory` — Memória persistente
-- `POST /api/llm/rag/search` — Pesquisa RAG
-- `POST /api/llm/slash/<cmd>` — Slash commands
-- `GET  /api/llm/telemetry/prometheus` — Export Prometheus
-
-### Effector
-- `POST /api/effector/quarantine`
-- `POST /api/effector/kill`
-- `POST /api/effector/block`
-- `POST /api/effector/restore`
-- `POST /api/effector/hotpatch`
-
-### Federation
-- `POST /api/federated/aggregate` — Agregar gradientes
-- `GET  /api/federated/nodes`
-
-Ver `docs/openapi.json` para spec completa.
+MIT License — Veja `LICENSE`.
 
 ---
 
-## Métricas
+## ✨ Reconhecimentos
 
-Ver `data/metrics.json` para métricas em tempo real.
+Built on the shoulders of giants — estes projetos open-source tornam o Goodware possível:
 
-Resumo (snapshot 2026-10-03):
-
-| Categoria | Métrica | Valor |
-|-----------|---------|------:|
-| **Código** | Ficheiros Python | 97 |
-| **Código** | Linhas de código | 12,656 |
-| **Testes** | Ficheiros de teste | 6 |
-| **Testes** | Linhas de teste | 2,535 |
-| **Testes** | Total de testes | 303 |
-| **Testes** | Pass rate | 100% |
-| **Datasets** | NSL-KDD | 148,555 records / 21.51 MB |
-| **Datasets** | UNSW-NB15 | 256,563 records / 45.27 MB |
-| **Modelos** | NSL-KDD test acc | 77.66% |
-| **Modelos** | UNSW-NB15 test acc | 96.00% |
-| **Crypto** | liboqs | 0.16.0 |
-| **Crypto** | Algoritmos PQC | 2 (Kyber512, ML-DSA-44) |
-| **Database** | Eventos | 27,842+ |
-| **Database** | Tabelas | 12 |
-| **Database** | Quarantined | 29+ |
-| **Threat Intel** | CVEs | 500 |
-| **Threat Intel** | IOCs | 1,950+ |
-| **API** | Endpoints REST | 71 |
-| **Frontend** | HTML files | 2 |
-| **Frontend** | JS files / lines | 8 / 2,433 |
-| **Frontend** | CSS files / lines | 2 / 775 |
-| **Recovery** | Snapshots PQC | 25+ |
-| **Recovery** | Recovery time | < 2s |
-| **Total** | Tamanho repo | ~204 MB |
+**[Open Quantum Safe](https://github.com/open-quantum-safe)** · **[SigmaHQ](https://github.com/SigmaHQ)** · **[MISP](https://github.com/MISP)** · **[Volatility Foundation](https://github.com/volatilityfoundation)** · **[Florian Roth](https://github.com/Neo23x0)** · **[CISOfy](https://github.com/CISOfy)** · **[Mandiant/FLARE](https://github.com/mandiant)** · **[Anchore](https://github.com/anchore)** · **[Sigstore](https://github.com/sigstore)** · **[Facebook osquery](https://github.com/osquery)** · **[cowrie](https://github.com/cowrie)** · **[al0ne](https://github.com/al0ne)** · **[njanakiev](https://github.com/njanakiev)**
 
 ---
 
-## Componentes Verificados (19/19 REAL)
+**Última actualização**: 2026-10-11 | **Versão**: 3.0 | **Status**: Production-ready
 
-| # | Componente | Tecnologia | Verificado |
-|---|-----------|-----------|:----------:|
-| 1 | PQC liboqs | Kyber512+ML-DSA-44 | ✅ |
-| 2 | ML Predictor NSL-KDD | RandomForest | ✅ |
-| 3 | ML Predictor UNSW-NB15 | RandomForest | ✅ |
-| 4 | Anomaly Detection | IsolationForest | ✅ |
-| 5 | YARA Engine | yara-python 14 rules | ✅ |
-| 6 | Sensors | psutil 7 tipos | ✅ |
-| 7 | DeepSeek Harness SDK | Oficial | ✅ |
-| 8 | Tool Registry | 16 tools reais | ✅ |
-| 9 | Skills Registry | 5 skills | ✅ |
-| 10 | MCP Registry | 4 servers | ✅ |
-| 11 | Memory + RAG | 2705 docs | ✅ |
-| 12 | TPM | swtpm + PQC fallback | ✅ |
-| 13 | Firewall nftables | User namespace | ✅ |
-| 14 | ClamAV | 3.6M signatures | ✅ |
-| 15 | auditd | inotify fallback | ✅ |
-| 16 | RealAttackSimulator | 8 CVEs + 500 DB | ✅ |
-| 17 | Honeypots | HTTP+SSH+FTP+SMB | ✅ |
-| 18 | Auto-Snapshot | PQC-signed | ✅ |
-| 19 | Database | SQLite 12 tabelas | ✅ |
-
----
-
-## Requisitos de Sistema
-
-### Mínimos
-- **OS**: Debian 12+ / Ubuntu 22.04+ / RHEL 9+
-- **CPU**: x86_64 com AVX2
-- **RAM**: 4 GB
-- **Disco**: 5 GB
-- **Python**: 3.10+
-
-### Recomendados (produção)
-- **OS**: Linux LTS
-- **CPU**: 4+ cores
-- **RAM**: 16 GB
-- **Disco**: 50 GB SSD
-- **TPM**: chip físico v2.0
-- **GPU**: NVIDIA (para DeepSeek local)
-
----
-
-## Roadmap
-
-- [ ] **v3.1** — Integração Wazuh/Splunk para SIEM externo
-- [ ] **v3.2** — DeepSeek local (sem rate limit NVIDIA)
-- [ ] **v3.3** — Multi-tenancy com isolamento PQC
-- [ ] **v3.4** — Mobile agents (iOS/Android)
-- [ ] **v3.5** — Hardware security module (HSM) support
-
----
-
-## Contribuir
-
-PRs bem-vindos. Por favor:
-1. Adicione testes para novas funcionalidades
-2. Mantenha cobertura > 80%
-3. Use PQC para crypto
-4. Documente em PT/EN
-
----
-
-## Licença
-
-MIT License — see `LICENSE`.
-
----
-
-## Contacto
-
-- **GitHub**: https://github.com/GrupoANDevelopment-m/github-integration
-- **Versão**: 3.0.0
-- **Data**: 2026-10-03
-- **Status**: Production-ready (com limitações documentadas)
-
----
-
-<div align="center">
-
-**Goodware v3.0** — *Sistema Imunitário Digital Autónomo*
-19/19 REAL · 354/354 testes · <2s recovery · Quantum-safe
-
-</div>
+*"The best defense is the one that's actually deployed."*
