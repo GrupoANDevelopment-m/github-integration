@@ -1,12 +1,32 @@
-* text=auto
+# Goodware v3.0 — gitattributes
+# Optimiza packing para reduzir tamanho do repo
 
-# Don't compress binary files (keeps them larger but more usable)
+# Don't compress binary files
 *.so binary
 *.db binary
 *.joblib binary
 *.bin binary
+*.png binary
+*.jpg binary
+*.gif binary
+*.pdf binary
+*.zip binary
+*.gz binary
+*.tar binary
 
-# Compress text aggressively
+# Use delta for text
 *.py diff=python
 *.md diff=markdown
 *.js diff=javascript
+*.html diff=html
+*.css diff=css
+*.yml diff=yaml
+*.yaml diff=yaml
+
+# YARA
+*.yar binary
+*.yara binary
+
+# Datos grandes — não comprimir (git vai usar store)
+vendor/oqs/lib/liboqs.so* binary
+models/*.joblib binary
