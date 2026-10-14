@@ -866,5 +866,47 @@
     "ts": 1791737824.8222148,
     "status": "pending",
     "channel": "log"
+  },
+  "45c71cab": {
+    "msg_id": "45c71cab",
+    "request_id": "65cd9755",
+    "action": {
+      "action": "delete_user",
+      "user": "admin",
+      "location": "unknown",
+      "time_of_day": 3,
+      "device_id": "unknown"
+    },
+    "ts": 1791964608.07073,
+    "status": "pending",
+    "channel": "log"
+  },
+  "f1771dc3": {
+    "msg_id": "f1771dc3",
+    "request_id": "593a56de",
+    "action": {
+      "action": "delete_user",
+      "user": "admin",
+      "location": "unknown",
+      "time_of_day": 3,
+      "device_id": "unknown"
+    },
+    "ts": 1791964640.2984107,
+    "status": "pending",
+    "channel": "log"
+  },
+  "8044ae34": {
+    "msg_id": "8044ae34",
+    "request_id": "3caafa70",
+    "action": {
+      "action": "delete_user",
+      "user": "admin",
+      "location": "unknown",
+      "time_of_day": 3,
+      "device_id": "unknown"
+    },
+    "ts": 1791964938.6574745,
+    "status": "pending",
+    "channel": "log"
   }
 }

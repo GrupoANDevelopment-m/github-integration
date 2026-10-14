@@ -169,6 +169,33 @@ class StateStore:
             )
             conn.commit()
 
+    def record_events_batch(self, events: List[Dict[str, Any]]) -> int:
+        """Record multiple events in a single transaction. ~10x faster.
+
+        Returns the number of events recorded.
+        """
+        if not events:
+            return 0
+        with self._connect() as conn:
+            conn.executemany(
+                "INSERT OR REPLACE INTO events VALUES (?,?,?,?,?,?,?,?)",
+                [
+                    (
+                        e["id"],
+                        e["type"],
+                        e["severity"],
+                        e.get("source", ""),
+                        e["timestamp"],
+                        json.dumps(e.get("payload", {})),
+                        e.get("correlation_id"),
+                        json.dumps(e.get("tags", [])),
+                    )
+                    for e in events
+                ],
+            )
+            conn.commit()
+        return len(events)
+
     def query_events(
         self,
         type_: Optional[str] = None,

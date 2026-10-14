@@ -1,0 +1,2102 @@
+[
+  {
+    "ts": 1791964827.3390913,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3392632,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3393137,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3393433,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3393717,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3393974,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.339421,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.33945,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3394744,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3394964,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3395166,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.339537,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3395655,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3395853,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3396263,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3396523,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.339672,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3396919,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3397114,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3397312,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3397508,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3397698,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3397892,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3398082,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3398273,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3398466,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3398726,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3398995,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3399208,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3399458,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3399649,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.339984,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.340003,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3400226,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3400416,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.340061,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3400798,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3400993,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3401186,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3401375,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3401566,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.340176,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3401954,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3402145,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3402338,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3402584,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3402777,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.340303,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.340322,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3403413,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.346769,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3467963,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3468184,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3468397,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3468595,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3468792,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3468983,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.346918,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3469377,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3469567,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.346976,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3469949,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3470144,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3470333,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3470526,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3470716,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3470907,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3471096,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3471282,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3471467,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3471653,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.347184,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3472025,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.347221,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3472395,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3472579,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3472762,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3473053,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3473241,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3473432,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3473616,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3473804,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3473992,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3474178,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3474362,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3474553,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3474739,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.347493,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3475115,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3475306,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3475494,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.347576,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.347611,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3476439,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3476646,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3476841,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3477035,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3477228,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3477414,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3477602,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3542316,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.354258,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3542805,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.354308,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3543286,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3543482,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.354368,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3543875,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3544066,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3544261,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.354445,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.354464,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3544827,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3545015,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.35452,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3545387,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3545575,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.354576,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3545945,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3546398,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3546596,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.354679,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3546977,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.354716,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3547347,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3547533,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3547714,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3547907,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3548095,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3548286,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3548474,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3548663,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3548849,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3549037,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.354927,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3549461,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3549652,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3549845,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.355003,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3550217,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3550406,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3550594,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3550785,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.355097,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3551161,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.355135,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.355154,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.355173,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3551917,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3552108,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3611133,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3611407,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3611636,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3611848,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3612125,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.361233,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3612525,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.361272,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3613002,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.36132,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.361339,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3613582,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3613768,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3613956,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3614144,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3614333,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3614528,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3614717,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3614905,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3615093,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3615282,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.361547,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3615656,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3615851,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3616235,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3616445,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3616638,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3616824,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3617015,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3617203,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.361739,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3617578,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3617764,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3617954,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.361814,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3618329,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3618515,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3618703,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3618894,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.361908,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3619268,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3619456,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3619645,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3619835,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3620021,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3620212,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3620396,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.362058,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.3620768,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964827.362095,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964916.6008391,
+    "source_ip": "",
+    "user": "",
+    "event_type": "discovery",
+    "risk": 0.32000000000000006
+  },
+  {
+    "ts": 1791964916.6010473,
+    "source_ip": "",
+    "user": "",
+    "event_type": "data_exfil",
+    "risk": 0.5575000000000001
+  },
+  {
+    "ts": 1791964916.6010945,
+    "source_ip": "",
+    "user": "",
+    "event_type": "privilege_escalation",
+    "risk": 0.61
+  },
+  {
+    "ts": 1791964916.601127,
+    "source_ip": "",
+    "user": "",
+    "event_type": "discovery",
+    "risk": 0.22000000000000003
+  },
+  {
+    "ts": 1791964916.6011577,
+    "source_ip": "",
+    "user": "",
+    "event_type": "lateral_movement",
+    "risk": 0.54
+  },
+  {
+    "ts": 1791964916.6011856,
+    "source_ip": "",
+    "user": "",
+    "event_type": "c2_beacon",
+    "risk": 0.38
+  },
+  {
+    "ts": 1791964916.6012123,
+    "source_ip": "",
+    "user": "",
+    "event_type": "lateral_movement",
+    "risk": 0.54
+  },
+  {
+    "ts": 1791964916.6012487,
+    "source_ip": "",
+    "user": "",
+    "event_type": "discovery",
+    "risk": 0.38
+  },
+  {
+    "ts": 1791964916.6012774,
+    "source_ip": "",
+    "user": "",
+    "event_type": "c2_beacon",
+    "risk": 0.1
+  },
+  {
+    "ts": 1791964916.6013193,
+    "source_ip": "",
+    "user": "",
+    "event_type": "discovery",
+    "risk": 0.22000000000000003
+  },
+  {
+    "ts": 1791964916.6013424,
+    "source_ip": "",
+    "user": "",
+    "event_type": "data_exfil",
+    "risk": 0.6174999999999999
+  },
+  {
+    "ts": 1791964916.601367,
+    "source_ip": "",
+    "user": "",
+    "event_type": "c2_beacon",
+    "risk": 0.38
+  },
+  {
+    "ts": 1791964916.6013913,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.465
+  },
+  {
+    "ts": 1791964916.6014163,
+    "source_ip": "",
+    "user": "",
+    "event_type": "privilege_escalation",
+    "risk": 0.45000000000000007
+  },
+  {
+    "ts": 1791964916.6014395,
+    "source_ip": "",
+    "user": "",
+    "event_type": "persistence",
+    "risk": 0.5925
+  },
+  {
+    "ts": 1791964916.6014633,
+    "source_ip": "",
+    "user": "",
+    "event_type": "credential_dump",
+    "risk": 0.44500000000000006
+  },
+  {
+    "ts": 1791964916.6014855,
+    "source_ip": "",
+    "user": "",
+    "event_type": "data_exfil",
+    "risk": 0.6174999999999999
+  },
+  {
+    "ts": 1791964916.601509,
+    "source_ip": "",
+    "user": "",
+    "event_type": "privilege_escalation",
+    "risk": 0.45000000000000007
+  },
+  {
+    "ts": 1791964916.6015315,
+    "source_ip": "",
+    "user": "",
+    "event_type": "lateral_movement",
+    "risk": 0.54
+  },
+  {
+    "ts": 1791964916.6015544,
+    "source_ip": "",
+    "user": "",
+    "event_type": "lateral_movement",
+    "risk": 0.32
+  },
+  {
+    "ts": 1791964916.6015756,
+    "source_ip": "",
+    "user": "",
+    "event_type": "data_exfil",
+    "risk": 0.6174999999999999
+  },
+  {
+    "ts": 1791964916.6016192,
+    "source_ip": "",
+    "user": "",
+    "event_type": "persistence",
+    "risk": 0.4325
+  },
+  {
+    "ts": 1791964916.6016495,
+    "source_ip": "",
+    "user": "",
+    "event_type": "data_exfil",
+    "risk": 0.6174999999999999
+  },
+  {
+    "ts": 1791964916.6016724,
+    "source_ip": "",
+    "user": "",
+    "event_type": "persistence",
+    "risk": 0.3125
+  },
+  {
+    "ts": 1791964916.601701,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.345
+  },
+  {
+    "ts": 1791964916.6017234,
+    "source_ip": "",
+    "user": "",
+    "event_type": "data_exfil",
+    "risk": 0.4575
+  },
+  {
+    "ts": 1791964916.6017456,
+    "source_ip": "",
+    "user": "",
+    "event_type": "persistence",
+    "risk": 0.5325000000000001
+  },
+  {
+    "ts": 1791964916.6017675,
+    "source_ip": "",
+    "user": "",
+    "event_type": "lateral_movement",
+    "risk": 0.54
+  },
+  {
+    "ts": 1791964916.6017888,
+    "source_ip": "",
+    "user": "",
+    "event_type": "c2_beacon",
+    "risk": 0.22000000000000003
+  },
+  {
+    "ts": 1791964916.6018102,
+    "source_ip": "",
+    "user": "",
+    "event_type": "privilege_escalation",
+    "risk": 0.55
+  },
+  {
+    "ts": 1791964916.6018324,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964916.6018596,
+    "source_ip": "",
+    "user": "",
+    "event_type": "credential_dump",
+    "risk": 0.545
+  },
+  {
+    "ts": 1791964916.6018817,
+    "source_ip": "",
+    "user": "",
+    "event_type": "privilege_escalation",
+    "risk": 0.61
+  },
+  {
+    "ts": 1791964916.601907,
+    "source_ip": "",
+    "user": "",
+    "event_type": "lateral_movement",
+    "risk": 0.32
+  },
+  {
+    "ts": 1791964916.6019282,
+    "source_ip": "",
+    "user": "",
+    "event_type": "persistence",
+    "risk": 0.5925
+  },
+  {
+    "ts": 1791964916.60195,
+    "source_ip": "",
+    "user": "",
+    "event_type": "data_exfil",
+    "risk": 0.4575
+  },
+  {
+    "ts": 1791964916.6019716,
+    "source_ip": "",
+    "user": "",
+    "event_type": "lateral_movement",
+    "risk": 0.44000000000000006
+  },
+  {
+    "ts": 1791964916.6019924,
+    "source_ip": "",
+    "user": "",
+    "event_type": "persistence",
+    "risk": 0.5925
+  },
+  {
+    "ts": 1791964916.6020133,
+    "source_ip": "",
+    "user": "",
+    "event_type": "c2_beacon",
+    "risk": 0.32000000000000006
+  },
+  {
+    "ts": 1791964916.6020343,
+    "source_ip": "",
+    "user": "",
+    "event_type": "persistence",
+    "risk": 0.3125
+  },
+  {
+    "ts": 1791964916.6020598,
+    "source_ip": "",
+    "user": "",
+    "event_type": "privilege_escalation",
+    "risk": 0.55
+  },
+  {
+    "ts": 1791964916.602081,
+    "source_ip": "",
+    "user": "",
+    "event_type": "discovery",
+    "risk": 0.38
+  },
+  {
+    "ts": 1791964916.6021078,
+    "source_ip": "",
+    "user": "",
+    "event_type": "privilege_escalation",
+    "risk": 0.61
+  },
+  {
+    "ts": 1791964916.6021292,
+    "source_ip": "",
+    "user": "",
+    "event_type": "persistence",
+    "risk": 0.5325000000000001
+  },
+  {
+    "ts": 1791964916.6021504,
+    "source_ip": "",
+    "user": "",
+    "event_type": "c2_beacon",
+    "risk": 0.1
+  },
+  {
+    "ts": 1791964916.6021717,
+    "source_ip": "",
+    "user": "",
+    "event_type": "lateral_movement",
+    "risk": 0.32
+  },
+  {
+    "ts": 1791964916.6021924,
+    "source_ip": "",
+    "user": "",
+    "event_type": "persistence",
+    "risk": 0.3125
+  },
+  {
+    "ts": 1791964916.6022131,
+    "source_ip": "",
+    "user": "",
+    "event_type": "persistence",
+    "risk": 0.5325000000000001
+  },
+  {
+    "ts": 1791964916.6022348,
+    "source_ip": "",
+    "user": "",
+    "event_type": "data_exfil",
+    "risk": 0.3375
+  },
+  {
+    "ts": 1791964916.6022565,
+    "source_ip": "",
+    "user": "",
+    "event_type": "lateral_movement",
+    "risk": 0.54
+  },
+  {
+    "ts": 1791964916.610381,
+    "source_ip": "",
+    "user": "",
+    "event_type": "credential_dump",
+    "risk": 0.605
+  },
+  {
+    "ts": 1791964916.610413,
+    "source_ip": "",
+    "user": "",
+    "event_type": "privilege_escalation",
+    "risk": 0.61
+  },
+  {
+    "ts": 1791964916.6104395,
+    "source_ip": "",
+    "user": "",
+    "event_type": "persistence",
+    "risk": 0.5925
+  },
+  {
+    "ts": 1791964916.6104648,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.5650000000000001
+  },
+  {
+    "ts": 1791964916.6104896,
+    "source_ip": "",
+    "user": "",
+    "event_type": "lateral_movement",
+    "risk": 0.44000000000000006
+  },
+  {
+    "ts": 1791964916.610511,
+    "source_ip": "",
+    "user": "",
+    "event_type": "c2_beacon",
+    "risk": 0.22000000000000003
+  },
+  {
+    "ts": 1791964916.6105332,
+    "source_ip": "",
+    "user": "",
+    "event_type": "lateral_movement",
+    "risk": 0.32
+  },
+  {
+    "ts": 1791964916.6105556,
+    "source_ip": "",
+    "user": "",
+    "event_type": "lateral_movement",
+    "risk": 0.54
+  },
+  {
+    "ts": 1791964916.6105785,
+    "source_ip": "",
+    "user": "",
+    "event_type": "c2_beacon",
+    "risk": 0.1
+  },
+  {
+    "ts": 1791964916.6106315,
+    "source_ip": "",
+    "user": "",
+    "event_type": "credential_dump",
+    "risk": 0.545
+  },
+  {
+    "ts": 1791964916.610659,
+    "source_ip": "",
+    "user": "",
+    "event_type": "c2_beacon",
+    "risk": 0.32000000000000006
+  },
+  {
+    "ts": 1791964916.610682,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.465
+  },
+  {
+    "ts": 1791964916.6107051,
+    "source_ip": "",
+    "user": "",
+    "event_type": "credential_dump",
+    "risk": 0.325
+  },
+  {
+    "ts": 1791964916.6107278,
+    "source_ip": "",
+    "user": "",
+    "event_type": "privilege_escalation",
+    "risk": 0.61
+  },
+  {
+    "ts": 1791964916.6107502,
+    "source_ip": "",
+    "user": "",
+    "event_type": "c2_beacon",
+    "risk": 0.1
+  },
+  {
+    "ts": 1791964916.6107724,
+    "source_ip": "",
+    "user": "",
+    "event_type": "persistence",
+    "risk": 0.3125
+  },
+  {
+    "ts": 1791964916.610794,
+    "source_ip": "",
+    "user": "",
+    "event_type": "privilege_escalation",
+    "risk": 0.61
+  },
+  {
+    "ts": 1791964916.6108234,
+    "source_ip": "",
+    "user": "",
+    "event_type": "credential_dump",
+    "risk": 0.325
+  },
+  {
+    "ts": 1791964916.6108446,
+    "source_ip": "",
+    "user": "",
+    "event_type": "persistence",
+    "risk": 0.5325000000000001
+  },
+  {
+    "ts": 1791964916.6108677,
+    "source_ip": "",
+    "user": "",
+    "event_type": "credential_dump",
+    "risk": 0.605
+  },
+  {
+    "ts": 1791964916.61089,
+    "source_ip": "",
+    "user": "",
+    "event_type": "discovery",
+    "risk": 0.22000000000000003
+  },
+  {
+    "ts": 1791964916.6109111,
+    "source_ip": "",
+    "user": "",
+    "event_type": "credential_dump",
+    "risk": 0.325
+  },
+  {
+    "ts": 1791964916.6109328,
+    "source_ip": "",
+    "user": "",
+    "event_type": "credential_dump",
+    "risk": 0.605
+  },
+  {
+    "ts": 1791964916.6109602,
+    "source_ip": "",
+    "user": "",
+    "event_type": "c2_beacon",
+    "risk": 0.38
+  },
+  {
+    "ts": 1791964916.610983,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.625
+  },
+  {
+    "ts": 1791964916.6110055,
+    "source_ip": "",
+    "user": "",
+    "event_type": "privilege_escalation",
+    "risk": 0.33
+  },
+  {
+    "ts": 1791964916.6110272,
+    "source_ip": "",
+    "user": "",
+    "event_type": "persistence",
+    "risk": 0.4325
+  },
+  {
+    "ts": 1791964916.611049,
+    "source_ip": "",
+    "user": "",
+    "event_type": "persistence",
+    "risk": 0.3125
+  },
+  {
+    "ts": 1791964916.6110692,
+    "source_ip": "",
+    "user": "",
+    "event_type": "c2_beacon",
+    "risk": 0.22000000000000003
+  },
+  {
+    "ts": 1791964916.6110902,
+    "source_ip": "",
+    "user": "",
+    "event_type": "credential_dump",
+    "risk": 0.605
+  },
+  {
+    "ts": 1791964916.6111116,
+    "source_ip": "",
+    "user": "",
+    "event_type": "discovery",
+    "risk": 0.38
+  },
+  {
+    "ts": 1791964916.6111333,
+    "source_ip": "",
+    "user": "",
+    "event_type": "ransomware_precursor",
+    "risk": 0.345
+  },
+  {
+    "ts": 1791964916.6111553,
+    "source_ip": "",
+    "user": "",
+    "event_type": "lateral_movement",
+    "risk": 0.6
+  },
+  {
+    "ts": 1791964916.611177,
+    "source_ip": "",
+    "user": "",
+    "event_type": "data_exfil",
+    "risk": 0.5575000000000001
+  },
+  {
+    "ts": 1791964916.6111994,
+    "source_ip": "",
+    "user": "",
+    "event_type": "discovery",
+    "risk": 0.32000000000000006
+  },
+  {
+    "ts": 1791964916.6112201,
+    "source_ip": "",
+    "user": "",
+    "event_type": "c2_beacon",
+    "risk": 0.22000000000000003
+  },
+  {
+    "ts": 1791964916.611241,
+    "source_ip": "",
+    "user": "",
+    "event_type": "persistence",
+    "risk": 0.5325000000000001
+  },
+  {
+    "ts": 1791964916.6112618,
+    "source_ip": "",
+    "user": "",
+    "event_type": "discovery",
+    "risk": 0.22000000000000003
+  },
+  {
+    "ts": 1791964916.6112828,
+    "source_ip": "",
+    "user": "",
+    "event_type": "data_exfil",
+    "risk": 0.6174999999999999
+  },
+  {
+    "ts": 1791964916.611312,
+    "source_ip": "",
+    "user": "",
+    "event_type": "credential_dump",
+    "risk": 0.605
+  },
+  {
+    "ts": 1791964916.6113338,
+    "source_ip": "",
+    "user": "",
+    "event_type": "credential_dump",
+    "risk": 0.605
+  },
+  {
+    "ts": 1791964916.611355,
+    "source_ip": "",
+    "user": "",
+    "event_type": "discovery",
+    "risk": 0.38
+  },
+  {
+    "ts": 1791964916.611377,
+    "source_ip": "",
+    "user": "",
+    "event_type": "lateral_movement",
+    "risk": 0.32
+  },
+  {
+    "ts": 1791964916.611399,
+    "source_ip": "",
+    "user": "",
+    "event_type": "data_exfil",
+    "risk": 0.3375
+  },
+  {
+    "ts": 1791964916.6114209,
+    "source_ip": "",
+    "user": "",
+    "event_type": "persistence",
+    "risk": 0.3125
+  },
+  {
+    "ts": 1791964916.6114416,
+    "source_ip": "",
+    "user": "",
+    "event_type": "c2_beacon",
+    "risk": 0.38
+  },
+  {
+    "ts": 1791964916.6114628,
+    "source_ip": "",
+    "user": "",
+    "event_type": "lateral_movement",
+    "risk": 0.44000000000000006
+  },
+  {
+    "ts": 1791964916.611484,
+    "source_ip": "",
+    "user": "",
+    "event_type": "privilege_escalation",
+    "risk": 0.61
+  },
+  {
+    "ts": 1791964916.6115062,
+    "source_ip": "",
+    "user": "",
+    "event_type": "persistence",
+    "risk": 0.5925
+  },
+  {
+    "ts": 1791964916.611528,
+    "source_ip": "",
+    "user": "",
+    "event_type": "credential_dump",
+    "risk": 0.325
+  }
+]

@@ -1,0 +1,16 @@
+# Goodware v3.0 — Default IP Blocklist
+# Format: one CIDR or IP per line. Lines starting with # are comments.
+#
+# This is the static blocklist for known-bad sources.
+# The dynamic blocklist (auto-banned IPs) is stored in data/.
+
+# RFC 5737 documentation IPs
+192.0.2.0/24
+198.51.100.0/24
+203.0.113.0/24
+
+# Tor exit nodes (sample — update regularly)
+# See https://check.torproject.org/exit-addresses
+
+# Known scanner sources
+# (Add IPs you observe attacking your infrastructure)

@@ -38,3 +38,16 @@
 2026-10-11T16:54:20 | INFO    | goodware | ======================================================================
 2026-10-11T16:54:20 | INFO    | goodware |  Goodware v3.0 a correr — Ctrl-C para parar
 2026-10-11T16:54:20 | INFO    | goodware | ======================================================================
+2026-10-14T07:59:07 | INFO    | goodware | ======================================================================
+2026-10-14T07:59:07 | INFO    | goodware |   Goodware v3.0 — Sistema Imunitário Digital Autónomo
+2026-10-14T07:59:07 | INFO    | goodware |   Integrações REAIS: Lynis, Loki, LinuxCheck, Cowrie, ClamAV, nftables, TPM
+2026-10-14T07:59:07 | INFO    | goodware | ======================================================================
+2026-10-14T07:59:09 | INFO    | goodware.crypto.pqc | PQC: using REAL backend (liboqs, kyber512)
+2026-10-14T07:59:09 | INFO    | goodware.prediction.threat_predictor | Loaded real UNSW-NB15 model: models/threat_predictor_unsw_nb15.joblib (45 features)
+2026-10-14T07:59:09 | INFO    | goodware.prediction.threat_predictor | Loaded real UNSW-NB15 IsolationForest: models/anomaly_detector_unsw_nb15.joblib
+2026-10-14T07:59:09 | WARNING | goodware.physical.attestation.legacy | HardwareAttestation (LEGACY) instantiated. Use RealHardwareAttestation from goodware.physical.real_attestation for production.
+2026-10-14T07:59:09 | INFO    | goodware.physical.attestation | Using soft TPM (PQC-backed)
+2026-10-14T07:59:16 | INFO    | goodware |   ✓ API REST em http://127.0.0.1:8444/api/healthz
+2026-10-14T07:59:16 | INFO    | goodware | ======================================================================
+2026-10-14T07:59:16 | INFO    | goodware |  Goodware v3.0 a correr — Ctrl-C para parar
+2026-10-14T07:59:16 | INFO    | goodware | ======================================================================
