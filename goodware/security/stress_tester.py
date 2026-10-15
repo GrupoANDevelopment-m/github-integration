@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import json
 import logging
+import math
 import multiprocessing
 import os
 import random
@@ -55,14 +56,19 @@ class StressTest:
         self.engine = engine
         self.results = []
 
-    def test_event_flood(self, n: int = 1000, duration_sec: int = 10) -> Dict:
-        """Inject N events within duration_sec, measure latency.
+    @staticmethod
+    def _percentile(sorted_values: List[float], percentile: float) -> float:
+        """Nearest-rank percentile for an already sorted non-empty sample."""
+        if not sorted_values:
+            raise ValueError("percentile requires at least one sample")
+        rank = max(1, math.ceil(percentile * len(sorted_values)))
+        return sorted_values[min(rank - 1, len(sorted_values) - 1)]
 
-        Uses batch insert (record_events_batch) for high throughput.
-        """
-        log.info(f"Stress: event flood {n} events in {duration_sec}s (batched)")
-        start = time.time()
-        failures = 0
+    def test_event_flood(self, n: int = 1000, duration_sec: int = 10) -> Dict:
+        """Insert generated stress events and verify the number persisted."""
+        log.info(f"Stress: event flood {n} generated events (target window {duration_sec}s)")
+        start = time.perf_counter()
+        failed_events = 0
         batch_size = 100
 
         import uuid
@@ -81,110 +87,153 @@ class StressTest:
             } for i in range(min(batch_size, n - batch_start))]
             try:
                 if hasattr(self.engine.state, "record_events_batch"):
-                    self.engine.state.record_events_batch(batch)
+                    written = self.engine.state.record_events_batch(batch)
+                    failed_events += max(0, len(batch) - int(written or 0))
                 else:
-                    for e in batch:
-                        self.engine.state.record_event(e)
-            except Exception as e:
-                failures += 1
-                log.error(f"Batch {batch_start} failed: {e}")
+                    for event in batch:
+                        try:
+                            self.engine.state.record_event(event)
+                        except Exception as exc:
+                            failed_events += 1
+                            log.error(f"Event {event['id']} failed: {exc}")
+            except Exception as exc:
+                failed_events += len(batch)
+                log.error(f"Batch {batch_start} failed: {exc}")
 
-        total = time.time() - start
+        elapsed = max(time.perf_counter() - start, 1e-9)
+        written_count = max(0, n - failed_events)
         result = {
             "test": "event_flood",
-            "n_events": n,
-            "duration_sec": round(total, 2),
-            "throughput_eps": round(n / total, 1),
-            "failures": failures,
-            "passed": failures == 0,
+            "n_events_requested": n,
+            "n_events_written": written_count,
+            "duration_sec": round(elapsed, 4),
+            "target_duration_sec": duration_sec,
+            "throughput_eps": round(written_count / elapsed, 1),
+            "failures": failed_events,
+            "passed": n > 0 and failed_events == 0 and written_count == n,
         }
         self.results.append(result)
         return result
 
     def test_cve_burst(self, n: int = 100) -> Dict:
-        """Lookup N CVEs concurrently."""
-        log.info(f"Stress: CVE burst {n} lookups")
+        """Benchmark CVE lookups using only the repository's real dataset."""
+        log.info(f"Stress: CVE burst up to {n} real dataset lookups")
         latencies = []
         failures = 0
 
-        # Get CVEs from data
-        cves = []
         try:
-            with open("data/cve/cve_database.json") as f:
+            with open("data/cve/cve_database.json", encoding="utf-8") as f:
                 data = json.load(f)
-            cves = [c.get("cve_id", "") for c in data.get("cves", [])]
-        except Exception as e:
-            log.warning(f"Failed to load CVEs: {e}")
-            cves = ["CVE-2024-99999"] * n
+            cves = [item.get("cve_id", "") for item in data.get("cves", [])
+                    if isinstance(item, dict) and item.get("cve_id")]
+        except Exception as exc:
+            result = {
+                "test": "cve_burst", "requested_n": n, "n": 0,
+                "failures": 0, "passed": False,
+                "error": f"real CVE dataset unavailable: {type(exc).__name__}: {exc}",
+            }
+            self.results.append(result)
+            return result
 
-        cves = cves[:n] if cves else ["CVE-2024-99999"] * n
+        cves = cves[:n]
+        if not cves:
+            result = {
+                "test": "cve_burst", "requested_n": n, "n": 0,
+                "failures": 0, "passed": False,
+                "error": "real CVE dataset contains no usable CVE IDs; synthetic fallback disabled",
+            }
+            self.results.append(result)
+            return result
 
         def lookup(cve_id):
             t0 = time.perf_counter()
             try:
-                # Use the LLM tool
                 from goodware.llm.tools import _search_iocs
-                _search_iocs(value=cve_id, type="cve")
+                result = _search_iocs(value=cve_id, type="cve")
+                if not isinstance(result, dict) or result.get("error"):
+                    return -1
                 return time.perf_counter() - t0
-            except Exception as e:
+            except Exception:
                 return -1
 
-        with ThreadPoolExecutor(max_workers=20) as ex:
+        with ThreadPoolExecutor(max_workers=min(20, len(cves))) as ex:
             futures = [ex.submit(lookup, cve) for cve in cves]
-            for f in as_completed(futures):
-                lat = f.result()
-                if lat < 0:
+            for future in as_completed(futures):
+                latency = future.result()
+                if latency < 0:
                     failures += 1
                 else:
-                    latencies.append(lat * 1000)
+                    latencies.append(latency * 1000)
 
         if not latencies:
-            return {"test": "cve_burst", "n": n, "passed": False, "error": "no results"}
-
-        latencies.sort()
-        result = {
-            "test": "cve_burst",
-            "n": n,
-            "failures": failures,
-            "p50_ms": round(statistics.median(latencies), 2),
-            "p95_ms": round(latencies[int(len(latencies) * 0.95)], 2),
-            "max_ms": round(max(latencies), 2),
-            "passed": failures < n * 0.05,  # 5% failure threshold
-        }
+            result = {
+                "test": "cve_burst", "requested_n": n, "n": len(cves),
+                "failures": failures, "passed": False, "error": "no successful lookup results",
+            }
+        else:
+            latencies.sort()
+            result = {
+                "test": "cve_burst",
+                "requested_n": n,
+                "n": len(cves),
+                "successes": len(latencies),
+                "failures": failures,
+                "p50_ms": round(statistics.median(latencies), 2),
+                "p95_ms": round(self._percentile(latencies, 0.95), 2),
+                "p99_ms": round(self._percentile(latencies, 0.99), 2),
+                "max_ms": round(max(latencies), 2),
+                "passed": failures <= math.floor(len(cves) * 0.05),
+            }
         self.results.append(result)
         return result
 
     def test_pqc_throughput(self, n: int = 100) -> Dict:
-        """PQC roundtrips in batch."""
-        log.info(f"Stress: PQC {n} roundtrips")
+        """Benchmark ML-DSA keygen/sign/verify and fail on invalid signatures."""
+        log.info(f"Stress: PQC ML-DSA-44 {n} keygen/sign/verify cycles")
         try:
             from goodware.crypto.real_pqc import RealPQC
             pqc = RealPQC(algorithm="ML-DSA-44")
-        except Exception as e:
-            return {"test": "pqc_throughput", "n": n, "passed": False, "error": str(e)}
+        except Exception as exc:
+            result = {"test": "pqc_throughput", "n": n, "passed": False, "error": str(exc)}
+            self.results.append(result)
+            return result
 
         latencies = []
+        failures = 0
+        start = time.perf_counter()
         for i in range(n):
             t0 = time.perf_counter()
             try:
                 pk, sk, _ = pqc.sig_keypair("ML-DSA-44")
-                sig = pqc.sig_sign(sk, f"msg_{i}".encode(), "ML-DSA-44")
-                pqc.sig_verify(pk, f"msg_{i}".encode(), sig, "ML-DSA-44")
+                message = f"msg_{i}".encode()
+                signature = pqc.sig_sign(sk, message, "ML-DSA-44")
+                verified = pqc.sig_verify(pk, message, signature, "ML-DSA-44")
+                if verified is not True:
+                    failures += 1
+                    log.error(f"PQC verification returned false for iteration {i}")
+            except Exception as exc:
+                failures += 1
+                log.error(f"PQC {i} failed: {exc}")
+            finally:
                 latencies.append((time.perf_counter() - t0) * 1000)
-            except Exception as e:
-                log.error(f"PQC {i} failed: {e}")
 
-        if not latencies:
-            return {"test": "pqc_throughput", "n": n, "passed": False}
-
+        elapsed = max(time.perf_counter() - start, 1e-9)
         latencies.sort()
+        successes = max(0, n - failures)
         result = {
             "test": "pqc_throughput",
-            "n": n,
-            "p50_ms": round(statistics.median(latencies), 2),
-            "p95_ms": round(latencies[int(len(latencies) * 0.95)], 2),
-            "max_ms": round(max(latencies), 2),
-            "passed": True,
+            "algorithm": "ML-DSA-44",
+            "n_requested": n,
+            "n_completed": len(latencies),
+            "successes": successes,
+            "failures": failures,
+            "elapsed_sec": round(elapsed, 4),
+            "throughput_ops_sec": round(successes / elapsed, 2),
+            "p50_ms": round(statistics.median(latencies), 2) if latencies else None,
+            "p95_ms": round(self._percentile(latencies, 0.95), 2) if latencies else None,
+            "p99_ms": round(self._percentile(latencies, 0.99), 2) if latencies else None,
+            "max_ms": round(max(latencies), 2) if latencies else None,
+            "passed": n > 0 and failures == 0 and len(latencies) == n,
         }
         self.results.append(result)
         return result
@@ -227,12 +276,13 @@ class StressTest:
         return result
 
     def test_sensor_saturation(self, n: int = 5000) -> Dict:
-        """Sensor write/read saturation."""
+        """Measure write/read throughput and verify every generated event persisted."""
         log.info(f"Stress: sensor saturation {n} events")
         try:
             import uuid
+            expected_ids = set()
             t0 = time.perf_counter()
-            # Batch writes for throughput
+            write_failures = 0
             batch_size = 500
             for batch_start in range(0, n, batch_size):
                 batch = [{
@@ -243,28 +293,41 @@ class StressTest:
                     "payload": {"i": batch_start + i},
                     "timestamp": time.time(),
                 } for i in range(min(batch_size, n - batch_start))]
+                expected_ids.update(event["id"] for event in batch)
                 if hasattr(self.engine.state, "record_events_batch"):
-                    self.engine.state.record_events_batch(batch)
+                    written = self.engine.state.record_events_batch(batch)
+                    write_failures += max(0, len(batch) - int(written or 0))
                 else:
-                    for e in batch:
-                        self.engine.state.record_event(e)
-            elapsed = time.perf_counter() - t0
-            # Now read all
+                    for event in batch:
+                        try:
+                            self.engine.state.record_event(event)
+                        except Exception:
+                            write_failures += 1
+            elapsed = max(time.perf_counter() - t0, 1e-9)
+
             t1 = time.perf_counter()
             events = self.engine.state.query_events(limit=n)
             read_time = time.perf_counter() - t1
+            observed_ids = {event.get("id") for event in events if isinstance(event, dict)}
+            verified_reads = len(expected_ids & observed_ids)
+            missing_reads = max(0, n - verified_reads)
+            successful_writes = max(0, n - write_failures)
 
             result = {
                 "test": "sensor_saturation",
-                "n_writes": n,
-                "n_reads": len(events),
-                "write_time_sec": round(elapsed, 2),
-                "read_time_sec": round(read_time, 2),
-                "write_throughput_eps": round(n / elapsed, 1),
-                "passed": elapsed < 60,  # < 1 min for 5000 writes
+                "n_requested": n,
+                "n_writes_successful": successful_writes,
+                "n_reads_returned": len(events),
+                "n_generated_ids_verified": verified_reads,
+                "n_missing_ids": missing_reads,
+                "write_failures": write_failures,
+                "write_time_sec": round(elapsed, 4),
+                "read_time_sec": round(read_time, 4),
+                "write_throughput_eps": round(successful_writes / elapsed, 1),
+                "passed": n > 0 and write_failures == 0 and verified_reads == n and elapsed < 60,
             }
-        except Exception as e:
-            result = {"test": "sensor_saturation", "passed": False, "error": str(e)}
+        except Exception as exc:
+            result = {"test": "sensor_saturation", "passed": False, "error": str(exc)}
         self.results.append(result)
         return result
 
@@ -310,8 +373,8 @@ class StressTest:
             "n": n,
             "failures": failures,
             "p50_ms": round(statistics.median(latencies), 2),
-            "p95_ms": round(latencies[int(len(latencies) * 0.95)], 2),
-            "p99_ms": round(latencies[int(len(latencies) * 0.99)], 2),
+            "p95_ms": round(self._percentile(latencies, 0.95), 2),
+            "p99_ms": round(self._percentile(latencies, 0.99), 2),
             "max_ms": round(max(latencies), 2),
             "passed": failures < n * 0.01,  # 1% threshold
         }
