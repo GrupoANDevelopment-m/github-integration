@@ -1359,7 +1359,7 @@ class TestFrontend(unittest.TestCase):
         self.assertIn('data-tab-content="chat"', self.html)
         self.assertIn("tab.addEventListener('click'", self.html)
 
-    def test_207_api_serves_current_ui_control(self):
+    def test_api_serves_current_ui_control(self):
         from types import SimpleNamespace
         from goodware.api.server import create_app
 
