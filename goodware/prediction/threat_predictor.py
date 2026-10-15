@@ -246,6 +246,23 @@ class ThreatPredictor:
                 "model_source": self.model_source,
                 "synthetic_fallback": self.synthetic_fallback,
             }
+        # UNSW-NB15 and NSL-KDD were trained on network-flow features.
+        # The current event aggregator only produces generic event summaries; padding
+        # those summaries to 41/45 dimensions is not a valid feature transformation.
+        # Fail closed rather than emit a misleading production security prediction.
+        if self.model_source in ("unsw_nb15", "nsl_kdd"):
+            return {
+                "threat_type": "unavailable",
+                "confidence": 0.0,
+                "risk": 0.0,
+                "explanation": (
+                    f"feature_schema_mismatch: {self.model_source} requires its "
+                    "validated network-flow feature pipeline; event summaries are not compatible"
+                ),
+                "model_source": self.model_source,
+                "anomaly_source": self.anomaly_source,
+                "synthetic_fallback": self.synthetic_fallback,
+            }
         try:
             events = self.engine.state.query_events(limit=100) if self.engine else []
             feats = self._extract_features(events).reshape(1, -1)
