@@ -208,7 +208,7 @@ class StressTest:
                 message = f"msg_{i}".encode()
                 signature = pqc.sig_sign(sk, message, "ML-DSA-44")
                 verified = pqc.sig_verify(pk, message, signature, "ML-DSA-44")
-                if verified is not True:
+                if not verified:
                     failures += 1
                     log.error(f"PQC verification returned false for iteration {i}")
             except Exception as exc:
