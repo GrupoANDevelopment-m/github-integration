@@ -1325,26 +1325,39 @@ class TestAPI(unittest.TestCase):
 
 
 # ============================================================================
-# 14. FRONTEND (5)
+# 14. UI CONTROL (5)
 # ============================================================================
 class TestFrontend(unittest.TestCase):
-    def test_202_frontend_index_html(self):
-        self.assertTrue(os.path.exists("/workspace/goodware-v3/frontend/index.html"))
+    @classmethod
+    def setUpClass(cls):
+        cls.ui_dir = os.path.join(
+            os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+            "ui-control",
+        )
+        with open(os.path.join(cls.ui_dir, "index.html"), encoding="utf-8") as f:
+            cls.html = f.read()
 
-    def test_203_frontend_main_js(self):
-        self.assertTrue(os.path.exists("/workspace/goodware-v3/frontend/src/main.js"))
+    def test_202_ui_control_index_html(self):
+        self.assertTrue(os.path.isfile(os.path.join(self.ui_dir, "index.html")))
+        self.assertIn('<div id="app">', self.html)
 
-    def test_204_frontend_pages_count(self):
-        with open("/workspace/goodware-v3/frontend/src/pages.js") as f:
-            n = f.read().count("export async function render")
-        self.assertGreaterEqual(n, 15)
+    def test_203_ui_control_embeds_console_logic(self):
+        self.assertIn("function runCmd(", self.html)
+        self.assertIn("async function boot()", self.html)
 
-    def test_205_frontend_login(self):
-        with open("/workspace/goodware-v3/frontend/src/main.js") as f:
-            self.assertIn("renderLogin", f.read())
+    def test_204_ui_control_has_command_sections(self):
+        n = self.html.count('class="cmd-section-title"')
+        self.assertGreaterEqual(n, 6)
 
-    def test_206_frontend_router(self):
-        self.assertTrue(os.path.exists("/workspace/goodware-v3/frontend/src/router.js"))
+    def test_205_ui_control_uses_api_client(self):
+        self.assertIn('const UI_BASE = "/api";', self.html)
+        self.assertIn("async function api(", self.html)
+        self.assertIn("await fetch(UI_BASE + endpoint, opts)", self.html)
+
+    def test_206_ui_control_has_terminal_navigation(self):
+        self.assertIn('data-tab="chat"', self.html)
+        self.assertIn('data-tab-content="chat"', self.html)
+        self.assertIn("tab.addEventListener('click'", self.html)
 
 
 # ============================================================================
