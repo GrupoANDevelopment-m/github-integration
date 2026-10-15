@@ -37,7 +37,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     yara clamav clamav-daemon tpm2-tools nftables iptables \
     python3 python3-pip python3-venv \
     python3-yara python3-yaml python3-flask python3-flask-cors \
-    python3-psutil python3-watchdog python3-sklearn python3-joblib \
+    python3-psutil python3-watchdog python3-sklearn python3-joblib python3-pandas \
     python3-requests python3-cryptography python3-rich \
     build-essential ca-certificates curl \
     && rm -rf /var/lib/apt/lists/*
