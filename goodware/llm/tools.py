@@ -13,6 +13,8 @@ from typing import Any, Dict, List, Optional
 
 log = logging.getLogger("goodware.llm.tools")
 
+from goodware.core.paths import QUARANTINE_DIR, data_path, root_path
+
 
 # Schema OpenAI/Anthropic-style para cada tool
 TOOLS_SCHEMA: List[Dict[str, Any]] = [
@@ -290,7 +292,7 @@ def _kill_process(pid: int, tree: bool = False) -> Dict[str, Any]:
 def _quarantine_file(path: str) -> Dict[str, Any]:
     try:
         import shutil, os
-        qpath = "/workspace/goodware-v3/quarantine"
+        qpath = str(QUARANTINE_DIR)
         os.makedirs(qpath, exist_ok=True)
         dest = os.path.join(qpath, os.path.basename(path) + f".{os.path.getmtime(path):.0f}")
         shutil.move(path, dest)
@@ -325,9 +327,9 @@ def _block_ip(ip: str, direction: str = "in") -> Dict[str, Any]:
 def _run_yara_scan(path: str, ruleset: str = "default") -> Dict[str, Any]:
     try:
         import yara
-        rules_path = f"/workspace/goodware-v3/policies/yara/{ruleset}.yar"
+        rules_path = root_path("policies", "yara", f"{ruleset}.yar")
         if not os.path.exists(rules_path):
-            rules_path = "/workspace/goodware-v3/policies/yara/goodware_default.yar"
+            rules_path = root_path("policies", "yara", "goodware_default.yar")
         rules = yara.compile(filepath=rules_path)
         matches = rules.match(path)
         return {"matches": [str(m) for m in matches], "count": len(matches), "path": path}
@@ -536,7 +538,7 @@ def _verify_pqc(message: str, signature_b64: str, public_key_b64: str, algorithm
 
 def _search_iocs(value: str, type: str = "ip") -> Dict[str, Any]:
     try:
-        iocs_path = "/workspace/goodware-v3/data/iocs.json"
+        iocs_path = data_path("iocs.json")
         if not os.path.exists(iocs_path):
             return {"found": False, "value": value}
         with open(iocs_path) as f:
@@ -554,7 +556,7 @@ def _search_iocs(value: str, type: str = "ip") -> Dict[str, Any]:
 
 def _lookup_cve(query: str) -> Dict[str, Any]:
     try:
-        cve_path = "/workspace/goodware-v3/data/cve/cve_database.json"
+        cve_path = data_path("cve", "cve_database.json")
         if not os.path.exists(cve_path):
             return {"found": False}
         with open(cve_path) as f:
