@@ -6,7 +6,7 @@
 FROM debian:bookworm-slim AS oqs-builder
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential cmake ninja-build git ca-certificates \
+    build-essential cmake ninja-build git ca-certificates libssl-dev \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /build
@@ -21,7 +21,7 @@ RUN mkdir build && cd build && \
         -DOQS_ENABLE_SIG_ML_DSA=ON \
         -DOQS_ENABLE_SIG_DILITHIUM=ON \
         .. && \
-    ninja -j$(nproc) && \
+    ninja -j2 && \
     ninja install && \
     ldconfig
 
