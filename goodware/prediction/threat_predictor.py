@@ -20,6 +20,7 @@ Honest reporting: this class now reports its REAL status:
 """
 from __future__ import annotations
 import os
+import hashlib
 import time
 import threading
 import logging
@@ -198,11 +199,20 @@ class ThreatPredictor:
         expects network-flow-style features; here we approximate from event-level
         data. (Future: replace with real-time flow feature extraction.)
         """
+        # Ignore malformed rows instead of letting a single bad event crash extraction.
+        if not isinstance(events, (list, tuple)):
+            events = []
+        events = [e for e in events if isinstance(e, dict)]
         if not events:
             return np.zeros(self.feature_count or 8, dtype=np.float32)
         sev_w = {"info": 0, "low": 1, "medium": 2, "high": 3, "critical": 4}
-        sevs = [sev_w.get(e.get("severity", "info"), 0) for e in events[-20:]]
-        types = [hash(e.get("type", "")) % 100 for e in events[-20:]]
+        recent = events[-20:]
+        sevs = [sev_w.get(str(e.get("severity", "info")).lower(), 0) for e in recent]
+        # Python's built-in hash is randomized per process; use a stable digest instead.
+        types = [
+            int.from_bytes(hashlib.sha256(str(e.get("type", "")).encode("utf-8")).digest()[:4], "big") % 100
+            for e in recent
+        ]
 
         if self.feature_count >= 45:
             # UNSW-NB15-style features (45 dims)
