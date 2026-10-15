@@ -148,8 +148,8 @@ class StressTest:
         def lookup(cve_id):
             t0 = time.perf_counter()
             try:
-                from goodware.llm.tools import _search_iocs
-                result = _search_iocs(value=cve_id, type="cve")
+                from goodware.llm.tools import _lookup_cve
+                result = _lookup_cve(query=cve_id)
                 if not isinstance(result, dict) or result.get("error"):
                     return -1
                 return time.perf_counter() - t0
