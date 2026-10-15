@@ -28,6 +28,8 @@ from typing import Any, Dict, List
 
 log = logging.getLogger("goodware.security.stress")
 
+from goodware.core.paths import data_path
+
 
 class StressTest:
     """Real stress test suite for Goodware."""

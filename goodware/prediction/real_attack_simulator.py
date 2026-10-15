@@ -19,6 +19,8 @@ from typing import Any, Dict, List, Optional
 
 log = logging.getLogger("goodware.prediction.real_attack_sim")
 
+from goodware.core.paths import data_path
+
 
 # CVEs reais com seus padrões
 REAL_CVE_PATTERNS = {

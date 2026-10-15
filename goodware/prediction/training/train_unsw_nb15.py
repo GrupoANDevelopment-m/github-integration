@@ -20,6 +20,8 @@ import pandas as pd
 
 log = logging.getLogger("goodware.prediction.training.unsw")
 
+from goodware.core.paths import data_path, root_path
+
 
 def load_unsw_nb15(path: str) -> pd.DataFrame:
     df = pd.read_csv(path, encoding="utf-8-sig", low_memory=False)
