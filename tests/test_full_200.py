@@ -1353,6 +1353,8 @@ class TestFrontend(unittest.TestCase):
         self.assertIn('const UI_BASE = "/api";', self.html)
         self.assertIn("async function api(", self.html)
         self.assertIn("await fetch(UI_BASE + endpoint, opts)", self.html)
+        self.assertIn("headers.Authorization = `Bearer ${tokenUsed}`", self.html)
+        self.assertNotIn("pqc-goodware-2026", self.html)
 
     def test_206_ui_control_has_terminal_navigation(self):
         self.assertIn('data-tab="chat"', self.html)

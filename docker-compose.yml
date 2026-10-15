@@ -15,6 +15,8 @@ services:
       - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY:-}
       - GOODWARE_NODE_ID=node-1
       - GOODWARE_LOG_LEVEL=INFO
+      - GOODWARE_API_TOKEN=${GOODWARE_API_TOKEN:?required}
+      - GOODWARE_CORS_ORIGINS=${GOODWARE_CORS_ORIGINS:-}
     volumes:
       - goodware-data:/var/lib/goodware
       - goodware-logs:/var/log/goodware

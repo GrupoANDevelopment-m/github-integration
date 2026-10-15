@@ -14,6 +14,8 @@ import json
 import os
 import sys
 import unittest
+from types import SimpleNamespace
+from unittest.mock import patch
 
 # Make repo root importable
 ROOT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
@@ -231,6 +233,59 @@ class TestArtifactProtector(unittest.TestCase):
         result = prot.verify_integrity()
         # At least the models dir should exist
         self.assertIsInstance(result, dict)
+
+
+class TestAPIAuthentication(unittest.TestCase):
+    def test_api_requires_bearer_token_when_configured(self):
+        from goodware.api.server import create_app
+
+        engine = SimpleNamespace(_components={})
+        with patch.dict(os.environ, {"GOODWARE_API_TOKEN": "audit-test-token"}):
+            app = create_app(engine, {})
+            client = app.test_client()
+            self.assertEqual(client.get("/api/sensors").status_code, 401)
+            self.assertEqual(
+                client.get("/api/sensors", headers={"Authorization": "Bearer wrong"}).status_code,
+                401,
+            )
+            self.assertEqual(
+                client.get("/api/sensors", headers={"Authorization": "Bearer audit-test-token"}).status_code,
+                200,
+            )
+            self.assertEqual(client.get("/api/healthz").status_code, 200)
+
+    def test_public_bind_fails_closed_without_api_token(self):
+        from goodware.api.server import start_api
+
+        engine = SimpleNamespace(_components={})
+        with patch.dict(os.environ, {"GOODWARE_API_TOKEN": "", "GOODWARE_API_AUTH_REQUIRED": ""}):
+            with self.assertRaisesRegex(RuntimeError, "GOODWARE_API_TOKEN"):
+                start_api(engine, {}, host="0.0.0.0", port=0)
+
+    def test_approval_identity_comes_from_authenticated_principal(self):
+        from goodware.api.server import create_app
+
+        class HumanFactor:
+            def evaluate(self, action):
+                return {"ok": True}
+
+            def approve(self, request_id, admin_id):
+                return {"request_id": request_id, "admin_id": admin_id}
+
+        engine = SimpleNamespace(_components={"human_factor": HumanFactor()})
+        env = {
+            "GOODWARE_API_TOKEN": "audit-test-token",
+            "GOODWARE_API_PRINCIPAL": "trusted-admin",
+        }
+        with patch.dict(os.environ, env):
+            client = create_app(engine, {}).test_client()
+            response = client.post(
+                "/api/human_factor/approve",
+                json={"request_id": "req-1", "admin_id": "attacker-controlled"},
+                headers={"Authorization": "Bearer audit-test-token"},
+            )
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.get_json()["admin_id"], "trusted-admin")
 
 
 if __name__ == "__main__":
