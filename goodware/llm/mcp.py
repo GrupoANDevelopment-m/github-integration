@@ -15,8 +15,9 @@ from typing import Any, Dict, List, Optional
 
 log = logging.getLogger("goodware.llm.mcp")
 
+from goodware.core.paths import config_path
 
-MCP_CONFIG_PATH = Path("/workspace/goodware-v3/config/mcp_servers.json")
+MCP_CONFIG_PATH = config_path("mcp_servers.json")
 
 
 class MCPServer:
