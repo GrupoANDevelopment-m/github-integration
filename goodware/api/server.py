@@ -460,18 +460,25 @@ def create_app(engine, config) -> Flask:
     @app.get("/<path:path>")
     def serve_frontend(path="index.html"):
         import os
-        frontend_dir = os.path.normpath(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "frontend"))
-        if not os.path.isdir(frontend_dir):
-            return jsonify({"error": "frontend not built", "path": frontend_dir}), 404
+        ui_dir = os.path.realpath(os.path.join(
+            os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
+            "ui-control",
+        ))
+        if not os.path.isdir(ui_dir):
+            return jsonify({"error": "ui control not built", "path": ui_dir}), 404
         if not path or path == "/":
             path = "index.html"
-        # segurança: bloquear traversal
-        full = os.path.normpath(os.path.join(frontend_dir, path))
-        if not full.startswith(frontend_dir):
+        # Resolve symlinks and reject traversal outside the UI root.
+        full = os.path.realpath(os.path.join(ui_dir, path))
+        try:
+            inside_ui = os.path.commonpath([ui_dir, full]) == ui_dir
+        except ValueError:
+            inside_ui = False
+        if not inside_ui:
             return jsonify({"error": "forbidden"}), 403
         if not os.path.isfile(full):
-            # fallback SPA — index.html para client-side routing
-            full = os.path.join(frontend_dir, "index.html")
+            # SPA fallback for client-side routes.
+            full = os.path.join(ui_dir, "index.html")
         ext = os.path.splitext(full)[1].lower()
         ct_map = {
             ".html": "text/html; charset=utf-8",
