@@ -72,7 +72,7 @@ run_suite() {
     (( passed < 0 )) && passed=0
   fi
 
-  if [[ "$rc" -eq 0 ]]; then
+  if [[ "$rc" -eq 0 && "$failed" -eq 0 && "$errors" -eq 0 ]]; then
     status="passed"
     # For successful unittest suites, the runner's exit status is authoritative.
     if [[ -z "$custom_total" ]]; then
