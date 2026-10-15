@@ -1359,6 +1359,16 @@ class TestFrontend(unittest.TestCase):
         self.assertIn('data-tab-content="chat"', self.html)
         self.assertIn("tab.addEventListener('click'", self.html)
 
+    def test_207_api_serves_current_ui_control(self):
+        from types import SimpleNamespace
+        from goodware.api.server import create_app
+
+        engine = SimpleNamespace(_components={}, _config={})
+        app = create_app(engine, {})
+        response = app.test_client().get("/")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"Goodware v3.0", response.data)
+
 
 # ============================================================================
 # 15. STRESS / CHAOS (10)
