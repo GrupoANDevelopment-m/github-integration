@@ -21,7 +21,15 @@ from typing import Any, Dict, List, Optional
 log = logging.getLogger("goodware.llm.context")
 
 
-CONTEXT_DIR = Path("/workspace/goodware-v3/data/context")
+# Resolve storage from deployment configuration, not a developer-specific absolute path.
+# GOODWARE_CONTEXT_DIR overrides the context folder; otherwise use
+# GOODWARE_DATA_DIR/context, defaulting to this installation's data directory.
+_DEFAULT_DATA_DIR = Path(
+    os.environ.get("GOODWARE_DATA_DIR", Path(__file__).resolve().parents[2] / "data")
+).expanduser()
+CONTEXT_DIR = Path(
+    os.environ.get("GOODWARE_CONTEXT_DIR", _DEFAULT_DATA_DIR / "context")
+).expanduser()
 PROMPT_CACHE_FILE = CONTEXT_DIR / "prompt_cache.json"
 
 
