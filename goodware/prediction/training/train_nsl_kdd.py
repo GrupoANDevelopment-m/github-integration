@@ -23,8 +23,11 @@ import sys
 from pathlib import Path
 
 import numpy as np
+import pandas as pd
 
 log = logging.getLogger("goodware.prediction.training")
+
+from goodware.core.paths import root_path
 
 
 NSL_KDD_COLUMNS = [
@@ -61,9 +64,6 @@ ATTACK_CATEGORIES = {
 
 def load_nsl_kdd(path: str) -> tuple:
     """Load NSL-KDD dataset from local file."""
-    import pandas as pd
-    global pd
-
     df = pd.read_csv(path, names=NSL_KDD_COLUMNS, header=None)
     # Drop difficulty column
     if "difficulty" in df.columns:
@@ -173,9 +173,9 @@ def train_from_nsl_kdd(train_path: str, test_path: str, output_dir: str):
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument("--train", default="/workspace/NSL_KDD/KDDTrain+.txt")
-    parser.add_argument("--test", default="/workspace/NSL_KDD/KDDTest+.txt")
-    parser.add_argument("--output", default="/workspace/goodware-v3/models")
+    parser.add_argument("--train", default=str(root_path("NSL_KDD", "KDDTrain+.txt")))
+    parser.add_argument("--test", default=str(root_path("NSL_KDD", "KDDTest+.txt")))
+    parser.add_argument("--output", default=str(root_path("models")))
     args = parser.parse_args()
 
     logging.basicConfig(level=logging.INFO, format="%(asctime)s | %(levelname)s | %(message)s")

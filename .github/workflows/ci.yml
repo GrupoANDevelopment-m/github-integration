@@ -1,5 +1,10 @@
 name: CI/CD Pipeline
 
+# Avoid expensive duplicate liboqs builds when several commits are pushed to one PR.
+concurrency:
+  group: goodware-ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 on:
   push:
     branches: [main]

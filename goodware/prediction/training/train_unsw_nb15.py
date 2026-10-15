@@ -20,6 +20,8 @@ import pandas as pd
 
 log = logging.getLogger("goodware.prediction.training.unsw")
 
+from goodware.core.paths import data_path, root_path
+
 
 def load_unsw_nb15(path: str) -> pd.DataFrame:
     df = pd.read_csv(path, encoding="utf-8-sig", low_memory=False)
@@ -108,8 +110,8 @@ def train_from_unsw_nb15(csv_path: str, output_dir: str):
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input", default="/workspace/goodware-v3/data/unsw_nb15/UNSW_NB15.csv")
-    parser.add_argument("--output", default="/workspace/goodware-v3/models")
+    parser.add_argument("--input", default=str(data_path("unsw_nb15", "UNSW_NB15.csv")))
+    parser.add_argument("--output", default=str(root_path("models")))
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(asctime)s | %(levelname)s | %(message)s")
     train_from_unsw_nb15(args.input, args.output)

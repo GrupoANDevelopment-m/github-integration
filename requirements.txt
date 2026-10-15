@@ -16,7 +16,8 @@ yara-python>=4.3
 PyYAML>=6.0
 pydantic>=2.5
 
-# Machine Learning (ThreatPredictor, AnomalyForecast)
+# Machine Learning (ThreatPredictor, AnomalyForecast, NSL-KDD training)
+pandas>=2.0
 scikit-learn>=1.3
 joblib>=1.3
 

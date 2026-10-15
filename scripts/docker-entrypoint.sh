@@ -4,7 +4,7 @@ set -e
 case "${1:-api}" in
     api)
         echo "Starting Goodware API on port 8443..."
-        exec python3 -m goodware.api.server
+        exec python3 -m goodware --api-host 0.0.0.0 --api-port 8443
         ;;
     federated)
         echo "Starting Goodware Federated server..."

@@ -31,8 +31,9 @@ from typing import Any, Dict, List, Optional, Set
 
 log = logging.getLogger("goodware.llm.permissions")
 
+from goodware.core.paths import config_path
 
-PERMS_FILE = Path("/workspace/goodware-v3/config/permissions.json")
+PERMS_FILE = config_path("permissions.json")
 
 
 # Roles disponíveis

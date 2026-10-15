@@ -28,6 +28,8 @@ from pathlib import Path
 
 log = logging.getLogger("goodware.api.health")
 
+from goodware.core.paths import ROOT_DIR, data_path
+
 
 def check_engine(engine) -> dict:
     try:
@@ -41,7 +43,8 @@ def check_engine(engine) -> dict:
         return {"ok": False, "error": str(e)}
 
 
-def check_database(db_path: str = "/workspace/goodware-v3/data/goodware.db") -> dict:
+def check_database(db_path: str | None = None) -> dict:
+    db_path = str(data_path("goodware.db")) if db_path is None else db_path
     try:
         if not os.path.exists(db_path):
             return {"ok": False, "error": "database file not found", "real": False}
@@ -107,7 +110,8 @@ def check_llm() -> dict:
         return {"ok": False, "error": str(e), "mode": "ERROR"}
 
 
-def check_disk(path: str = "/workspace/goodware-v3") -> dict:
+def check_disk(path: str | None = None) -> dict:
+    path = str(ROOT_DIR) if path is None else path
     try:
         total, used, free = shutil.disk_usage(path)
         free_pct = free / total * 100
