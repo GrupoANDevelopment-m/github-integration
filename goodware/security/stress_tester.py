@@ -122,7 +122,7 @@ class StressTest:
         failures = 0
 
         try:
-            with open("data/cve/cve_database.json", encoding="utf-8") as f:
+            with open(data_path("cve", "cve_database.json"), encoding="utf-8") as f:
                 data = json.load(f)
             cves = [item.get("cve_id", "") for item in data.get("cves", [])
                     if isinstance(item, dict) and item.get("cve_id")]

@@ -115,8 +115,8 @@ MITRE_TACTICS = [
 class RealAttackSimulator:
     """Simulador de ataques baseado em CVEs REAIS."""
 
-    def __init__(self, cve_db_path: str = "/workspace/goodware-v3/data/cve/cve_database.json"):
-        self.cve_db_path = Path(cve_db_path)
+    def __init__(self, cve_db_path: str | Path | None = None):
+        self.cve_db_path = Path(cve_db_path).expanduser().resolve() if cve_db_path is not None else data_path("cve", "cve_database.json")
         self._cve_list = []
         self._load_real_cves()
 

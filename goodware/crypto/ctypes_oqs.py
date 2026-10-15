@@ -13,6 +13,7 @@ from __future__ import annotations
 import ctypes
 import ctypes.util
 import os
+from goodware.core.paths import ROOT_DIR
 from typing import Dict, List, Optional, Tuple
 
 
@@ -43,13 +44,13 @@ def _find_oqs() -> Optional[str]:
     """Procura liboqs.so nos paths habituais, incluindo vendor/oqs/."""
     candidates = [
         # Vendor local (instalado)
-        "/workspace/goodware-v3/vendor/oqs/lib/liboqs.so",
-        "/workspace/goodware-v3/vendor/oqs/lib/liboqs.so.0",
-        "/workspace/goodware-v3/vendor/oqs/lib/liboqs.so.0.16.0",
+        str(ROOT_DIR / "vendor" / "oqs" / "lib" / "liboqs.so"),
+        str(ROOT_DIR / "vendor" / "oqs" / "lib" / "liboqs.so.0"),
+        str(ROOT_DIR / "vendor" / "oqs" / "lib" / "liboqs.so.0.16.0"),
         # Vendored via install_deps.sh
-        "vendor/oqs/lib/liboqs.so",
-        "vendor/oqs/lib/liboqs.so.0",
-        "vendor/oqs/lib/liboqs.so.0.16.0",
+        str(ROOT_DIR / "vendor" / "oqs" / "lib" / "liboqs.so"),
+        str(ROOT_DIR / "vendor" / "oqs" / "lib" / "liboqs.so.0"),
+        str(ROOT_DIR / "vendor" / "oqs" / "lib" / "liboqs.so.0.16.0"),
         # System paths
         "/usr/local/lib/liboqs.so",
         "/usr/local/lib/liboqs.so.0",
