@@ -18,8 +18,9 @@ from typing import Any, Dict, List, Optional
 
 log = logging.getLogger("goodware.llm.memory")
 
+from goodware.core.paths import data_path
 
-MEMORY_DIR = Path("/workspace/goodware-v3/data/memory")
+MEMORY_DIR = data_path("memory")
 
 
 class MemoryEntry:
