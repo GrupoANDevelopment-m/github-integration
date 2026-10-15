@@ -27,10 +27,17 @@ Thumbs.db
 *.swp
 *.swo
 
-# NÃO ignorar:
-#   data/goodware.db — base de dados principal (precisa!)
-#   data/*.json — estado do sistema
-#   keys/ — chaves PQC geradas (necessárias para verificação)
-#   logs/ — logs do sistema (úteis para debug)
-#   vendor/oqs/ — liboqs compilada
-#   models/ — modelos treinados
+# Runtime state and secrets must never be committed.
+# Provision these paths at deployment time; keep only placeholders in Git.
+keys/*
+!keys/.gitkeep
+data/vault/*
+!data/vault/.gitkeep
+data/*.db
+logs/*
+!logs/.gitkeep
+models/*.joblib
+models/*.pkl
+.env
+.env.*
+!.env.example
