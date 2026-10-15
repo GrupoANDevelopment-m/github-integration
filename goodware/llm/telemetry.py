@@ -23,8 +23,9 @@ from typing import Any, Dict, List, Optional
 
 log = logging.getLogger("goodware.llm.telemetry")
 
+from goodware.core.paths import data_path
 
-TELEMETRY_FILE = Path("/workspace/goodware-v3/data/telemetry.json")
+TELEMETRY_FILE = data_path("telemetry.json")
 
 
 class TelemetryCollector:
