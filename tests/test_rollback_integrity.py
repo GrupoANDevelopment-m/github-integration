@@ -37,6 +37,32 @@ class SnapshotRollbackSecurityTests(unittest.TestCase):
                           [item["error"] for item in result["failed_files"]])
             self.assertEqual(target.read_text(encoding="utf-8"), "current content must survive")
 
+    def test_tampered_directory_snapshot_is_rejected(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            source_dir = root / "config-tree"
+            source_dir.mkdir()
+            (source_dir / "policy.yaml").write_text("mode: safe", encoding="utf-8")
+            manager = SnapshotManager(str(root / "data"))
+            meta = manager.snapshot_files([str(source_dir)], compress=True)
+            (source_dir / "policy.yaml").write_text("mode: compromised", encoding="utf-8")
+
+            archive = manager.base / meta["archive"]
+            with tarfile.open(archive, "w:gz") as tf:
+                payload = b"mode: attacker"
+                info = tarfile.TarInfo("files/config-tree/policy.yaml")
+                info.size = len(payload)
+                tf.addfile(info, io.BytesIO(payload))
+
+            with patch.object(manager, "_pqc_verify", return_value=True):
+                result = manager.rollback_files(meta["id"], verify=True)
+
+            self.assertFalse(result["ok"])
+            self.assertIn("snapshot_content_hash_mismatch",
+                          [item["error"] for item in result["failed_files"]])
+            self.assertEqual((source_dir / "policy.yaml").read_text(encoding="utf-8"),
+                             "mode: compromised")
+
     def test_archive_path_traversal_is_rejected(self):
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
