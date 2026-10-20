@@ -133,6 +133,14 @@ class SnapshotManager:
                         "type": "directory",
                         "sha256": self._tree_hash(str(target)),
                     })
+                    # Directory snapshots must contribute their regular-file bytes
+                    # to the compression decision, just like individual files.
+                    # Otherwise compress=True silently leaves directories unarchived.
+                    total_size += sum(
+                        item.stat().st_size
+                        for item in target.rglob("*")
+                        if item.is_file() and not item.is_symlink()
+                    )
             except Exception as e:
                 log.warning(f"Failed to snapshot {p}: {e}")
 
