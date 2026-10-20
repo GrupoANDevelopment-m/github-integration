@@ -77,7 +77,9 @@ class SnapshotManager:
         """Verifica PQC signature."""
         try:
             if sig_meta.get("signature_algorithm") == "sha256-fallback":
-                return hashlib.sha256(data).hexdigest() == sig_meta.get("signature", "")
+                # A plain digest is not an authenticated signature: anyone who can
+                # modify metadata can recompute it. Fail closed for verified rollback.
+                return False
             if sig_meta.get("public_key") and sig_meta.get("signature"):
                 from goodware.crypto.real_pqc import RealPQC
                 r = RealPQC()
@@ -244,9 +246,21 @@ class SnapshotManager:
                 return {"ok": False, "error": "archive not found"}
             extract_dir = self.base / snapshot_id / "extracted"
             extract_dir.mkdir(parents=True, exist_ok=True)
+            # Reject archive path traversal, links and special files before extraction.
+            # Never trust an archive merely because its metadata signature verified.
             try:
+                resolved_root = extract_dir.resolve()
                 with tarfile.open(archive_path, "r:gz") as tf:
-                    tf.extractall(extract_dir)
+                    members = tf.getmembers()
+                    for member in members:
+                        member_path = (extract_dir / member.name).resolve()
+                        if os.path.commonpath([str(resolved_root), str(member_path)]) != str(resolved_root):
+                            raise ValueError("archive_path_traversal")
+                        if member.issym() or member.islnk() or member.isdev():
+                            raise ValueError("archive_link_or_device_rejected")
+                        if not (member.isfile() or member.isdir()):
+                            raise ValueError("archive_member_type_rejected")
+                    tf.extractall(extract_dir, members=members)
             except Exception as e:
                 return {"ok": False, "error": f"extract failed: {e}"}
             extracted_root = extract_dir / "files"
@@ -261,13 +275,29 @@ class SnapshotManager:
         failed = []
         for fmeta in meta["files"]:
             target = fmeta["source"]
-            basename = Path(target).name
-            # Procura por basename dentro do extracted_root
-            candidates = list(extracted_root.rglob(basename))
-            if not candidates:
+            # Use the exact snapshot-relative path; basename matching can restore
+            # the wrong file when two source paths share a filename.
+            stored = Path(fmeta.get("snapshot_path", ""))
+            try:
+                relative = stored.relative_to(snapshot_id)
+            except ValueError:
+                failed.append({"path": target, "error": "invalid_snapshot_path"})
+                continue
+            if not relative.parts or relative.parts[0] != "files":
+                failed.append({"path": target, "error": "invalid_snapshot_path"})
+                continue
+            source = extracted_root.joinpath(*relative.parts[1:])
+            if not source.exists():
                 failed.append({"path": target, "error": "snapshot file missing in archive"})
                 continue
-            source = candidates[0]
+            # Validate content before any write. A valid metadata signature alone
+            # does not prove that the archive payload still matches the snapshot.
+            expected_hash = fmeta.get("sha256")
+            if source.is_file() and expected_hash:
+                actual_hash = self._file_hash(str(source))
+                if not actual_hash or actual_hash != expected_hash:
+                    failed.append({"path": target, "error": "snapshot_content_hash_mismatch"})
+                    continue
             try:
                 # Backup current file before overwriting
                 if os.path.exists(target):
@@ -292,7 +322,8 @@ class SnapshotManager:
             "snapshot_id": snapshot_id,
             "restored_files": restored,
             "failed_files": failed,
-            "signature_verified": True,
+            "signature_verified": bool(verify),
+            "integrity_verified": bool(verify and not failed),
             "timestamp": time.time(),
         }
 
