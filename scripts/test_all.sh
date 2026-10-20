@@ -27,6 +27,7 @@ SUITES=(
   "test_llm_brain|test_llm_brain"
   "test_llm_fallback|test_llm_fallback"
   "test_load|test_load"
+  "test_rollback_integrity|test_rollback_integrity"
 )
 
 run_suite() {
