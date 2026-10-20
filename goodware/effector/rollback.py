@@ -131,6 +131,7 @@ class SnapshotManager:
                         "source": p,
                         "snapshot_path": str(target.relative_to(self.base)),
                         "type": "directory",
+                        "sha256": self._tree_hash(str(target)),
                     })
             except Exception as e:
                 log.warning(f"Failed to snapshot {p}: {e}")
@@ -293,8 +294,11 @@ class SnapshotManager:
             # Validate content before any write. A valid metadata signature alone
             # does not prove that the archive payload still matches the snapshot.
             expected_hash = fmeta.get("sha256")
-            if source.is_file() and expected_hash:
-                actual_hash = self._file_hash(str(source))
+            if expected_hash:
+                actual_hash = (
+                    self._tree_hash(str(source)) if source.is_dir()
+                    else self._file_hash(str(source))
+                )
                 if not actual_hash or actual_hash != expected_hash:
                     failed.append({"path": target, "error": "snapshot_content_hash_mismatch"})
                     continue
@@ -384,6 +388,34 @@ class SnapshotManager:
         except Exception:
             return ""
         return h.hexdigest()
+
+    def _tree_hash(self, path: str) -> str:
+        """Deterministic digest for a directory tree, including relative paths."""
+        root = Path(path)
+        if not root.is_dir():
+            return ""
+        digest = hashlib.sha256()
+        try:
+            for item in sorted(root.rglob("*"), key=lambda p: p.relative_to(root).as_posix()):
+                relative = item.relative_to(root).as_posix()
+                if item.is_symlink():
+                    return ""
+                digest.update(relative.encode("utf-8", errors="surrogateescape"))
+                digest.update(b"\\0")
+                if item.is_dir():
+                    digest.update(b"D\\0")
+                elif item.is_file():
+                    file_digest = self._file_hash(str(item))
+                    if not file_digest:
+                        return ""
+                    digest.update(b"F\\0")
+                    digest.update(file_digest.encode("ascii"))
+                    digest.update(b"\\0")
+                else:
+                    return ""
+        except OSError:
+            return ""
+        return digest.hexdigest()
 
 
 # Singleton
