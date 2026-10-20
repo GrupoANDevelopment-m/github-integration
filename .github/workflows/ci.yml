@@ -70,6 +70,47 @@ jobs:
       - name: Build Docker image
         run: docker build -t goodware-v3:${{ github.sha }} .
       
+      - name: Docker runtime smoke (health + API auth)
+        env:
+          GOODWARE_API_TOKEN: ci-smoke-token
+        run: |
+          set -euo pipefail
+          IMAGE="goodware-v3:${{ github.sha }}"
+          CONTAINER="goodware-smoke-${{ github.run_id }}"
+          cleanup() {
+            docker logs "$CONTAINER" 2>/dev/null | tail -n 120 || true
+            docker rm -f "$CONTAINER" >/dev/null 2>&1 || true
+          }
+          trap cleanup EXIT
+          docker run -d --name "$CONTAINER" \
+            -e GOODWARE_API_TOKEN="$GOODWARE_API_TOKEN" \
+            -p 127.0.0.1:18443:8443 "$IMAGE"
+          ready=0
+          for attempt in $(seq 1 60); do
+            if curl --fail --silent http://127.0.0.1:18443/api/healthz >/dev/null; then
+              ready=1
+              break
+            fi
+            sleep 2
+          done
+          if [ "$ready" -ne 1 ]; then
+            echo "Container did not become healthy in 120 seconds"
+            exit 1
+          fi
+          unauthorized="$(curl --silent --output /tmp/goodware-unauth.json --write-out '%{http_code}' http://127.0.0.1:18443/api/status)"
+          test "$unauthorized" = "401"
+          authorized="$(curl --silent --output /tmp/goodware-auth.json --write-out '%{http_code}' \
+            -H "Authorization: Bearer $GOODWARE_API_TOKEN" \
+            http://127.0.0.1:18443/api/status)"
+          test "$authorized" = "200"
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          body = json.loads(Path("/tmp/goodware-auth.json").read_text())
+          assert "engine" in body and isinstance(body["engine"], dict), body
+          print("Docker runtime smoke passed: health=200, unauthenticated status=401, authenticated status=200")
+          PY
+
       - name: Push to registry
         if: github.ref == 'refs/heads/main'
         run: |
