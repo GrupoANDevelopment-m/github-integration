@@ -45,6 +45,8 @@ class SnapshotRollbackSecurityTests(unittest.TestCase):
             (source_dir / "policy.yaml").write_text("mode: safe", encoding="utf-8")
             manager = SnapshotManager(str(root / "data"))
             meta = manager.snapshot_files([str(source_dir)], compress=True)
+            self.assertTrue(meta["compressed"])
+            self.assertIn("archive", meta)
             (source_dir / "policy.yaml").write_text("mode: compromised", encoding="utf-8")
 
             archive = manager.base / meta["archive"]
