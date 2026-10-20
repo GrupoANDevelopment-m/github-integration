@@ -254,9 +254,10 @@ def create_app(engine, config) -> Flask:
         from goodware.effector.rollback import get_snapshot_manager
         data = request.get_json(force=True) or {}
         sid = data.get("snapshot_id")
-        verify = data.get("verify", True)
+        # Remote rollback must never let a caller disable integrity verification.
+        # Emergency recovery without a valid signature must be handled out-of-band.
         mgr = get_snapshot_manager()
-        result = mgr.rollback_files(sid, verify=verify)
+        result = mgr.rollback_files(sid, verify=True)
         return jsonify(result)
 
     @app.post("/api/snapshot/diff")
