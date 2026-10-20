@@ -61,6 +61,35 @@ class SnapshotRollbackSecurityTests(unittest.TestCase):
             self.assertFalse(outside.exists())
             self.assertEqual(target.read_text(encoding="utf-8"), "trusted")
 
+    def test_api_cannot_disable_rollback_verification(self):
+        from types import SimpleNamespace
+        from goodware.api.server import create_app
+
+        class Manager:
+            def __init__(self):
+                self.verify_arg = None
+
+            def rollback_files(self, snapshot_id, verify=True):
+                self.verify_arg = verify
+                return {"ok": False, "snapshot_id": snapshot_id}
+
+        manager = Manager()
+        env = {
+            "GOODWARE_API_TOKEN": "rollback-test-token",
+            "GOODWARE_API_AUTH_REQUIRED": "1",
+        }
+        with patch.dict("os.environ", env):
+            app = create_app(SimpleNamespace(_components={}), {})
+            with patch("goodware.effector.rollback.get_snapshot_manager", return_value=manager):
+                response = app.test_client().post(
+                    "/api/snapshot/rollback",
+                    json={"snapshot_id": "snap-test", "verify": False},
+                    headers={"Authorization": "Bearer rollback-test-token"},
+                )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertIs(manager.verify_arg, True)
+
     def test_sha256_fallback_is_not_misrepresented_as_signature(self):
         with tempfile.TemporaryDirectory() as td:
             manager = SnapshotManager(td)
