@@ -5,6 +5,8 @@ import os
 import sys
 import time
 import unittest
+from types import SimpleNamespace
+from unittest.mock import patch
 
 ROOT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 sys.path.insert(0, ROOT)
@@ -222,7 +224,7 @@ class TestStressTester(unittest.TestCase):
         from goodware.security.stress_tester import StressTest
         st = StressTest(None)
         types = [p["type"] for p in st.REAL_ATTACK_PATTERNS]
-        # All major MITRE ATT&CK tactics
+        # Local generated workload labels; these are not live attack executions.
         self.assertIn("ransomware_precursor", types)
         self.assertIn("credential_dump", types)
         self.assertIn("lateral_movement", types)
@@ -231,6 +233,45 @@ class TestStressTester(unittest.TestCase):
         self.assertIn("privilege_escalation", types)
         self.assertIn("persistence", types)
         self.assertIn("discovery", types)
+
+    def test_pqc_verification_false_fails_benchmark(self):
+        from goodware.security.stress_tester import StressTest
+        with patch("goodware.crypto.real_pqc.RealPQC") as pqc_cls:
+            pqc = pqc_cls.return_value
+            pqc.sig_keypair.return_value = (b"pk", b"sk", "ML-DSA-44")
+            pqc.sig_sign.return_value = b"signature"
+            pqc.sig_verify.return_value = False
+            result = StressTest(None).test_pqc_throughput(n=1)
+        self.assertFalse(result["passed"])
+        self.assertEqual(result["failures"], 1)
+        self.assertEqual(result["successes"], 0)
+
+    def test_missing_cve_dataset_does_not_use_synthetic_ids(self):
+        from goodware.security.stress_tester import StressTest
+        with patch("builtins.open", side_effect=FileNotFoundError("dataset missing")):
+            result = StressTest(None).test_cve_burst(n=2)
+        self.assertFalse(result["passed"])
+        self.assertEqual(result["n"], 0)
+        self.assertIn("real CVE dataset unavailable", result["error"])
+
+    def test_event_flood_counts_missing_batch_writes(self):
+        from goodware.security.stress_tester import StressTest
+        state = SimpleNamespace(record_events_batch=lambda batch: 0)
+        result = StressTest(SimpleNamespace(state=state)).test_event_flood(n=2)
+        self.assertFalse(result["passed"])
+        self.assertEqual(result["failures"], 2)
+        self.assertEqual(result["n_events_written"], 0)
+
+    def test_sensor_saturation_requires_persisted_events(self):
+        from goodware.security.stress_tester import StressTest
+        state = SimpleNamespace(
+            record_events_batch=lambda batch: 0,
+            query_events=lambda limit: [],
+        )
+        result = StressTest(SimpleNamespace(state=state)).test_sensor_saturation(n=2)
+        self.assertFalse(result["passed"])
+        self.assertEqual(result["n_writes_successful"], 0)
+        self.assertEqual(result["n_generated_ids_verified"], 0)
 
 
 if __name__ == "__main__":

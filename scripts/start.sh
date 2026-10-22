@@ -12,10 +12,10 @@ echo "=========================================="
 
 # Verificar dependências
 echo "[*] A verificar dependências..."
-$PYTHON -c "import yaml, psutil, sklearn, flask, requests, watchdog, cryptography" 2>/dev/null || {
+$PYTHON -c "import yaml, psutil, sklearn, flask, requests, watchdog, cryptography, pandas" 2>/dev/null || {
   echo "[!] Faltam dependências. A instalar..."
   pip3 install --break-system-packages --index-url https://pypi.org/simple/ \
-    pyyaml psutil scikit-learn flask flask-cors requests watchdog cryptography joblib numpy 2>&1 | tail -3
+    pyyaml psutil scikit-learn flask flask-cors requests watchdog cryptography joblib numpy pandas 2>&1 | tail -3
 }
 
 # Criar directorios necessários

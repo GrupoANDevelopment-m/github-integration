@@ -29,6 +29,8 @@ from typing import Any, Dict, List, Optional, Tuple
 
 log = logging.getLogger("goodware.llm.rag")
 
+from goodware.core.paths import ROOT_DIR
+
 
 def tokenize(text: str) -> List[str]:
     """Tokenização simples."""
@@ -123,8 +125,8 @@ class SimpleVectorStore:
 class GoodwareRAG:
     """RAG indexado sobre knowledge base do Goodware."""
 
-    def __init__(self, root: str = "/workspace/goodware-v3"):
-        self._root = Path(root)
+    def __init__(self, root: str | Path | None = None):
+        self._root = Path(root).expanduser().resolve() if root is not None else ROOT_DIR
         self._store = SimpleVectorStore()
         self._indexed = False
         self._lock = threading.RLock()

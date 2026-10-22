@@ -1,0 +1,31 @@
+# Never ship Git history: prior commits contained runtime key/vault files.
+.git
+.git/**
+.github
+.github/**
+
+# Runtime secrets and mutable state
+.env
+.env.*
+!.env.example
+keys/
+data/vault/
+data/*.db
+data/snapshots/
+logs/
+quarantine/
+
+# Test and local tooling artifacts
+.pytest_cache/
+.mypy_cache/
+.tox/
+htmlcov/
+.coverage
+**/__pycache__/
+**/*.py[cod]
+.DS_Store
+Thumbs.db
+
+# Test and benchmark outputs should not be embedded in the runtime image
+benchmark-results/
+data/test_results.json

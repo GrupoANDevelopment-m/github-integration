@@ -183,7 +183,8 @@ def _register_default_hooks(reg: HooksRegistry) -> None:
 
     def audit_tool_call(ctx: HookContext) -> HookResult:
         """Escreve cada tool call no log de auditoria."""
-        log_path = Path("/workspace/goodware-v3/logs/tool_audit.log")
+        from goodware.core.paths import log_path as configured_log_path
+        log_path = configured_log_path("tool_audit.log")
         log_path.parent.mkdir(parents=True, exist_ok=True)
         try:
             with open(log_path, "a") as f:

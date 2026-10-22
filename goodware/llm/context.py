@@ -21,7 +21,9 @@ from typing import Any, Dict, List, Optional
 log = logging.getLogger("goodware.llm.context")
 
 
-CONTEXT_DIR = Path("/workspace/goodware-v3/data/context")
+from goodware.core.paths import data_path
+
+CONTEXT_DIR = Path(os.environ.get("GOODWARE_CONTEXT_DIR", data_path("context"))).expanduser().resolve()
 PROMPT_CACHE_FILE = CONTEXT_DIR / "prompt_cache.json"
 
 

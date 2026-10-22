@@ -4,17 +4,53 @@ Goodware v3.0 - REST API (com endpoints para integrações reais).
 from __future__ import annotations
 import json
 import os
+import hmac
+import ipaddress
 import threading
 import time
 from typing import Any, Dict
 
-from flask import Flask, jsonify, request
+from flask import Flask, g, jsonify, request
 from flask_cors import CORS
 
 
 def create_app(engine, config) -> Flask:
     app = Flask(__name__)
-    CORS(app)
+    api_token = os.environ.get("GOODWARE_API_TOKEN", "").strip()
+    auth_required = bool(api_token) or os.environ.get(
+        "GOODWARE_API_AUTH_REQUIRED", ""
+    ).strip().lower() in {"1", "true", "yes", "on"}
+
+    # Same-origin UI/API requires no CORS. Cross-origin access must be explicitly allowed.
+    allowed_origins = [
+        origin.strip()
+        for origin in os.environ.get("GOODWARE_CORS_ORIGINS", "").split(",")
+        if origin.strip()
+    ]
+    if allowed_origins:
+        CORS(app, resources={r"/api/*": {"origins": allowed_origins}})
+
+    @app.before_request
+    def authenticate_api_request():
+        if not request.path.startswith("/api/") or request.path == "/api/healthz":
+            return None
+        if not auth_required:
+            return None
+        if not api_token:
+            return jsonify({"error": "api_auth_not_configured"}), 503
+
+        authorization = request.headers.get("Authorization", "")
+        supplied = (
+            authorization[7:].strip()
+            if authorization.lower().startswith("bearer ")
+            else request.headers.get("X-Session-Token", "").strip()
+        )
+        if not supplied or not hmac.compare_digest(supplied, api_token):
+            return jsonify({"error": "unauthorized"}), 401
+
+        g.principal = os.environ.get("GOODWARE_API_PRINCIPAL", "admin").strip() or "admin"
+        g.role = os.environ.get("GOODWARE_API_ROLE", "admin").strip() or "admin"
+        return None
 
     def find_component(predicate):
         for name, comp in engine._components.items():
@@ -111,7 +147,9 @@ def create_app(engine, config) -> Flask:
     def hf_approve():
         data = request.get_json(force=True) or {}
         rid = data.get("request_id")
-        admin = data.get("admin_id", "admin")
+        # When API authentication is enabled, identity comes from the authenticated
+        # principal, never from a client-controlled JSON field.
+        admin = getattr(g, "principal", None) or data.get("admin_id", "admin")
         for name, comp in engine._components.items():
             if hasattr(comp, "evaluate") and hasattr(comp, "approve"):
                 return jsonify(comp.approve(rid, admin))
@@ -216,9 +254,10 @@ def create_app(engine, config) -> Flask:
         from goodware.effector.rollback import get_snapshot_manager
         data = request.get_json(force=True) or {}
         sid = data.get("snapshot_id")
-        verify = data.get("verify", True)
+        # Remote rollback must never let a caller disable integrity verification.
+        # Emergency recovery without a valid signature must be handled out-of-band.
         mgr = get_snapshot_manager()
-        result = mgr.rollback_files(sid, verify=verify)
+        result = mgr.rollback_files(sid, verify=True)
         return jsonify(result)
 
     @app.post("/api/snapshot/diff")
@@ -460,18 +499,25 @@ def create_app(engine, config) -> Flask:
     @app.get("/<path:path>")
     def serve_frontend(path="index.html"):
         import os
-        frontend_dir = os.path.normpath(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "frontend"))
-        if not os.path.isdir(frontend_dir):
-            return jsonify({"error": "frontend not built", "path": frontend_dir}), 404
+        ui_dir = os.path.realpath(os.path.join(
+            os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
+            "ui-control",
+        ))
+        if not os.path.isdir(ui_dir):
+            return jsonify({"error": "ui control not built", "path": ui_dir}), 404
         if not path or path == "/":
             path = "index.html"
-        # segurança: bloquear traversal
-        full = os.path.normpath(os.path.join(frontend_dir, path))
-        if not full.startswith(frontend_dir):
+        # Resolve symlinks and reject traversal outside the UI root.
+        full = os.path.realpath(os.path.join(ui_dir, path))
+        try:
+            inside_ui = os.path.commonpath([ui_dir, full]) == ui_dir
+        except ValueError:
+            inside_ui = False
+        if not inside_ui:
             return jsonify({"error": "forbidden"}), 403
         if not os.path.isfile(full):
-            # fallback SPA — index.html para client-side routing
-            full = os.path.join(frontend_dir, "index.html")
+            # SPA fallback for client-side routes.
+            full = os.path.join(ui_dir, "index.html")
         ext = os.path.splitext(full)[1].lower()
         ct_map = {
             ".html": "text/html; charset=utf-8",
@@ -490,6 +536,19 @@ def create_app(engine, config) -> Flask:
 
 
 def start_api(engine, config, host: str = "127.0.0.1", port: int = 8444):
+    token = os.environ.get("GOODWARE_API_TOKEN", "").strip()
+    try:
+        is_loopback = ipaddress.ip_address(host).is_loopback
+    except ValueError:
+        is_loopback = host.lower() == "localhost"
+    auth_required = os.environ.get("GOODWARE_API_AUTH_REQUIRED", "").strip().lower() in {
+        "1", "true", "yes", "on"
+    }
+    if (not is_loopback or auth_required) and not token:
+        raise RuntimeError(
+            "GOODWARE_API_TOKEN is required when API authentication is required "
+            "or the API binds to a non-loopback interface"
+        )
     app = create_app(engine, config)
     t = threading.Thread(target=app.run, kwargs={"host": host, "port": port, "debug": False, "use_reloader": False}, daemon=True, name="api")
     t.start()

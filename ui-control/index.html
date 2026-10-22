@@ -1213,10 +1213,13 @@
 <script>
 'use strict';
 
-const API_BASE = "http://localhost:8444/api";
 const UI_BASE = "/api";
 const startTime = Date.now();
-let sessionToken = "pqc-goodware-2026";
+let sessionToken = (() => {
+  try { return sessionStorage.getItem('goodware_api_token') || ''; }
+  catch { return ''; }
+})();
+let tokenPromptPromise = null;
 let autoRefresh = true;
 let eventBuffer = [];
 let chatHistory = [];
@@ -1362,16 +1365,40 @@ function startClock() {
 }
 
 // ============ API HELPER ============
-async function api(endpoint, method = 'GET', body = null) {
-  const opts = {
-    method,
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Session-Token': sessionToken,
-    },
-  };
+async function requestApiToken() {
+  if (sessionToken) return sessionToken;
+  if (!tokenPromptPromise) {
+    tokenPromptPromise = Promise.resolve().then(() => {
+      const entered = window.prompt('Token de acesso à API Goodware:');
+      if (!entered || !entered.trim()) {
+        autoRefresh = false;
+        throw new Error('Token da API não fornecido');
+      }
+      sessionToken = entered.trim();
+      try { sessionStorage.setItem('goodware_api_token', sessionToken); } catch {}
+      return sessionToken;
+    }).finally(() => { tokenPromptPromise = null; });
+  }
+  return tokenPromptPromise;
+}
+
+async function api(endpoint, method = 'GET', body = null, retryUnauthorized = true) {
+  const tokenUsed = sessionToken;
+  const headers = { 'Content-Type': 'application/json' };
+  if (tokenUsed) headers.Authorization = `Bearer ${tokenUsed}`;
+  const opts = { method, headers };
   if (body) opts.body = JSON.stringify(body);
   const r = await fetch(UI_BASE + endpoint, opts);
+  if (r.status === 401 && retryUnauthorized) {
+    // Concurrent initial requests share one prompt; retry once with the new token.
+    if (sessionToken && sessionToken !== tokenUsed) {
+      return api(endpoint, method, body, false);
+    }
+    sessionToken = '';
+    try { sessionStorage.removeItem('goodware_api_token'); } catch {}
+    await requestApiToken();
+    return api(endpoint, method, body, false);
+  }
   if (!r.ok) {
     const t = await r.text();
     throw new Error(`${r.status}: ${t.slice(0, 150)}`);
@@ -1913,7 +1940,11 @@ function escapeHtml(s) {
     ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 function logout() {
-  if (confirm('Sair do console?')) location.reload();
+  if (confirm('Sair do console?')) {
+    sessionToken = '';
+    try { sessionStorage.removeItem('goodware_api_token'); } catch {}
+    location.reload();
+  }
 }
 
 // ============ KEYBOARD SHORTCUTS ============

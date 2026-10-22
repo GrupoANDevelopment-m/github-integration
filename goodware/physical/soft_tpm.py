@@ -21,8 +21,10 @@ from typing import Dict, List, Optional
 
 log = logging.getLogger("goodware.physical.soft_tpm")
 
+from goodware.core.paths import data_path
 
-SOFT_TPM_FILE = "/workspace/goodware-v3/data/soft_tpm_state.json"
+
+SOFT_TPM_FILE = str(data_path("soft_tpm_state.json"))
 
 
 class SoftTPM:
