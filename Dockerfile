@@ -54,9 +54,11 @@ RUN freshclam --quiet || true
 WORKDIR /opt/goodware
 COPY . /opt/goodware/
 
-# Python deps
-RUN pip3 install --no-cache-dir --break-system-packages \
-    openai pydantic httpx pyyaml
+# Install the same complete Python dependency set used by CI, including a
+# mutually compatible NumPy / pandas / scikit-learn / joblib stack.  The
+# distro-packaged sklearn/joblib versions cannot reliably load models produced
+# by the newer pip environment (e.g. missing numpy._core).
+RUN pip3 install --no-cache-dir --break-system-packages -r requirements.txt
 
 # Permissions
 RUN mkdir -p /var/log/goodware /var/lib/goodware /var/lib/goodware/snapshots
