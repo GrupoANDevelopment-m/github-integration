@@ -26,5 +26,6 @@ htmlcov/
 .DS_Store
 Thumbs.db
 
-# Test outputs should not be embedded in the runtime image
+# Test and benchmark outputs should not be embedded in the runtime image
+benchmark-results/
 data/test_results.json
