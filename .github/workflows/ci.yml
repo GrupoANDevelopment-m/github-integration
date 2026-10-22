@@ -110,6 +110,7 @@ jobs:
           assert "engine" in body and isinstance(body["engine"], dict), body
           print("Docker runtime smoke passed: health=200, unauthenticated status=401, authenticated status=200")
           PY
+          docker exec "$CONTAINER" python3 -c 'from goodware.core.config import GoodwareConfig; from goodware.prediction.threat_predictor import ThreatPredictor; p=ThreatPredictor("ci-runtime-model-check", GoodwareConfig.load()); assert p.model_loaded, f"runtime model unavailable: {p.model_source}"; assert p.model_source in {"unsw_nb15", "nsl_kdd", "legacy"}; assert not p.synthetic_fallback; print(f"runtime model loaded: {p.model_source}, features={p.feature_count}, anomaly_loaded={p.anomaly_loaded}")'
 
       - name: Push to registry
         if: github.ref == 'refs/heads/main'
