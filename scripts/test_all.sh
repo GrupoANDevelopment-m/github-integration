@@ -28,6 +28,7 @@ SUITES=(
   "test_llm_fallback|test_llm_fallback"
   "test_load|test_load"
   "test_rollback_integrity|test_rollback_integrity"
+  "test_federated_e2e|test_federated_e2e"
 )
 
 run_suite() {
