@@ -66,7 +66,13 @@ jobs:
             --train NSL_KDD/KDDTrain+.txt \
             --test NSL_KDD/KDDTest+.txt \
             --output models/
-      
+
+      - name: Real ML inference regression (no synthetic fallback)
+        env:
+          PYTHONPATH: ${{ github.workspace }}
+        run: |
+          python3 -m unittest tests.test_model_runtime -v
+
       - name: Build Docker image
         run: docker build -t goodware-v3:${{ github.sha }} .
       
