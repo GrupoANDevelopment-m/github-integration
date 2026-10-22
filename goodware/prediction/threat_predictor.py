@@ -53,6 +53,11 @@ class ThreatPredictor:
         self.anomaly_loaded = False
         self.synthetic_fallback = False
         self.feature_count = 0
+        # Real network-flow inference artifacts. Generic event summaries are not
+        # silently coerced into a dataset feature vector.
+        self.feature_columns = []
+        self.feature_scaler = None
+        self.feature_encoders = {}
 
         # Allow explicit dev-only synthetic fallback via env var
         self._dev_synthetic_allowed = os.environ.get("GOODWARE_DEV_SYNTHETIC_OK", "0") == "1"
@@ -103,6 +108,7 @@ class ThreatPredictor:
                     self.feature_count = 45
                 self.model_source = "unsw_nb15"
                 self.model_loaded = True
+                self._load_network_flow_artifacts("unsw_nb15")
                 log.info("Loaded real UNSW-NB15 model: %s (%d features)", p, self.feature_count)
                 # Try matching anomaly detector
                 iso_p = os.path.join(self.model_dir, "anomaly_detector_unsw_nb15.joblib")
@@ -127,6 +133,7 @@ class ThreatPredictor:
                     self.feature_count = 41
                 self.model_source = "nsl_kdd"
                 self.model_loaded = True
+                self._load_network_flow_artifacts("nsl_kdd")
                 log.info("Loaded real NSL-KDD model: %s (%d features)", p, self.feature_count)
                 iso_p = os.path.join(self.model_dir, "anomaly_detector_nsl_kdd.joblib")
                 if os.path.exists(iso_p):
@@ -159,6 +166,116 @@ class ThreatPredictor:
             log.warning("Failed to load legacy model: %s", e)
 
         return loaded_any
+
+    def _load_network_flow_artifacts(self, source: str) -> None:
+        """Load the exact feature schema, encoders and scaler saved by training."""
+        import json
+
+        metadata_path = os.path.join(self.model_dir, f"training_metadata_{source}.json")
+        if not os.path.isfile(metadata_path):
+            log.warning("Network-flow inference disabled: missing metadata %s", metadata_path)
+            return
+        try:
+            with open(metadata_path, "r", encoding="utf-8") as handle:
+                metadata = json.load(handle)
+            columns = metadata.get("features")
+            if not isinstance(columns, list) or not columns or not all(isinstance(x, str) for x in columns):
+                raise ValueError("metadata features must be a non-empty list of names")
+            encoders = {}
+            category_names = ("proto", "service", "state") if source == "unsw_nb15" else ("protocol_type", "service", "flag")
+            for name in category_names:
+                prefix = "encoder_unsw_" if source == "unsw_nb15" else "encoder_"
+                path = os.path.join(self.model_dir, f"{prefix}{name}.joblib")
+                if os.path.isfile(path):
+                    encoders[name] = joblib.load(path)
+            if source == "nsl_kdd":
+                scaler_path = os.path.join(self.model_dir, "scaler_nsl_kdd.joblib")
+                if not os.path.isfile(scaler_path):
+                    raise FileNotFoundError("missing scaler_nsl_kdd.joblib")
+                self.feature_scaler = joblib.load(scaler_path)
+                if not encoders.keys() >= {"protocol_type", "service", "flag"}:
+                    raise FileNotFoundError("one or more NSL-KDD category encoders are missing")
+            else:
+                if not encoders.keys() >= {"proto", "service", "state"}:
+                    raise FileNotFoundError("one or more UNSW-NB15 category encoders are missing")
+            if len(columns) != self.feature_count:
+                raise ValueError(f"metadata has {len(columns)} features but model expects {self.feature_count}")
+            self.feature_columns = columns
+            self.feature_encoders = encoders
+            log.info("Loaded %s network-flow pipeline (%d features)", source, len(columns))
+        except Exception as exc:
+            self.feature_columns = []
+            self.feature_scaler = None
+            self.feature_encoders = {}
+            log.warning("Network-flow inference disabled for %s: %s", source, exc)
+
+    def predict_network_flow(self, flow: dict) -> dict:
+        """Predict from one real flow matching the training dataset schema.
+
+        Required numeric fields and categorical values are defined by the model's
+        training metadata. Unknown categories, missing fields and invalid numbers
+        fail closed; event summaries are never substituted for network-flow data.
+        """
+        unavailable = {
+            "threat_type": "unavailable", "confidence": 0.0, "risk": 0.0,
+            "model_source": self.model_source, "synthetic_fallback": self.synthetic_fallback,
+        }
+        if not isinstance(flow, dict):
+            return {**unavailable, "explanation": "invalid_flow: expected a mapping"}
+        if not self.model_loaded or self.model is None:
+            return {**unavailable, "explanation": "no real trained model loaded"}
+        if not self.feature_columns:
+            return {**unavailable, "explanation": "validated_network_flow_pipeline_unavailable"}
+        try:
+            vector = []
+            for column in self.feature_columns:
+                if column.endswith("_enc"):
+                    raw_name = column[:-4]
+                    encoder = self.feature_encoders.get(raw_name)
+                    if encoder is None or raw_name not in flow:
+                        return {**unavailable, "explanation": f"missing_categorical_feature:{raw_name}"}
+                    try:
+                        encoded = int(encoder.transform([str(flow[raw_name])])[0])
+                    except (ValueError, TypeError) as exc:
+                        return {**unavailable, "explanation": f"unknown_category:{raw_name}:{exc}"}
+                    vector.append(encoded)
+                else:
+                    if column not in flow:
+                        return {**unavailable, "explanation": f"missing_numeric_feature:{column}"}
+                    value = float(flow[column])
+                    if not np.isfinite(value):
+                        return {**unavailable, "explanation": f"non_finite_feature:{column}"}
+                    vector.append(value)
+            features = np.asarray(vector, dtype=np.float64).reshape(1, -1)
+            if self.feature_scaler is not None:
+                features = self.feature_scaler.transform(features)
+            predicted = int(self.model.predict(features)[0])
+            probabilities = self.model.predict_proba(features)[0] if hasattr(self.model, "predict_proba") else None
+            if probabilities is not None:
+                classes = list(getattr(self.model, "classes_", range(len(probabilities))))
+                attack_idx = classes.index(1) if 1 in classes else int(np.argmax(probabilities))
+                confidence = float(probabilities[attack_idx])
+            else:
+                confidence = 0.0
+            if self.model_source in ("nsl_kdd", "unsw_nb15"):
+                threat_type = "attack" if predicted == 1 else "normal"
+            else:
+                threat_type = self.THREAT_TYPES[predicted] if 0 <= predicted < len(self.THREAT_TYPES) else f"class_{predicted}"
+            anomaly_score = None
+            if self.iso_forest is not None:
+                anomaly_score = float(self.iso_forest.decision_function(features)[0])
+            risk = min(1.0, max(0.0, confidence if predicted == 1 else 1.0 - confidence))
+            return {
+                "threat_type": threat_type, "confidence": confidence, "risk": risk,
+                "model_source": self.model_source, "anomaly_source": self.anomaly_source,
+                "anomaly_score": anomaly_score, "feature_count": len(vector),
+                "synthetic_fallback": False, "explanation": "prediction from validated network-flow feature schema",
+            }
+        except (ValueError, TypeError, KeyError) as exc:
+            return {**unavailable, "explanation": f"invalid_flow_features:{exc}"}
+        except Exception as exc:
+            log.exception("network-flow prediction failed")
+            return {**unavailable, "explanation": f"prediction_error:{type(exc).__name__}"}
 
     def _ensure_synthetic_data(self):
         """DEV ONLY — synthetic data via np.random.normal. Marked clearly."""
@@ -256,21 +373,22 @@ class ThreatPredictor:
                 "model_source": self.model_source,
                 "synthetic_fallback": self.synthetic_fallback,
             }
-        # UNSW-NB15 and NSL-KDD were trained on network-flow features.
-        # The current event aggregator only produces generic event summaries; padding
-        # those summaries to 41/45 dimensions is not a valid feature transformation.
-        # Fail closed rather than emit a misleading production security prediction.
+        # Real dataset models require a genuine flow payload; never fabricate
+        # network-flow fields from generic process/event summaries.
         if self.model_source in ("unsw_nb15", "nsl_kdd"):
+            events = self.engine.state.query_events(limit=100) if self.engine else []
+            for event in reversed(events or []):
+                if isinstance(event, dict):
+                    flow = event.get("network_flow", event.get("flow"))
+                    if isinstance(flow, dict):
+                        return self.predict_network_flow(flow)
             return {
-                "threat_type": "unavailable",
-                "confidence": 0.0,
-                "risk": 0.0,
+                "threat_type": "unavailable", "confidence": 0.0, "risk": 0.0,
                 "explanation": (
-                    f"feature_schema_mismatch: {self.model_source} requires its "
-                    "validated network-flow feature pipeline; event summaries are not compatible"
+                    f"network_flow_required: {self.model_source} needs a real flow payload "
+                    "matching its training schema; generic event summaries are not compatible"
                 ),
-                "model_source": self.model_source,
-                "anomaly_source": self.anomaly_source,
+                "model_source": self.model_source, "anomaly_source": self.anomaly_source,
                 "synthetic_fallback": self.synthetic_fallback,
             }
         try:
